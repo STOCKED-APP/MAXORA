@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Maxora · Control</title>
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<link href="../assets/theme.css" rel="stylesheet">
+<link href="admin.css" rel="stylesheet">
+<script>
+  (function () {
+    var t = 'auto';
+    try { t = localStorage.getItem('maxora_admin_theme') || 'auto'; } catch (e) {}
+    var dark = t === 'dark' || (t === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  })();
+</script>
+</head>
+<body>
+
+<!-- Accesso -->
+<main id="login" class="login hidden">
+  <form id="loginForm" class="login-card">
+    <div class="wordmark display">MAXORA</div>
+    <h1>Centro de control</h1>
+    <label>Email<input type="email" id="loginEmail" autocomplete="username" required></label>
+    <label>Contraseña<input type="password" id="loginPass" autocomplete="current-password" required></label>
+    <button type="submit" class="btn primary" id="loginBtn">Entrar</button>
+    <p class="err" id="loginErr" role="alert"></p>
+  </form>
+</main>
+
+<!-- Pannello -->
+<div id="shell" class="shell hidden">
+  <nav class="rail" aria-label="Secciones">
+    <div class="wordmark display">MAXORA<span>control</span></div>
+    <div class="rail-group">En directo</div>
+    <button data-view="dashboard">Panorama</button>
+    <button data-view="reports">Avisos</button>
+    <button data-view="official">Aviso oficial</button>
+    <button data-view="users">Dispositivos</button>
+    <div class="rail-group">Configuración</div>
+    <button data-view="rules">Interruptores y reglas</button>
+    <button data-view="broadcasts">Mensajes</button>
+    <button data-view="log">Registro</button>
+    <div class="rail-group">Isla</div>
+    <button data-view="places">Lugares</button>
+    <button data-view="businesses">Negocios</button>
+    <div class="rail-group">Datos y app</div>
+    <button data-view="dgt">Datos DGT</button>
+    <button data-view="push">Notificaciones</button>
+    <div class="rail-foot">
+      <button id="themeBtn" class="btn small ghost">Tema</button>
+      <a class="btn small ghost" href="../" target="_blank" rel="noopener">Abrir app</a>
+      <button id="logoutBtn" class="btn small ghost">Salir</button>
+    </div>
+  </nav>
+  <main class="main">
+    <header class="main-head">
+      <div>
+        <div class="eyebrow" id="viewEyebrow"></div>
+        <h1 id="viewTitle"></h1>
+      </div>
+      <div class="head-actions" id="headActions"></div>
+    </header>
+    <section id="view" class="view"></section>
+  </main>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

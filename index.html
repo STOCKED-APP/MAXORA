@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#13171c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Maxora — La isla, en tiempo real</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<link href="assets/theme.css" rel="stylesheet">
+<link href="assets/app.css" rel="stylesheet">
+<script>
+  // Tema prima del primo disegno (evita il lampo bianco)
+  (function () {
+    var t = 'auto';
+    try { t = localStorage.getItem('maxora_theme') || 'auto'; } catch (e) {}
+    var dark = t === 'dark' || (t === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  })();
+</script>
+</head>
+<body>
+<div id="map" aria-label="Mapa"></div>
+
+<header class="top">
+  <div class="brand display">MAXORA</div>
+  <div class="top-right">
+    <button class="chip" id="centerBtn" aria-label="Centrar en mi posición">
+      <span class="dot" id="gpsDot"></span><span id="routeChip">…</span>
+    </button>
+  </div>
+</header>
+
+<div id="broadcast" class="broadcast hidden" role="status">
+  <span id="broadcastText"></span>
+  <button id="broadcastClose" aria-label="Cerrar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+</div>
+
+<!-- Avviso di prossimità -->
+<div id="alert" class="alert hidden" role="alert">
+  <div class="alert-mark" id="alertMark"></div>
+  <div class="alert-body">
+    <div class="alert-dist mono" id="alertDist"></div>
+    <div class="alert-title" id="alertTitle"></div>
+  </div>
+  <div class="alert-actions">
+    <button class="btn-solid" id="alertYes"></button>
+    <button class="btn-ghost" id="alertNo"></button>
+  </div>
+</div>
+
+<!-- Scheda principale (apribile / richiudibile) -->
+<section id="sheet" class="sheet">
+  <button class="sheet-handle" id="sheetToggle" aria-expanded="true" aria-controls="sheetBody">
+    <span class="grip"></span>
+    <span class="next">
+      <span class="next-label" id="nextLabel"></span>
+      <span class="next-value display"><span id="nextKm">—</span> <small id="nextUnit"></small></span>
+    </span>
+    <span class="next-side" id="nextSide"></span>
+    <svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+  </button>
+
+  <div class="sheet-body" id="sheetBody">
+    <div class="arc-wrap">
+      <svg class="arc" viewBox="0 0 390 230" aria-hidden="true">
+        <path class="arc-track" d="M45 210 A150 150 0 0 1 345 210"/>
+        <path class="arc-inner" d="M90 210 A105 105 0 0 1 300 210"/>
+        <g id="arcMarks"></g>
+        <circle class="arc-start" cx="45" cy="210" r="9"/>
+        <circle class="arc-end" cx="345" cy="210" r="9"/>
+      </svg>
+      <div id="arcLabels"></div>
+      <div class="arc-cap mono left" id="capLeft"></div>
+      <div class="arc-cap mono right" id="capRight"></div>
+      <button class="report-btn display" id="reportBtn">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        <span id="reportLabel"></span>
+      </button>
+    </div>
+
+    <div class="card" id="card">
+      <div class="card-mark" id="cardMark"></div>
+      <div class="card-text">
+        <div class="card-title" id="cardTitle"></div>
+        <div class="card-meta" id="cardMeta"></div>
+      </div>
+      <div class="card-actions" id="cardActions">
+        <button class="btn-solid" id="voteYes"></button>
+        <button class="btn-ghost" id="voteNo"></button>
+      </div>
+    </div>
+
+    <div class="bottom-row">
+      <button class="btn-outline" id="discoverBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
+        <span id="discoverLabel"></span>
+      </button>
+      <button class="btn-square" id="settingsBtn" aria-label="Ajustes">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Pannello: scegli tipo di avviso -->
+<div class="overlay hidden" id="typesOverlay">
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="typesTitle">
+    <div class="panel-head">
+      <h2 id="typesTitle"></h2>
+      <button class="icon-btn" data-close aria-label="Cerrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <p class="panel-sub" id="typesSub"></p>
+    <div class="types" id="typesGrid"></div>
+  </div>
+</div>
+
+<!-- Pannello: impostazioni -->
+<div class="overlay hidden" id="settingsOverlay">
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="panel-head">
+      <h2 id="settingsTitle"></h2>
+      <button class="icon-btn" data-close aria-label="Cerrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="setting">
+      <div class="setting-label" id="lblTheme"></div>
+      <div class="seg" id="themeSeg">
+        <button data-theme-val="auto"></button>
+        <button data-theme-val="light"></button>
+        <button data-theme-val="dark"></button>
+      </div>
+    </div>
+    <div class="setting">
+      <div class="setting-label" id="lblLang"></div>
+      <div class="seg" id="langSeg">
+        <button data-lang="es">ES</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="it">IT</button>
+        <button data-lang="de">DE</button>
+      </div>
+    </div>
+    <label class="setting toggle">
+      <span class="setting-label" id="lblVoice"></span>
+      <input type="checkbox" id="voiceToggle">
+    </label>
+    <label class="setting toggle">
+      <span class="setting-label" id="lblSound"></span>
+      <input type="checkbox" id="soundToggle">
+    </label>
+    <p class="panel-note" id="settingsNote"></p>
+  </div>
+</div>
+
+<!-- Pannello: scopri l'isola -->
+<div class="overlay hidden" id="discoverOverlay">
+  <div class="panel tall" role="dialog" aria-modal="true" aria-labelledby="discoverTitle">
+    <div class="panel-head">
+      <h2 id="discoverTitle"></h2>
+      <button class="icon-btn" data-close aria-label="Cerrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="seg wide" id="discoverTabs">
+      <button data-tab="places" class="on"></button>
+      <button data-tab="businesses"></button>
+    </div>
+    <div class="discover-list" id="discoverList"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/config.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

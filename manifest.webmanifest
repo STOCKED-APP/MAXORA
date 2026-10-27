@@ -1,0 +1,13 @@
+{
+  "name": "Maxora — La isla, en tiempo real",
+  "short_name": "Maxora",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#13171c",
+  "theme_color": "#13171c",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
