@@ -898,8 +898,27 @@
   // DGT
   // ------------------------------------------------------------------
   VIEWS.dgt = {
-    eyebrow: 'Datos y app', title: 'Datos oficiales DGT',
-    async render(view) {
+    eyebrow: 'Datos y app', title: 'Datos: DGT y lugares',
+    async render(view, head) {
+      const syncBtn = el('button', { class: 'btn primary', text: 'Actualizar lugares ahora' });
+      syncBtn.addEventListener('click', async () => {
+        syncBtn.disabled = true; syncBtn.textContent = 'Actualizando… (hasta 2 min)';
+        const { data, error } = await sb.functions.invoke('sync-pois', { body: {} });
+        syncBtn.disabled = false; syncBtn.textContent = 'Actualizar lugares ahora';
+        if (error || !data || !data.ok) return toast('Error: ' + ((data && data.error) || (error && error.message) || 'desconocido'));
+        toast(data.items + ' lugares actualizados'); route();
+      });
+      head.append(syncBtn);
+      const CAT_KEYS = ['food', 'drink', 'beach', 'fuel', 'super', 'pharmacy', 'view', 'surf', 'parking', 'hotel'];
+      const cnt = await Promise.all(CAT_KEYS.map((k) => sb.from('pois').select('id', { count: 'exact', head: true }).eq('cat', k)));
+      const counts = {};
+      CAT_KEYS.forEach((k, i) => { counts[k] = cnt[i].count || 0; });
+      const CAT_NAMES = { food: 'Restaurantes', drink: 'Bares y cafés', beach: 'Playas', fuel: 'Gasolineras', super: 'Supermercados', pharmacy: 'Farmacias', view: 'Miradores', surf: 'Surf y kite', parking: 'Aparcamientos', hotel: 'Alojamiento' };
+      view.appendChild(el('div', { class: 'panel', style: 'margin-bottom:16px' }, [
+        el('h2', { text: 'Lugares de OpenStreetMap en Maxora' }),
+        el('p', { class: 'sub', text: 'Se copian solos cada noche a las 04:17. La app los guarda en el teléfono: la búsqueda por categoría es instantánea.' }),
+        el('div', { class: 'kpis', style: 'margin:0' }, Object.keys(CAT_NAMES).map((k) => kpi(CAT_NAMES[k], counts[k] || 0)))
+      ]));
       const [runs, live] = await Promise.all([
         sb.from('import_runs').select('*').order('started_at', { ascending: false }).limit(50),
         sb.from('reports').select('id', { count: 'exact', head: true }).eq('source', 'dgt').gt('expires_at', new Date().toISOString()).is('removed_at', null)
@@ -917,7 +936,7 @@
       view.appendChild(el('div', { style: 'margin-top:16px' }, [(runs.data || []).length ? el('div', { class: 'table-wrap' }, [el('table', {}, [
         el('thead', {}, [el('tr', {}, ['Inicio', 'Fin', 'Fuente', 'Avisos', 'Estado', 'Error'].map((h) => el('th', { text: h })))]),
         el('tbody', {}, runs.data.map((r) => el('tr', {}, [
-          el('td', { text: fmtDT(r.started_at) }), el('td', { text: fmtDT(r.finished_at) }), el('td', { class: 'id', text: r.source }),
+          el('td', { text: fmtDT(r.started_at) }), el('td', { text: fmtDT(r.finished_at) }), el('td', { class: 'id', text: r.source === 'osm-pois' ? 'lugares OSM' : r.source }),
           el('td', { text: String(r.items ?? '—') }),
           el('td', {}, [el('span', { class: 'pill ' + (r.ok ? 'ok' : r.ok === false ? 'bad' : ''), text: r.ok ? 'ok' : r.ok === false ? 'error' : 'en curso' })]),
           el('td', { class: 'muted', text: r.error || '' })

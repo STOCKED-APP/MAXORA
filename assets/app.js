@@ -833,7 +833,12 @@
     if (photonCache.has(key)) return photonCache.get(key);
     if (photonCtrl) photonCtrl.abort();
     photonCtrl = new AbortController();
-    const res = await fetch(PHOTON + '/api/?' + key, { signal: photonCtrl.signal });
+    const ctrl = photonCtrl;
+    const tmo = setTimeout(() => ctrl.abort('timeout'), 6000);
+    let res;
+    try { res = await fetch(PHOTON + '/api/?' + key, { signal: ctrl.signal }); }
+    catch (e) { if (ctrl.signal.reason === 'timeout') throw new Error('timeout'); throw e; }
+    finally { clearTimeout(tmo); }
     if (!res.ok) throw new Error('photon ' + res.status);
     const json = await res.json();
     const seen = new Set();
@@ -898,24 +903,35 @@
     return null;
   }
 
-  const OVERPASS = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
-  let overCtrl = null;
-  async function overpass(cat, box) {
-    const b = [box.s, box.w, box.n, box.e].map((v) => v.toFixed(4)).join(',');
-    const ql = '[out:json][timeout:20];(' + cat.osm.map((f) => f + '(' + b + ');').join('') + ');out center tags 400;';
-    if (overCtrl) overCtrl.abort();
-    overCtrl = new AbortController();
-    let lastErr;
-    for (const url of OVERPASS) {
-      try {
-        const res = await fetch(url + '?data=' + encodeURIComponent(ql), { signal: overCtrl.signal });
-        if (!res.ok) throw new Error('overpass ' + res.status);
-        const json = await res.json();
-        return (json.elements || []).map((e) => fromOverpass(e, cat)).filter(Boolean);
-      } catch (e) { if (e.name === 'AbortError') throw e; lastErr = e; }
+  // Punti d'interesse: copiati ogni notte da OpenStreetMap nel nostro database (tabella pois).
+  // Dopo il primo caricamento stanno nel telefono: le ricerche successive sono istantanee.
+  const POI = new Map();
+  const POI_TTL = 12 * 3600 * 1000;
+  async function getPois(cat) {
+    const mem = POI.get(cat.id);
+    if (mem && Date.now() - mem.at < POI_TTL) return mem.items;
+    const disk = store.get('pois_' + cat.id, null);
+    if (disk && Date.now() - disk.at < POI_TTL) { POI.set(cat.id, disk); return disk.items; }
+    try {
+      const rows = [];
+      for (let from = 0; from < 10000; from += 1000) {
+        const { data, error } = await sb.from('pois').select('id,name,lat,lng,tags').eq('cat', cat.id).order('id').range(from, from + 999);
+        if (error) throw error;
+        rows.push(...data);
+        if (data.length < 1000) break;
+      }
+      const items = rows.map((r) => fromPoi(r, cat));
+      const rec = { at: Date.now(), items };
+      POI.set(cat.id, rec);
+      store.set('pois_' + cat.id, rec);
+      return items;
+    } catch (e) {
+      if (disk) return disk.items;   // senza rete: uso la copia vecchia
+      throw e;
     }
-    throw lastErr;
   }
+  function prefetchPois() { CATS.reduce((p, c) => p.then(() => getPois(c).catch(() => {})), Promise.resolve()); }
+  function fromPoi(r, cat) { return fromOverpass({ type: r.id[0] === 'n' ? 'node' : r.id[0] === 'w' ? 'way' : 'relation', id: r.id.slice(1), lat: r.lat, lon: r.lng, tags: Object.assign({ name: r.name }, r.tags) }, cat); }
   function fromOverpass(e, cat) {
     const tg = e.tags || {};
     const lat = e.lat != null ? e.lat : e.center && e.center.lat;
@@ -976,8 +992,10 @@
     R.box = box;
     let items = [];
     let failed = false;
-    try { items = await overpass(cat, box); }
-    catch (e) { if (e.name === 'AbortError') return; failed = true; }
+    try {
+      const all = await getPois(cat);
+      items = all.filter((x) => x.lat >= box.s && x.lat <= box.n && x.lng >= box.w && x.lng <= box.e);
+    } catch (e) { failed = true; }
     if (!R.on || R.cat !== cat) return;
     // le schede Maxora della stessa categoria vanno sempre in testa
     const inBox = (x) => x.lat >= box.s && x.lat <= box.n && x.lng >= box.w && x.lng <= box.e;
@@ -1064,7 +1082,6 @@
 
   function exitResults() {
     R.on = false; R.cat = null; R.items = []; R.sel = null;
-    if (overCtrl) overCtrl.abort();
     clearResultMarkers();
     $('results').classList.add('hidden');
     $('areaBtn').classList.add('hidden');
@@ -1430,6 +1447,7 @@
     await ensureSession();
     await loadAll();
     loadCatalog();
+    setTimeout(prefetchPois, 2500);
     subscribe();
     startGps();
     setInterval(loadAll, 60000);
