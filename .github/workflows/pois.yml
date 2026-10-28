@@ -47,7 +47,9 @@ jobs:
           osmium export filtered.osm.pbf -f geojsonseq --add-unique-id=type_id -o filtered.geojsonseq --overwrite
 
       - name: Crea data/pois.json
-        run: python3 tools/build_pois.py filtered.geojsonseq data/pois.json
+        run: |
+          echo "::notice::righe=$(wc -l < filtered.geojsonseq) dimensione=$(stat -c %s filtered.geojsonseq) prima=$(head -c 300 filtered.geojsonseq | tr -d '\036\n' | cut -c1-250)"
+          python3 tools/build_pois.py filtered.geojsonseq data/pois.json
 
       - name: Pubblica se cambiato
         run: |

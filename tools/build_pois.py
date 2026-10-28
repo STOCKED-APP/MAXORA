@@ -69,9 +69,19 @@ def main(src, dst):
            'areas': list(AREAS), 'count': count, 'cats': out}
     with open(dst, 'w', encoding='utf-8') as f:
         json.dump(doc, f, ensure_ascii=False, separators=(',', ':'))
-    print('pois:', count, {k: len(v) for k, v in out.items()})
+    print('::notice::pois %d %s' % (count, {k: len(v) for k, v in out.items()}))
     if count < 200:
         sys.exit('Troppo pochi punti (%d): qualcosa non va, non pubblico.' % count)
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    try:
+        main(sys.argv[1], sys.argv[2])
+    except SystemExit as e:
+        if e.code not in (0, None):
+            print('::error::' + str(e.code).replace('\n', ' '))
+        raise
+    except Exception as e:
+        import traceback
+        tb = traceback.format_exc().strip().splitlines()
+        print('::error::' + type(e).__name__ + ': ' + str(e)[:300] + ' | ' + ' / '.join(tb[-4:])[:600])
+        sys.exit(1)
