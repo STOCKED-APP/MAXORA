@@ -900,24 +900,14 @@
   VIEWS.dgt = {
     eyebrow: 'Datos y app', title: 'Datos: DGT y lugares',
     async render(view, head) {
-      const syncBtn = el('button', { class: 'btn primary', text: 'Actualizar lugares ahora' });
-      syncBtn.addEventListener('click', async () => {
-        syncBtn.disabled = true; syncBtn.textContent = 'Actualizando… (hasta 2 min)';
-        const { data, error } = await sb.functions.invoke('sync-pois', { body: {} });
-        syncBtn.disabled = false; syncBtn.textContent = 'Actualizar lugares ahora';
-        if (error || !data || !data.ok) return toast('Error: ' + ((data && data.error) || (error && error.message) || 'desconocido'));
-        toast(data.items + ' lugares actualizados'); route();
-      });
-      head.append(syncBtn);
-      const CAT_KEYS = ['food', 'drink', 'beach', 'fuel', 'super', 'pharmacy', 'view', 'surf', 'parking', 'hotel'];
-      const cnt = await Promise.all(CAT_KEYS.map((k) => sb.from('pois').select('id', { count: 'exact', head: true }).eq('cat', k)));
-      const counts = {};
-      CAT_KEYS.forEach((k, i) => { counts[k] = cnt[i].count || 0; });
+      head.append(el('a', { class: 'btn', href: 'https://github.com/STOCKED-APP/MAXORA/actions/workflows/pois.yml', target: '_blank', rel: 'noopener', text: 'Ver actualizaciones en GitHub' }));
       const CAT_NAMES = { food: 'Restaurantes', drink: 'Bares y cafés', beach: 'Playas', fuel: 'Gasolineras', super: 'Supermercados', pharmacy: 'Farmacias', view: 'Miradores', surf: 'Surf y kite', parking: 'Aparcamientos', hotel: 'Alojamiento' };
+      let doc = null;
+      try { const r = await fetch('../data/pois.json', { cache: 'no-cache' }); if (r.ok) doc = await r.json(); } catch (e) { /* nada */ }
       view.appendChild(el('div', { class: 'panel', style: 'margin-bottom:16px' }, [
         el('h2', { text: 'Lugares de OpenStreetMap en Maxora' }),
-        el('p', { class: 'sub', text: 'Se copian solos cada noche a las 04:17. La app los guarda en el teléfono: la búsqueda por categoría es instantánea.' }),
-        el('div', { class: 'kpis', style: 'margin:0' }, Object.keys(CAT_NAMES).map((k) => kpi(CAT_NAMES[k], counts[k] || 0)))
+        el('p', { class: 'sub', text: doc ? 'Última actualización: ' + fmtDT(doc.generated_at) + '. Se actualizan solos cada noche (03:23 UTC) desde el extracto oficial de OpenStreetMap. La app los guarda en el teléfono: la búsqueda por categoría es instantánea.' : 'Todavía no hay archivo de lugares: la primera actualización automática está en curso (unos minutos).' }),
+        el('div', { class: 'kpis', style: 'margin:0' }, Object.keys(CAT_NAMES).map((k) => kpi(CAT_NAMES[k], doc && doc.cats[k] ? doc.cats[k].length : 0)))
       ]));
       const [runs, live] = await Promise.all([
         sb.from('import_runs').select('*').order('started_at', { ascending: false }).limit(50),

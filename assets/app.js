@@ -907,31 +907,48 @@
   // Dopo il primo caricamento stanno nel telefono: le ricerche successive sono istantanee.
   const POI = new Map();
   const POI_TTL = 12 * 3600 * 1000;
-  async function getPois(cat) {
-    const mem = POI.get(cat.id);
-    if (mem && Date.now() - mem.at < POI_TTL) return mem.items;
-    const disk = store.get('pois_' + cat.id, null);
-    if (disk && Date.now() - disk.at < POI_TTL) { POI.set(cat.id, disk); return disk.items; }
+  // Fonte principale: data/pois.json, ricostruito ogni notte da GitHub dall'estratto ufficiale
+  // OpenStreetMap (Geofabrik). Un solo file per tutte le categorie, poi resta nel telefono.
+  let poiFile = null;
+  async function loadPoiFile() {
+    if (poiFile && Date.now() - poiFile.at < POI_TTL) return poiFile;
+    const disk = store.get('poifile', null);
+    if (disk && Date.now() - disk.at < POI_TTL) { poiFile = disk; return disk; }
     try {
-      const rows = [];
-      for (let from = 0; from < 10000; from += 1000) {
-        const { data, error } = await sb.from('pois').select('id,name,lat,lng,tags').eq('cat', cat.id).order('id').range(from, from + 999);
-        if (error) throw error;
-        rows.push(...data);
-        if (data.length < 1000) break;
-      }
-      const items = rows.map((r) => fromPoi(r, cat));
-      const rec = { at: Date.now(), items };
-      POI.set(cat.id, rec);
-      store.set('pois_' + cat.id, rec);
-      return items;
+      const ctrl = new AbortController();
+      const tmo = setTimeout(() => ctrl.abort(), 10000);
+      const res = await fetch('data/pois.json', { signal: ctrl.signal, cache: 'no-cache' });
+      clearTimeout(tmo);
+      if (!res.ok) throw new Error('pois.json ' + res.status);
+      const doc = await res.json();
+      poiFile = { at: Date.now(), cats: doc.cats || {}, generated: doc.generated_at };
+      store.set('poifile', poiFile);
+      return poiFile;
     } catch (e) {
-      if (disk) return disk.items;   // senza rete: uso la copia vecchia
+      if (disk) { poiFile = disk; return disk; }
       throw e;
     }
   }
-  function prefetchPois() { CATS.reduce((p, c) => p.then(() => getPois(c).catch(() => {})), Promise.resolve()); }
-  function fromPoi(r, cat) { return fromOverpass({ type: r.id[0] === 'n' ? 'node' : r.id[0] === 'w' ? 'way' : 'relation', id: r.id.slice(1), lat: r.lat, lon: r.lng, tags: Object.assign({ name: r.name }, r.tags) }, cat); }
+  async function getPois(cat) {
+    const mem = POI.get(cat.id);
+    if (mem && Date.now() - mem.at < POI_TTL) return mem.items;
+    let rows = null;
+    try {
+      const f = await loadPoiFile();
+      if (f.cats[cat.id]) rows = f.cats[cat.id].map((r) => ({ id: r[0], name: r[1], lat: r[2], lng: r[3], tags: r[4] || {} }));
+    } catch (e) { /* passo alla riserva */ }
+    if (!rows) {
+      // riserva: tabella pois nel nostro database
+      const { data, error } = await sb.from('pois').select('id,name,lat,lng,tags').eq('cat', cat.id).limit(1000);
+      if (error) throw error;
+      rows = data || [];
+    }
+    const items = rows.map((r) => fromPoi(r, cat));
+    POI.set(cat.id, { at: Date.now(), items });
+    return items;
+  }
+  function prefetchPois() { loadPoiFile().catch(() => {}); }
+  function fromPoi(r, cat) { return fromOverpass({ type: String(r.id)[0] === 'n' ? 'node' : String(r.id)[0] === 'w' ? 'way' : 'relation', id: String(r.id).slice(1), lat: r.lat, lon: r.lng, tags: Object.assign({ name: r.name }, r.tags) }, cat); }
   function fromOverpass(e, cat) {
     const tg = e.tags || {};
     const lat = e.lat != null ? e.lat : e.center && e.center.lat;
