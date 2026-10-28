@@ -26,6 +26,10 @@
       places: 'Lugares', businesses: 'Negocios', soon: 'Muy pronto', call: 'Llamar', web: 'Web',
       sponsor: 'DESTACADO', active: '{n} avisos activos', following: 'Siguiéndote',
       voiceAt: '{type} a {dist}', inZone: 'Zona con presencia policial', maint: 'Maxora está en mantenimiento. Los avisos vuelven pronto.'
+      ,searchPh: '¿A dónde vas?', sRecent: 'Recientes', sOurs: 'En Maxora', sStreets: 'Calles y lugares', sNone: 'Sin resultados. Prueba con otro nombre.', sOffline: 'Sin conexión: solo resultados de Maxora.',
+      sNear: 'Cerca de ti', cBeach: 'Playas', cFood: 'Comer', cFuel: 'Gasolineras', cSurf: 'Surf', cView: 'Miradores',
+      go: 'IR', openWith: 'Abrir navegación con', fromYou: 'Desde ti', alertsNear: 'Avisos cerca', alertsRoute: 'Avisos en el camino', none0: 'Ninguno',
+      routeNote: 'Maxora sigue avisándote en segundo plano mientras navegas.', approxRoute: 'aprox., en línea recta', share: 'Compartir', street: 'Calle', place: 'Lugar', town: 'Localidad', beachT: 'Playa', biz: 'Negocio', clearHist: 'Borrar historial'
     },
     en: {
       next: 'Next alert', clear: 'Road clear', clearSub: 'Nothing within {km} km', report: 'REPORT',
@@ -42,6 +46,10 @@
       places: 'Places', businesses: 'Businesses', soon: 'Coming soon', call: 'Call', web: 'Website',
       sponsor: 'FEATURED', active: '{n} active alerts', following: 'Following you',
       voiceAt: '{type} in {dist}', inZone: 'Police nearby', maint: 'Maxora is under maintenance. Alerts will be back soon.'
+      ,searchPh: 'Where to?', sRecent: 'Recent', sOurs: 'On Maxora', sStreets: 'Streets & places', sNone: 'No results. Try another name.', sOffline: 'Offline: Maxora results only.',
+      sNear: 'Near you', cBeach: 'Beaches', cFood: 'Food', cFuel: 'Fuel', cSurf: 'Surf', cView: 'Viewpoints',
+      go: 'GO', openWith: 'Navigate with', fromYou: 'From you', alertsNear: 'Alerts nearby', alertsRoute: 'Alerts on the way', none0: 'None',
+      routeNote: 'Maxora keeps alerting you in the background while you drive.', approxRoute: 'approx., straight line', share: 'Share', street: 'Street', place: 'Place', town: 'Town', beachT: 'Beach', biz: 'Business', clearHist: 'Clear history'
     },
     it: {
       next: 'Prossimo avviso', clear: 'Strada libera', clearSub: 'Niente entro {km} km', report: 'AVVISA',
@@ -58,6 +66,10 @@
       places: 'Luoghi', businesses: 'Attività', soon: 'In arrivo', call: 'Chiama', web: 'Sito',
       sponsor: 'IN EVIDENZA', active: '{n} avvisi attivi', following: 'Ti seguo',
       voiceAt: '{type} a {dist}', inZone: 'Zona con presenza polizia', maint: 'Maxora è in manutenzione. Gli avvisi tornano presto.'
+      ,searchPh: 'Dove vai?', sRecent: 'Recenti', sOurs: 'Su Maxora', sStreets: 'Vie e luoghi', sNone: 'Nessun risultato. Prova un altro nome.', sOffline: 'Offline: solo risultati Maxora.',
+      sNear: 'Vicino a te', cBeach: 'Spiagge', cFood: 'Mangiare', cFuel: 'Benzinai', cSurf: 'Surf', cView: 'Panorami',
+      go: 'VAI', openWith: 'Apri navigazione con', fromYou: 'Da te', alertsNear: 'Avvisi vicini', alertsRoute: 'Avvisi sul percorso', none0: 'Nessuno',
+      routeNote: 'Maxora continua ad avvisarti in sottofondo mentre guidi.', approxRoute: 'approssimato, in linea d’aria', share: 'Condividi', street: 'Via', place: 'Luogo', town: 'Località', beachT: 'Spiaggia', biz: 'Attività', clearHist: 'Cancella cronologia'
     },
     de: {
       next: 'Nächste Meldung', clear: 'Freie Fahrt', clearSub: 'Nichts im Umkreis von {km} km', report: 'MELDEN',
@@ -74,6 +86,10 @@
       places: 'Orte', businesses: 'Betriebe', soon: 'Bald verfügbar', call: 'Anrufen', web: 'Webseite',
       sponsor: 'EMPFOHLEN', active: '{n} aktive Meldungen', following: 'Folgt dir',
       voiceAt: '{type} in {dist}', inZone: 'Polizei in der Nähe', maint: 'Maxora wird gewartet. Meldungen sind bald zurück.'
+      ,searchPh: 'Wohin?', sRecent: 'Zuletzt', sOurs: 'Auf Maxora', sStreets: 'Straßen & Orte', sNone: 'Keine Ergebnisse. Anderen Namen versuchen.', sOffline: 'Offline: nur Maxora-Ergebnisse.',
+      sNear: 'In deiner Nähe', cBeach: 'Strände', cFood: 'Essen', cFuel: 'Tankstellen', cSurf: 'Surfen', cView: 'Aussichtspunkte',
+      go: 'LOS', openWith: 'Navigieren mit', fromYou: 'Von dir', alertsNear: 'Meldungen in der Nähe', alertsRoute: 'Meldungen unterwegs', none0: 'Keine',
+      routeNote: 'Maxora warnt dich während der Fahrt im Hintergrund weiter.', approxRoute: 'ca., Luftlinie', share: 'Teilen', street: 'Straße', place: 'Ort', town: 'Ortschaft', beachT: 'Strand', biz: 'Betrieb', clearHist: 'Verlauf löschen'
     }
   };
   const LOCALES = { es: 'es-ES', en: 'en-GB', it: 'it-IT', de: 'de-DE' };
@@ -450,7 +466,10 @@
   }
 
   function updateChip() {
-    $('routeChip').textContent = S.pos && S.follow ? t('following') : t('active', { n: S.reports.size });
+    const b = $('centerBtn');
+    const following = !!(S.pos && S.follow);
+    b.classList.toggle('following', following);
+    b.setAttribute('aria-label', following ? t('following') : t('active', { n: S.reports.size }));
   }
 
   function drawArc() {
@@ -663,15 +682,29 @@
 
   // Scopri l'isola
   let discTab = 'places';
+  // Catalogo Maxora (luoghi + attività): salvato sul telefono per la ricerca istantanea, anche offline
+  let catalogPromise = null;
+  function loadCatalog(force) {
+    if (S.places === null) {
+      const cached = store.get('catalog', null);
+      if (cached) { S.places = cached.places || []; S.businesses = cached.businesses || []; }
+    }
+    if (catalogPromise && !force) return catalogPromise;
+    catalogPromise = Promise.all([
+      sb.from('places').select('*').order('featured', { ascending: false }).order('sort'),
+      sb.from('businesses').select('*').order('plan', { ascending: false }).order('name')
+    ]).then(([p, b]) => {
+      if (!p.error) S.places = p.data || [];
+      if (!b.error) S.businesses = b.data || [];
+      if (S.places === null) S.places = [];
+      if (S.businesses === null) S.businesses = [];
+      store.set('catalog', { places: S.places, businesses: S.businesses });
+    }).catch(() => { if (S.places === null) { S.places = []; S.businesses = []; } });
+    return catalogPromise;
+  }
   async function openDiscover() {
     openOverlay('discoverOverlay');
-    if (S.places === null) {
-      const [p, b] = await Promise.all([
-        sb.from('places').select('*').order('featured', { ascending: false }).order('sort'),
-        sb.from('businesses').select('*').order('plan', { ascending: false }).order('name')
-      ]);
-      S.places = p.data || []; S.businesses = b.data || [];
-    }
+    if (S.places === null) await loadCatalog();
     drawDiscover();
   }
   function drawDiscover() {
@@ -706,13 +739,333 @@
   }
   function goTo(x, isBiz) {
     closeOverlays();
+    openPlace(isBiz ? fromBiz(x) : fromPlace(x));
+  }
+
+  // ------------------------------------------------------------------
+  // RICERCA (C: catalogo Maxora istantaneo + vie e luoghi da OpenStreetMap/Photon)
+  // ------------------------------------------------------------------
+  const PHOTON = 'https://photon.komoot.io';
+  const PHOTON_LANGS = ['en', 'de', 'fr'];
+  const ICONS = {
+    pin: '<path d="M12 21s-6-5.5-6-11a6 6 0 0112 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/>',
+    road: '<path d="M8 3L5 21M16 3l3 18M12 4v3M12 11v3M12 18v2"/>',
+    town: '<path d="M3 21V10l5-4 5 4v11M13 21V6l4-3 4 3v15M3 21h18"/>',
+    beach: '<path d="M3 18c2 0 2-1.5 4.5-1.5S9.5 18 12 18s2-1.5 4.5-1.5S18.5 18 21 18M12 4v10M12 4c-4 0-6 3-6 5h12c0-2-2-5-6-5z"/>',
+    food: '<path d="M7 3v8M5 3v5a2 2 0 004 0V3M7 11v10M16 21V3c-2 0-3 3-3 7h3"/>',
+    fuel: '<path d="M5 20V5a1 1 0 011-1h7a1 1 0 011 1v15M4 20h11M14 9h2a2 2 0 012 2v5a1.5 1.5 0 003 0V8l-3-3M8 8h3"/>',
+    view: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    surf: '<path d="M3 17c3-1 4-4 9-4s6 3 9 4M7 13c1-5 5-9 10-9-2 3-3 6-3 9"/>'
+  };
+  const svgIcon = (k) => {
+    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('width', '20'); s.setAttribute('height', '20'); s.setAttribute('viewBox', '0 0 24 24');
+    s.setAttribute('fill', 'none'); s.setAttribute('stroke', 'currentColor'); s.setAttribute('stroke-width', '1.8');
+    s.setAttribute('stroke-linecap', 'round'); s.setAttribute('stroke-linejoin', 'round'); s.setAttribute('aria-hidden', 'true');
+    s.innerHTML = ICONS[k] || ICONS.pin;
+    return s;
+  };
+  const norm = (s) => (s || '').toString().normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const descOf = (x) => (x.description && (x.description[lang] || x.description.es)) || '';
+  const isSponsor = (x) => x.plan && x.plan !== 'free' && (!x.sponsor_until || new Date(x.sponsor_until) >= new Date(new Date().toDateString()));
+
+  function fromPlace(x) {
+    const ic = /playa|beach/i.test(x.category) ? 'beach' : /mirador/i.test(x.category) ? 'view' : /surf/i.test(x.category) ? 'surf' : 'star';
+    return { kind: 'place', id: x.id, name: x.name, sub: x.category, lat: x.lat, lng: x.lng, icon: ic, ours: true, raw: x };
+  }
+  function fromBiz(x) {
+    const ic = /restaurante|bar/i.test(x.category) ? 'food' : /surf/i.test(x.category) ? 'surf' : 'star';
+    return { kind: 'biz', id: x.id, name: x.name, sub: x.category + (x.address ? ' · ' + x.address : ''), lat: x.lat, lng: x.lng, icon: ic, ours: true, sponsor: isSponsor(x), raw: x };
+  }
+  function fromPhoton(f) {
+    const p = f.properties || {};
+    const [lng, lat] = f.geometry.coordinates;
+    const isRoad = p.osm_key === 'highway';
+    const isTown = p.osm_key === 'place';
+    const street = p.street ? p.street + (p.housenumber ? ' ' + p.housenumber : '') : '';
+    let name = p.name || street || p.city || '';
+    if (!p.name && p.housenumber && p.street) name = street;
+    const where = [p.name && street ? street : '', p.district || p.locality, p.city && p.city !== name ? p.city : '', !p.city ? p.county : ''].filter(Boolean);
+    const icon = isRoad ? 'road' : isTown ? 'town' : p.osm_value === 'beach' ? 'beach' : p.osm_value === 'fuel' ? 'fuel'
+      : /restaurant|cafe|bar|fast_food/.test(p.osm_value || '') ? 'food' : p.osm_value === 'viewpoint' ? 'view' : 'pin';
+    const kindLabel = isRoad ? t('street') : isTown ? t('town') : p.osm_value === 'beach' ? t('beachT') : t('place');
+    return { kind: 'osm', id: (p.osm_type || '') + (p.osm_id || lat + ',' + lng), name, sub: where.length ? where.join(', ') : kindLabel, kindLabel, lat, lng, icon, ours: false, raw: p };
+  }
+
+  function localSearch(q) {
+    const nq = norm(q).trim();
+    if (!nq) return [];
+    const toks = nq.split(/\s+/);
+    const out = [];
+    const scan = (list, mk) => (list || []).forEach((x) => {
+      const n = norm(x.name), hay = n + ' ' + norm(x.category) + ' ' + norm(descOf(x)) + ' ' + norm(x.address);
+      if (!toks.every((tk) => hay.includes(tk))) return;
+      let score = n.startsWith(nq) ? 100 : n.includes(nq) ? 70 : 40;
+      const item = mk(x);
+      if (item.sponsor) score += 15;
+      if (x.featured) score += 10;
+      if (S.pos) score -= Math.min(20, distKm(S.pos, x) / 3);
+      out.push({ item, score });
+    });
+    scan(S.places, fromPlace);
+    scan(S.businesses, fromBiz);
+    return out.sort((a, b) => b.score - a.score).slice(0, 6).map((x) => x.item);
+  }
+
+  const photonCache = new Map();
+  let photonCtrl = null;
+  async function photonSearch(q, tag) {
+    const bbox = setting('bbox', { min_lat: 27.5, max_lat: 29.5, min_lng: -18.5, max_lng: -13.2 });
+    const ref = S.pos || (() => { const c = map.getCenter(); return { lat: c.lat, lng: c.lng }; })();
+    const params = new URLSearchParams({ q, limit: '10' });
+    params.set('bbox', [bbox.min_lng, bbox.min_lat, bbox.max_lng, bbox.max_lat].join(','));
+    params.set('lat', ref.lat.toFixed(4)); params.set('lon', ref.lng.toFixed(4));
+    if (PHOTON_LANGS.includes(lang)) params.set('lang', lang);
+    if (tag) params.append('osm_tag', tag);
+    const key = params.toString();
+    if (photonCache.has(key)) return photonCache.get(key);
+    if (photonCtrl) photonCtrl.abort();
+    photonCtrl = new AbortController();
+    const res = await fetch(PHOTON + '/api/?' + key, { signal: photonCtrl.signal });
+    if (!res.ok) throw new Error('photon ' + res.status);
+    const json = await res.json();
+    const seen = new Set();
+    const items = (json.features || []).map(fromPhoton).filter((x) => {
+      if (!x.name) return false;
+      const k = norm(x.name) + '|' + norm(x.sub);
+      if (seen.has(k)) return false;
+      seen.add(k); return true;
+    }).slice(0, 8);
+    photonCache.set(key, items);
+    return items;
+  }
+
+  // Interfaccia ricerca
+  const CHIPS = [
+    { k: 'cBeach', q: 'playa', tag: 'natural:beach', local: 'playa' },
+    { k: 'cFood', q: 'restaurante', tag: 'amenity:restaurant', local: 'restaurante' },
+    { k: 'cFuel', q: 'gasolinera', tag: 'amenity:fuel', local: null },
+    { k: 'cView', q: 'mirador', tag: 'tourism:viewpoint', local: 'mirador' },
+    { k: 'cSurf', q: 'surf', tag: null, local: 'surf' }
+  ];
+  let searchTimer = null, searchSeq = 0, kbIndex = -1, lastRows = [];
+
+  function openSearch() {
+    $('search').classList.remove('hidden');
+    loadCatalog();
+    const inp = $('searchInput');
+    inp.placeholder = t('searchPh');
+    setTimeout(() => inp.focus(), 30);
+    runSearch(inp.value);
+  }
+  function closeSearch() { $('search').classList.add('hidden'); $('searchInput').blur(); }
+
+  function row(item, hl) {
+    const ico = el('span', { class: 's-ico' + (item.sponsor ? ' spon' : item.ours ? ' ours' : '') });
+    ico.appendChild(svgIcon(item.icon));
+    const title = el('div', { class: 's-t' });
+    const name = item.name || '';
+    const i = hl ? norm(name).indexOf(norm(hl).trim()) : -1;
+    if (i >= 0 && hl.trim()) {
+      const L = hl.trim().length;
+      title.append(name.slice(0, i), el('mark', { text: name.slice(i, i + L) }), name.slice(i + L));
+    } else title.textContent = name;
+    const d = S.pos ? fmtDist(distKm(S.pos, item)) : null;
+    const b = el('button', { class: 's-row', onclick: () => pick(item) }, [
+      ico,
+      el('span', { class: 's-txt' }, [title, el('div', { class: 's-s', text: (item.sponsor ? t('sponsor') + ' · ' : '') + (item.sub || '') })]),
+      d ? el('span', { class: 's-d', text: d.v + ' ' + d.u }) : null
+    ]);
+    return b;
+  }
+
+  function renderSearch(parts) {
+    const body = $('searchBody');
+    body.innerHTML = '';
+    lastRows = [];
+    kbIndex = -1;
+    parts.forEach((p) => {
+      if (!p) return;
+      if (p.node) { body.appendChild(p.node); return; }
+      if (p.title) body.appendChild(el('div', { class: 's-sec', text: p.title }));
+      (p.items || []).forEach((it) => { const r = row(it, p.hl); lastRows.push(r); body.appendChild(r); });
+      if (p.note) body.appendChild(el('div', { class: 's-note', text: p.note }));
+    });
+  }
+
+  function emptyState() {
+    const chips = el('div', { class: 's-chips' }, CHIPS.map((c) => el('button', { text: t(c.k), onclick: () => chipSearch(c) })));
+    const recent = store.get('recent', []);
+    const parts = [{ node: chips }];
+    if (recent.length) {
+      parts.push({ title: t('sRecent'), items: recent.map((r) => ({ ...r, icon: 'clock' })) });
+      parts.push({ node: el('button', { class: 's-row', style: 'min-height:44px;color:var(--muted);font-size:13px', text: t('clearHist'), onclick: () => { store.set('recent', []); runSearch(''); } }) });
+    }
+    const featured = (S.places || []).filter((x) => x.featured).slice(0, 4).map(fromPlace);
+    const spons = (S.businesses || []).filter(isSponsor).slice(0, 4).map(fromBiz);
+    if (featured.length || spons.length) parts.push({ title: t('sOurs'), items: [...spons, ...featured] });
+    renderSearch(parts);
+  }
+
+  async function chipSearch(c) {
+    $('searchInput').value = t(c.k);
+    $('searchClear').classList.remove('hidden');
+    const seq = ++searchSeq;
+    const local = c.local ? localSearch(c.local) : [];
+    renderSearch([local.length ? { title: t('sOurs'), items: local } : null, { node: el('div', { class: 's-spin' }) }]);
+    try {
+      let items = await photonSearch(c.q, c.tag);
+      if (S.pos) items = items.slice().sort((a, b) => distKm(S.pos, a) - distKm(S.pos, b));
+      if (seq !== searchSeq) return;
+      renderSearch([local.length ? { title: t('sOurs'), items: local } : null, { title: t('sNear'), items, note: items.length ? null : t('sNone') }]);
+    } catch (e) {
+      if (e.name === 'AbortError' || seq !== searchSeq) return;
+      renderSearch([local.length ? { title: t('sOurs'), items: local } : null, { note: t('sOffline') }]);
+    }
+  }
+
+  function runSearch(q) {
+    $('searchClear').classList.toggle('hidden', !q);
+    clearTimeout(searchTimer);
+    const seq = ++searchSeq;
+    if (!q.trim()) { emptyState(); return; }
+    // 1) all'istante: catalogo Maxora
+    const local = localSearch(q);
+    const localPart = local.length ? { title: t('sOurs'), items: local, hl: q } : null;
+    renderSearch([localPart, q.trim().length >= 2 ? { node: el('div', { class: 's-spin' }) } : null]);
+    if (q.trim().length < 2) return;
+    // 2) dopo una breve pausa: vie e luoghi
+    searchTimer = setTimeout(async () => {
+      try {
+        const items = await photonSearch(q.trim());
+        if (seq !== searchSeq) return;
+        const ourNames = new Set(local.map((x) => norm(x.name)));
+        const rest = items.filter((x) => !ourNames.has(norm(x.name)));
+        renderSearch([localPart, { title: t('sStreets'), items: rest, hl: q, note: !rest.length && !local.length ? t('sNone') : null }]);
+      } catch (e) {
+        if (e.name === 'AbortError' || seq !== searchSeq) return;
+        renderSearch([localPart, { note: t('sOffline') }]);
+      }
+    }, 180);
+  }
+
+  function pick(item) {
+    const keep = { kind: item.kind, id: item.id, name: item.name, sub: item.sub, lat: item.lat, lng: item.lng, icon: item.icon, ours: item.ours };
+    const recent = store.get('recent', []).filter((r) => !(r.kind === keep.kind && r.id === keep.id));
+    recent.unshift(keep);
+    store.set('recent', recent.slice(0, 6));
+    closeSearch();
+    // un recente salvato non ha i dati completi: li riprendo dal catalogo se esiste
+    if (item.kind === 'biz' && !item.raw) { const b = (S.businesses || []).find((x) => x.id === item.id); if (b) item = fromBiz(b); }
+    if (item.kind === 'place' && !item.raw) { const p = (S.places || []).find((x) => x.id === item.id); if (p) item = fromPlace(p); }
+    openPlace(item);
+  }
+
+  // ------------------------------------------------------------------
+  // Scheda luogo
+  // ------------------------------------------------------------------
+  let destMarker = null;
+  function segDistKm(p, a, b) {
+    // distanza (km) di p dal segmento a-b, in piano locale
+    const kx = 111.32 * Math.cos(rad(a.lat)), ky = 110.57;
+    const ax = 0, ay = 0, bx = (b.lng - a.lng) * kx, by = (b.lat - a.lat) * ky, px = (p.lng - a.lng) * kx, py = (p.lat - a.lat) * ky;
+    const L2 = bx * bx + by * by;
+    const u = L2 ? Math.max(0, Math.min(1, (px * bx + py * by) / L2)) : 0;
+    return Math.hypot(px - (ax + u * bx), py - (ay + u * by));
+  }
+
+  function openPlace(item) {
     S.follow = false;
-    if (tempMarker) tempMarker.remove();
-    const n = el('div', { class: 'mk-place' + (isBiz ? ' biz' : ''), 'aria-label': x.name });
-    tempMarker = new maplibregl.Marker({ element: n }).setLngLat([x.lng, x.lat]).addTo(map);
-    map.flyTo({ center: [x.lng, x.lat], zoom: 14, duration: 900 });
-    if (isBiz) bizEvent(x.id, 'click');
-    toast(x.name);
+    S.dest = item;
+    if (destMarker) destMarker.remove();
+    if (tempMarker) { tempMarker.remove(); tempMarker = null; }
+    destMarker = new maplibregl.Marker({ element: el('div', { class: 'dest-pin', 'aria-label': item.name }), anchor: 'bottom' }).setLngLat([item.lng, item.lat]).addTo(map);
+    const box = $('placeBody');
+    box.innerHTML = '';
+    const x = item.raw || {};
+
+    const kicker = item.sponsor ? t('sponsor') : item.kind === 'biz' ? t('biz') : item.kind === 'place' ? t('place') : (item.kindLabel || t('place'));
+    box.append(
+      el('div', { class: 'p-kicker' + (item.sponsor ? ' spon' : '') }, [kicker + (item.ours ? ' · Maxora' : '')]),
+      el('div', { class: 'p-name', text: item.name }),
+      el('div', { class: 'p-sub', text: item.sub || '' })
+    );
+
+    // Numeri: distanza + avvisi
+    const near = [], onWay = [];
+    for (const r of S.reports.values()) {
+      const dDest = distKm(item, r);
+      if (dDest <= 3) near.push({ r, d: dDest });
+      else if (S.pos && segDistKm(r, S.pos, item) <= 1.2 && distKm(S.pos, r) < distKm(S.pos, item)) onWay.push({ r, d: distKm(S.pos, r) });
+    }
+    near.sort((a, b) => a.d - b.d); onWay.sort((a, b) => a.d - b.d);
+    const stats = el('div', { class: 'p-stats' });
+    if (S.pos) { const fd = fmtDist(distKm(S.pos, item)); stats.appendChild(el('div', { class: 'p-stat' }, [el('div', { class: 'k', text: t('fromYou') }), el('div', { class: 'v', text: fd.v + ' ' + fd.u })])); }
+    stats.appendChild(el('div', { class: 'p-stat' }, [el('div', { class: 'k', text: t('alertsNear') }), el('div', { class: 'v ' + (near.length ? 'warn' : 'ok'), text: near.length ? String(near.length) : t('none0') })]));
+    if (S.pos) stats.appendChild(el('div', { class: 'p-stat' }, [el('div', { class: 'k', text: t('alertsRoute') }), el('div', { class: 'v ' + (onWay.length ? 'warn' : 'ok'), text: onWay.length ? String(onWay.length) : t('none0') })]));
+    box.appendChild(stats);
+
+    const alertList = [...onWay.slice(0, 3), ...near.slice(0, 3)];
+    if (alertList.length) {
+      const list = el('div', { class: 'p-alerts' });
+      alertList.forEach(({ r }) => {
+        const ty = typeOf(r);
+        const m = el('span', { class: 'm' + (ty.is_police ? ' police' : '') });
+        if (!ty.is_police) m.style.background = ty.color;
+        const dd = S.pos ? fmtDist(distKm(S.pos, r)) : null;
+        list.appendChild(el('button', { class: 'p-alert', style: 'text-align:left;color:inherit;width:100%', onclick: () => { closePlace(); select(r.id, true); } }, [
+          m, el('span', { class: 't', text: (r.title || labelOf(ty)) }), dd ? el('span', { class: 'd', text: (ty.is_police ? '~' : '') + dd.v + ' ' + dd.u }) : null
+        ]));
+      });
+      box.appendChild(list);
+      if (onWay.length) box.appendChild(el('div', { class: 'p-note', text: t('alertsRoute') + ': ' + t('approxRoute') }));
+    }
+
+    // Foto e descrizione (solo schede Maxora)
+    const photos = [...(x.photos || [])];
+    if (photos.length) box.appendChild(el('div', { class: 'p-photos' }, photos.slice(0, 6).map((u) => el('img', { src: u, alt: '', loading: 'lazy' }))));
+    const desc = item.ours ? descOf(x) : '';
+    if (desc) box.appendChild(el('p', { class: 'p-desc', text: desc }));
+
+    // Azioni
+    const acts = el('div', { class: 'p-actions' });
+    const apps = el('div', { class: 'p-apps' });
+    const appsBox = el('div', { class: 'hidden' }, [el('div', { class: 'p-note', text: t('openWith') }), apps]);
+    const ll = item.lat + ',' + item.lng;
+    apps.append(
+      el('a', { href: 'https://www.google.com/maps/dir/?api=1&destination=' + ll + '&travelmode=driving', target: '_blank', rel: 'noopener', text: 'Google', onclick: () => goEvent(item) }),
+      el('a', { href: 'https://waze.com/ul?ll=' + ll + '&navigate=yes', target: '_blank', rel: 'noopener', text: 'Waze', onclick: () => goEvent(item) }),
+      el('a', { href: 'https://maps.apple.com/?daddr=' + ll + '&dirflg=d', target: '_blank', rel: 'noopener', text: 'Apple', onclick: () => goEvent(item) })
+    );
+    const goBtn = el('button', { class: 'p-go', onclick: () => { appsBox.classList.toggle('hidden'); goBtn.setAttribute('aria-expanded', String(!appsBox.classList.contains('hidden'))); } }, [t('go')]);
+    goBtn.setAttribute('aria-expanded', 'false');
+    acts.appendChild(goBtn);
+    if (item.kind === 'biz' && x.phone) acts.appendChild(el('a', { href: 'tel:' + x.phone.replace(/\s/g, ''), text: t('call'), onclick: () => bizEvent(item.id, 'call') }));
+    if (item.kind === 'biz' && x.website && /^https?:\/\//.test(x.website)) acts.appendChild(el('a', { href: x.website, target: '_blank', rel: 'noopener', text: t('web'), onclick: () => bizEvent(item.id, 'web') }));
+    if (navigator.share) acts.appendChild(el('button', { class: 'p-sec', text: t('share'), onclick: () => navigator.share({ title: item.name, text: item.name, url: 'https://www.google.com/maps/search/?api=1&query=' + ll }).catch(() => {}) }));
+    box.append(acts, appsBox, el('div', { class: 'p-note', text: t('routeNote') }));
+
+    if (item.kind === 'biz') bizEvent(item.id, 'click');
+    $('place').classList.remove('hidden');
+    $('place').scrollTop = 0;
+    // inquadra me + destinazione, oppure solo la destinazione
+    const ph = Math.min(window.innerHeight * 0.6, $('place').getBoundingClientRect().height || 360);
+    if (S.pos && distKm(S.pos, item) < 80) {
+      const b = new maplibregl.LngLatBounds([S.pos.lng, S.pos.lat], [S.pos.lng, S.pos.lat]).extend([item.lng, item.lat]);
+      map.fitBounds(b, { padding: { top: 90, bottom: ph + 30, left: 50, right: 50 }, maxZoom: 15, duration: 900 });
+    } else {
+      map.flyTo({ center: [item.lng, item.lat], zoom: 14.5, duration: 900, padding: { top: 70, bottom: ph, left: 0, right: 0 } });
+    }
+    updateChip();
+  }
+  function goEvent(item) { if (item.kind === 'biz') bizEvent(item.id, 'directions'); }
+  function closePlace() {
+    $('place').classList.add('hidden');
+    if (destMarker) { destMarker.remove(); destMarker = null; }
+    S.dest = null;
+    padMap();
   }
   const sentEvents = new Set();
   function bizEvent(id, kind) {
@@ -742,6 +1095,8 @@
   function applyTexts() {
     document.documentElement.lang = lang;
     $('reportLabel').textContent = t('report');
+    $('searchPh').textContent = t('searchPh');
+    $('searchInput').placeholder = t('searchPh');
     $('discoverLabel').textContent = t('discover');
     $('typesTitle').textContent = t('reportTitle');
     $('typesSub').textContent = t('reportSub');
@@ -756,6 +1111,24 @@
   // ------------------------------------------------------------------
   // Eventi interfaccia
   // ------------------------------------------------------------------
+  $('searchOpen').addEventListener('click', openSearch);
+  $('searchBack').addEventListener('click', closeSearch);
+  $('searchInput').addEventListener('input', (e) => runSearch(e.target.value));
+  $('searchClear').addEventListener('click', () => { $('searchInput').value = ''; runSearch(''); $('searchInput').focus(); });
+  $('searchInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeSearch(); return; }
+    if (!lastRows.length) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      kbIndex = (kbIndex + (e.key === 'ArrowDown' ? 1 : -1) + lastRows.length) % lastRows.length;
+      lastRows.forEach((r, i) => r.classList.toggle('kb', i === kbIndex));
+      lastRows[kbIndex].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      lastRows[Math.max(0, kbIndex)].click();
+    }
+  });
+  $('placeClose').addEventListener('click', closePlace);
   $('sheetToggle').addEventListener('click', () => toggleSheet());
   $('reportBtn').addEventListener('click', openTypes);
   $('discoverBtn').addEventListener('click', openDiscover);
@@ -799,6 +1172,7 @@
     padMap();
     await ensureSession();
     await loadAll();
+    loadCatalog();
     subscribe();
     startGps();
     setInterval(loadAll, 60000);
