@@ -4,7 +4,7 @@
 Uso:  python3 tools/build_pois.py <filtrato.geojsonseq> data/pois.json
 Il file d'ingresso è prodotto da `osmium export` (vedi .github/workflows/pois.yml).
 """
-import json, sys, datetime
+import json, sys, datetime, os
 
 AREAS = {'fuerteventura': (27.99, -14.55, 28.80, -13.80)}  # s, w, n, e
 
@@ -67,6 +67,7 @@ def main(src, dst):
     doc = {'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),
            'source': '© OpenStreetMap contributors (ODbL), extract by Geofabrik',
            'areas': list(AREAS), 'count': count, 'cats': out}
+    os.makedirs(os.path.dirname(dst) or '.', exist_ok=True)
     with open(dst, 'w', encoding='utf-8') as f:
         json.dump(doc, f, ensure_ascii=False, separators=(',', ':'))
     print('::notice::pois %d %s' % (count, {k: len(v) for k, v in out.items()}))
