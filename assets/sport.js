@@ -281,6 +281,13 @@
     });
     // acqua e officine (solo i punti utili)
     (SP.water || []).filter((w) => w.kind === 'water').forEach((w) => markers.push(new maplibregl.Marker({ element: el('div', { class: 'sp-poi water', title: w.name || 'Agua', text: '💧' }) }).setLngLat([w.lng, w.lat]).addTo(map)));
+    if (window.MAXORA_FOLLOW) {
+      const seen = new Set();
+      SP.routes.filter((r) => r.sport === SP.mode).forEach((r) => window.MAXORA_FOLLOW.notesFor(r).forEach((n) => {
+        if (seen.has(n.id)) return; seen.add(n.id);
+        markers.push(new maplibregl.Marker({ element: el('div', { class: 'sp-poi note', title: window.MAXORA_FOLLOW.noteText(n), text: window.MAXORA_FOLLOW.KIND_ICON[n.kind] || '⚠️' }) }).setLngLat([n.lng, n.lat]).addTo(map));
+      }));
+    }
     if (SP.mode === 'bike') (SP.bikeShops || []).forEach((b) => markers.push(new maplibregl.Marker({ element: el('div', { class: 'sp-poi bike', title: b.name, text: '🔧' }) }).setLngLat([b.lng, b.lat]).addTo(map)));
   }
   map.on('style.load', () => { if (SP.mode) { ensureLayers(); drawMap(); } });
@@ -457,6 +464,12 @@
     map.fitBounds(b, { padding: { top: 84, bottom: Math.round(ph) + 16, left: 28, right: 72 }, maxZoom: 15, duration: fly === false ? 0 : 800 });
   }
   function closeCard() { SP.open = null; $('spCard').classList.add('hidden'); drawMap(); pad(); }
+  function followRoute(r) {
+    let k = 0;
+    SP.times.forEach((t, i) => { if (Math.abs(t - Date.now()) < Math.abs(SP.times[k] - Date.now())) k = i; });
+    closeCard();
+    window.MAXORA_FOLLOW.start(r, { wind: wxAt(r._wx, k), water: (SP.water || []).filter((w) => w.kind === 'water') });
+  }
   function drawCard() {
     const r = SP.routes.find((x) => x.id === SP.open);
     if (!r) return;
@@ -497,6 +510,9 @@
     const hz = hazardsOn(r);
     box.appendChild(el('div', { class: 'sf-h', text: hz.length === 1 ? tr('alertsOn1') : hz.length ? tr('alertsOn', { n: hz.length }) : tr('noAlerts') }));
     if (hz.length) box.appendChild(el('div', { class: 'p-alerts' }, hz.slice(0, 5).map((rep) => el('div', { class: 'p-alert' }, [el('span', { class: 'm', style: 'background:' + M.typeColor(rep) }), el('span', { class: 't', text: rep.title || M.typeLabel(rep) })]))));
+    const FW = window.MAXORA_FOLLOW;
+    const notes = FW ? FW.notesFor(r) : [];
+    if (notes.length) box.appendChild(el('div', { class: 'p-alerts' }, notes.map((n) => el('div', { class: 'p-alert' }, [el('span', { text: FW.KIND_ICON[n.kind] || '⚠️' }), el('span', { class: 't', text: FW.noteText(n) })]))));
     const wn = (r._water || []).length;
     box.appendChild(el('p', { class: 'p-note', text: '💧 ' + (wn === 1 ? tr('water1') : wn ? tr('water', { n: wn }) : tr('noWater')) }));
     box.appendChild(el('p', { class: 'p-desc', text: r.note[lang()] || r.note.es }));
@@ -510,7 +526,8 @@
     const appsBox = el('div', { class: 'hidden' }, [el('div', { class: 'p-note', text: tr('openWith') }), apps]);
     box.append(
       el('div', { class: 'p-actions' }, [
-        el('button', { class: 'p-go', onclick: () => appsBox.classList.toggle('hidden') }, [tr('go')]),
+        window.MAXORA_FOLLOW ? el('button', { class: 'p-go fw-go', onclick: () => followRoute(r) }, ['▶ ' + window.MAXORA_FOLLOW.label()]) : null,
+        el('button', { class: window.MAXORA_FOLLOW ? 'p-sec' : 'p-go', onclick: () => appsBox.classList.toggle('hidden') }, [tr('go')]),
         el('button', { class: 'p-sec', onclick: () => gpx(r), text: '⬇ ' + tr('gpx') })
       ]),
       appsBox,
@@ -650,5 +667,5 @@
     document.querySelectorAll('.adv').forEach((b) => b.classList.toggle('closed', !open));
     document.querySelectorAll('.adv-top').forEach((b) => b.setAttribute('aria-expanded', String(open)));
   });
-  window.MAXORA_SPORT = { state: SP, score, setSport };
+  window.MAXORA_SPORT = { state: SP, score, setSport, redraw: () => { if (SP.mode) { drawMap(); if (SP.open) drawCard(); } } };
 })();

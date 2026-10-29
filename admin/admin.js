@@ -1019,6 +1019,103 @@
     return panel;
   }
 
+  // ------------------------------------------------------------------
+  // RUTAS: notas sobre los recorridos (la app las muestra y las lee en voz alta al acercarse)
+  // ------------------------------------------------------------------
+  const NOTE_KINDS = [['warn', '⚠️ Atención'], ['danger', '⛔ Peligro'], ['closed', '🚧 Cortado'], ['water', '💧 Agua'], ['info', 'ℹ️ Información']];
+  const kindLabel = (k) => (NOTE_KINDS.find((x) => x[0] === k) || [k, k])[1];
+  VIEWS.routes = {
+    eyebrow: 'Isla', title: 'Rutas bici y correr',
+    async render(view, head) {
+      head.append(el('a', { class: 'btn', href: 'https://github.com/STOCKED-APP/MAXORA/actions/workflows/routes.yml', target: '_blank', rel: 'noopener', text: 'Rutas en GitHub' }));
+      let RT = null;
+      try { RT = await (await fetch('../data/routes.json', { cache: 'no-cache' })).json(); } catch (e) { /* nada */ }
+      const routes = (RT && RT.routes) || [];
+      const nameOf = (r) => (r.name && (r.name.es || r.name.it || r.name.en)) || r.id;
+      const { data: notes, error } = await sb.from('route_notes').select('*').order('created_at', { ascending: false }).limit(500);
+      if (error) return fail(error, 'Notas');
+      const liveN = notes.filter((n) => n.active && (!n.expires_at || new Date(n.expires_at) > new Date()));
+      view.appendChild(el('div', { class: 'kpis' }, [kpi('Rutas', routes.length), kpi('Bici', routes.filter((r) => r.sport === 'bike').length), kpi('Correr', routes.filter((r) => r.sport === 'run').length), kpi('Notas activas', liveN.length, 'hot')]));
+
+      // formulario
+      const f = {
+        route: el('select', {}, [el('option', { value: '', text: 'Todas las rutas que pasan por ese punto' })].concat(routes.map((r) => el('option', { value: r.id, text: (r.sport === 'bike' ? '🚴 ' : '🏃 ') + nameOf(r) })))),
+        kind: el('select', {}, NOTE_KINDS.map(([a, b]) => el('option', { value: a, text: b }))),
+        until: el('input', { type: 'date' }),
+        lat: el('input', { type: 'number', step: 'any', readonly: true, placeholder: 'toca el mapa' }),
+        lng: el('input', { type: 'number', step: 'any', readonly: true, placeholder: 'toca el mapa' }),
+        text: LANGS.map((l) => el('input', { maxlength: '140', placeholder: 'Texto · ' + LANG_NAMES[l] + (l === 'es' ? ' (obligatorio)' : ' (si falta, se usa el español)') }))
+      };
+      const mapBox = el('div', { class: 'amap' });
+      const save = el('button', { class: 'btn primary', text: 'Publicar nota' });
+      view.appendChild(el('div', { class: 'panel', style: 'margin-bottom:16px' }, [
+        el('h2', { text: 'Nueva nota en un recorrido' }),
+        el('p', { class: 'sub', text: 'Ejemplos: "Arena en la pista después de la curva", "Carretera cortada hasta el viernes", "Fuente sin agua". Toca el mapa en el punto exacto. La app la muestra en el recorrido y la lee en voz alta a quien usa "Seguir recorrido" cuando está a unos 300 m.' }),
+        el('div', { class: 'grid cols-2', style: 'margin-top:12px;align-items:start' }, [
+          el('div', { class: 'grid' }, [
+            el('label', {}, ['Ruta', f.route]),
+            el('div', { class: 'grid cols-2' }, [el('label', {}, ['Tipo', f.kind]), el('label', {}, ['Válida hasta (vacío = sin fecha)', f.until])]),
+            el('div', { class: 'grid' }, f.text.map((x) => el('label', {}, [x.placeholder.split(' (')[0], x]))),
+            el('div', { class: 'grid cols-2' }, [el('label', {}, ['Latitud', f.lat]), el('label', {}, ['Longitud', f.lng])]),
+            el('div', { class: 'row' }, [save])
+          ]),
+          mapBox
+        ])
+      ]));
+      const listBox = el('div', { class: 'panel' });
+      view.appendChild(listBox);
+
+      setTimeout(() => {
+        const pk = pickerMap(mapBox, null, null, (la, ln) => { f.lat.value = la; f.lng.value = ln; });
+        const m = pk.map;
+        m.on('load', () => {
+          m.addSource('rt', { type: 'geojson', data: { type: 'FeatureCollection', features: routes.map((r) => ({ type: 'Feature', properties: { id: r.id, c: r.sport === 'bike' ? '#2f9e5b' : '#f2711c' }, geometry: { type: 'LineString', coordinates: r.line } })) } });
+          m.addLayer({ id: 'rt', type: 'line', source: 'rt', paint: { 'line-color': ['get', 'c'], 'line-width': ['case', ['==', ['get', 'id'], f.route.value || '-'], 6, 3], 'line-opacity': 0.85 } });
+          liveN.forEach((n) => new maplibregl.Marker({ element: el('div', { class: 'note-pin', title: (n.text.es || ''), text: kindLabel(n.kind).split(' ')[0] }) }).setLngLat([n.lng, n.lat]).addTo(m));
+        });
+        f.route.addEventListener('change', () => {
+          if (m.getLayer('rt')) m.setPaintProperty('rt', 'line-width', ['case', ['==', ['get', 'id'], f.route.value || '-'], 6, 3]);
+          const r = routes.find((x) => x.id === f.route.value);
+          if (r) { const b = new maplibregl.LngLatBounds(r.line[0], r.line[0]); r.line.forEach((p) => b.extend(p)); m.fitBounds(b, { padding: 40 }); }
+        });
+      }, 0);
+
+      save.addEventListener('click', async () => {
+        const text = {}; LANGS.forEach((l, k) => { const v = f.text[k].value.trim(); if (v) text[l] = v; });
+        if (!text.es) return toast('Escribe al menos el texto en español');
+        if (f.lat.value === '' || f.lng.value === '') return toast('Toca el mapa en el punto de la nota');
+        const r = routes.find((x) => x.id === f.route.value);
+        save.disabled = true;
+        const row = { route_id: r ? r.id : null, sport: r ? r.sport : null, kind: f.kind.value, lat: Number(f.lat.value), lng: Number(f.lng.value), text,
+          expires_at: f.until.value ? new Date(f.until.value + 'T23:59:00').toISOString() : null };
+        const res = await sb.from('route_notes').insert(row);
+        save.disabled = false;
+        if (res.error) return fail(res.error, 'Guardar');
+        toast('Nota publicada: la app la ve ya.');
+        route();
+      });
+
+      listBox.append(el('h2', { text: 'Notas' }), notes.length ? el('div', { class: 'table-wrap' }, [el('table', {}, [
+        el('thead', {}, [el('tr', {}, ['Tipo', 'Texto', 'Ruta', 'Válida hasta', 'Estado', ''].map((h) => el('th', { text: h })))]),
+        el('tbody', {}, notes.map((n) => {
+          const r = routes.find((x) => x.id === n.route_id);
+          const expired = n.expires_at && new Date(n.expires_at) <= new Date();
+          return el('tr', {}, [
+            el('td', { text: kindLabel(n.kind) }),
+            el('td', { text: n.text.es || Object.values(n.text)[0] || '' }),
+            el('td', { text: r ? nameOf(r) : 'Todas' }),
+            el('td', { text: n.expires_at ? fmtD(new Date(n.expires_at)) : '—' }),
+            el('td', { text: !n.active ? 'Oculta' : expired ? 'Caducada' : 'Activa' }),
+            el('td', {}, [el('div', { class: 'row' }, [
+              el('button', { class: 'btn small', text: n.active ? 'Ocultar' : 'Mostrar', onclick: async () => { const x = await sb.from('route_notes').update({ active: !n.active }).eq('id', n.id); if (x.error) return fail(x.error); route(); } }),
+              el('button', { class: 'btn small ghost', text: 'Borrar', onclick: async () => { if (!confirm('¿Borrar esta nota?')) return; const x = await sb.from('route_notes').delete().eq('id', n.id); if (x.error) return fail(x.error); route(); } })
+            ])])
+          ]);
+        }))
+      ])]) : el('div', { class: 'empty', text: 'Todavía no hay notas. Crea la primera arriba.' }));
+    }
+  };
+
   VIEWS.surf = {
     eyebrow: 'Isla', title: 'Surf',
     async render(view, head) {

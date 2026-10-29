@@ -1405,6 +1405,7 @@
     stats.appendChild(el('div', { class: 'p-stat' }, [el('div', { class: 'k', text: t('alertsNear') }), el('div', { class: 'v ' + (near.length ? 'warn' : 'ok'), text: near.length ? String(near.length) : t('none0') })]));
     if (S.pos) stats.appendChild(el('div', { class: 'p-stat' }, [el('div', { class: 'k', text: t('alertsRoute') }), el('div', { class: 'v ' + (onWay.length ? 'warn' : 'ok'), text: onWay.length ? String(onWay.length) : t('none0') })]));
     box.appendChild(stats);
+    if (window.MAXORA_FUEL && S.pos) window.MAXORA_FUEL.card(box, item, S.pos);
 
     const alertList = [...onWay.slice(0, 3), ...near.slice(0, 3)];
     if (alertList.length) {
@@ -1590,7 +1591,7 @@
   // ------------------------------------------------------------------
   // Per i moduli aggiuntivi (modalità surf)
   window.MAXORA = {
-    map, sb, el, store, toast, padMap, closePlace, exitResults,
+    map, sb, el, store, toast, padMap, closePlace, exitResults, openPlace,
     lang: () => lang, onTexts: (f) => textHooks.push(f), pos: () => S.pos, startGps, closeOverlays,
     setLang: (l) => { if (T[l]) { lang = l; store.set('lang', l); applyTexts(); } },
     unfollow: () => { S.follow = false; S.selectedId = null; updateChip(); },
