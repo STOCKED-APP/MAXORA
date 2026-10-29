@@ -365,3 +365,104 @@ body.results-on .locate { display: none; }
 
 /* I marcatori della mappa devono restare "absolute": li posiziona MapLibre */
 .maplibregl-marker.rpin, .maplibregl-marker.me, .maplibregl-marker.mk, .maplibregl-marker.dest-pin, .maplibregl-marker.mk-place { position: absolute; }
+
+/* =====================================================================
+   v0.5 — Pannello "Davanti a te" (H) con linea dritta e voti tondi (I)
+   ===================================================================== */
+.brand { font-weight: 800; font-size: 16px; letter-spacing: -0.01em; text-transform: lowercase; }
+.searchbar, .locate, .sb-x { border-radius: 26px; }
+.searchbar { padding: 0 18px; }
+
+.sheet { border-radius: 30px 30px 0 0; }
+.sheet-handle {
+  display: flex; align-items: baseline; gap: 10px; padding: 22px 20px 6px; grid-template-columns: none;
+}
+.sh-title { font-weight: 800; font-size: 21px; letter-spacing: -0.02em; color: var(--text); flex: none; }
+.sh-sub { flex: 1; min-width: 0; text-align: right; font-size: 13px; font-weight: 600; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sheet.collapsed .sh-sub { color: var(--text); font-size: 14px; }
+.chev { flex: none; align-self: center; margin: 0; }
+
+/* La strada dritta */
+.road { position: relative; height: 78px; margin: 10px 26px 0; }
+.road-track { position: absolute; left: 0; right: 0; top: 30px; height: 6px; border-radius: 3px; background: var(--track); }
+.road-me { position: absolute; left: -2px; top: 23px; width: 20px; height: 20px; border-radius: 50%; background: var(--sheet); border: 4px solid var(--text); box-sizing: border-box; z-index: 2; }
+.road-cap { position: absolute; top: 54px; font-size: 12px; font-weight: 700; color: var(--muted); }
+.road-cap.left { left: -4px; color: var(--text); }
+.road-cap.right { right: -6px; }
+.road-dot {
+  position: absolute; top: 21px; width: 24px; height: 24px; margin-left: -12px; padding: 0; border-radius: 8px;
+  border: 3px solid var(--sheet); box-shadow: 0 2px 6px rgba(0,0,0,.18); z-index: 3;
+}
+.road-dot.police { border-radius: 50%; background: var(--sheet) !important; border: 2.5px dashed var(--blue); box-shadow: none; }
+.road-dot.on { transform: scale(1.25); box-shadow: 0 0 0 3px var(--text); }
+.road-km { position: absolute; top: 0; transform: translateX(-50%); font-size: 12px; font-weight: 800; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.road-nm { position: absolute; top: 52px; transform: translateX(-50%); font-size: 12px; font-weight: 600; white-space: nowrap; color: var(--text); background: var(--sheet); padding: 0 3px; z-index: 1; }
+.road.empty .road-track { background: linear-gradient(90deg, var(--green), var(--track)); opacity: .5; }
+
+/* Il prossimo avviso */
+.hero {
+  margin: 8px 16px 0; padding: 14px; border-radius: 24px; background: var(--card); border: 1px solid var(--border);
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-ico { width: 52px; height: 52px; border-radius: 16px; flex: none; display: grid; place-items: center; }
+.hero-ico svg { width: 26px; height: 26px; }
+.hero.police .hero-ico { border-radius: 50%; border: 2.5px dashed var(--blue); }
+.hero-txt { flex: 1; min-width: 0; }
+.hero-t { font-size: 19px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
+.hero-d { font-weight: 800; white-space: nowrap; }
+.hero-m { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.35; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.hero-votes { display: flex; gap: 8px; flex: none; }
+.vote { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; padding: 0; }
+.vote.yes { border: 0; background: var(--text); color: var(--sheet); }
+.vote.no { border: 1.5px solid var(--border); background: var(--card); color: var(--text); }
+.vote:active { transform: scale(.94); }
+
+/* Poi */
+.then { margin: 12px 20px 0; }
+.then-h { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 2px; }
+.then-row {
+  width: 100%; display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 2px;
+  border: 0; border-bottom: 1px solid var(--border); background: transparent; color: var(--text); text-align: left;
+}
+.then-row:last-child { border-bottom: 0; }
+.then-dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.then-dot.police { border-radius: 50%; border: 2px dashed var(--blue); }
+.then-n { flex: 1; min-width: 0; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.then-d { font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+/* In fondo: segnala + rotondi */
+.bottom-row { display: flex; gap: 10px; margin: 16px 16px 0; }
+.report-pill {
+  flex: 1; min-height: 58px; border: 0; border-radius: 29px; background: var(--accent); color: var(--on-accent);
+  display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 800; font-size: 17px; letter-spacing: -0.01em;
+  box-shadow: 0 10px 24px var(--halo1);
+}
+.report-pill:active { transform: scale(.98); }
+.report-pill[disabled] { opacity: .45; }
+.round-btn {
+  width: 58px; height: 58px; flex: none; border-radius: 50%; border: 1.5px solid var(--border); background: var(--card); color: var(--text);
+  display: grid; place-items: center;
+}
+
+/* Icone a linea su mappa, avviso grande e scelta tipo */
+.mk svg { width: 16px; height: 16px; }
+.mk { width: 32px; height: 32px; border-radius: 11px; }
+.alert-mark svg { width: 28px; height: 28px; }
+.type .sw { width: 44px; height: 44px; border-radius: 14px; }
+.type .sw svg { width: 22px; height: 22px; }
+.type { border-radius: 20px; font-weight: 700; font-size: 13px; }
+
+/* Arrotondamenti a pillola in tutta l'app */
+.p-go, .p-apps a, .p-actions a, .p-actions .p-sec, .btn-solid, .btn-ghost, .area-btn, .s-chips button { border-radius: 999px; }
+.p-go { font-family: var(--font); font-weight: 800; font-size: 16px; letter-spacing: 0; }
+.p-name { font-weight: 800; letter-spacing: -0.02em; }
+.panel h2 { font-weight: 800; letter-spacing: -0.02em; }
+.alert-dist { font-weight: 800; }
+.road-cap.left { top: 0; left: -2px; }
+.road-dot.on { transform: scale(1.18); box-shadow: 0 0 0 2px var(--text); }
+.hero { gap: 12px; padding: 12px 12px 12px 14px; }
+.hero-ico { width: 46px; height: 46px; border-radius: 14px; }
+.hero-ico svg { width: 24px; height: 24px; }
+.hero-t { font-size: 18px; }
+.hero-m { -webkit-line-clamp: 1; white-space: nowrap; text-overflow: ellipsis; display: block; }
+.vote { width: 44px; height: 44px; }

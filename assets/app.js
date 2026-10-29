@@ -29,7 +29,7 @@
       ,searchPh: '¿A dónde vas?', sRecent: 'Recientes', sOurs: 'En Maxora', sStreets: 'Calles y lugares', sNone: 'Sin resultados. Prueba con otro nombre.', sOffline: 'Sin conexión: solo resultados de Maxora.',
       sNear: 'Cerca de ti', cBeach: 'Playas', cFood: 'Comer', cFuel: 'Gasolineras', cSurf: 'Surf', cView: 'Miradores',
       go: 'IR', openWith: 'Abrir navegación con', fromYou: 'Desde ti', alertsNear: 'Avisos cerca', alertsRoute: 'Avisos en el camino', none0: 'Ninguno',
-      routeNote: 'Maxora sigue avisándote en segundo plano mientras navegas.', approxRoute: 'aprox., en línea recta', share: 'Compartir', street: 'Calle', place: 'Lugar', town: 'Localidad', beachT: 'Playa', biz: 'Negocio', clearHist: 'Borrar historial', loadingMap: 'buscando…', nResults: '{n} en el mapa', noResultsArea: 'nada en esta zona', seeAll: 'Ver todos en el mapa', searchArea: 'Buscar en esta zona', hours: 'Horario', list: 'Lista'
+      routeNote: 'Maxora sigue avisándote en segundo plano mientras navegas.', approxRoute: 'aprox., en línea recta', share: 'Compartir', street: 'Calle', place: 'Lugar', town: 'Localidad', beachT: 'Playa', biz: 'Negocio', clearHist: 'Borrar historial', loadingMap: 'buscando…', nResults: '{n} en el mapa', noResultsArea: 'nada en esta zona', seeAll: 'Ver todos en el mapa', searchArea: 'Buscar en esta zona', hours: 'Horario', list: 'Lista', ahead: 'Delante de ti', nextKm: 'próximos {km} km', then: 'Después', you: 'Tú', reportBig: 'Avisar de algo', inDist: 'a {d}', roadClear: 'Vía despejada', roadClearSub: 'Nada avisado en los próximos {km} km'
     },
     en: {
       next: 'Next alert', clear: 'Road clear', clearSub: 'Nothing within {km} km', report: 'REPORT',
@@ -49,12 +49,12 @@
       ,searchPh: 'Where to?', sRecent: 'Recent', sOurs: 'On Maxora', sStreets: 'Streets & places', sNone: 'No results. Try another name.', sOffline: 'Offline: Maxora results only.',
       sNear: 'Near you', cBeach: 'Beaches', cFood: 'Food', cFuel: 'Fuel', cSurf: 'Surf', cView: 'Viewpoints',
       go: 'GO', openWith: 'Navigate with', fromYou: 'From you', alertsNear: 'Alerts nearby', alertsRoute: 'Alerts on the way', none0: 'None',
-      routeNote: 'Maxora keeps alerting you in the background while you drive.', approxRoute: 'approx., straight line', share: 'Share', street: 'Street', place: 'Place', town: 'Town', beachT: 'Beach', biz: 'Business', clearHist: 'Clear history', loadingMap: 'searching…', nResults: '{n} on the map', noResultsArea: 'nothing in this area', seeAll: 'Show all on the map', searchArea: 'Search this area', hours: 'Hours', list: 'List'
+      routeNote: 'Maxora keeps alerting you in the background while you drive.', approxRoute: 'approx., straight line', share: 'Share', street: 'Street', place: 'Place', town: 'Town', beachT: 'Beach', biz: 'Business', clearHist: 'Clear history', loadingMap: 'searching…', nResults: '{n} on the map', noResultsArea: 'nothing in this area', seeAll: 'Show all on the map', searchArea: 'Search this area', hours: 'Hours', list: 'List', ahead: 'Ahead of you', nextKm: 'next {km} km', then: 'Then', you: 'You', reportBig: 'Report something', inDist: 'in {d}', roadClear: 'Road clear', roadClearSub: 'Nothing reported in the next {km} km'
     },
     it: {
       next: 'Prossimo avviso', clear: 'Strada libera', clearSub: 'Niente entro {km} km', report: 'AVVISA',
       reportTitle: 'Cosa succede qui?', reportSub: 'Viene segnato sulla tua posizione. Segnala solo da passeggero o da fermo.',
-      still: "C'è ancora", gone: 'Non più', discover: "Scopri l'isola", settings: 'Impostazioni',
+      still: 'Ancora lì', gone: 'Non c’è più', discover: "Scopri l'isola", settings: 'Impostazioni',
       theme: 'Tema', auto: 'Auto', light: 'Chiaro', dark: 'Scuro', lang: 'Lingua',
       voice: 'Avvisi vocali', sound: 'Suono di avviso', ago: '{t} fa', confirms: '{n} confermano',
       approx: 'zona approssimativa', expires: 'scade tra {t}', official: 'Ufficiale', now: 'ORA',
@@ -69,7 +69,7 @@
       ,searchPh: 'Dove vai?', sRecent: 'Recenti', sOurs: 'Su Maxora', sStreets: 'Vie e luoghi', sNone: 'Nessun risultato. Prova un altro nome.', sOffline: 'Offline: solo risultati Maxora.',
       sNear: 'Vicino a te', cBeach: 'Spiagge', cFood: 'Mangiare', cFuel: 'Benzinai', cSurf: 'Surf', cView: 'Panorami',
       go: 'VAI', openWith: 'Apri navigazione con', fromYou: 'Da te', alertsNear: 'Avvisi vicini', alertsRoute: 'Avvisi sul percorso', none0: 'Nessuno',
-      routeNote: 'Maxora continua ad avvisarti in sottofondo mentre guidi.', approxRoute: 'approssimato, in linea d’aria', share: 'Condividi', street: 'Via', place: 'Luogo', town: 'Località', beachT: 'Spiaggia', biz: 'Attività', clearHist: 'Cancella cronologia', loadingMap: 'cerco…', nResults: '{n} sulla mappa', noResultsArea: 'niente in questa zona', seeAll: 'Vedi tutti sulla mappa', searchArea: 'Cerca in questa zona', hours: 'Orari', list: 'Lista'
+      routeNote: 'Maxora continua ad avvisarti in sottofondo mentre guidi.', approxRoute: 'approssimato, in linea d’aria', share: 'Condividi', street: 'Via', place: 'Luogo', town: 'Località', beachT: 'Spiaggia', biz: 'Attività', clearHist: 'Cancella cronologia', loadingMap: 'cerco…', nResults: '{n} sulla mappa', noResultsArea: 'niente in questa zona', seeAll: 'Vedi tutti sulla mappa', searchArea: 'Cerca in questa zona', hours: 'Orari', list: 'Lista', ahead: 'Davanti a te', nextKm: 'prossimi {km} km', then: 'Poi', you: 'Tu', reportBig: 'Segnala qualcosa', inDist: 'tra {d}', roadClear: 'Strada libera', roadClearSub: 'Niente segnalato nei prossimi {km} km'
     },
     de: {
       next: 'Nächste Meldung', clear: 'Freie Fahrt', clearSub: 'Nichts im Umkreis von {km} km', report: 'MELDEN',
@@ -89,7 +89,7 @@
       ,searchPh: 'Wohin?', sRecent: 'Zuletzt', sOurs: 'Auf Maxora', sStreets: 'Straßen & Orte', sNone: 'Keine Ergebnisse. Anderen Namen versuchen.', sOffline: 'Offline: nur Maxora-Ergebnisse.',
       sNear: 'In deiner Nähe', cBeach: 'Strände', cFood: 'Essen', cFuel: 'Tankstellen', cSurf: 'Surfen', cView: 'Aussichtspunkte',
       go: 'LOS', openWith: 'Navigieren mit', fromYou: 'Von dir', alertsNear: 'Meldungen in der Nähe', alertsRoute: 'Meldungen unterwegs', none0: 'Keine',
-      routeNote: 'Maxora warnt dich während der Fahrt im Hintergrund weiter.', approxRoute: 'ca., Luftlinie', share: 'Teilen', street: 'Straße', place: 'Ort', town: 'Ortschaft', beachT: 'Strand', biz: 'Betrieb', clearHist: 'Verlauf löschen', loadingMap: 'suche…', nResults: '{n} auf der Karte', noResultsArea: 'nichts in diesem Bereich', seeAll: 'Alle auf der Karte zeigen', searchArea: 'In diesem Bereich suchen', hours: 'Öffnungszeiten', list: 'Liste'
+      routeNote: 'Maxora warnt dich während der Fahrt im Hintergrund weiter.', approxRoute: 'ca., Luftlinie', share: 'Teilen', street: 'Straße', place: 'Ort', town: 'Ortschaft', beachT: 'Strand', biz: 'Betrieb', clearHist: 'Verlauf löschen', loadingMap: 'suche…', nResults: '{n} auf der Karte', noResultsArea: 'nichts in diesem Bereich', seeAll: 'Alle auf der Karte zeigen', searchArea: 'In diesem Bereich suchen', hours: 'Öffnungszeiten', list: 'Liste', ahead: 'Vor dir', nextKm: 'nächste {km} km', then: 'Danach', you: 'Du', reportBig: 'Etwas melden', inDist: 'in {d}', roadClear: 'Freie Fahrt', roadClearSub: 'Nichts gemeldet auf den nächsten {km} km'
     }
   };
   const LOCALES = { es: 'es-ES', en: 'en-GB', it: 'it-IT', de: 'de-DE' };
@@ -248,7 +248,7 @@
   function markerFor(r) {
     const ty = typeOf(r);
     const n = el('div', { class: 'mk' + (ty.is_police ? ' police' : '') + (r.official ? ' official' : ''), role: 'button', 'aria-label': labelOf(ty) });
-    if (!ty.is_police) { n.style.background = ty.color; n.textContent = ty.icon; }
+    if (!ty.is_police) { n.style.background = ty.color; n.appendChild(typeIcon(ty, '#ffffff')); }
     n.addEventListener('click', (e) => { e.stopPropagation(); select(r.id, true); });
     return n;
   }
@@ -410,7 +410,7 @@
     const mark = $('alertMark');
     mark.className = 'alert-mark' + (ty.is_police ? ' police' : '');
     mark.style.background = ty.is_police ? '' : ty.color;
-    mark.textContent = ty.is_police ? '' : ty.icon;
+    mark.textContent = ''; if (!ty.is_police) mark.appendChild(typeIcon(ty, '#ffffff'));
     const fd = fmtDist(d);
     $('alertDist').textContent = ty.is_police ? t('approx') : fd.v + ' ' + fd.u;
     $('alertTitle').textContent = (r.title || labelOf(ty));
@@ -449,17 +449,42 @@
   }
 
   // ------------------------------------------------------------------
-  // Disegno della scheda
+  // Disegno del pannello "Davanti a te"
   // ------------------------------------------------------------------
-  const ARC = { cx: 195, cy: 210, r: 150 };
-  const arcPoint = (deg, r) => ({ x: ARC.cx + (r || ARC.r) * Math.cos(rad(deg)), y: ARC.cy - (r || ARC.r) * Math.sin(rad(deg)) });
+  // Icone a linea per i tipi di avviso (al posto delle emoji)
+  const TYPE_SVG = {
+    incidente: '<path d="M12 3l9.5 17h-19z"/><path d="M12 10v4M12 17.5v.5"/>',
+    atasco: '<path d="M5 16l1.5-5h11L19 16M5 16h14v3H5zM8 19v1M16 19v1"/>',
+    peligro: '<path d="M12 3l9.5 17h-19z"/><path d="M12 10v4M12 17.5v.5"/>',
+    obras: '<path d="M10 3h4l4.5 15h-13z"/><path d="M8.2 10h7.6M6.8 14.5h10.4M3 21h18"/>',
+    cortada: '<circle cx="12" cy="12" r="9"/><path d="M7 12h10"/>',
+    animales: '<circle cx="7" cy="9" r="1.8"/><circle cx="12" cy="6.5" r="1.8"/><circle cx="17" cy="9" r="1.8"/><path d="M12 12c-3 0-5 3.5-5 5.5S9 20 12 19s5 .5 5-1.5S15 12 12 12z"/>',
+    arena: '<path d="M3 17c3-4 6-4 9 0s6 4 9 0M3 11c3-4 6-4 9 0s6 4 9 0"/>',
+    parking_lleno: '<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M10 17V8h3a2.5 2.5 0 010 5h-3"/>',
+    policia: '<path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>',
+    evento: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>'
+  };
+  function typeIcon(ty, color) {
+    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('fill', 'none'); s.setAttribute('stroke', color || 'currentColor');
+    s.setAttribute('stroke-width', '2'); s.setAttribute('stroke-linecap', 'round'); s.setAttribute('stroke-linejoin', 'round'); s.setAttribute('aria-hidden', 'true');
+    s.innerHTML = TYPE_SVG[ty.key] || TYPE_SVG.peligro;
+    return s;
+  }
+  function tint(hex, a) {
+    const h = (hex || '#888888').replace('#', '');
+    const n = parseInt(h.length === 3 ? h.split('').map((c) => c + c).join('') : h, 16);
+    return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+  }
+  const distText = (d, police) => { const f = fmtDist(d); return (police ? '~' : '') + f.v + ' ' + f.u; };
 
   function refresh() {
     computeAhead();
     drawMarkers();
-    drawArc();
-    drawNext();
-    drawCard();
+    drawRoad();
+    drawHero();
+    drawThen();
+    drawHeader();
     updateChip();
     const maint = setting('maintenance', false) === true;
     $('reportBtn').disabled = maint;
@@ -472,92 +497,104 @@
     b.setAttribute('aria-label', following ? t('following') : t('active', { n: S.reports.size }));
   }
 
-  function drawArc() {
-    const g = $('arcMarks'), labels = $('arcLabels');
-    g.innerHTML = ''; labels.innerHTML = '';
-    $('capLeft').textContent = t('now');
-    $('capRight').textContent = MAX_KM + ' KM';
-    const items = S.ahead.slice(0, 4);
-    if (!items.length) {
-      labels.appendChild(el('div', { class: 'arc-empty', text: t('clearSub', { km: MAX_KM }) }));
-      return;
+  // L'avviso mostrato in grande: quello toccato sulla mappa, altrimenti il più vicino davanti
+  function heroItem() {
+    if (S.selectedId && S.reports.has(S.selectedId)) {
+      const r = S.reports.get(S.selectedId);
+      return { r, d: S.pos ? distKm(S.pos, r) : null };
     }
-    let lastDeg = 999, flip = false;
-    items.forEach(({ r, d }) => {
+    return S.ahead[0] || null;
+  }
+
+  function drawHeader() {
+    $('aheadTitle').textContent = t('ahead');
+    const h = heroItem();
+    // chiuso: il riassunto dice subito cosa c'è; aperto: quanta strada guardo
+    if (S.collapsed && h) {
+      const ty = typeOf(h.r);
+      $('aheadSub').textContent = labelOf(ty) + (h.d != null ? ' · ' + distText(h.d, ty.is_police) : '');
+    } else {
+      $('aheadSub').textContent = setting('maintenance', false) === true ? t('errMaint') : t('nextKm', { km: MAX_KM });
+    }
+  }
+
+  function drawRoad() {
+    const road = $('road');
+    road.innerHTML = '';
+    road.append(el('div', { class: 'road-track' }), el('div', { class: 'road-me' }), el('div', { class: 'road-cap left', text: t('you') }), el('div', { class: 'road-cap right', text: MAX_KM + ' km' }));
+    let lastLabel = -100;   // etichette mai sovrapposte: almeno 18% di distanza
+    S.ahead.slice(0, 5).forEach(({ r, d }) => {
       const ty = typeOf(r);
-      const deg = 172 - Math.min(1, d / MAX_KM) * 162;
-      const p = arcPoint(deg);
-      const ns = 'http://www.w3.org/2000/svg';
-      let shape;
-      if (ty.is_police) {
-        shape = document.createElementNS(ns, 'circle');
-        shape.setAttribute('cx', p.x); shape.setAttribute('cy', p.y); shape.setAttribute('r', 11);
-        shape.setAttribute('fill', 'var(--sheet)'); shape.setAttribute('stroke', 'var(--blue)');
-        shape.setAttribute('stroke-width', '2.5'); shape.setAttribute('stroke-dasharray', '3 2.5');
-      } else {
-        shape = document.createElementNS(ns, 'rect');
-        shape.setAttribute('x', p.x - 10); shape.setAttribute('y', p.y - 10);
-        shape.setAttribute('width', 20); shape.setAttribute('height', 20); shape.setAttribute('rx', 5);
-        shape.setAttribute('fill', ty.color); shape.setAttribute('stroke', 'var(--sheet)'); shape.setAttribute('stroke-width', '3');
+      const pct = 17 + Math.min(1, d / MAX_KM) * 77;   // lo spazio iniziale resta per "Tu"
+      const dot = el('button', { class: 'road-dot' + (ty.is_police ? ' police' : '') + (r.id === (heroItem() || {}).r?.id ? ' on' : ''), style: 'left:' + pct + '%', 'aria-label': labelOf(ty) });
+      if (!ty.is_police) dot.style.background = ty.color;
+      dot.addEventListener('click', () => select(r.id, true));
+      road.appendChild(dot);
+      if (pct - lastLabel >= 18) {
+        lastLabel = pct;
+        const col = ty.is_police ? 'var(--blue-text)' : 'var(--text)';
+        road.appendChild(el('div', { class: 'road-km', style: 'left:' + pct + '%;color:' + col, text: distText(d, ty.is_police) }));
+        road.appendChild(el('div', { class: 'road-nm', style: 'left:' + pct + '%', text: shortLabel(labelOf(ty)) }));
       }
-      shape.setAttribute('class', 'arc-mark');
-      shape.addEventListener('click', () => select(r.id, true));
-      g.appendChild(shape);
-
-      flip = Math.abs(lastDeg - deg) < 24 ? !flip : false;
-      lastDeg = deg;
-      const lp = arcPoint(deg, flip ? 108 : 178);
-      const x = Math.min(352, Math.max(38, lp.x));
-      const fd = fmtDist(d);
-      const kmColor = ty.is_police ? 'var(--blue-text)' : 'var(--text)';
-      const b = el('button', { class: 'arc-label', style: 'left:' + (x / 390 * 100) + '%;top:' + ((flip ? lp.y + 34 : lp.y) / 230 * 100) + '%' }, [
-        el('span', { class: 'km', style: 'color:' + kmColor }, [(ty.is_police ? '~' : '') + fd.v, el('small', { text: ' ' + fd.u })]),
-        el('span', { class: 'nm', text: shortLabel(labelOf(ty)) })
-      ]);
-      b.addEventListener('click', () => select(r.id, true));
-      labels.appendChild(b);
     });
+    road.classList.toggle('empty', !S.ahead.length);
   }
-  const shortLabel = (s) => (s.length > 16 ? s.slice(0, 15) + '…' : s);
+  const shortLabel = (s) => (s.length > 12 ? s.slice(0, 11) + '…' : s);
 
-  function drawNext() {
-    $('nextLabel').textContent = S.ahead.length ? t('next') : t('clear');
-    const first = S.ahead[0];
-    if (!first) {
-      $('nextKm').textContent = '—'; $('nextUnit').textContent = '';
-      $('nextSide').textContent = setting('maintenance', false) === true ? t('errMaint') : '';
+  function drawHero() {
+    const h = heroItem();
+    const ico = $('heroIco'), title = $('heroTitle'), meta = $('heroMeta'), hero = $('hero');
+    ico.innerHTML = ''; title.innerHTML = '';
+    if (!h) {
+      // strada libera
+      hero.className = 'hero clear';
+      ico.style.background = tint('#2f9e5b', 0.14);
+      const ok = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      ok.setAttribute('viewBox', '0 0 24 24'); ok.setAttribute('fill', 'none'); ok.setAttribute('stroke', 'var(--green)'); ok.setAttribute('stroke-width', '2.4'); ok.setAttribute('stroke-linecap', 'round'); ok.setAttribute('stroke-linejoin', 'round');
+      ok.innerHTML = '<path d="M5 12l5 5 9-10"/>';
+      ico.appendChild(ok);
+      title.textContent = t('roadClear');
+      meta.textContent = t('roadClearSub', { km: MAX_KM });
+      $('cardActions').classList.add('hidden');
+      hero.dataset.id = '';
       return;
     }
-    const fd = fmtDist(first.d);
-    const ty = typeOf(first.r);
-    $('nextKm').textContent = (ty.is_police ? '~' : '') + fd.v;
-    $('nextUnit').textContent = fd.u;
-    $('nextSide').innerHTML = '';
-    $('nextSide').appendChild(el('b', { text: first.r.title || labelOf(ty) }));
-    $('nextSide').appendChild(document.createElement('br'));
-    $('nextSide').appendChild(document.createTextNode(t('ago', { t: fmtMin((Date.now() - new Date(first.r.created_at)) / 60000) })));
+    const r = h.r, ty = typeOf(r);
+    const color = ty.is_police ? '#2b8fb0' : ty.color;
+    hero.className = 'hero' + (ty.is_police ? ' police' : '');
+    ico.style.background = tint(color, 0.15);
+    ico.appendChild(typeIcon(ty, color));
+    title.appendChild(document.createTextNode((r.title && r.source !== 'dgt' ? r.title : labelOf(ty)) + ' '));
+    if (h.d != null) title.appendChild(el('span', { class: 'hero-d', style: 'color:' + (ty.is_police ? 'var(--blue-text)' : 'var(--text)'), text: t('inDist', { d: distText(h.d, ty.is_police) }) }));
+    const mins = (Date.now() - new Date(r.created_at)) / 60000;
+    const bits = [];
+    if (r.source === 'dgt') { bits.push('DGT'); if (r.title) bits.push(r.title); }
+    else if (r.official) bits.push(t('official'));
+    bits.push(t('ago', { t: fmtMin(mins) }));
+    if (ty.is_police) bits.push(t('approx'));
+    else if (r.confirms) bits.push(t('confirms', { n: r.confirms }));
+    meta.textContent = bits.join(' · ');
+    hero.dataset.id = r.id;
+    $('cardActions').classList.toggle('hidden', r.source === 'dgt');
+    $('voteYes').setAttribute('aria-label', t('still'));
+    $('voteNo').setAttribute('aria-label', t('gone'));
   }
 
-  function drawCard() {
-    const sel = (S.selectedId && S.reports.get(S.selectedId)) || (S.ahead[0] && S.ahead[0].r);
-    const card = $('card');
-    if (!sel) { card.classList.add('hidden'); return; }
-    card.classList.remove('hidden');
-    const ty = typeOf(sel);
-    const mark = $('cardMark');
-    mark.className = 'card-mark' + (ty.is_police ? ' police' : '');
-    mark.style.background = ty.is_police ? '' : ty.color;
-    $('cardTitle').textContent = (sel.source === 'dgt' ? 'DGT · ' : sel.official ? t('official') + ' · ' : '') + (sel.title || labelOf(ty));
-    const mins = (Date.now() - new Date(sel.created_at)) / 60000;
-    const left = (new Date(sel.expires_at) - Date.now()) / 60000;
-    const bits = [t('ago', { t: fmtMin(mins) })];
-    if (ty.is_police) { bits.push(t('approx')); bits.push(t('expires', { t: fmtMin(left) })); }
-    else if (sel.confirms) bits.push(t('confirms', { n: sel.confirms }));
-    $('cardMeta').textContent = bits.join(' · ');
-    $('voteYes').textContent = t('still');
-    $('voteNo').textContent = t('gone');
-    card.dataset.id = sel.id;
-    $('cardActions').classList.toggle('hidden', sel.source === 'dgt');
+  function drawThen() {
+    const h = heroItem();
+    const rest = S.ahead.filter((x) => !h || x.r.id !== h.r.id).slice(0, 2);
+    $('thenTitle').textContent = t('then');
+    const list = $('thenList');
+    list.innerHTML = '';
+    rest.forEach(({ r, d }) => {
+      const ty = typeOf(r);
+      const m = el('span', { class: 'then-dot' + (ty.is_police ? ' police' : '') });
+      if (!ty.is_police) m.style.background = ty.color;
+      list.appendChild(el('button', { class: 'then-row', onclick: () => select(r.id, true) }, [
+        m, el('span', { class: 'then-n', text: r.source === 'dgt' && r.title ? r.title : labelOf(ty) }), el('span', { class: 'then-d', text: distText(d, ty.is_police) })
+      ]));
+    });
+    $('thenBox').classList.toggle('hidden', !rest.length);
   }
 
   function select(id, fly) {
@@ -565,7 +602,7 @@
     const r = S.reports.get(id);
     if (r && fly) { S.follow = false; map.easeTo({ center: [r.lng, r.lat], zoom: Math.max(map.getZoom(), 13), duration: 600 }); }
     if (S.collapsed) toggleSheet(false);
-    drawMarkers(); drawCard(); updateChip();
+    drawMarkers(); drawRoad(); drawHero(); drawThen(); drawHeader(); updateChip();
   }
 
   // ------------------------------------------------------------------
@@ -610,7 +647,7 @@
       .sort((a, b) => a.sort - b.sort)
       .forEach((ty) => {
         const sw = el('span', { class: 'sw' + (ty.is_police ? ' police' : ''), 'aria-hidden': 'true' });
-        if (!ty.is_police) { sw.style.background = ty.color; sw.textContent = ty.icon; }
+        if (!ty.is_police) { sw.style.background = tint(ty.color, 0.15); sw.appendChild(typeIcon(ty, ty.color)); }
         grid.appendChild(el('button', { class: 'type', onclick: () => send(ty.key) }, [sw, labelOf(ty)]));
       });
     openOverlay('typesOverlay');
@@ -656,6 +693,7 @@
     store.set('collapsed', S.collapsed);
     $('sheet').classList.toggle('collapsed', S.collapsed);
     $('sheetToggle').setAttribute('aria-expanded', String(!S.collapsed));
+    drawHeader();
     setTimeout(padMap, 320);
   }
   (function swipe() {
@@ -1381,7 +1419,9 @@
     $('reportLabel').textContent = t('report');
     $('searchPh').textContent = t('searchPh');
     $('searchInput').placeholder = t('searchPh');
-    $('discoverLabel').textContent = t('discover');
+    $('discoverBtn').setAttribute('aria-label', t('discover'));
+    $('settingsBtn').setAttribute('aria-label', t('settings'));
+    $('reportLabel').textContent = t('reportBig');
     $('typesTitle').textContent = t('reportTitle');
     $('typesSub').textContent = t('reportSub');
     $('discoverTitle').textContent = t('discover');
@@ -1428,8 +1468,8 @@
   $('reportBtn').addEventListener('click', openTypes);
   $('discoverBtn').addEventListener('click', openDiscover);
   $('settingsBtn').addEventListener('click', () => { drawSettings(); openOverlay('settingsOverlay'); });
-  $('voteYes').addEventListener('click', () => vote($('card').dataset.id, true));
-  $('voteNo').addEventListener('click', () => vote($('card').dataset.id, false));
+  $('voteYes').addEventListener('click', () => vote($('hero').dataset.id, true));
+  $('voteNo').addEventListener('click', () => vote($('hero').dataset.id, false));
   $('alertYes').addEventListener('click', () => { vote(alertId, true); hideAlert(); });
   $('alertNo').addEventListener('click', () => { vote(alertId, false); hideAlert(); });
   $('broadcastClose').addEventListener('click', () => {
@@ -1452,7 +1492,7 @@
   document.querySelectorAll('#discoverTabs button').forEach((b) => b.addEventListener('click', () => { discTab = b.dataset.tab; drawDiscover(); }));
   $('voiceToggle').addEventListener('change', (e) => { S.voice = e.target.checked; store.set('voice', S.voice); });
   $('soundToggle').addEventListener('change', (e) => { S.sound = e.target.checked; store.set('sound', S.sound); if (S.sound) beep(); });
-  map.on('click', () => { if (S.selectedId) { S.selectedId = null; drawMarkers(); drawCard(); } });
+  map.on('click', () => { if (S.selectedId) { S.selectedId = null; refresh(); } });
   map.on('moveend', () => { if (!S.pos) refresh(); });
   window.addEventListener('resize', padMap);
 

@@ -20,9 +20,9 @@
   --green: #2f9e5b;
 
   --shadow: 0 10px 30px rgba(20, 23, 27, 0.12);
-  --font: 'Space Grotesk', system-ui, sans-serif;
-  --font-display: 'Unbounded', 'Space Grotesk', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Manrope', system-ui, -apple-system, sans-serif;
   color-scheme: light;
 }
 
@@ -48,9 +48,10 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
 button { font-family: inherit; cursor: pointer; }
+body { font-feature-settings: 'tnum' 0; letter-spacing: -0.005em; }
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
   outline: 2px solid var(--accent); outline-offset: 2px;
 }
-.mono { font-family: var(--font-mono); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 .display { font-family: var(--font-display); }
 .hidden { display: none !important; }
