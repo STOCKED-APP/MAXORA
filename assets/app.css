@@ -472,3 +472,14 @@ body.results-on .locate { display: none; }
 .p-fig figcaption { font-size: 10px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .p-fig figcaption a { color: var(--muted); text-decoration: none; }
 .disc .cr { font-size: 10px; color: var(--muted); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Pulsante Mappa / Satellite, sotto il pulsante posizione */
+.layers-btn {
+  position: fixed; z-index: 5; right: 16px; top: calc(env(safe-area-inset-top) + 76px);
+  width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--chip); color: var(--text); backdrop-filter: blur(10px); box-shadow: var(--shadow);
+  display: grid; place-items: center;
+}
+.layers-btn.on { background: var(--text); color: var(--sheet); border-color: transparent; }
+body.results-on .layers-btn { top: calc(env(safe-area-inset-top) + 76px); }
+.broadcast { right: 80px; }
+@media (min-width: 560px) { .layers-btn { right: calc(50% - 260px + 16px); } }

@@ -29,7 +29,7 @@
       ,searchPh: '¿A dónde vas?', sRecent: 'Recientes', sOurs: 'En Maxora', sStreets: 'Calles y lugares', sNone: 'Sin resultados. Prueba con otro nombre.', sOffline: 'Sin conexión: solo resultados de Maxora.',
       sNear: 'Cerca de ti', cBeach: 'Playas', cFood: 'Comer', cFuel: 'Gasolineras', cSurf: 'Surf', cView: 'Miradores',
       go: 'IR', openWith: 'Abrir navegación con', fromYou: 'Desde ti', alertsNear: 'Avisos cerca', alertsRoute: 'Avisos en el camino', none0: 'Ninguno',
-      routeNote: 'Maxora sigue avisándote en segundo plano mientras navegas.', approxRoute: 'aprox., en línea recta', share: 'Compartir', street: 'Calle', place: 'Lugar', town: 'Localidad', beachT: 'Playa', biz: 'Negocio', clearHist: 'Borrar historial', loadingMap: 'buscando…', nResults: '{n} en el mapa', noResultsArea: 'nada en esta zona', seeAll: 'Ver todos en el mapa', searchArea: 'Buscar en esta zona', hours: 'Horario', list: 'Lista', ahead: 'Delante de ti', nextKm: 'próximos {km} km', then: 'Después', you: 'Tú', reportBig: 'Avisar de algo', inDist: 'a {d}', roadClear: 'Vía despejada', roadClearSub: 'Nada avisado en los próximos {km} km', zoneTitle: 'En esta zona', zoneCount: '{n} avisos aquí', zoneNone: 'Nada en esta zona', zoneNoneSub: 'Mueve el mapa para ver otras zonas', fromYouD: 'a {d} de ti', alsoHere: 'También aquí'
+      routeNote: 'Maxora sigue avisándote en segundo plano mientras navegas.', approxRoute: 'aprox., en línea recta', share: 'Compartir', street: 'Calle', place: 'Lugar', town: 'Localidad', beachT: 'Playa', biz: 'Negocio', clearHist: 'Borrar historial', loadingMap: 'buscando…', nResults: '{n} en el mapa', noResultsArea: 'nada en esta zona', seeAll: 'Ver todos en el mapa', searchArea: 'Buscar en esta zona', hours: 'Horario', list: 'Lista', ahead: 'Delante de ti', nextKm: 'próximos {km} km', then: 'Después', you: 'Tú', reportBig: 'Avisar de algo', inDist: 'a {d}', roadClear: 'Vía despejada', roadClearSub: 'Nada avisado en los próximos {km} km', zoneTitle: 'En esta zona', zoneCount: '{n} avisos aquí', zoneNone: 'Nada en esta zona', zoneNoneSub: 'Mueve el mapa para ver otras zonas', fromYouD: 'a {d} de ti', alsoHere: 'También aquí', satOn: 'Vista satélite', mapOn: 'Vista mapa', layers: 'Mapa / satélite'
     },
     en: {
       next: 'Next alert', clear: 'Road clear', clearSub: 'Nothing within {km} km', report: 'REPORT',
@@ -49,7 +49,7 @@
       ,searchPh: 'Where to?', sRecent: 'Recent', sOurs: 'On Maxora', sStreets: 'Streets & places', sNone: 'No results. Try another name.', sOffline: 'Offline: Maxora results only.',
       sNear: 'Near you', cBeach: 'Beaches', cFood: 'Food', cFuel: 'Fuel', cSurf: 'Surf', cView: 'Viewpoints',
       go: 'GO', openWith: 'Navigate with', fromYou: 'From you', alertsNear: 'Alerts nearby', alertsRoute: 'Alerts on the way', none0: 'None',
-      routeNote: 'Maxora keeps alerting you in the background while you drive.', approxRoute: 'approx., straight line', share: 'Share', street: 'Street', place: 'Place', town: 'Town', beachT: 'Beach', biz: 'Business', clearHist: 'Clear history', loadingMap: 'searching…', nResults: '{n} on the map', noResultsArea: 'nothing in this area', seeAll: 'Show all on the map', searchArea: 'Search this area', hours: 'Hours', list: 'List', ahead: 'Ahead of you', nextKm: 'next {km} km', then: 'Then', you: 'You', reportBig: 'Report something', inDist: 'in {d}', roadClear: 'Road clear', roadClearSub: 'Nothing reported in the next {km} km', zoneTitle: 'In this area', zoneCount: '{n} alerts here', zoneNone: 'Nothing in this area', zoneNoneSub: 'Move the map to see other areas', fromYouD: '{d} from you', alsoHere: 'Also here'
+      routeNote: 'Maxora keeps alerting you in the background while you drive.', approxRoute: 'approx., straight line', share: 'Share', street: 'Street', place: 'Place', town: 'Town', beachT: 'Beach', biz: 'Business', clearHist: 'Clear history', loadingMap: 'searching…', nResults: '{n} on the map', noResultsArea: 'nothing in this area', seeAll: 'Show all on the map', searchArea: 'Search this area', hours: 'Hours', list: 'List', ahead: 'Ahead of you', nextKm: 'next {km} km', then: 'Then', you: 'You', reportBig: 'Report something', inDist: 'in {d}', roadClear: 'Road clear', roadClearSub: 'Nothing reported in the next {km} km', zoneTitle: 'In this area', zoneCount: '{n} alerts here', zoneNone: 'Nothing in this area', zoneNoneSub: 'Move the map to see other areas', fromYouD: '{d} from you', alsoHere: 'Also here', satOn: 'Satellite view', mapOn: 'Map view', layers: 'Map / satellite'
     },
     it: {
       next: 'Prossimo avviso', clear: 'Strada libera', clearSub: 'Niente entro {km} km', report: 'AVVISA',
@@ -69,7 +69,7 @@
       ,searchPh: 'Dove vai?', sRecent: 'Recenti', sOurs: 'Su Maxora', sStreets: 'Vie e luoghi', sNone: 'Nessun risultato. Prova un altro nome.', sOffline: 'Offline: solo risultati Maxora.',
       sNear: 'Vicino a te', cBeach: 'Spiagge', cFood: 'Mangiare', cFuel: 'Benzinai', cSurf: 'Surf', cView: 'Panorami',
       go: 'VAI', openWith: 'Apri navigazione con', fromYou: 'Da te', alertsNear: 'Avvisi vicini', alertsRoute: 'Avvisi sul percorso', none0: 'Nessuno',
-      routeNote: 'Maxora continua ad avvisarti in sottofondo mentre guidi.', approxRoute: 'approssimato, in linea d’aria', share: 'Condividi', street: 'Via', place: 'Luogo', town: 'Località', beachT: 'Spiaggia', biz: 'Attività', clearHist: 'Cancella cronologia', loadingMap: 'cerco…', nResults: '{n} sulla mappa', noResultsArea: 'niente in questa zona', seeAll: 'Vedi tutti sulla mappa', searchArea: 'Cerca in questa zona', hours: 'Orari', list: 'Lista', ahead: 'Davanti a te', nextKm: 'prossimi {km} km', then: 'Poi', you: 'Tu', reportBig: 'Segnala qualcosa', inDist: 'tra {d}', roadClear: 'Strada libera', roadClearSub: 'Niente segnalato nei prossimi {km} km', zoneTitle: 'In questa zona', zoneCount: '{n} avvisi qui', zoneNone: 'Niente in questa zona', zoneNoneSub: 'Sposta la mappa per vedere altre zone', fromYouD: 'a {d} da te', alsoHere: 'Anche qui'
+      routeNote: 'Maxora continua ad avvisarti in sottofondo mentre guidi.', approxRoute: 'approssimato, in linea d’aria', share: 'Condividi', street: 'Via', place: 'Luogo', town: 'Località', beachT: 'Spiaggia', biz: 'Attività', clearHist: 'Cancella cronologia', loadingMap: 'cerco…', nResults: '{n} sulla mappa', noResultsArea: 'niente in questa zona', seeAll: 'Vedi tutti sulla mappa', searchArea: 'Cerca in questa zona', hours: 'Orari', list: 'Lista', ahead: 'Davanti a te', nextKm: 'prossimi {km} km', then: 'Poi', you: 'Tu', reportBig: 'Segnala qualcosa', inDist: 'tra {d}', roadClear: 'Strada libera', roadClearSub: 'Niente segnalato nei prossimi {km} km', zoneTitle: 'In questa zona', zoneCount: '{n} avvisi qui', zoneNone: 'Niente in questa zona', zoneNoneSub: 'Sposta la mappa per vedere altre zone', fromYouD: 'a {d} da te', alsoHere: 'Anche qui', satOn: 'Vista satellite', mapOn: 'Vista mappa', layers: 'Mappa / satellite'
     },
     de: {
       next: 'Nächste Meldung', clear: 'Freie Fahrt', clearSub: 'Nichts im Umkreis von {km} km', report: 'MELDEN',
@@ -89,7 +89,7 @@
       ,searchPh: 'Wohin?', sRecent: 'Zuletzt', sOurs: 'Auf Maxora', sStreets: 'Straßen & Orte', sNone: 'Keine Ergebnisse. Anderen Namen versuchen.', sOffline: 'Offline: nur Maxora-Ergebnisse.',
       sNear: 'In deiner Nähe', cBeach: 'Strände', cFood: 'Essen', cFuel: 'Tankstellen', cSurf: 'Surfen', cView: 'Aussichtspunkte',
       go: 'LOS', openWith: 'Navigieren mit', fromYou: 'Von dir', alertsNear: 'Meldungen in der Nähe', alertsRoute: 'Meldungen unterwegs', none0: 'Keine',
-      routeNote: 'Maxora warnt dich während der Fahrt im Hintergrund weiter.', approxRoute: 'ca., Luftlinie', share: 'Teilen', street: 'Straße', place: 'Ort', town: 'Ortschaft', beachT: 'Strand', biz: 'Betrieb', clearHist: 'Verlauf löschen', loadingMap: 'suche…', nResults: '{n} auf der Karte', noResultsArea: 'nichts in diesem Bereich', seeAll: 'Alle auf der Karte zeigen', searchArea: 'In diesem Bereich suchen', hours: 'Öffnungszeiten', list: 'Liste', ahead: 'Vor dir', nextKm: 'nächste {km} km', then: 'Danach', you: 'Du', reportBig: 'Etwas melden', inDist: 'in {d}', roadClear: 'Freie Fahrt', roadClearSub: 'Nichts gemeldet auf den nächsten {km} km', zoneTitle: 'In diesem Bereich', zoneCount: '{n} Meldungen hier', zoneNone: 'Nichts in diesem Bereich', zoneNoneSub: 'Karte verschieben, um andere Bereiche zu sehen', fromYouD: '{d} von dir', alsoHere: 'Auch hier'
+      routeNote: 'Maxora warnt dich während der Fahrt im Hintergrund weiter.', approxRoute: 'ca., Luftlinie', share: 'Teilen', street: 'Straße', place: 'Ort', town: 'Ortschaft', beachT: 'Strand', biz: 'Betrieb', clearHist: 'Verlauf löschen', loadingMap: 'suche…', nResults: '{n} auf der Karte', noResultsArea: 'nichts in diesem Bereich', seeAll: 'Alle auf der Karte zeigen', searchArea: 'In diesem Bereich suchen', hours: 'Öffnungszeiten', list: 'Liste', ahead: 'Vor dir', nextKm: 'nächste {km} km', then: 'Danach', you: 'Du', reportBig: 'Etwas melden', inDist: 'in {d}', roadClear: 'Freie Fahrt', roadClearSub: 'Nichts gemeldet auf den nächsten {km} km', zoneTitle: 'In diesem Bereich', zoneCount: '{n} Meldungen hier', zoneNone: 'Nichts in diesem Bereich', zoneNoneSub: 'Karte verschieben, um andere Bereiche zu sehen', fromYouD: '{d} von dir', alsoHere: 'Auch hier', satOn: 'Satellitenansicht', mapOn: 'Kartenansicht', layers: 'Karte / Satellit'
     }
   };
   const LOCALES = { es: 'es-ES', en: 'en-GB', it: 'it-IT', de: 'de-DE' };
@@ -205,8 +205,10 @@
     document.documentElement.dataset.theme = dark ? 'dark' : 'light';
     document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#13171c' : '#f7f6f2');
     if (map) {
-      const want = dark ? CFG.mapStyles.dark : CFG.mapStyles.light;
-      if (map.__style !== want) { map.__style = want; map.setStyle(want); }
+      const key = styleKey();
+      if (map.__style !== key) { map.__style = key; map.setStyle(styleFor(key), { diff: false }); }   // diff:false = ridisegna anche le zone polizia
+      $('layersBtn').classList.toggle('on', S.mapMode === 'sat');
+      $('layersBtn').setAttribute('aria-pressed', String(S.mapMode === 'sat'));
     }
     document.querySelectorAll('#themeSeg button').forEach((b) => b.classList.toggle('on', b.dataset.themeVal === S.theme));
   }
@@ -215,16 +217,41 @@
   // ------------------------------------------------------------------
   // Mappa
   // ------------------------------------------------------------------
+  // Vista satellite: ortofoto ufficiali PNOA (Istituto Geografico Nazionale, CC BY 4.0) + nomi delle strade sopra
+  const SAT_STYLE = {
+    version: 8,
+    sources: {
+      sat: {
+        type: 'raster', tileSize: 256, maxzoom: 19,
+        tiles: ['https://www.ign.es/wmts/pnoa-ma?request=GetTile&service=WMTS&VERSION=1.0.0&Layer=OI.OrthoimageCoverage&Style=default&Format=image%2Fjpeg&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileRow={y}&TileCol={x}'],
+        attribution: 'PNOA CC BY 4.0 scne.es · © Instituto Geográfico Nacional'
+      },
+      lab: {
+        type: 'raster', tileSize: 256, maxzoom: 20,
+        tiles: ['a', 'b', 'c', 'd'].map((x) => 'https://' + x + '.basemaps.cartocdn.com/rastertiles/dark_only_labels/{z}/{x}/{y}@2x.png'),
+        attribution: '© CARTO © OpenStreetMap'
+      }
+    },
+    layers: [
+      { id: 'sat', type: 'raster', source: 'sat', paint: { 'raster-fade-duration': 150 } },
+      { id: 'lab', type: 'raster', source: 'lab' }
+    ]
+  };
+  S.mapMode = store.get('mapMode', 'map');
+  const styleKey = () => (S.mapMode === 'sat' ? 'sat' : isDark() ? 'dark' : 'light');
+  const styleFor = (k) => (k === 'sat' ? SAT_STYLE : k === 'dark' ? CFG.mapStyles.dark : CFG.mapStyles.light);
+
   const center0 = { lat: 28.40, lng: -14.02, zoom: 8.6 };
   const map = new maplibregl.Map({
     container: 'map',
-    style: isDark() ? CFG.mapStyles.dark : CFG.mapStyles.light,
+    style: styleFor(styleKey()),
+    maxZoom: 19,
     center: [center0.lng, center0.lat],
     zoom: center0.zoom,
     attributionControl: { compact: true },
     pitchWithRotate: false
   });
-  map.__style = isDark() ? CFG.mapStyles.dark : CFG.mapStyles.light;
+  map.__style = styleKey();
   map.touchZoomRotate.disableRotation();
 
   map.on('style.load', () => {
@@ -1460,6 +1487,7 @@
     $('searchInput').placeholder = t('searchPh');
     $('discoverBtn').setAttribute('aria-label', t('discover'));
     $('settingsBtn').setAttribute('aria-label', t('settings'));
+    $('layersBtn').setAttribute('aria-label', t('layers'));
     $('reportLabel').textContent = t('reportBig');
     $('typesTitle').textContent = t('reportTitle');
     $('typesSub').textContent = t('reportSub');
@@ -1474,6 +1502,12 @@
   // ------------------------------------------------------------------
   // Eventi interfaccia
   // ------------------------------------------------------------------
+  $('layersBtn').addEventListener('click', () => {
+    S.mapMode = S.mapMode === 'sat' ? 'map' : 'sat';
+    store.set('mapMode', S.mapMode);
+    applyTheme();
+    toast(S.mapMode === 'sat' ? t('satOn') : t('mapOn'));
+  });
   $('searchOpen').addEventListener('click', () => { if (R.on) $('searchInput').value = ''; openSearch(); });
   $('searchBack').addEventListener('click', closeSearch);
   $('searchInput').addEventListener('input', (e) => runSearch(e.target.value));
