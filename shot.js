@@ -14,7 +14,7 @@ const out = [];
   await p.waitForTimeout(8000);
   const rateBefore = await p.evaluate(() => { const S = window.MAXORA_SURF; return S && S.rate ? S.rate('la-pared', S.state.idx, 2) : null; });
   out.push('prima: ' + JSON.stringify(rateBefore && { r: rateBefore.r, h: rateBefore.h }));
-  await p.evaluate(() => { const b = [...document.querySelectorAll('.sf-pin')].find((e) => e.getAttribute('aria-label') === 'La Pared'); b.click(); });
+  await p.evaluate(() => { const b = [...document.querySelectorAll('.sf-pin')].find((e) => ((e.getAttribute('aria-label') || '') + (e.title || '')).includes('La Pared')); b.click(); });
   await p.waitForTimeout(2000);
   await p.click('.sf-repbtn');
   await p.waitForTimeout(400);
