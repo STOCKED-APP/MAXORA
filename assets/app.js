@@ -14,7 +14,7 @@
     es: {
       next: 'Próximo aviso', clear: 'Vía despejada', clearSub: 'Nada en {km} km', report: 'AVISAR',
       reportTitle: '¿Qué pasa aquí?', reportSub: 'Se marca en tu posición. Avisa solo si vas de pasajero o estás parado.',
-      still: 'Sigue', gone: 'Ya no', discover: 'Descubre la isla', settings: 'Ajustes',
+      still: 'Sigue', gone: 'Ya no', dAll: 'Todo', dBeach: 'Playas', dNature: 'Naturaleza', dView: 'Miradores', dTown: 'Pueblos', dBiz: 'Negocios', dMore: 'Más sitios cerca de ti', dFeat: 'Imprescindibles', discShort: 'Descubrir', dOsm: 'Datos OpenStreetMap', gRoad: 'En la carretera', gHaz: 'Peligros', gOther: 'Otros', nearAlready: 'Ya avisado cerca de ti: ¿sigue ahí?', lasts: 'visible {t}', discover: 'Descubre la isla', settings: 'Ajustes',
       theme: 'Tema', auto: 'Auto', light: 'Claro', dark: 'Oscuro', lang: 'Idioma',
       voice: 'Aviso por voz', sound: 'Sonido de aviso', ago: 'hace {t}', confirms: '{n} confirman',
       approx: 'zona aproximada', expires: 'caduca en {t}', official: 'Oficial', now: 'AHORA',
@@ -34,7 +34,7 @@
     en: {
       next: 'Next alert', clear: 'Road clear', clearSub: 'Nothing within {km} km', report: 'REPORT',
       reportTitle: 'What is happening?', reportSub: 'Marked at your position. Only report as a passenger or when stopped.',
-      still: 'Still there', gone: 'Gone', discover: 'Discover the island', settings: 'Settings',
+      still: 'Still there', gone: 'Gone', dAll: 'All', dBeach: 'Beaches', dNature: 'Nature', dView: 'Viewpoints', dTown: 'Villages', dBiz: 'Businesses', dMore: 'More places near you', dFeat: 'Must-see', discShort: 'Discover', dOsm: 'OpenStreetMap data', gRoad: 'On the road', gHaz: 'Hazards', gOther: 'Other', nearAlready: 'Already reported near you: still there?', lasts: 'shown {t}', discover: 'Discover the island', settings: 'Settings',
       theme: 'Theme', auto: 'Auto', light: 'Light', dark: 'Dark', lang: 'Language',
       voice: 'Voice alerts', sound: 'Alert sound', ago: '{t} ago', confirms: '{n} confirmed',
       approx: 'approximate area', expires: 'expires in {t}', official: 'Official', now: 'NOW',
@@ -54,7 +54,7 @@
     it: {
       next: 'Prossimo avviso', clear: 'Strada libera', clearSub: 'Niente entro {km} km', report: 'AVVISA',
       reportTitle: 'Cosa succede qui?', reportSub: 'Viene segnato sulla tua posizione. Segnala solo da passeggero o da fermo.',
-      still: 'Ancora lì', gone: 'Non c’è più', discover: "Scopri l'isola", settings: 'Impostazioni',
+      still: 'Ancora lì', gone: 'Non c’è più', dAll: 'Tutto', dBeach: 'Spiagge', dNature: 'Natura', dView: 'Belvederi', dTown: 'Paesi', dBiz: 'Attività', dMore: 'Altri posti vicino a te', dFeat: 'Da non perdere', discShort: 'Scopri', dOsm: 'Dati OpenStreetMap', gRoad: 'Sulla strada', gHaz: 'Pericoli', gOther: 'Altro', nearAlready: 'Già segnalato vicino a te: c\'è ancora?', lasts: 'resta {t}', discover: "Scopri l'isola", settings: 'Impostazioni',
       theme: 'Tema', auto: 'Auto', light: 'Chiaro', dark: 'Scuro', lang: 'Lingua',
       voice: 'Avvisi vocali', sound: 'Suono di avviso', ago: '{t} fa', confirms: '{n} confermano',
       approx: 'zona approssimativa', expires: 'scade tra {t}', official: 'Ufficiale', now: 'ORA',
@@ -74,7 +74,7 @@
     de: {
       next: 'Nächste Meldung', clear: 'Freie Fahrt', clearSub: 'Nichts im Umkreis von {km} km', report: 'MELDEN',
       reportTitle: 'Was ist los?', reportSub: 'Wird an deiner Position markiert. Nur als Beifahrer oder im Stand melden.',
-      still: 'Noch da', gone: 'Weg', discover: 'Insel entdecken', settings: 'Einstellungen',
+      still: 'Noch da', gone: 'Weg', dAll: 'Alles', dBeach: 'Strände', dNature: 'Natur', dView: 'Aussichtspunkte', dTown: 'Dörfer', dBiz: 'Betriebe', dMore: 'Weitere Orte in deiner Nähe', dFeat: 'Nicht verpassen', discShort: 'Entdecken', dOsm: 'OpenStreetMap-Daten', gRoad: 'Auf der Straße', gHaz: 'Gefahren', gOther: 'Sonstiges', nearAlready: 'Schon gemeldet in deiner Nähe: noch da?', lasts: 'sichtbar {t}', discover: 'Insel entdecken', settings: 'Einstellungen',
       theme: 'Design', auto: 'Auto', light: 'Hell', dark: 'Dunkel', lang: 'Sprache',
       voice: 'Sprachansagen', sound: 'Warnton', ago: 'vor {t}', confirms: '{n} bestätigt',
       approx: 'ungefährer Bereich', expires: 'läuft in {t} ab', official: 'Offiziell', now: 'JETZT',
@@ -229,7 +229,7 @@
     if (satStyle) return satStyle;
     const st = { version: 8, sources: { sat: SAT_BASE }, layers: [{ id: 'sat', type: 'raster', source: 'sat', paint: { 'raster-fade-duration': 150 } }] };
     try {
-      const d = await (await fetch(CFG.mapStyles.dark)).json();
+      const d = await (await fetch(CFG.mapStyles.labels || CFG.mapStyles.dark)).json();
       st.glyphs = d.glyphs; st.sprite = d.sprite;
       st.sources.openmaptiles = d.sources.openmaptiles;
       d.layers.filter((l) => l.type === 'symbol' && !/oneway/.test(l.id)).forEach((l) => {
@@ -243,15 +243,69 @@
   S.mapMode = store.get('mapMode', 'map');
   const styleKey = () => (S.mapMode === 'sat' ? 'sat' : isDark() ? 'dark' : 'light');
   const styleFor = (k) => (k === 'dark' ? CFG.mapStyles.dark : CFG.mapStyles.light);
+
+  // Notte: la stessa mappa a colori, scurita mantenendo le tinte (mare blu, verde, sabbia), strade più chiare del fondo
+  function parseColor(c) {
+    if (typeof c !== 'string') return null;
+    let m, r, g, b, a = 1;
+    if ((m = c.match(/^#([0-9a-f]{3,8})$/i))) {
+      let h = m[1]; if (h.length <= 4) h = h.split('').map((x) => x + x).join('');
+      r = parseInt(h.slice(0, 2), 16); g = parseInt(h.slice(2, 4), 16); b = parseInt(h.slice(4, 6), 16); if (h.length === 8) a = parseInt(h.slice(6, 8), 16) / 255;
+    } else if ((m = c.match(/^rgba?\(([^)]+)\)$/i))) { [r, g, b, a = 1] = m[1].split(',').map((x) => parseFloat(x)); }
+    else if ((m = c.match(/^hsla?\(([^)]+)\)$/i))) { const v = m[1].split(',').map((x) => parseFloat(x)); return { h: v[0], s: v[1] / 100, l: v[2] / 100, a: v[3] == null ? 1 : v[3] }; }
+    else return null;
+    r /= 255; g /= 255; b /= 255;
+    const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2;
+    let h = 0, sat = 0;
+    if (mx !== mn) { const d = mx - mn; sat = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h *= 60; }
+    return { h, s: sat, l, a };
+  }
+  const hsla = (c) => 'hsla(' + Math.round(c.h) + ',' + Math.round(c.s * 100) + '%,' + Math.round(c.l * 100) + '%,' + (+c.a.toFixed(2)) + ')';
+  function nightColor(v, role) {
+    const c = parseColor(v); if (!c) return v;
+    if (role === 'text') { c.l = c.s > 0.25 ? 0.78 : 0.88; c.s = Math.min(c.s, 0.45); }
+    else if (role === 'halo') { c.l = 0.08; c.s = 0.2; }
+    else if (role === 'water') { c.l = 0.17 + c.l * 0.06; c.s = Math.min(0.55, c.s); }
+    else if (role === 'road') { c.l = 0.2 + c.l * 0.2; c.s *= 0.5; }
+    else if (role === 'bg') { c.l = 0.1 + c.l * 0.03; c.s = Math.min(0.15, c.s); }
+    else { c.l = 0.09 + c.l * 0.13; c.s *= 0.75; }
+    return hsla(c);
+  }
+  function mapPaint(v, role) {
+    if (typeof v === 'string') return nightColor(v, role);
+    if (Array.isArray(v)) return v.map((x) => mapPaint(x, role));
+    if (v && typeof v === 'object' && Array.isArray(v.stops)) return Object.assign({}, v, { stops: v.stops.map((s) => [s[0], mapPaint(s[1], role)]) });
+    return v;
+  }
+  function nightStyle(st) {
+    st.layers = st.layers.map((l) => {
+      const id = l.id + ' ' + (l['source-layer'] || '');
+      const role = l.type === 'background' ? 'bg' : /water|ocean|river|lake/.test(id) && l.type !== 'symbol' ? 'water'
+        : /road|highway|bridge|tunnel|street|path|track|rail|aeroway/.test(id) && l.type === 'line' ? 'road' : 'land';
+      const p = Object.assign({}, l.paint);
+      Object.keys(p).forEach((k) => {
+        if (k === 'text-color') p[k] = mapPaint(p[k], 'text');
+        else if (k === 'text-halo-color') p[k] = mapPaint(p[k], 'halo');
+        else if (/-color$/.test(k)) p[k] = mapPaint(p[k], role);
+      });
+      if (l.type === 'raster') { p['raster-brightness-max'] = 0.35; p['raster-saturation'] = -0.2; }
+      if (l.type === 'hillshade') { p['hillshade-shadow-color'] = '#000'; p['hillshade-highlight-color'] = 'rgba(255,255,255,0.06)'; }
+      if (l.type === 'symbol' && p['icon-opacity'] == null) p['icon-opacity'] = 0.85;
+      return Object.assign({}, l, { paint: p });
+    });
+    return st;
+  }
   async function setMapStyle(key) {
     const st = key === 'sat' ? await getSatStyle() : styleFor(key);
-    if (map.__style === key) map.setStyle(st, { diff: false });   // diff:false = ridisegna anche le zone polizia
+    if (map.__style !== key) return;
+    if (key === 'dark') map.setStyle(st, { diff: false, transformStyle: (prev, next) => nightStyle(next) });
+    else map.setStyle(st, { diff: false });   // diff:false = ridisegna anche le zone polizia
   }
 
   const center0 = { lat: 28.40, lng: -14.02, zoom: 8.6 };
   const map = new maplibregl.Map({
     container: 'map',
-    style: styleFor(styleKey() === 'sat' ? (isDark() ? 'dark' : 'light') : styleKey()),
+    style: styleKey() === 'light' ? styleFor('light') : { version: 8, sources: {}, layers: [{ id: 'bg', type: 'background', paint: { 'background-color': isDark() ? '#15191d' : '#f2efe9' } }] },
     maxZoom: 19,
     center: [center0.lng, center0.lat],
     zoom: center0.zoom,
@@ -259,7 +313,7 @@
     pitchWithRotate: false
   });
   map.__style = styleKey();
-  if (map.__style === 'sat') setMapStyle('sat');
+  if (map.__style !== 'light') setMapStyle(map.__style);
   map.touchZoomRotate.disableRotation();
 
   // icone mancanti negli stili esterni: immagine vuota invece di un errore
@@ -699,19 +753,40 @@
   // ------------------------------------------------------------------
   // Segnalazione
   // ------------------------------------------------------------------
+  const TGROUP = { incidente: 'gRoad', atasco: 'gRoad', cortada: 'gRoad', obras: 'gRoad', peligro: 'gHaz', animales: 'gHaz', arena: 'gHaz' };
   function openTypes() {
     if (setting('maintenance', false) === true) { toast(t('errMaint')); return; }
     const grid = $('typesGrid');
     grid.innerHTML = '';
-    const policeOn = setting('police_enabled', true) === true;
-    [...S.types.values()]
-      .filter((ty) => ty.enabled && !ty.admin_only && (!ty.is_police || policeOn))
-      .sort((a, b) => a.sort - b.sort)
-      .forEach((ty) => {
-        const sw = el('span', { class: 'sw' + (ty.is_police ? ' police' : ''), 'aria-hidden': 'true' });
-        if (!ty.is_police) { sw.style.background = tint(ty.color, 0.15); sw.appendChild(typeIcon(ty, ty.color)); }
-        grid.appendChild(el('button', { class: 'type', onclick: () => send(ty.key) }, [sw, labelOf(ty)]));
+    grid.className = 'types2';
+    // prima: quello che è già segnalato qui vicino (conferma invece di doppione)
+    const me = S.pos;
+    const near = me ? [...S.reports.values()].filter((r) => r.source !== 'dgt' && !S.voted.has(r.id)).map((r) => ({ r, d: distKm(me, r) })).filter((x) => x.d < 0.6).sort((a, b) => a.d - b.d).slice(0, 3) : [];
+    if (near.length) {
+      grid.appendChild(el('div', { class: 'tg-h', text: t('nearAlready') }));
+      near.forEach(({ r, d }) => {
+        const ty = typeOf(r);
+        const dot = el('span', { class: 'then-dot' + (ty.is_police ? ' police' : '') }); if (!ty.is_police) dot.style.background = ty.color;
+        grid.appendChild(el('div', { class: 'tg-near' }, [dot, el('span', { class: 'n', text: labelOf(ty) }), el('span', { class: 'd', text: distText(d, ty.is_police) }),
+          el('button', { class: 'y', onclick: () => { closeOverlays(); vote(r.id, true); }, text: t('still') }),
+          el('button', { class: 'x', onclick: () => { closeOverlays(); vote(r.id, false); }, text: t('gone') })]));
       });
+    }
+    const policeOn = setting('police_enabled', true) === true;
+    const types = [...S.types.values()].filter((ty) => ty.enabled && !ty.admin_only && (!ty.is_police || policeOn)).sort((a, b) => a.sort - b.sort);
+    const dur = (m) => (m >= 60 ? (m % 60 ? (m / 60).toFixed(1).replace('.', ',') : m / 60) + ' h' : m + ' min');
+    ['gRoad', 'gHaz', 'gOther'].forEach((g) => {
+      const list = types.filter((ty) => (TGROUP[ty.key] || 'gOther') === g);
+      if (!list.length) return;
+      grid.appendChild(el('div', { class: 'tg-h', text: t(g) }));
+      const row = el('div', { class: 'tg-grid' });
+      list.forEach((ty) => {
+        const sw = el('span', { class: 'sw' + (ty.is_police ? ' police' : ''), 'aria-hidden': 'true' });
+        if (!ty.is_police) { sw.style.background = ty.color; sw.appendChild(typeIcon(ty, '#fff')); }
+        row.appendChild(el('button', { class: 'tg', style: '--tc:' + (ty.is_police ? '#1f6f8b' : ty.color), onclick: () => send(ty.key) }, [sw, el('b', { text: labelOf(ty) }), el('small', { text: t('lasts').replace('{t}', dur(ty.duration_min || 30)) })]));
+      });
+      grid.appendChild(row);
+    });
     openOverlay('typesOverlay');
   }
 
@@ -781,7 +856,7 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeOverlays(); });
 
   // Scopri l'isola
-  let discTab = 'places';
+  let discTab = 'all';
   // Catalogo Maxora (luoghi + attività): salvato sul telefono per la ricerca istantanea, anche offline
   let catalogPromise = null;
   function loadCatalog(force) {
@@ -807,36 +882,66 @@
     if (S.places === null) await loadCatalog();
     drawDiscover();
   }
+  // Scopri: categorie in alto, schede con foto (luoghi curati da Maxora), poi altri posti vicini da OpenStreetMap
+  const DCATS = [['all', 'dAll', null], ['playa', 'dBeach', /playa|beach/], ['naturaleza', 'dNature', /naturaleza|nature/], ['mirador', 'dView', /mirador/], ['pueblo', 'dTown', /pueblo|cultura/]];
   function drawDiscover() {
-    document.querySelectorAll('#discoverTabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === discTab));
+    const tabs = $('discoverTabs');
+    tabs.className = 'disc-chips';
+    tabs.innerHTML = '';
+    const cats = DCATS.filter(([k, , re]) => !re || (S.places || []).some((x) => re.test(x.category || '')));
+    if ((S.businesses || []).length) cats.push(['businesses', 'dBiz', null]);
+    if (!cats.some((c) => c[0] === discTab)) discTab = 'all';
+    cats.forEach(([k, lbl]) => tabs.appendChild(el('button', { class: discTab === k ? 'on' : '', onclick: () => { discTab = k; drawDiscover(); $('discoverList').scrollTop = 0; } }, [t(lbl)])));
     const list = $('discoverList');
     list.innerHTML = '';
-    const items = discTab === 'places' ? S.places : S.businesses;
-    if (!items || !items.length) { list.appendChild(el('div', { class: 'disc-empty', text: t('soon') })); return; }
-    items.forEach((x) => {
-      const isBiz = discTab === 'businesses';
-      const img = (x.photos && x.photos[0]) || x.logo_url;
+    const ref = S.pos || null;
+    const dist = (x) => (ref ? distKm(ref, x) : null);
+    const fmt = (d) => (d == null ? '' : d < 1 ? Math.round(d * 1000) + ' m' : (d < 10 ? d.toFixed(1).replace('.', lang === 'en' ? '.' : ',') : Math.round(d)) + ' km');
+    if (discTab === 'businesses') {
+      (S.businesses || []).forEach((x) => {
+        const img = (x.photos && x.photos[0]) || x.logo_url;
+        list.appendChild(el('button', { class: 'disc', onclick: () => goTo(x, true) }, [img ? el('img', { src: img, alt: '', loading: 'lazy' }) : el('div', { class: 'ph' }),
+          el('div', { style: 'flex:1;min-width:0' }, [isSponsor(x) ? el('span', { class: 'tag', text: t('sponsor') }) : null, el('div', { class: 't', text: x.name }), el('div', { class: 's', text: x.category || '' })])]));
+        bizEvent(x.id, 'view');
+      });
+      return;
+    }
+    const re = (DCATS.find((c) => c[0] === discTab) || [])[2];
+    const items = (S.places || []).filter((x) => !re || re.test(x.category || '')).map((x) => ({ x, d: dist(x) }))
+      .sort((a, b) => (ref ? a.d - b.d : (b.x.featured - a.x.featured)));
+    if (!items.length && !ref) { list.appendChild(el('div', { class: 'disc-empty', text: t('soon') })); return; }
+    if (items.length) list.appendChild(el('div', { class: 'disc-h', text: t('dFeat') }));
+    const grid = el('div', { class: 'disc-grid' });
+    items.forEach(({ x, d }) => {
+      const img = x.photos && x.photos[0];
       const desc = (x.description && (x.description[lang] || x.description.es)) || '';
-      const sponsor = isBiz && x.plan !== 'free' && (!x.sponsor_until || new Date(x.sponsor_until) >= new Date(new Date().toDateString()));
-      const textBox = el('div', { style: 'flex:1;min-width:0' }, [
-        sponsor ? el('span', { class: 'tag', text: t('sponsor') }) : null,
-        el('div', { class: 't', text: x.name }),
-        el('div', { class: 's', text: (isBiz ? (x.category || '') : pcat(x.category)) + (desc ? ' · ' + desc : '') }),
-        (x.photo_credits && x.photo_credits[0] && x.photo_credits[0].author) ? el('div', { class: 'cr', text: '© ' + x.photo_credits[0].author + ' · ' + x.photo_credits[0].license }) : null
-      ]);
-      if (isBiz && (x.phone || x.website)) {
-        const acts = el('div', { class: 'disc-actions' });
-        if (x.phone) acts.appendChild(el('a', { href: 'tel:' + x.phone.replace(/\s/g, ''), text: t('call'), onclick: (e) => { e.stopPropagation(); bizEvent(x.id, 'call'); } }));
-        if (x.website && /^https?:\/\//.test(x.website)) acts.appendChild(el('a', { href: x.website, target: '_blank', rel: 'noopener', text: t('web'), onclick: (e) => { e.stopPropagation(); bizEvent(x.id, 'web'); } }));
-        textBox.appendChild(acts);
-      }
-      const row = el('button', { class: 'disc', onclick: () => goTo(x, isBiz) }, [
-        img ? el('img', { src: img, alt: '', loading: 'lazy' }) : el('div', { class: 'ph' }),
-        textBox
-      ]);
-      list.appendChild(row);
-      if (isBiz) bizEvent(x.id, 'view');
+      grid.appendChild(el('button', { class: 'dcard', onclick: () => goTo(x, false) }, [
+        el('div', { class: 'dimg' }, [img ? el('img', { src: img, alt: '', loading: 'lazy' }) : null, el('span', { class: 'dcat', text: pcat(x.category) }), d != null ? el('span', { class: 'ddist', text: fmt(d) }) : null]),
+        el('div', { class: 'dtxt' }, [el('b', { text: x.name }), desc ? el('span', { text: desc }) : null,
+          (x.photo_credits && x.photo_credits[0] && x.photo_credits[0].author) ? el('small', { text: '© ' + x.photo_credits[0].author + ' · ' + x.photo_credits[0].license }) : null])
+      ]));
     });
+    list.appendChild(grid);
+    // altri posti vicini (spiagge e belvederi da OpenStreetMap), solo con la posizione
+    if (!ref || !['all', 'playa', 'mirador'].includes(discTab)) return;
+    loadPoiFile().then((f) => {
+      if (!$('discoverOverlay') || $('discoverOverlay').classList.contains('hidden')) return;
+      const want = discTab === 'playa' ? ['beach'] : discTab === 'mirador' ? ['view'] : ['beach', 'view'];
+      const more = [];
+      want.forEach((c) => (f.cats[c] || []).forEach((r) => {
+        if (!r[1]) return;
+        const p = { lat: r[2], lng: r[3] };
+        if ((S.places || []).some((x) => distKm(x, p) < 0.4) || more.some((m) => m.name === r[1] && distKm(m, p) < 0.5)) return;
+        more.push({ name: r[1], lat: r[2], lng: r[3], c, d: distKm(ref, p) });
+      }));
+      more.sort((a, b) => a.d - b.d);
+      if (!more.length) return;
+      list.appendChild(el('div', { class: 'disc-h', text: t('dMore') }));
+      more.slice(0, 15).forEach((m) => list.appendChild(el('button', { class: 'disc-row', onclick: () => { closeOverlays(); openPlace({ kind: 'place', name: m.name, sub: pcat(m.c === 'beach' ? 'playa' : 'mirador'), lat: m.lat, lng: m.lng, icon: m.c === 'beach' ? 'beach' : 'view' }); } }, [
+        el('span', { class: 'ic' }, [svgIcon(m.c === 'beach' ? 'beach' : 'view')]), el('span', { class: 't', text: m.name }), el('span', { class: 'd', text: fmt(m.d) })
+      ])));
+      list.appendChild(el('p', { class: 'p-note', text: t('dOsm') }));
+    }).catch(() => {});
   }
   function goTo(x, isBiz) {
     closeOverlays();
@@ -1504,8 +1609,8 @@
     $('typesTitle').textContent = t('reportTitle');
     $('typesSub').textContent = t('reportSub');
     $('discoverTitle').textContent = t('discover');
-    const dt = document.querySelectorAll('#discoverTabs button');
-    dt[0].textContent = t('places'); dt[1].textContent = t('businesses');
+    if ($('discoverLabel')) $('discoverLabel').textContent = t('discShort');
+    if (!$('discoverOverlay').classList.contains('hidden')) drawDiscover();
     drawSettings();
     refresh();
     showBroadcast();
