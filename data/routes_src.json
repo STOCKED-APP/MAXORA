@@ -1,71 +1,662 @@
 {
-  "_info": "Percorsi di Maxora (sorgente). Ogni tappa è un luogo (cercato su OpenStreetMap) con coordinate di riserva. Il percorso vero viene tracciato su strade/sentieri OSM da tools/build_routes.py e salvato in data/routes.json con distanza e dislivello (quote Copernicus DEM).",
-  "routes": [
-    {
-      "id": "norte", "sport": "bike", "surface": "road", "loop": true, "level": 2,
-      "name": { "es": "Vuelta del norte", "en": "Northern loop", "it": "Giro del nord", "de": "Nordschleife" },
-      "via": [["Corralejo", 28.7303, -13.8673], ["Lajares", 28.6763, -13.9365], ["El Cotillo", 28.6838, -14.0117], ["La Oliva", 28.6106, -13.9286], ["Villaverde", 28.6375, -13.9045], ["Corralejo", 28.7303, -13.8673]],
-      "note": { "es": "Llano y rápido entre volcanes. El alisio suele soplar del norte: mejor salir hacia el sur y volver con viento a favor.", "en": "Flat and fast between volcanoes. The trade wind usually blows from the north: head south first and come back with a tailwind.", "it": "Pianeggiante e veloce tra i vulcani. L'aliseo di solito soffia da nord: meglio andare a sud e tornare col vento a favore.", "de": "Flach und schnell zwischen Vulkanen. Der Passat weht meist aus Norden: zuerst nach Süden, zurück mit Rückenwind." }
-    },
-    {
-      "id": "betancuria", "sport": "bike", "surface": "road", "loop": true, "level": 3,
-      "name": { "es": "Betancuria y las Peñitas", "en": "Betancuria climbs", "it": "Salite di Betancuria", "de": "Anstiege von Betancuria" },
-      "via": [["Antigua, Fuerteventura", 28.4183, -14.0110], ["Valle de Santa Inés", 28.4567, -14.0371], ["Betancuria", 28.4245, -14.0565], ["Vega de Río Palmas", 28.3935, -14.0800], ["Pájara", 28.3505, -14.1075], ["Tuineje", 28.3240, -14.0480], ["Antigua, Fuerteventura", 28.4183, -14.0110]],
-      "note": { "es": "El clásico de montaña: Morro Velosa, Betancuria y la bajada a Pájara. Poca sombra y pocas fuentes: lleva agua.", "en": "The classic climbing loop: Morro Velosa, Betancuria and the descent to Pájara. Little shade and few fountains: carry water.", "it": "Il classico di montagna: Morro Velosa, Betancuria e la discesa verso Pájara. Poca ombra e poche fontane: porta acqua.", "de": "Der Klassiker zum Klettern: Morro Velosa, Betancuria und die Abfahrt nach Pájara. Wenig Schatten, wenig Brunnen: Wasser mitnehmen." }
-    },
-    {
-      "id": "pared", "sport": "bike", "surface": "road", "loop": true, "level": 3,
-      "name": { "es": "Costa Calma – La Pared – Pájara", "en": "Costa Calma – La Pared – Pájara", "it": "Costa Calma – La Pared – Pájara", "de": "Costa Calma – La Pared – Pájara" },
-      "via": [["Costa Calma", 28.1590, -14.2270], ["La Pared", 28.2140, -14.2150], ["Pájara", 28.3505, -14.1075], ["Tuineje", 28.3240, -14.0480], ["Tarajalejo", 28.1920, -14.1180], ["Costa Calma", 28.1590, -14.2270]],
-      "note": { "es": "Salida por la costa oeste y subida larga hacia Pájara; vuelta por la costa sur.", "en": "Out along the west coast, long climb to Pájara, back along the south coast.", "it": "Andata lungo la costa ovest, salita lunga verso Pájara, ritorno dalla costa sud.", "de": "Entlang der Westküste, langer Anstieg nach Pájara, zurück über die Südküste." }
-    },
-    {
-      "id": "tefia", "sport": "bike", "surface": "road", "loop": true, "level": 2,
-      "name": { "es": "Puerto – Tetir – Tefía", "en": "Puerto – Tetir – Tefía", "it": "Puerto – Tetir – Tefía", "de": "Puerto – Tetir – Tefía" },
-      "via": [["Puerto del Rosario", 28.5000, -13.8620], ["Tetir", 28.5250, -13.9300], ["Tefía", 28.5270, -14.0110], ["Casillas del Ángel", 28.4930, -13.9700], ["Puerto del Rosario", 28.5000, -13.8620]],
-      "note": { "es": "Giro corto por el interior, colinas suaves y poco tráfico.", "en": "Short inland loop with rolling hills and little traffic.", "it": "Giro breve nell'entroterra, colline morbide e poco traffico.", "de": "Kurze Runde im Inland, sanfte Hügel, wenig Verkehr." }
-    },
-    {
-      "id": "cofete", "sport": "bike", "surface": "gravel", "loop": false, "back": true, "level": 3,
-      "name": { "es": "Morro Jable – Cofete (gravel)", "en": "Morro Jable – Cofete (gravel)", "it": "Morro Jable – Cofete (gravel)", "de": "Morro Jable – Cofete (Gravel)" },
-      "via": [["Morro Jable", 28.0510, -14.3540], ["Cofete", 28.1040, -14.3870]],
-      "note": { "es": "Pista de tierra con subida al paso de Cofete. Solo gravel o MTB. Sin agua ni cobertura.", "en": "Dirt track with a climb to the Cofete pass. Gravel or MTB only. No water, no signal.", "it": "Pista sterrata con salita al passo di Cofete. Solo gravel o MTB. Niente acqua né campo.", "de": "Schotterpiste mit Anstieg zum Cofete-Pass. Nur Gravel oder MTB. Kein Wasser, kein Netz." }
-    },
-    {
-      "id": "corralejo-paseo", "sport": "run", "surface": "paved", "loop": false, "back": true, "level": 1,
-      "name": { "es": "Paseo de Corralejo a las Grandes Playas", "en": "Corralejo seafront to the dunes", "it": "Lungomare di Corralejo fino alle dune", "de": "Strandpromenade Corralejo bis zu den Dünen" },
-      "via": [["Puerto de Corralejo", 28.7390, -13.8640], ["Grandes Playas de Corralejo", 28.7120, -13.8380]],
-      "note": { "es": "Por el paseo y la acera junto a las dunas. Ida y vuelta.", "en": "Along the promenade and the path beside the dunes. Out and back.", "it": "Sul lungomare e sul marciapiede accanto alle dune. Andata e ritorno.", "de": "Über die Promenade und den Weg neben den Dünen. Hin und zurück." }
-    },
-    {
-      "id": "caleta-paseo", "sport": "run", "surface": "paved", "loop": false, "back": true, "level": 1,
-      "name": { "es": "Caleta de Fuste – Salinas del Carmen", "en": "Caleta de Fuste – Salinas del Carmen", "it": "Caleta de Fuste – Salinas del Carmen", "de": "Caleta de Fuste – Salinas del Carmen" },
-      "via": [["Castillo de Caleta de Fuste", 28.3940, -13.8575], ["Salinas del Carmen", 28.3665, -13.8710]],
-      "note": { "es": "Paseo marítimo llano hasta el museo de la sal.", "en": "Flat seafront path to the salt museum.", "it": "Lungomare piatto fino al museo del sale.", "de": "Flache Uferpromenade bis zum Salzmuseum." }
-    },
-    {
-      "id": "puerto-paseo", "sport": "run", "surface": "paved", "loop": false, "back": true, "level": 1,
-      "name": { "es": "Puerto del Rosario – Playa Blanca", "en": "Puerto del Rosario – Playa Blanca", "it": "Puerto del Rosario – Playa Blanca", "de": "Puerto del Rosario – Playa Blanca" },
-      "via": [["Playa Chica, Puerto del Rosario", 28.4925, -13.8590], ["Playa Blanca, Puerto del Rosario", 28.4655, -13.8625]],
-      "note": { "es": "Paseo junto al mar desde el centro hasta Playa Blanca.", "en": "Seafront path from the centre to Playa Blanca.", "it": "Lungomare dal centro fino a Playa Blanca.", "de": "Uferweg vom Zentrum bis Playa Blanca." }
-    },
-    {
-      "id": "morro-paseo", "sport": "run", "surface": "paved", "loop": false, "back": true, "level": 1,
-      "name": { "es": "Paseo de Morro Jable al faro", "en": "Morro Jable seafront to the lighthouse", "it": "Lungomare di Morro Jable fino al faro", "de": "Promenade Morro Jable bis zum Leuchtturm" },
-      "via": [["Morro Jable", 28.0510, -14.3540], ["Faro de Morro Jable", 28.0470, -14.3300]],
-      "note": { "es": "Llano, junto a la playa del Matorral.", "en": "Flat, alongside Matorral beach.", "it": "Piatto, accanto alla spiaggia del Matorral.", "de": "Flach, entlang des Matorral-Strands." }
-    },
-    {
-      "id": "cotillo-faro", "sport": "run", "surface": "trail", "loop": false, "back": true, "level": 1,
-      "name": { "es": "El Cotillo – Faro del Tostón", "en": "El Cotillo – Tostón lighthouse", "it": "El Cotillo – Faro del Tostón", "de": "El Cotillo – Leuchtturm Tostón" },
-      "via": [["El Cotillo", 28.6838, -14.0117], ["Faro del Tostón", 28.7153, -14.0126]],
-      "note": { "es": "Junto a las lagunas hasta el faro. Mucho viento por la tarde.", "en": "Past the lagoons to the lighthouse. Very windy in the afternoon.", "it": "Lungo le lagune fino al faro. Molto vento il pomeriggio.", "de": "An den Lagunen vorbei zum Leuchtturm. Nachmittags sehr windig." }
-    },
-    {
-      "id": "calderon", "sport": "run", "surface": "trail", "loop": false, "back": true, "level": 2,
-      "name": { "es": "Lajares – Calderón Hondo", "en": "Lajares – Calderón Hondo", "it": "Lajares – Calderón Hondo", "de": "Lajares – Calderón Hondo" },
-      "via": [["Lajares", 28.6763, -13.9365], ["Calderón Hondo", 28.698576, -13.920864]],
-      "note": { "es": "Sendero de tierra volcánica hasta el borde del cráter.", "en": "Volcanic dirt trail up to the crater rim.", "it": "Sentiero di terra vulcanica fino al bordo del cratere.", "de": "Vulkanischer Pfad bis zum Kraterrand." }
-    }
-  ]
+ "_info": "Percorsi di Maxora (sorgente). Ogni tappa è un luogo (cercato su OpenStreetMap) con coordinate di riserva. Il percorso vero viene tracciato su strade/sentieri OSM da tools/build_routes.py e salvato in data/routes.json con distanza e dislivello (quote Copernicus DEM).",
+ "routes": [
+  {
+   "id": "norte",
+   "sport": "bike",
+   "surface": "road",
+   "loop": true,
+   "level": 2,
+   "name": {
+    "es": "Vuelta del norte",
+    "en": "Northern loop",
+    "it": "Giro del nord",
+    "de": "Nordschleife"
+   },
+   "via": [
+    [
+     "Corralejo",
+     28.7303,
+     -13.8673
+    ],
+    [
+     "Lajares",
+     28.6763,
+     -13.9365
+    ],
+    [
+     "El Cotillo",
+     28.6838,
+     -14.0117
+    ],
+    [
+     "La Oliva",
+     28.6106,
+     -13.9286
+    ],
+    [
+     "Villaverde",
+     28.6375,
+     -13.9045
+    ],
+    [
+     "Corralejo",
+     28.7303,
+     -13.8673
+    ]
+   ],
+   "note": {
+    "es": "Llano y rápido entre volcanes. El alisio suele soplar del norte: mejor salir hacia el sur y volver con viento a favor.",
+    "en": "Flat and fast between volcanoes. The trade wind usually blows from the north: head south first and come back with a tailwind.",
+    "it": "Pianeggiante e veloce tra i vulcani. L'aliseo di solito soffia da nord: meglio andare a sud e tornare col vento a favore.",
+    "de": "Flach und schnell zwischen Vulkanen. Der Passat weht meist aus Norden: zuerst nach Süden, zurück mit Rückenwind."
+   }
+  },
+  {
+   "id": "betancuria",
+   "sport": "bike",
+   "surface": "road",
+   "loop": true,
+   "level": 3,
+   "name": {
+    "es": "Betancuria y las Peñitas",
+    "en": "Betancuria climbs",
+    "it": "Salite di Betancuria",
+    "de": "Anstiege von Betancuria"
+   },
+   "via": [
+    [
+     "Antigua, Fuerteventura",
+     28.4183,
+     -14.011
+    ],
+    [
+     "Valle de Santa Inés",
+     28.4567,
+     -14.0371
+    ],
+    [
+     "Betancuria",
+     28.4245,
+     -14.0565
+    ],
+    [
+     "Vega de Río Palmas",
+     28.3935,
+     -14.08
+    ],
+    [
+     "Pájara",
+     28.3505,
+     -14.1075
+    ],
+    [
+     "Tuineje",
+     28.324,
+     -14.048
+    ],
+    [
+     "Antigua, Fuerteventura",
+     28.4183,
+     -14.011
+    ]
+   ],
+   "note": {
+    "es": "El clásico de montaña: Morro Velosa, Betancuria y la bajada a Pájara. Poca sombra y pocas fuentes: lleva agua.",
+    "en": "The classic climbing loop: Morro Velosa, Betancuria and the descent to Pájara. Little shade and few fountains: carry water.",
+    "it": "Il classico di montagna: Morro Velosa, Betancuria e la discesa verso Pájara. Poca ombra e poche fontane: porta acqua.",
+    "de": "Der Klassiker zum Klettern: Morro Velosa, Betancuria und die Abfahrt nach Pájara. Wenig Schatten, wenig Brunnen: Wasser mitnehmen."
+   }
+  },
+  {
+   "id": "pared",
+   "sport": "bike",
+   "surface": "road",
+   "loop": true,
+   "level": 3,
+   "name": {
+    "es": "Costa Calma – La Pared – Pájara",
+    "en": "Costa Calma – La Pared – Pájara",
+    "it": "Costa Calma – La Pared – Pájara",
+    "de": "Costa Calma – La Pared – Pájara"
+   },
+   "via": [
+    [
+     "Costa Calma",
+     28.159,
+     -14.227
+    ],
+    [
+     "La Pared",
+     28.214,
+     -14.215
+    ],
+    [
+     "Pájara",
+     28.3505,
+     -14.1075
+    ],
+    [
+     "Tuineje",
+     28.324,
+     -14.048
+    ],
+    [
+     "Tarajalejo",
+     28.192,
+     -14.118
+    ],
+    [
+     "Costa Calma",
+     28.159,
+     -14.227
+    ]
+   ],
+   "note": {
+    "es": "Salida por la costa oeste y subida larga hacia Pájara; vuelta por la costa sur.",
+    "en": "Out along the west coast, long climb to Pájara, back along the south coast.",
+    "it": "Andata lungo la costa ovest, salita lunga verso Pájara, ritorno dalla costa sud.",
+    "de": "Entlang der Westküste, langer Anstieg nach Pájara, zurück über die Südküste."
+   }
+  },
+  {
+   "id": "tefia",
+   "sport": "bike",
+   "surface": "road",
+   "loop": true,
+   "level": 2,
+   "name": {
+    "es": "Puerto – Tetir – Tefía",
+    "en": "Puerto – Tetir – Tefía",
+    "it": "Puerto – Tetir – Tefía",
+    "de": "Puerto – Tetir – Tefía"
+   },
+   "via": [
+    [
+     "Puerto del Rosario",
+     28.5,
+     -13.862
+    ],
+    [
+     "Tetir",
+     28.525,
+     -13.93
+    ],
+    [
+     "Tefía",
+     28.527,
+     -14.011
+    ],
+    [
+     "Casillas del Ángel",
+     28.493,
+     -13.97
+    ],
+    [
+     "Puerto del Rosario",
+     28.5,
+     -13.862
+    ]
+   ],
+   "note": {
+    "es": "Giro corto por el interior, colinas suaves y poco tráfico.",
+    "en": "Short inland loop with rolling hills and little traffic.",
+    "it": "Giro breve nell'entroterra, colline morbide e poco traffico.",
+    "de": "Kurze Runde im Inland, sanfte Hügel, wenig Verkehr."
+   }
+  },
+  {
+   "id": "cofete",
+   "sport": "bike",
+   "surface": "gravel",
+   "loop": false,
+   "back": true,
+   "level": 3,
+   "name": {
+    "es": "Morro Jable – Cofete (gravel)",
+    "en": "Morro Jable – Cofete (gravel)",
+    "it": "Morro Jable – Cofete (gravel)",
+    "de": "Morro Jable – Cofete (Gravel)"
+   },
+   "via": [
+    [
+     "Morro Jable",
+     28.051,
+     -14.354
+    ],
+    [
+     "Cofete",
+     28.104,
+     -14.387
+    ]
+   ],
+   "note": {
+    "es": "Pista de tierra con subida al paso de Cofete. Solo gravel o MTB. Sin agua ni cobertura.",
+    "en": "Dirt track with a climb to the Cofete pass. Gravel or MTB only. No water, no signal.",
+    "it": "Pista sterrata con salita al passo di Cofete. Solo gravel o MTB. Niente acqua né campo.",
+    "de": "Schotterpiste mit Anstieg zum Cofete-Pass. Nur Gravel oder MTB. Kein Wasser, kein Netz."
+   }
+  },
+  {
+   "id": "corralejo-paseo",
+   "sport": "run",
+   "surface": "paved",
+   "loop": false,
+   "back": true,
+   "level": 1,
+   "name": {
+    "es": "Paseo de Corralejo a las Grandes Playas",
+    "en": "Corralejo seafront to the dunes",
+    "it": "Lungomare di Corralejo fino alle dune",
+    "de": "Strandpromenade Corralejo bis zu den Dünen"
+   },
+   "via": [
+    [
+     "Puerto de Corralejo",
+     28.739,
+     -13.864
+    ],
+    [
+     "Grandes Playas de Corralejo",
+     28.712,
+     -13.838
+    ]
+   ],
+   "note": {
+    "es": "Por el paseo y la acera junto a las dunas. Ida y vuelta.",
+    "en": "Along the promenade and the path beside the dunes. Out and back.",
+    "it": "Sul lungomare e sul marciapiede accanto alle dune. Andata e ritorno.",
+    "de": "Über die Promenade und den Weg neben den Dünen. Hin und zurück."
+   }
+  },
+  {
+   "id": "caleta-paseo",
+   "sport": "run",
+   "surface": "paved",
+   "loop": false,
+   "back": true,
+   "level": 1,
+   "name": {
+    "es": "Caleta de Fuste – Salinas del Carmen",
+    "en": "Caleta de Fuste – Salinas del Carmen",
+    "it": "Caleta de Fuste – Salinas del Carmen",
+    "de": "Caleta de Fuste – Salinas del Carmen"
+   },
+   "via": [
+    [
+     "Castillo de Caleta de Fuste",
+     28.394,
+     -13.8575
+    ],
+    [
+     "Salinas del Carmen",
+     28.3665,
+     -13.871
+    ]
+   ],
+   "note": {
+    "es": "Paseo marítimo llano hasta el museo de la sal.",
+    "en": "Flat seafront path to the salt museum.",
+    "it": "Lungomare piatto fino al museo del sale.",
+    "de": "Flache Uferpromenade bis zum Salzmuseum."
+   }
+  },
+  {
+   "id": "puerto-paseo",
+   "sport": "run",
+   "surface": "paved",
+   "loop": false,
+   "back": true,
+   "level": 1,
+   "name": {
+    "es": "Puerto del Rosario – Playa Blanca",
+    "en": "Puerto del Rosario – Playa Blanca",
+    "it": "Puerto del Rosario – Playa Blanca",
+    "de": "Puerto del Rosario – Playa Blanca"
+   },
+   "via": [
+    [
+     "Playa Chica, Puerto del Rosario",
+     28.4925,
+     -13.859
+    ],
+    [
+     "Playa Blanca, Puerto del Rosario",
+     28.4655,
+     -13.8625
+    ]
+   ],
+   "note": {
+    "es": "Paseo junto al mar desde el centro hasta Playa Blanca.",
+    "en": "Seafront path from the centre to Playa Blanca.",
+    "it": "Lungomare dal centro fino a Playa Blanca.",
+    "de": "Uferweg vom Zentrum bis Playa Blanca."
+   }
+  },
+  {
+   "id": "morro-paseo",
+   "sport": "run",
+   "surface": "paved",
+   "loop": false,
+   "back": true,
+   "level": 1,
+   "name": {
+    "es": "Paseo de Morro Jable al faro",
+    "en": "Morro Jable seafront to the lighthouse",
+    "it": "Lungomare di Morro Jable fino al faro",
+    "de": "Promenade Morro Jable bis zum Leuchtturm"
+   },
+   "via": [
+    [
+     "Morro Jable",
+     28.051,
+     -14.354
+    ],
+    [
+     "Faro de Morro Jable",
+     28.047,
+     -14.33
+    ]
+   ],
+   "note": {
+    "es": "Llano, junto a la playa del Matorral.",
+    "en": "Flat, alongside Matorral beach.",
+    "it": "Piatto, accanto alla spiaggia del Matorral.",
+    "de": "Flach, entlang des Matorral-Strands."
+   }
+  },
+  {
+   "id": "cotillo-faro",
+   "sport": "run",
+   "surface": "trail",
+   "loop": false,
+   "back": true,
+   "level": 1,
+   "name": {
+    "es": "El Cotillo – Faro del Tostón",
+    "en": "El Cotillo – Tostón lighthouse",
+    "it": "El Cotillo – Faro del Tostón",
+    "de": "El Cotillo – Leuchtturm Tostón"
+   },
+   "via": [
+    [
+     "El Cotillo",
+     28.6838,
+     -14.0117
+    ],
+    [
+     "Faro del Tostón",
+     28.7153,
+     -14.0126
+    ]
+   ],
+   "note": {
+    "es": "Junto a las lagunas hasta el faro. Mucho viento por la tarde.",
+    "en": "Past the lagoons to the lighthouse. Very windy in the afternoon.",
+    "it": "Lungo le lagune fino al faro. Molto vento il pomeriggio.",
+    "de": "An den Lagunen vorbei zum Leuchtturm. Nachmittags sehr windig."
+   }
+  },
+  {
+   "id": "calderon",
+   "sport": "run",
+   "surface": "trail",
+   "loop": false,
+   "back": true,
+   "level": 2,
+   "name": {
+    "es": "Lajares – Calderón Hondo",
+    "en": "Lajares – Calderón Hondo",
+    "it": "Lajares – Calderón Hondo",
+    "de": "Lajares – Calderón Hondo"
+   },
+   "via": [
+    [
+     "Lajares",
+     28.6763,
+     -13.9365
+    ],
+    [
+     "Calderón Hondo",
+     28.698576,
+     -13.920864
+    ]
+   ],
+   "note": {
+    "es": "Sendero de tierra volcánica hasta el borde del cráter.",
+    "en": "Volcanic dirt trail up to the crater rim.",
+    "it": "Sentiero di terra vulcanica fino al bordo del cratere.",
+    "de": "Vulkanischer Pfad bis zum Kraterrand."
+   }
+  },
+  {
+   "id": "costa-sur",
+   "sport": "bike",
+   "surface": "road",
+   "loop": false,
+   "level": 2,
+   "name": {
+    "es": "Costa Calma – Morro Jable",
+    "en": "Costa Calma – Morro Jable",
+    "it": "Costa Calma – Morro Jable",
+    "de": "Costa Calma – Morro Jable"
+   },
+   "via": [
+    [
+     "Costa Calma",
+     28.159,
+     -14.227
+    ],
+    [
+     "Morro Jable",
+     28.051,
+     -14.354
+    ]
+   ],
+   "note": {
+    "es": "Junto al mar por la costa de Jandía, casi llano. Ida y vuelta.",
+    "en": "Along the Jandía coast, almost flat. Out and back.",
+    "it": "Lungo la costa di Jandía, quasi piatto. Andata e ritorno.",
+    "de": "Entlang der Jandía-Küste, fast flach. Hin und zurück."
+   },
+   "back": true
+  },
+  {
+   "id": "entallada",
+   "sport": "bike",
+   "surface": "road",
+   "loop": false,
+   "level": 3,
+   "name": {
+    "es": "Gran Tarajal – Faro de la Entallada",
+    "en": "Gran Tarajal – Entallada lighthouse",
+    "it": "Gran Tarajal – Faro de la Entallada",
+    "de": "Gran Tarajal – Leuchtturm Entallada"
+   },
+   "via": [
+    [
+     "Gran Tarajal",
+     28.212,
+     -14.0205
+    ],
+    [
+     "Las Playitas",
+     28.229,
+     -13.9875
+    ],
+    [
+     "Faro de la Entallada",
+     28.2295,
+     -13.9485
+    ]
+   ],
+   "note": {
+    "es": "Paso por Las Playitas y subida dura y corta hasta el faro, con vistas sobre el Atlántico.",
+    "en": "Through Las Playitas and a short, steep climb to the lighthouse with Atlantic views.",
+    "it": "Passando per Las Playitas e salita corta e dura fino al faro, con vista sull'Atlantico.",
+    "de": "Über Las Playitas und kurzer, steiler Anstieg zum Leuchtturm mit Atlantikblick."
+   },
+   "back": true
+  },
+  {
+   "id": "pozo-negro",
+   "sport": "bike",
+   "surface": "road",
+   "loop": false,
+   "level": 2,
+   "name": {
+    "es": "Antigua – Pozo Negro",
+    "en": "Antigua – Pozo Negro",
+    "it": "Antigua – Pozo Negro",
+    "de": "Antigua – Pozo Negro"
+   },
+   "via": [
+    [
+     "Antigua, Fuerteventura",
+     28.4183,
+     -14.011
+    ],
+    [
+     "Pozo Negro",
+     28.3236,
+     -13.896
+    ]
+   ],
+   "note": {
+    "es": "Bajada larga entre volcanes hasta el pueblo de pescadores; la vuelta es toda subida.",
+    "en": "Long descent between volcanoes to the fishing village; the way back is all uphill.",
+    "it": "Lunga discesa tra i vulcani fino al paese di pescatori; il ritorno è tutto in salita.",
+    "de": "Lange Abfahrt zwischen Vulkanen zum Fischerdorf; zurück geht es nur bergauf."
+   },
+   "back": true
+  },
+  {
+   "id": "playitas-faro",
+   "sport": "run",
+   "surface": "trail",
+   "loop": false,
+   "level": 2,
+   "name": {
+    "es": "Las Playitas – Faro de la Entallada",
+    "en": "Las Playitas – Entallada lighthouse",
+    "it": "Las Playitas – Faro de la Entallada",
+    "de": "Las Playitas – Leuchtturm Entallada"
+   },
+   "via": [
+    [
+     "Las Playitas",
+     28.229,
+     -13.9875
+    ],
+    [
+     "Faro de la Entallada",
+     28.2295,
+     -13.9485
+    ]
+   ],
+   "note": {
+    "es": "Carrera con subida hasta el faro más alto de la isla.",
+    "en": "A hill run up to the island's highest lighthouse.",
+    "it": "Corsa in salita fino al faro più alto dell'isola.",
+    "de": "Berglauf hinauf zum höchsten Leuchtturm der Insel."
+   },
+   "back": true
+  },
+  {
+   "id": "lobos",
+   "sport": "run",
+   "surface": "trail",
+   "loop": false,
+   "level": 1,
+   "name": {
+    "es": "Isla de Lobos – Faro de Martiño",
+    "en": "Lobos island – Martiño lighthouse",
+    "it": "Isola di Lobos – Faro di Martiño",
+    "de": "Insel Lobos – Leuchtturm Martiño"
+   },
+   "via": [
+    [
+     "Muelle de Lobos",
+     28.7487,
+     -13.8196
+    ],
+    [
+     "Faro de Lobos",
+     28.768,
+     -13.817
+    ]
+   ],
+   "note": {
+    "es": "Sendero de tierra por el parque natural. Ferry desde Corralejo y permiso gratuito obligatorio.",
+    "en": "Dirt trail through the nature park. Ferry from Corralejo and a free permit required.",
+    "it": "Sentiero sterrato nel parco naturale. Traghetto da Corralejo e permesso gratuito obbligatorio.",
+    "de": "Naturpfad durch den Park. Fähre ab Corralejo und kostenlose Genehmigung nötig."
+   },
+   "back": true
+  },
+  {
+   "id": "zarza",
+   "sport": "run",
+   "surface": "trail",
+   "loop": false,
+   "level": 3,
+   "name": {
+    "es": "Pico de la Zarza",
+    "en": "Pico de la Zarza",
+    "it": "Pico de la Zarza",
+    "de": "Pico de la Zarza"
+   },
+   "via": [
+    [
+     "Morro Jable (Pico de la Zarza)",
+     28.056,
+     -14.362
+    ],
+    [
+     "Pico de la Zarza",
+     28.1009,
+     -14.3534
+    ]
+   ],
+   "note": {
+    "es": "Subida al punto más alto de Fuerteventura (807 m). Viento fuerte arriba, lleva agua.",
+    "en": "Climb to Fuerteventura's highest point (807 m). Strong wind at the top, carry water.",
+    "it": "Salita al punto più alto di Fuerteventura (807 m). Vento forte in cima, porta acqua.",
+    "de": "Aufstieg zum höchsten Punkt Fuerteventuras (807 m). Oben starker Wind, Wasser mitnehmen."
+   },
+   "back": true
+  },
+  {
+   "id": "tarajal-paseo",
+   "sport": "run",
+   "surface": "paved",
+   "loop": false,
+   "level": 1,
+   "name": {
+    "es": "Paseo de Gran Tarajal",
+    "en": "Gran Tarajal seafront",
+    "it": "Lungomare di Gran Tarajal",
+    "de": "Promenade Gran Tarajal"
+   },
+   "via": [
+    [
+     "Gran Tarajal (puerto)",
+     28.2085,
+     -14.023
+    ],
+    [
+     "Gran Tarajal (playa este)",
+     28.2135,
+     -14.015
+    ]
+   ],
+   "note": {
+    "es": "Paseo marítimo llano junto a la playa negra.",
+    "en": "Flat seafront path by the black-sand beach.",
+    "it": "Lungomare piatto accanto alla spiaggia nera.",
+    "de": "Flache Promenade am schwarzen Strand."
+   },
+   "back": true
+  }
+ ]
 }

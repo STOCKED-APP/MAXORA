@@ -650,6 +650,522 @@
     "it": "Ricci, rocce, locali",
     "de": "Seeigel, Felsen, Locals"
    }
+  },
+  {
+   "id": "bubble",
+   "name": "The Bubble",
+   "lat": 28.742235,
+   "lng": -13.952127,
+   "type": "reef",
+   "wave": "LR",
+   "facing": 355,
+   "win": [
+    270,
+    350
+   ],
+   "off": 150,
+   "tide": "midhigh",
+   "lvl": [
+    2,
+    3
+   ],
+   "minH": 1.0,
+   "maxH": 3.5,
+   "m": [
+    28.75,
+    -14.0
+   ],
+   "zone": {
+    "es": "Costa norte",
+    "en": "North shore",
+    "it": "Costa nord",
+    "de": "Nordküste"
+   },
+   "note": {
+    "es": "Derecha rápida y hueca y una izquierda más corta sobre roca. Ola de nivel mundial.",
+    "en": "Fast, hollow right and a shorter left over rock. A world-class wave.",
+    "it": "Destra veloce e cava e una sinistra più corta su roccia. Onda di livello mondiale.",
+    "de": "Schnelle, hohle Rechte und kürzere Linke über Fels. Weltklasse-Welle."
+   },
+   "haz": {
+    "es": "Arrecife poco profundo, se pone pesada rápido",
+    "en": "Shallow reef, gets heavy fast",
+    "it": "Reef basso, diventa pesante in fretta",
+    "de": "Flaches Riff, wird schnell heftig"
+   }
+  },
+  {
+   "id": "alemanes",
+   "name": "Derecha de los Alemanes",
+   "lat": 28.7399,
+   "lng": -13.9563,
+   "type": "reef",
+   "wave": "R",
+   "facing": 355,
+   "win": [
+    263,
+    34
+   ],
+   "off": 145,
+   "tide": "all",
+   "lvl": [
+    2,
+    3
+   ],
+   "minH": 1.0,
+   "maxH": 3.5,
+   "m": [
+    28.75,
+    -14.0
+   ],
+   "zone": {
+    "es": "Costa norte",
+    "en": "North shore",
+    "it": "Costa nord",
+    "de": "Nordküste"
+   },
+   "note": {
+    "es": "Derecha sobre fondo de roca, remada larga.",
+    "en": "Right-hander over rock, long paddle out.",
+    "it": "Destra su fondo roccioso, lunga remata.",
+    "de": "Rechte über Felsgrund, langes Rauspaddeln."
+   },
+   "haz": {
+    "es": "Corrientes en la remada, mucha gente",
+    "en": "Currents on the paddle out, crowded",
+    "it": "Correnti nella remata, affollato",
+    "de": "Strömungen beim Rauspaddeln, voll"
+   }
+  },
+  {
+   "id": "majanicho-outside",
+   "name": "Majanicho Outside",
+   "lat": 28.749514,
+   "lng": -13.935386,
+   "type": "reef",
+   "wave": "R",
+   "facing": 355,
+   "win": [
+    266,
+    27
+   ],
+   "off": 135,
+   "tide": "lowmid",
+   "lvl": [
+    2,
+    3
+   ],
+   "minH": 0.8,
+   "maxH": 2.0,
+   "m": [
+    28.75,
+    -14.0
+   ],
+   "zone": {
+    "es": "Costa norte",
+    "en": "North shore",
+    "it": "Costa nord",
+    "de": "Nordküste"
+   },
+   "note": {
+    "es": "Derecha que rompe muy afuera; con mar pequeño ideal para longboard y SUP.",
+    "en": "Right breaking far outside; with small swell great for longboard and SUP.",
+    "it": "Destra che rompe molto al largo; con mare piccolo ideale per longboard e SUP.",
+    "de": "Rechte weit draußen; bei kleinem Swell ideal für Longboard und SUP."
+   },
+   "haz": {
+    "es": "Remada de 10 minutos, corrientes fuertes con mar grande",
+    "en": "10-minute paddle, strong currents in big swell",
+    "it": "Remata di 10 minuti, correnti forti con mare grosso",
+    "de": "10 Minuten Paddeln, starke Strömung bei großem Swell"
+   }
+  },
+  {
+   "id": "caleta",
+   "name": "Caleta",
+   "lat": 28.749559,
+   "lng": -13.918383,
+   "type": "reef",
+   "wave": "L",
+   "facing": 0,
+   "win": [
+    300,
+    60
+   ],
+   "off": 180,
+   "tide": "midhigh",
+   "lvl": [
+    1,
+    3
+   ],
+   "minH": 0.8,
+   "maxH": 2.5,
+   "m": [
+    28.75,
+    -14.0
+   ],
+   "zone": {
+    "es": "Costa norte",
+    "en": "North shore",
+    "it": "Costa nord",
+    "de": "Nordküste"
+   },
+   "note": {
+    "es": "Izquierda sobre roca apta para todos los niveles, también principiantes con mar pequeño.",
+    "en": "Left over rock for all levels, beginners too when small.",
+    "it": "Sinistra su roccia adatta a tutti, anche principianti con mare piccolo.",
+    "de": "Linke über Fels für alle Levels, bei kleinem Swell auch Anfänger."
+   },
+   "haz": {
+    "es": "Fondo de roca",
+    "en": "Rocky bottom",
+    "it": "Fondo roccioso",
+    "de": "Felsgrund"
+   }
+  },
+  {
+   "id": "acid-drop",
+   "name": "Acid Drop",
+   "lat": 28.72676,
+   "lng": -13.993009,
+   "type": "reef",
+   "wave": "LR",
+   "facing": 330,
+   "win": [
+    260,
+    330
+   ],
+   "off": 135,
+   "tide": "lowmid",
+   "lvl": [
+    3,
+    3
+   ],
+   "minH": 0.7,
+   "maxH": 2.5,
+   "m": [
+    28.75,
+    -14.0
+   ],
+   "zone": {
+    "es": "Costa norte, cerca de El Cotillo",
+    "en": "North shore, near El Cotillo",
+    "it": "Costa nord, vicino a El Cotillo",
+    "de": "Nordküste, bei El Cotillo"
+   },
+   "note": {
+    "es": "Arrecife con izquierda y derecha y take-off crítico.",
+    "en": "Reef with left and right and a critical take-off.",
+    "it": "Reef con destra e sinistra e take-off critico.",
+    "de": "Riff mit Links und Rechts und kritischem Take-off."
+   },
+   "haz": {
+    "es": "Un error en el take-off te lleva al arrecife",
+    "en": "A take-off mistake puts you on the reef",
+    "it": "Un errore nel take-off ti porta sul reef",
+    "de": "Fehler beim Take-off endet auf dem Riff"
+   }
+  },
+  {
+   "id": "punta-del-tigre",
+   "name": "Punta del Tigre",
+   "lat": 28.0806,
+   "lng": -14.504485,
+   "type": "reef",
+   "wave": "R",
+   "facing": 240,
+   "win": [
+    200,
+    300
+   ],
+   "off": 30,
+   "tide": "all",
+   "lvl": [
+    2,
+    3
+   ],
+   "minH": 0.8,
+   "maxH": 3.0,
+   "m": [
+    28.0,
+    -14.5
+   ],
+   "zone": {
+    "es": "Punta de Jandía, suroeste",
+    "en": "Jandía point, south-west",
+    "it": "Punta di Jandía, sud-ovest",
+    "de": "Jandía-Spitze, Südwesten"
+   },
+   "note": {
+    "es": "Derecha sobre roca en la punta sur de la isla, poca gente.",
+    "en": "Right over rock at the island's southern tip, few people.",
+    "it": "Destra su roccia alla punta sud dell'isola, poca gente.",
+    "de": "Rechte über Fels an der Südspitze, wenig Leute."
+   },
+   "haz": {
+    "es": "Fondo de roca, zona aislada",
+    "en": "Rocky bottom, remote area",
+    "it": "Fondo roccioso, zona isolata",
+    "de": "Felsgrund, abgelegen"
+   }
+  },
+  {
+   "id": "las-salinas",
+   "name": "Las Salinas",
+   "lat": 28.075581,
+   "lng": -14.471899,
+   "type": "reef",
+   "wave": "R",
+   "facing": 200,
+   "win": [
+    190,
+    270
+   ],
+   "off": 0,
+   "tide": "mid",
+   "lvl": [
+    2,
+    3
+   ],
+   "minH": 0.8,
+   "maxH": 3.0,
+   "m": [
+    28.0,
+    -14.5
+   ],
+   "zone": {
+    "es": "Jandía, sur",
+    "en": "Jandía, south",
+    "it": "Jandía, sud",
+    "de": "Jandía, Süden"
+   },
+   "note": {
+    "es": "Derecha de roca que funciona con mar del suroeste y viento del norte.",
+    "en": "Rocky right that works with a south-west swell and northerly wind.",
+    "it": "Destra su roccia che funziona con mare da sud-ovest e vento da nord.",
+    "de": "Felsige Rechte, läuft bei Südwest-Swell und Nordwind."
+   },
+   "haz": {
+    "es": "Fondo de roca",
+    "en": "Rocky bottom",
+    "it": "Fondo roccioso",
+    "de": "Felsgrund"
+   }
+  },
+  {
+   "id": "cruz-roja",
+   "name": "Cruz Roja · Morro Jable",
+   "lat": 28.043864,
+   "lng": -14.33041,
+   "type": "beach",
+   "wave": "R",
+   "facing": 190,
+   "win": [
+    180,
+    290
+   ],
+   "off": 10,
+   "tide": "lowmid",
+   "lvl": [
+    1,
+    3
+   ],
+   "minH": 0.4,
+   "maxH": 2.0,
+   "m": [
+    28.0,
+    -14.25
+   ],
+   "zone": {
+    "es": "Morro Jable, sur",
+    "en": "Morro Jable, south",
+    "it": "Morro Jable, sud",
+    "de": "Morro Jable, Süden"
+   },
+   "note": {
+    "es": "Derecha de arena junto a Morro Jable, buena para empezar. Rompe pocas veces.",
+    "en": "Sandy right by Morro Jable, good for beginners. Only breaks sometimes.",
+    "it": "Destra su sabbia vicino a Morro Jable, buona per iniziare. Rompe solo a volte.",
+    "de": "Sandige Rechte bei Morro Jable, gut für Anfänger. Läuft nur manchmal."
+   },
+   "haz": {
+    "es": "Mucha gente cuando funciona",
+    "en": "Crowded when it works",
+    "it": "Affollato quando funziona",
+    "de": "Voll, wenn es läuft"
+   }
+  },
+  {
+   "id": "entubadera",
+   "name": "La Entubadera",
+   "lat": 28.716957,
+   "lng": -13.83736,
+   "type": "beach",
+   "wave": "LR",
+   "facing": 70,
+   "win": [
+    10,
+    110
+   ],
+   "off": 260,
+   "tide": "all",
+   "lvl": [
+    1,
+    3
+   ],
+   "minH": 0.4,
+   "maxH": 2.0,
+   "m": [
+    28.75,
+    -13.75
+   ],
+   "zone": {
+    "es": "Dunas de Corralejo, este",
+    "en": "Corralejo dunes, east",
+    "it": "Dune di Corralejo, est",
+    "de": "Dünen von Corralejo, Osten"
+   },
+   "note": {
+    "es": "Pico en A sobre arena y roca, normalmente con poca gente.",
+    "en": "A-frame peak over sand and rock, usually uncrowded.",
+    "it": "Picco ad A su sabbia e roccia, di solito poca gente.",
+    "de": "A-Frame über Sand und Fels, meist leer."
+   },
+   "haz": {
+    "es": "Fondo mixto de arena y roca",
+    "en": "Mixed sand and rock bottom",
+    "it": "Fondo misto sabbia e roccia",
+    "de": "Gemischter Sand- und Felsgrund"
+   }
+  },
+  {
+   "id": "playa-blanca",
+   "name": "Playa Blanca · Puerto del Rosario",
+   "lat": 28.477427,
+   "lng": -13.864926,
+   "type": "beach",
+   "wave": "LR",
+   "facing": 90,
+   "win": [
+    0,
+    120
+   ],
+   "off": 270,
+   "tide": "all",
+   "lvl": [
+    1,
+    2
+   ],
+   "minH": 0.4,
+   "maxH": 1.8,
+   "m": [
+    28.5,
+    -13.75
+   ],
+   "zone": {
+    "es": "Puerto del Rosario, este",
+    "en": "Puerto del Rosario, east",
+    "it": "Puerto del Rosario, est",
+    "de": "Puerto del Rosario, Osten"
+   },
+   "note": {
+    "es": "Pico en A de arena, olas suaves: perfecta para aprender.",
+    "en": "Sandy A-frame with soft waves: perfect for learning.",
+    "it": "Picco ad A su sabbia, onde morbide: perfetta per imparare.",
+    "de": "Sandiger A-Frame mit weichen Wellen: ideal zum Lernen."
+   },
+   "haz": {
+    "es": "Viento de mar frecuente",
+    "en": "Often onshore wind",
+    "it": "Spesso vento da mare",
+    "de": "Oft auflandiger Wind"
+   }
+  },
+  {
+   "id": "puerto-lajas",
+   "name": "Puerto Lajas",
+   "lat": 28.53876,
+   "lng": -13.837054,
+   "type": "beach",
+   "wave": "LR",
+   "facing": 90,
+   "win": [
+    0,
+    120
+   ],
+   "off": 270,
+   "tide": "all",
+   "lvl": [
+    1,
+    2
+   ],
+   "minH": 0.4,
+   "maxH": 1.8,
+   "m": [
+    28.5,
+    -13.75
+   ],
+   "zone": {
+    "es": "Costa este, al norte de Puerto del Rosario",
+    "en": "East coast, north of Puerto del Rosario",
+    "it": "Costa est, a nord di Puerto del Rosario",
+    "de": "Ostküste, nördlich von Puerto del Rosario"
+   },
+   "note": {
+    "es": "Pico en A tranquilo, apto para todos. Rompe pocas veces.",
+    "en": "Mellow A-frame for all levels. Only breaks sometimes.",
+    "it": "Picco ad A tranquillo, per tutti. Rompe solo a volte.",
+    "de": "Entspannter A-Frame für alle. Läuft nur manchmal."
+   },
+   "haz": {
+    "es": "Fondo de roca",
+    "en": "Rocky bottom",
+    "it": "Fondo roccioso",
+    "de": "Felsgrund"
+   }
+  },
+  {
+   "id": "playa-de-la-mujer",
+   "name": "Playa de la Mujer · Jarugo",
+   "lat": 28.572022,
+   "lng": -14.049261,
+   "type": "beach",
+   "wave": "LR",
+   "facing": 275,
+   "win": [
+    250,
+    350
+   ],
+   "off": 90,
+   "tide": "all",
+   "lvl": [
+    2,
+    3
+   ],
+   "minH": 0.5,
+   "maxH": 2.5,
+   "m": [
+    28.5,
+    -14.25
+   ],
+   "zone": {
+    "es": "Costa oeste, cerca de Tindaya",
+    "en": "West coast, near Tindaya",
+    "it": "Costa ovest, vicino a Tindaya",
+    "de": "Westküste, bei Tindaya"
+   },
+   "note": {
+    "es": "Playa salvaje de la costa oeste, se llega por pista.",
+    "en": "Wild west-coast beach reached by a dirt track.",
+    "it": "Spiaggia selvaggia della costa ovest, si arriva su pista.",
+    "de": "Wilder Weststrand, über eine Piste erreichbar."
+   },
+   "haz": {
+    "es": "Corrientes y sin socorrista",
+    "en": "Currents, no lifeguard",
+    "it": "Correnti e niente bagnino",
+    "de": "Strömungen, keine Rettungsschwimmer"
+   }
   }
  ]
 }
