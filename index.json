@@ -1,0 +1,20 @@
+[
+ {
+  "slug": "isla-de-lobos",
+  "n": 5,
+  "coords": {
+   "lat": 28.75223,
+   "lng": -13.81842,
+   "wikidata": "Q24024915"
+  }
+ },
+ {
+  "slug": "la-pared",
+  "n": 5,
+  "coords": {
+   "lat": 28.21811,
+   "lng": -14.2215,
+   "wikidata": "Q23982386"
+  }
+ }
+]

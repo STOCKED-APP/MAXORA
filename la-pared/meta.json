@@ -1,0 +1,71 @@
+{
+ "slug": "la-pared",
+ "name": "Playa de La Pared",
+ "coords": {
+  "lat": 28.21811,
+  "lng": -14.2215,
+  "wikidata": "Q23982386"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:View from Pico de la Zarza 09.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:View_from_Pico_de_la_Zarza_09.jpg",
+   "width": 14681,
+   "height": 2279,
+   "description": "View from the Pico de la Zarza in northeastern direction to the Istmo de la Pared; Jandía, Fuerteventura, Canary Islands, Spain."
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Candidula ultima 02.JPG",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Candidula_ultima_02.JPG",
+   "width": 9000,
+   "height": 4919,
+   "description": "Diameter 1.2 cm; Originating from the Barranco de Pecenescal, Istmo de la Pared, Jandía, Fuerteventura, Canary Islands, Spain.  28°7′20.8″N 14°16′33.85″W﻿ / ﻿28.122444°N 14.2760694°W﻿ / 28.122444; -14"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Laguna El Suero, Sierra Nevada, Merida, Venezuela.jpg",
+   "tier": "quality",
+   "author": "Wilfredor",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "source": "https://commons.wikimedia.org/wiki/File:Laguna_El_Suero,_Sierra_Nevada,_Merida,_Venezuela.jpg",
+   "width": 4509,
+   "height": 2000,
+   "description": "Panoramica del Valle de Laguna El Suero, Sierra Nevada, Merida, Venezuela. La fotografia fue tomada desde una cornisa en la pared de piedra creada por la morrena del extinto glacial del pico Humboldt,"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Grafiti Huellas.JPG",
+   "tier": "quality",
+   "author": "Rjcastillo",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Grafiti_Huellas.JPG",
+   "width": 3525,
+   "height": 2159,
+   "description": "Grafiti pintado en la pared. Maracaibo. Venezuela."
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Grafiti Doni.JPG",
+   "tier": "quality",
+   "author": "Rjcastillo",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Grafiti_Doni.JPG",
+   "width": 4743,
+   "height": 2563,
+   "description": "Grafiti pintado en la pared. Maracaibo. Venezuela."
+  }
+ ]
+}

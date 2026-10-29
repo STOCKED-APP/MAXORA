@@ -1,0 +1,71 @@
+{
+ "slug": "isla-de-lobos",
+ "name": "Isla de Lobos",
+ "coords": {
+  "lat": 28.75223,
+  "lng": -13.81842,
+  "wikidata": "Q24024915"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:At Fuerteventura 2022 114.jpg",
+   "tier": "quality",
+   "author": "Photograph by Mike Peel (www.mikepeel.net).",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:At_Fuerteventura_2022_114.jpg",
+   "width": 6960,
+   "height": 4640,
+   "description": "Passenger ferry, Isla de Lobos, at Corralejo, Fuerteventura, in Spain’s Canary Islands"
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:At Fuerteventura 2022 112.jpg",
+   "tier": "quality",
+   "author": "Photograph by Mike Peel (www.mikepeel.net).",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:At_Fuerteventura_2022_112.jpg",
+   "width": 6960,
+   "height": 4640,
+   "description": "Passenger ferry, Isla de Lobos, at Corralejo, Fuerteventura, in Spain’s Canary Islands"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:At Fuerteventura 2022 110.jpg",
+   "tier": "quality",
+   "author": "Photograph by Mike Peel (www.mikepeel.net).",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:At_Fuerteventura_2022_110.jpg",
+   "width": 6960,
+   "height": 4640,
+   "description": "Passenger ferry, Isla de Lobos, at Corralejo, Fuerteventura, in Spain’s Canary Islands"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:At Fuerteventura 2022 113.jpg",
+   "tier": "quality",
+   "author": "Photograph by Mike Peel (www.mikepeel.net).",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:At_Fuerteventura_2022_113.jpg",
+   "width": 6960,
+   "height": 4640,
+   "description": "Passenger ferry, Isla de Lobos, at Corralejo, Fuerteventura, in Spain’s Canary Islands"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:At Fuerteventura 2022 105.jpg",
+   "tier": "quality",
+   "author": "Photograph by Mike Peel (www.mikepeel.net).",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:At_Fuerteventura_2022_105.jpg",
+   "width": 6960,
+   "height": 4640,
+   "description": "Passenger ferry, Isla de Lobos, at Corralejo, Fuerteventura, in Spain’s Canary Islands"
+  }
+ ]
+}
