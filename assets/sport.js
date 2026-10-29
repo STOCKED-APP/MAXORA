@@ -26,7 +26,7 @@
       reverse: 'Conviene fare il giro al contrario: così il tratto controvento è all\'inizio.', loopOk: 'Il verso del giro va bene: il tratto controvento è all\'inizio.', windCalm: 'Vento debole: nessun problema.',
       crossStrong: 'Attenzione al vento laterale forte nei tratti esposti.',
       bestFor: 'Le ore migliori per questo percorso', go: 'VAI ALLA PARTENZA', openWith: 'Apri navigazione con', gpx: 'Scarica GPX (Garmin, Strava, Komoot)',
-      reportBikes: 'Segnala ciclisti qui', reportBikesSub: 'Gli automobilisti ricevono l\'avviso per 30 minuti',
+      reportShort: 'Segnala', reportBikes: 'Segnala ciclisti qui', reportBikesSub: 'Gli automobilisti ricevono l\'avviso per 30 minuti',
       adviceHot: 'Fa caldo: esci presto o dopo le 18 e porta acqua.', adviceWind: 'Vento forte da {d}: scegli percorsi riparati o parti controvento.',
       adviceGood: 'Condizioni buone per uscire.', adviceNight: 'È buio: luci e giubbino riflettente.', adviceRain: 'Possibile pioggia.',
       src: 'Meteo: ECMWF Open Data (CC BY 4.0). Percorsi: OpenStreetMap (ODbL). Quote: Copernicus DEM. ', updated: 'aggiornato {t}', ago: '{t} fa',
@@ -49,7 +49,7 @@
       reverse: 'Mejor hacer la vuelta al revés: así el tramo en contra queda al principio.', loopOk: 'El sentido de la vuelta es bueno: el tramo en contra queda al principio.', windCalm: 'Viento flojo: sin problema.',
       crossStrong: 'Cuidado con el viento lateral fuerte en los tramos expuestos.',
       bestFor: 'Las mejores horas para esta ruta', go: 'IR A LA SALIDA', openWith: 'Abrir navegación con', gpx: 'Descargar GPX (Garmin, Strava, Komoot)',
-      reportBikes: 'Avisar ciclistas aquí', reportBikesSub: 'Los conductores reciben el aviso durante 30 minutos',
+      reportShort: 'Avisar', reportBikes: 'Avisar ciclistas aquí', reportBikesSub: 'Los conductores reciben el aviso durante 30 minutos',
       adviceHot: 'Hace calor: sal temprano o después de las 18 y lleva agua.', adviceWind: 'Viento fuerte del {d}: elige rutas resguardadas o sal en contra.',
       adviceGood: 'Buenas condiciones para salir.', adviceNight: 'Es de noche: luces y chaleco reflectante.', adviceRain: 'Posible lluvia.',
       src: 'Tiempo: ECMWF Open Data (CC BY 4.0). Rutas: OpenStreetMap (ODbL). Altitud: Copernicus DEM. ', updated: 'actualizado {t}', ago: 'hace {t}',
@@ -72,7 +72,7 @@
       reverse: 'Ride the loop the other way: the headwind section comes first.', loopOk: 'Loop direction is good: the headwind section comes first.', windCalm: 'Light wind: no problem.',
       crossStrong: 'Watch out for strong crosswinds on exposed sections.',
       bestFor: 'Best hours for this route', go: 'GO TO THE START', openWith: 'Navigate with', gpx: 'Download GPX (Garmin, Strava, Komoot)',
-      reportBikes: 'Report cyclists here', reportBikesSub: 'Drivers get the alert for 30 minutes',
+      reportShort: 'Report', reportBikes: 'Report cyclists here', reportBikesSub: 'Drivers get the alert for 30 minutes',
       adviceHot: 'It\'s hot: go early or after 6 pm and carry water.', adviceWind: 'Strong wind from {d}: pick sheltered routes or start into the wind.',
       adviceGood: 'Good conditions to go out.', adviceNight: 'It\'s dark: lights and a reflective vest.', adviceRain: 'Rain possible.',
       src: 'Weather: ECMWF Open Data (CC BY 4.0). Routes: OpenStreetMap (ODbL). Elevation: Copernicus DEM. ', updated: 'updated {t}', ago: '{t} ago',
@@ -95,7 +95,7 @@
       reverse: 'Fahr die Runde andersherum: dann kommt der Gegenwind zuerst.', loopOk: 'Die Richtung passt: der Gegenwind kommt zuerst.', windCalm: 'Schwacher Wind: kein Problem.',
       crossStrong: 'Vorsicht vor starkem Seitenwind auf offenen Abschnitten.',
       bestFor: 'Beste Stunden für diese Strecke', go: 'ZUM START', openWith: 'Navigieren mit', gpx: 'GPX herunterladen (Garmin, Strava, Komoot)',
-      reportBikes: 'Radfahrer hier melden', reportBikesSub: 'Autofahrer sehen die Meldung 30 Minuten lang',
+      reportShort: 'Melden', reportBikes: 'Radfahrer hier melden', reportBikesSub: 'Autofahrer sehen die Meldung 30 Minuten lang',
       adviceHot: 'Es ist heiß: früh oder nach 18 Uhr los und Wasser mitnehmen.', adviceWind: 'Starker Wind aus {d}: geschützte Strecken wählen oder gegen den Wind starten.',
       adviceGood: 'Gute Bedingungen zum Rausgehen.', adviceNight: 'Es ist dunkel: Licht und Warnweste.', adviceRain: 'Regen möglich.',
       src: 'Wetter: ECMWF Open Data (CC BY 4.0). Strecken: OpenStreetMap (ODbL). Höhen: Copernicus DEM. ', updated: 'aktualisiert {t}', ago: 'vor {t}',
@@ -159,6 +159,7 @@
   // ------------------------------------------------------------------
   // Stato e dati
   // ------------------------------------------------------------------
+  const UIc = () => window.MAXORA_UI && window.MAXORA_UI.compact() && !document.body.classList.contains('ui-list');
   const SP = { mode: null, routes: [], wx: null, times: [], idx: 0, open: null, pois: null, collapsed: store.get('spCollapsed', false), loadedAt: 0 };
   async function getJSON(u) { const r = await fetch(u + '?v=' + Math.floor(Date.now() / 300000), { cache: 'no-cache' }); if (!r.ok) throw new Error(u); return r.json(); }
   async function load(force) {
@@ -406,6 +407,16 @@
     const me = M.pos();
     if (me) list = list.sort((a, b) => M.distKm(me, { lat: a.start[0], lng: a.start[1] }) - M.distKm(me, { lat: b.start[0], lng: b.start[1] }));
     list.forEach((r) => box.appendChild(routeRow(r)));
+    if (window.MAXORA_UI) window.MAXORA_UI.cards(SP.mode, list.slice(0, 12).map((r) => {
+      const sc = score(r.sport, wxAt(r._wx, SP.idx), SP.times[SP.idx], r.surface), hz = hazardsOn(r).length;
+      return {
+        id: r.id, badge: [el('i', { text: '★' }), fmtR(sc)], color: color(sc), title: r.name[lang()] || r.name.es,
+        sub: num(r.km, 1) + ' km · +' + r.gain + ' m · ' + tr('surface_' + r.surface) + (hz ? ' · ⚠ ' + hz : ''),
+        right: me ? (M.distKm(me, { lat: r.start[0], lng: r.start[1] }) < 1 ? '<1 km' : Math.round(M.distKm(me, { lat: r.start[0], lng: r.start[1] })) + ' km') : '',
+        onFocus: () => { const b = new maplibregl.LngLatBounds(r.line[0], r.line[0]); r.line.forEach((p) => b.extend(p)); map.fitBounds(b, { padding: 30, maxZoom: 14, duration: 600 }); },
+        onOpen: () => openCard(r.id, true)
+      };
+    }), list.length);
   }
   function drawActions() {
     const box = $('spActions'); box.innerHTML = '';
@@ -540,6 +551,7 @@
   // ------------------------------------------------------------------
   function pad() {
     if (!SP.mode || SP.open) return;
+    if (UIc()) { window.MAXORA_UI.pad(); return; }
     const h = $('spSheet').getBoundingClientRect().height;
     map.setPadding({ top: 70, bottom: Math.max(0, Math.min(h, window.innerHeight * 0.6) - 10), left: 0, right: 0 });
   }
@@ -630,6 +642,7 @@
   function sync() {
     const k = current();
     document.body.dataset.mode = k;
+    if (window.MAXORA_UI) window.MAXORA_UI.mode(k);
     drawChip(k);
     const btn = $('surfBtn');
     btn.innerHTML = svg(k === 'road' ? 'modes' : k);
@@ -673,5 +686,12 @@
     document.querySelectorAll('.adv').forEach((b) => b.classList.toggle('closed', !open));
     document.querySelectorAll('.adv-top').forEach((b) => b.setAttribute('aria-expanded', String(open)));
   });
+  if (window.MAXORA_UI) ['bike', 'run'].forEach((k) => window.MAXORA_UI.register(k, {
+    refresh: () => drawAll(),
+    sheet: 'spSheet',
+    top: () => [$('spAdvice'), $('spNow')],
+    time: () => $('spTimes'),
+    rail: () => (k === 'bike' ? [{ icon: '🚴', short: tr('reportShort'), label: tr('reportBikes'), onclick: () => M.report('ciclistas') }] : [])
+  }));
   window.MAXORA_SPORT = { state: SP, score, setSport, redraw: () => { if (SP.mode) { drawMap(); if (SP.open) drawCard(); } } };
 })();

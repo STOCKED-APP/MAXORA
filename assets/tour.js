@@ -383,10 +383,10 @@
   // [elemento, voce della guida]
   const ROAD = [['#searchOpen', 'r_search'], ['#road', 'r_road'], ['#hero', 'r_hero'], ['.mk', 'r_marker'], ['#reportBtn', 'r_report'], ['#surfBtn', 'r_modes'], ['#layersBtn', 'r_layers'], ['#centerBtn', 'r_locate'], ['#discoverBtn', 'r_discover']];
   const MODE_TIPS = {
-    surf: [['.sf-pin', 's_pin'], ['#sfLevel', 's_level'], ['#sfTimes', 's_times'], ['#sfTide', 's_tide'], ['#sfAdvice', 's_adv'], ['#sfList .sf-row', 's_row'], ['#sfList .sf-row', 's_wind']],
-    bike: [['#spNow .sp-big', 'b_big'], ['#spNow .sp-cell:nth-child(2)', 'b_temp'], ['#spNow .sp-cell:nth-child(3)', 'b_wind'], ['#spNow .sp-cell:nth-child(4)', 'b_light'], ['#spTimes', 'b_times'], ['#spAdvice', 'b_adv'], ['#spList .sf-row', 'b_row'], ['.sp-start', 'b_map'], ['.sp-report', 'b_report']],
-    camper: [['#cpTabs', 'c_chips'], ['#cpRules', 'c_rules'], ['#cpList .cp-row', 'c_row'], ['.cp-pin', 'c_map']],
-    run: [['#spNow .sp-big', 'b_big'], ['#spNow .sp-cell:nth-child(2)', 'b_temp'], ['#spNow .sp-cell:nth-child(3)', 'b_wind'], ['#spNow .sp-cell:nth-child(4)', 'b_light'], ['#spTimes', 'b_times'], ['#spAdvice', 'b_adv'], ['#spList .sf-row', 'b_row'], ['.sp-start', 'b_map']]
+    surf: [['.sf-pin', 's_pin'], ['#uiRail .ui-rb', 's_level'], ['#sfTimes', 's_times'], ['#sfTide', 's_tide'], ['#sfAdvice', 's_adv'], ['#uiCards .uc', 's_row'], ['#uiCards .uc', 's_wind']],
+    bike: [['#spAdvice', 'b_adv'], ['#spTimes', 'b_times'], ['#uiCards .uc', 'b_row'], ['.sp-start', 'b_map'], ['#uiRail .ui-rb', 'b_report']],
+    camper: [['#uiRail', 'c_chips'], ['#cpRules', 'c_rules'], ['#uiCards .uc', 'c_row'], ['.cp-pin', 'c_map']],
+    run: [['#spAdvice', 'b_adv'], ['#spTimes', 'b_times'], ['#uiCards .uc', 'b_row'], ['.sp-start', 'b_map']]
   };
   const CARD_TIPS = {
     surf: [['#sfCardBody .sf-score', 'sc_score'], ['#sfCardBody .sf-stats', 'sc_stats'], ['#sfCardBody .sf-repbtn', 'sc_rep'], ['#sfCardBody .sf-chart', 'sc_chart'], ['#sfCardBody .sf-days', 'sc_days'], ['#sfCardBody .sf-tides', 'sc_tides']],

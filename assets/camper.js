@@ -79,6 +79,7 @@
   const ICON = { sleep: '🚐', service: '🚐', camp: '⛺', dump: '🚽', water: '💧', fuel: '⛽', shower: '🚿', toilets: '🚻', gym: '🏋️', laundry: '🧺' };
   const STC = { ok: '#2f9e5b', warn: '#e59a12', prot: '#e5484d', camp: '#8b5cf6', check: '#64748b' };
   const STI = { ok: '✅', warn: '⚠️', prot: '⛔', camp: '⛺', check: 'ℹ️' };
+  const UIc = () => window.MAXORA_UI && window.MAXORA_UI.compact() && !document.body.classList.contains('ui-list');
   const CP = { on: false, items: [], prot: null, fuel: null, tab: store.get('cpTab', 'sleep'), shown: 8, open: null, collapsed: store.get('cpCollapsed', false), loaded: false };
 
   // ------------------------------------------------------------------
@@ -201,6 +202,16 @@
     const all = list();
     if (CP.tab === 'fuel') { const k = fuelKind(); const near = all.filter((x) => x.d < 15 && x.fuel && x.fuel[k]); const min = Math.min(...near.map((x) => x.fuel[k])); all.forEach((x) => { x.cheap = near.includes(x) && x.fuel[k] === min; }); }
     if (!all.length) { box.appendChild(el('p', { class: 'sf-note', text: tr('none') })); return; }
+    if (window.MAXORA_UI) window.MAXORA_UI.cards('camper', all.slice(0, 12).map((x) => {
+      const k = fuelKind();
+      return {
+        id: x.id, badge: ICON[x.type] || '📍', color: x.st ? STC[x.st] : '#8b5cf6', title: nameOf(x) + (x.spot ? ' ★' : ''),
+        sub: x.tab === 'sleep' ? STI[x.st] + ' ' + tr('st_' + x.st) : x.tab === 'fuel' ? (x.fuel && x.fuel[k] ? num(x.fuel[k], 3) + ' ' + tr('perL') : '') + (x.cheap ? ' · ★ ' + tr('cheapest') : '')
+          : x.tab === 'water' ? [x.dump ? '🚽 ' + tr('has_dump') : null, x.water ? '💧 ' + tr('has_water') : null].filter(Boolean).join(' · ') : tr('n_' + x.type),
+        subColor: x.st ? STC[x.st] : '', right: fmtD(x.d),
+        onFocus: () => window.MAXORA_UI.focusOn(x.lng, x.lat, 12.5), onOpen: () => openCard(x.id, true)
+      };
+    }), all.length);
     all.slice(0, CP.shown).forEach((x) => box.appendChild(el('button', { class: 'sf-row cp-row' + (x.spot ? ' star' : ''), onclick: () => openCard(x.id, true) }, [
       el('span', { class: 'cp-ico', style: '--cc:' + (x.st ? STC[x.st] : '#8b5cf6'), text: ICON[x.type] || '📍' }),
       el('span', { class: 'sf-txt' }, [el('span', { class: 't', text: nameOf(x) }), rowSub(x)]),
@@ -233,7 +244,7 @@
     });
   }
   let mt;
-  map.on('moveend', () => { if (!CP.on) return; clearTimeout(mt); mt = setTimeout(() => { drawMap(); if (!M.pos()) drawList(); }, 250); });
+  map.on('moveend', () => { if (!CP.on) return; clearTimeout(mt); mt = setTimeout(() => { drawMap(); if (!M.pos() && !UIc()) drawList(); }, 250); });
   map.on('style.load', () => { if (CP.on) drawMap(); });
 
   // ------------------------------------------------------------------
@@ -292,6 +303,7 @@
 
   function pad() {
     if (!CP.on || CP.open || !sheet) return;
+    if (UIc()) { window.MAXORA_UI.pad(); return; }
     const h = sheet.getBoundingClientRect().height;
     map.setPadding({ top: 70, bottom: Math.max(0, Math.min(h, window.innerHeight * 0.6) - 10), left: 0, right: 0 });
   }
@@ -323,5 +335,11 @@
   M.onTexts(() => drawAll());
   setInterval(() => { if (CP.on && CP.loaded) { drawRules(); if (M.pos()) drawList(); } }, 60000);
   window.addEventListener('resize', pad);
+  if (window.MAXORA_UI) window.MAXORA_UI.register('camper', {
+    refresh: () => drawAll(),
+    sheet: 'cpSheet',
+    top: () => [$('cpRules')],
+    rail: () => TABS.map(([k, ic]) => ({ icon: ic, short: tr('t_' + k).split(' ')[0], label: tr('t_' + k), on: CP.tab === k, onclick: () => { CP.tab = k; CP.shown = 8; store.set('cpTab', k); drawAll(); } }))
+  });
   window.MAXORA_CAMPER = { setOn, isOn: () => CP.on, state: CP, protOf };
 })();

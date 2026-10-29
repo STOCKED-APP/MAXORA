@@ -104,6 +104,7 @@
   // ------------------------------------------------------------------
   // Stato
   // ------------------------------------------------------------------
+  const UIc = () => window.MAXORA_UI && window.MAXORA_UI.compact() && !document.body.classList.contains('ui-list');
   const SF = {
     favs: new Set(store.get('surfFavs', [])), reps: [], repsOk: false, form: null,
     on: false, level: store.get('surfLevel', 2), spots: [], byId: new Map(), fc: null, tides: null,
@@ -460,6 +461,11 @@
     box.innerHTML = '';
     const rows = SF.spots.map((sp) => ({ sp, x: rate(sp, SF.idx, SF.level) })).filter((o) => o.x)
       .sort((a, b) => (a.x.notYou - b.x.notYou) || (b.x.r - a.x.r) || (SF.favs.has(b.sp.id) - SF.favs.has(a.sp.id)) || (b.x.h - a.x.h));
+    if (window.MAXORA_UI) window.MAXORA_UI.cards('surf', rows.slice(0, 10).map(({ sp, x }) => ({
+      id: sp.id, badge: [el('i', { text: '★' }), fmtR(x.r)], color: color(x.r), title: (SF.favs.has(sp.id) ? '★ ' : '') + sp.name,
+      sub: x.notYou ? tr('notYou') : [num(Math.max(0.1, x.h), 1) + ' m', x.tp ? num(x.tp, 0) + ' s' : null, x.ws != null ? x.ws + ' km/h ' + WSTATE[x.wind] : null].filter(Boolean).join(' · '),
+      onFocus: () => window.MAXORA_UI.focusOn(sp.lng, sp.lat, 10.5), onOpen: () => openCard(sp.id, true)
+    })), rows.length);
     rows.slice(0, 8).forEach(({ sp, x }) => {
       const nRep = repsFor(sp.id, 3).length;
       box.appendChild(el('button', { class: 'sf-row' + (x.notYou ? ' dim' : ''), onclick: () => openCard(sp.id, true) }, [
@@ -679,6 +685,7 @@
   // ------------------------------------------------------------------
   function pad() {
     if (!SF.on || SF.open) return;
+    if (UIc()) { window.MAXORA_UI.pad(); return; }
     const h = $('sfSheet').getBoundingClientRect().height;
     const bottom = Math.round(Math.max(0, Math.min(h, window.innerHeight * 0.6) - 10));
     // cambiare il padding ferma le animazioni della mappa: solo se serve davvero
@@ -726,5 +733,12 @@
 
   $('sfSheet').classList.toggle('collapsed', SF.collapsed);
   if (store.get('surfOn', false)) setOn(true, true);
+  if (window.MAXORA_UI) window.MAXORA_UI.register('surf', {
+    refresh: () => drawAll(),
+    sheet: 'sfSheet',
+    top: () => [$('sfAdvice'), $('sfTide')],
+    time: () => $('sfTimes'),
+    rail: () => [{ icon: '🏄', short: tr('lvl' + SF.level).slice(0, 5) + '.', label: tr('levelQ'), on: true, choices: [1, 2, 3].map((l) => ({ label: tr('lvl' + l), on: SF.level === l, onclick: () => { SF.level = l; store.set('surfLevel', l); drawAll(); } })) }]
+  });
   window.MAXORA_SURF = { rate: (id, k, l) => rate(SF.byId.get(id), k, l || SF.level), state: SF, tideAt, setOn, isOn: () => SF.on };
 })();

@@ -7,5 +7,5 @@ window.MAXORA_CONFIG = {
     light: 'https://tiles.openfreemap.org/styles/positron',   // OpenFreeMap: gratis, senza chiave, uso commerciale ok
     dark: 'https://tiles.openfreemap.org/styles/dark'
   },
-  version: '0.14.1'
+  version: '0.15.0'
 };
