@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: sleep 75   # attende la pubblicazione di GitHub Pages
+      - run: sleep 5
       - run: npm i playwright@1.49.1 && npx playwright install --with-deps chromium
       - run: mkdir -p shots && node shot.js
       - run: |
