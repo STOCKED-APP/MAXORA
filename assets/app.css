@@ -652,3 +652,4 @@ body.sport-on #sheet { display: none !important; }
 .sp-prof .lb { font-size: 10px; fill: var(--muted); font-family: var(--font); font-weight: 700; }
 .sp-card .sf-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .sp-card .p-actions .p-sec { flex: 1 1 100%; }
+.sp-card { max-height: 56vh; }

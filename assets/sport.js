@@ -401,9 +401,10 @@
     drawMap();
     const b = new maplibregl.LngLatBounds(r.line[0], r.line[0]);
     r.line.forEach((p) => b.extend(p));
-    const ph = Math.min(window.innerHeight * 0.55, $('spCard').getBoundingClientRect().height || 380);
-    map.setPadding({ top: 70, bottom: Math.round(ph), left: 0, right: 0 });
-    map.fitBounds(b, { padding: { top: 24, bottom: 24, left: 30, right: 70 }, maxZoom: 15, duration: fly === false ? 0 : 800 });
+    const ph = Math.min(window.innerHeight * 0.56, $('spCard').getBoundingClientRect().height || 380);
+    // margini espliciti: la scheda copre la parte bassa dello schermo
+    map.setPadding({ top: 0, bottom: 0, left: 0, right: 0 });
+    map.fitBounds(b, { padding: { top: 84, bottom: Math.round(ph) + 16, left: 28, right: 72 }, maxZoom: 15, duration: fly === false ? 0 : 800 });
   }
   function closeCard() { SP.open = null; $('spCard').classList.add('hidden'); drawMap(); pad(); }
   function drawCard() {
