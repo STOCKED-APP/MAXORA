@@ -741,3 +741,10 @@ body[data-mode="run"]  { --mode: var(--m-run); }
 .lg-row b { display: block; font-size: 15px; font-weight: 800; margin-bottom: 4px; }
 .lg-row p { margin: 0; font-size: 14px; line-height: 1.45; color: var(--text); }
 .lg-ov { z-index: 50; }
+.cm-defs, .lg-row .cm-defs { display: flex; flex-direction: column; gap: 5px; margin: 6px 0 12px; }
+.lg-row .cm-defs { margin-bottom: 0; }
+.cm-row { display: grid; grid-template-columns: minmax(64px, auto) 1fr; gap: 10px; font-size: 14px; line-height: 1.35; align-items: baseline; }
+.cm-row b { font-weight: 800; font-size: 13.5px; white-space: nowrap; }
+.cm-row span { color: var(--muted); }
+.cm-row.one { grid-template-columns: 1fr; }
+.cm-row.one span { color: var(--text); font-weight: 600; }
