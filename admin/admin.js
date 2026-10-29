@@ -154,6 +154,37 @@
     }
     start();
   });
+  // contraseña olvidada: email con enlace → vuelve aquí → nueva contraseña
+  let recovering = /type=recovery/.test(location.hash);
+  $('forgotBtn').addEventListener('click', async () => {
+    const email = $('loginEmail').value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $('loginErr').textContent = 'Escribe primero tu email arriba.'; return; }
+    $('forgotBtn').disabled = true;
+    const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
+    $('forgotBtn').disabled = false;
+    $('loginErr').textContent = error ? 'No se pudo enviar: ' + error.message : 'Te hemos enviado un email con un enlace. Ábrelo en este mismo dispositivo (revisa también el spam).';
+  });
+  function showNewPass() {
+    recovering = true;
+    $('login').classList.remove('hidden'); $('shell').classList.add('hidden');
+    $('loginForm').classList.add('hidden'); $('newPassForm').classList.remove('hidden');
+  }
+  sb.auth.onAuthStateChange((ev) => { if (ev === 'PASSWORD_RECOVERY') showNewPass(); });
+  $('newPassForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const a = $('newPass').value, b = $('newPass2').value;
+    if (a.length < 10) { $('newPassErr').textContent = 'Mínimo 10 caracteres.'; return; }
+    if (a !== b) { $('newPassErr').textContent = 'Las dos contraseñas no coinciden.'; return; }
+    $('newPassBtn').disabled = true;
+    const { error } = await sb.auth.updateUser({ password: a });
+    $('newPassBtn').disabled = false;
+    if (error) { $('newPassErr').textContent = 'Error: ' + error.message; return; }
+    $('newPass').value = ''; $('newPass2').value = '';
+    recovering = false;
+    history.replaceState(null, '', location.pathname);
+    if (await checkAdmin()) { $('newPassForm').classList.add('hidden'); $('loginForm').classList.remove('hidden'); start(); }
+    else $('newPassErr').textContent = 'Contraseña cambiada, pero esta cuenta no es administradora.';
+  });
   $('logoutBtn').addEventListener('click', async () => { await sb.auth.signOut(); location.hash = ''; location.reload(); });
 
   // ------------------------------------------------------------------
@@ -1252,6 +1283,7 @@
   }
   (async function boot() {
     applyTheme();
+    if (recovering) { showNewPass(); return; }
     if (await checkAdmin()) start();
     else $('login').classList.remove('hidden');
   })();

@@ -32,6 +32,15 @@
     <label>Contraseña<input type="password" id="loginPass" autocomplete="current-password" required></label>
     <button type="submit" class="btn primary" id="loginBtn">Entrar</button>
     <p class="err" id="loginErr" role="alert"></p>
+    <button type="button" class="btn ghost small" id="forgotBtn">¿Has olvidado la contraseña?</button>
+  </form>
+  <form id="newPassForm" class="login-card hidden">
+    <div class="wordmark">maxora</div>
+    <h1>Nueva contraseña</h1>
+    <label>Nueva contraseña (mín. 10 caracteres)<input type="password" id="newPass" autocomplete="new-password" minlength="10" required></label>
+    <label>Repite la contraseña<input type="password" id="newPass2" autocomplete="new-password" minlength="10" required></label>
+    <button type="submit" class="btn primary" id="newPassBtn">Guardar y entrar</button>
+    <p class="err" id="newPassErr" role="alert"></p>
   </form>
 </main>
 
