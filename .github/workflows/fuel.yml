@@ -1,0 +1,38 @@
+# Maxora — prezzi carburante di Fuerteventura (dati ufficiali del Ministerio), 4 volte al giorno
+name: Prezzi carburante
+
+on:
+  schedule:
+    - cron: '41 5,10,15,20 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'tools/build_fuel.py'
+      - '.github/workflows/fuel.yml'
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: fuel
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scarica i prezzi
+        run: python3 tools/build_fuel.py data/fuel.json
+      - name: Pubblica se cambiato
+        run: |
+          git config user.name "maxora-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fuel.json
+          if git diff --cached --quiet; then echo "Nessun cambiamento"; exit 0; fi
+          git commit -m "Prezzi carburante aggiornati"
+          git pull --rebase -q origin main && git push
+          curl -fsS -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/pages/builds || true
