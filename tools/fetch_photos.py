@@ -17,7 +17,7 @@ PLACES = [
     ('cofete', 'Playa de Cofete', ['Cofete beach', 'Playa de Cofete'], 'Playa de Cofete'),
     ('sotavento', 'Playa de Sotavento', ['Playa de Sotavento', 'Risco del Paso'], 'Playa de Sotavento'),
     ('dunas-corralejo', 'Dunas de Corralejo', ['Corralejo dunes', 'Parque Natural de Corralejo'], 'Parque natural de Corralejo'),
-    ('isla-de-lobos', 'Isla de Lobos', ['Isla de Lobos', 'Lobos Fuerteventura'], 'Isla de Lobos'),
+    ('isla-de-lobos', 'Isla de Lobos', ['Isla de Lobos Fuerteventura', 'Islote de Lobos', 'Lobos Corralejo', 'Montaña La Caldera Lobos'], 'Islote de Lobos'),
     ('el-cotillo', 'Lagunas de El Cotillo', ['El Cotillo lagoons', 'El Cotillo playa'], 'El Cotillo'),
     ('ajuy', 'Cuevas de Ajuy', ['Ajuy caves', 'Ajuy Fuerteventura'], 'Cuevas de Ajuy'),
     ('garcey', 'Playa del Garcey', ['Playa de Garcey', 'American Star wreck'], 'Playa de Garcey'),
@@ -26,10 +26,14 @@ PLACES = [
     ('entallada', 'Faro de la Entallada', ['Faro de la Entallada', 'Entallada lighthouse'], 'Faro de la Entallada'),
     ('betancuria', 'Betancuria', ['Betancuria', 'Betancuria church'], 'Betancuria'),
     ('morro-jable', 'Playa del Matorral, Morro Jable', ['Morro Jable beach', 'Playa del Matorral'], 'Playa del Matorral'),
-    ('la-pared', 'Playa de La Pared', ['Playa de La Pared', 'La Pared Fuerteventura'], 'Playa de La Pared'),
+    ('la-pared', 'Playa de La Pared', ['Playa de La Pared Fuerteventura', 'La Pared Pájara', 'Playa del Viejo Rey', 'La Pared beach Fuerteventura'], 'Playa de La Pared'),
     ('las-penitas', 'Barranco de las Peñitas', ['Barranco de las Peñitas', 'Vega de Rio Palmas'], 'Barranco de las Peñitas'),
     ('punta-jandia', 'Faro de Punta Jandía', ['Faro de Punta Jandia', 'Punta Jandia lighthouse'], 'Faro de Punta Jandía'),
 ]
+# parole che devono comparire in titolo o descrizione (evita omonimi nel mondo)
+MUST = {'isla-de-lobos': ['fuerteventura', 'lobos', 'corralejo', 'canar'], 'la-pared': ['pared', 'viejo rey']}
+EXCLUDE = {'isla-de-lobos': ['galápagos', 'galapagos', 'ecuador', 'uruguay'], 'la-pared': []}
+ONLY = [x for x in os.environ.get('ONLY', '').split(',') if x]
 FREE = re.compile(r'^(CC0|Public domain|PD|CC BY(-SA)? ?\d|CC BY(-SA)?$|CC-BY|Attribution)', re.I)
 
 def get(url, params):
@@ -73,6 +77,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     index = []
     for slug, name, queries, wd in PLACES:
+        if ONLY and slug not in ONLY: continue
         picked, seen = [], set()
         tiers = []
         for q in queries:
@@ -94,6 +99,9 @@ def main():
                 md = ii.get('extmetadata') or {}
                 lic = clean((md.get('LicenseShortName') or {}).get('value'))
                 if not FREE.match(lic): continue
+                hay = (p['title'] + ' ' + clean((md.get('ImageDescription') or {}).get('value'))).lower()
+                if slug in MUST and not any(k in hay for k in MUST[slug]): continue
+                if any(k in hay for k in EXCLUDE.get(slug, [])): continue
                 seen.add(p['title'])
                 n = len(picked) + 1
                 fn = os.path.join(OUT, slug, '%d.jpg' % n)
