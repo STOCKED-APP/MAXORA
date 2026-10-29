@@ -1,0 +1,18 @@
+name: Sonda surf
+on:
+  push:
+    branches: [sonda-surf]
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -q && sudo apt-get install -y -q osmium-tool
+      - run: |
+          curl -fsSL --retry 3 -A "Maxora/0.3" -o c.pbf https://download.geofabrik.de/africa/canary-islands-latest.osm.pbf || curl -fsSL --retry 3 -A "Maxora/0.3" -o c.pbf https://download.geofabrik.de/europe/spain/canarias-latest.osm.pbf
+          osmium extract -b -14.55,27.99,-13.70,28.80 c.pbf -o fv.pbf --overwrite
+          osmium tags-filter fv.pbf nwr/sport=surfing nwr/natural=beach nwr/natural=reef nwr/leisure=beach_resort -o s.pbf --overwrite
+          osmium export s.pbf -f geojsonseq -o surf.geojsonseq --overwrite
+      - run: pip install ecmwf-opendata cfgrib eccodes xarray
+      - run: python3 tools/surf_probe.py
