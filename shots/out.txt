@@ -1,0 +1,3 @@
+bike: 1,5 Temperatura 23° Vento ↑ 9 NO · raffiche 23 Luce alba 07:10 tramonto 18:20 ## Ora migliore: domani 06–09
+run: 2 Temperatura 23° Vento ↑ 9 NO · raffiche 23 Luce alba 07:10 tramonto 18:20 ## Ora migliore: domani 06–09
+errori: nessuno
