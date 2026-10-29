@@ -547,7 +547,7 @@
     const mark = $('cardMark');
     mark.className = 'card-mark' + (ty.is_police ? ' police' : '');
     mark.style.background = ty.is_police ? '' : ty.color;
-    $('cardTitle').textContent = (sel.official ? t('official') + ' · ' : '') + (sel.title || labelOf(ty));
+    $('cardTitle').textContent = (sel.source === 'dgt' ? 'DGT · ' : sel.official ? t('official') + ' · ' : '') + (sel.title || labelOf(ty));
     const mins = (Date.now() - new Date(sel.created_at)) / 60000;
     const left = (new Date(sel.expires_at) - Date.now()) / 60000;
     const bits = [t('ago', { t: fmtMin(mins) })];
