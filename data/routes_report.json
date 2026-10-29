@@ -277,18 +277,11 @@
 },
 {
 "id": "arena",
-"km": 9.9,
-"gain": 124,
-"max_grade": 6.1,
-"ele": [
-217,
-302
-],
+"error": "tappa lontana dal tracciato",
 "snap": [
 125,
 233
-],
-"loop": false
+]
 },
 {
 "id": "gairia",
@@ -342,8 +335,8 @@
 {
 "id": "osm-4243063",
 "km": 2.6,
-"gain": 11,
-"max_grade": 2.9,
+"gain": 106,
+"max_grade": 9.1,
 "ele": [
 85,
 191
@@ -354,8 +347,8 @@
 {
 "id": "osm-4243089",
 "km": 12.4,
-"gain": 378,
-"max_grade": 20.6,
+"gain": 390,
+"max_grade": 23.2,
 "ele": [
 190,
 499
@@ -366,11 +359,11 @@
 {
 "id": "osm-4243134",
 "km": 6.5,
-"gain": 197,
-"max_grade": 10.1,
+"gain": 296,
+"max_grade": 14.2,
 "ele": [
-213,
-455
+214,
+454
 ],
 "snap": [],
 "loop": false
@@ -378,8 +371,8 @@
 {
 "id": "osm-4243135",
 "km": 11.7,
-"gain": 307,
-"max_grade": 22.0,
+"gain": 415,
+"max_grade": 22.3,
 "ele": [
 200,
 476
@@ -390,8 +383,8 @@
 {
 "id": "osm-4243240",
 "km": 4.1,
-"gain": 251,
-"max_grade": 20.5,
+"gain": 278,
+"max_grade": 22.5,
 "ele": [
 285,
 564
@@ -414,11 +407,11 @@
 {
 "id": "osm-4243261",
 "km": 1.7,
-"gain": 0,
-"max_grade": 0.0,
+"gain": 49,
+"max_grade": 4.7,
 "ele": [
 191,
-239
+240
 ],
 "snap": [],
 "loop": false
@@ -474,8 +467,8 @@
 {
 "id": "osm-6315354",
 "km": 13.7,
-"gain": 24,
-"max_grade": 4.7,
+"gain": 109,
+"max_grade": 2.4,
 "ele": [
 2,
 98
