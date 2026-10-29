@@ -22,11 +22,20 @@ def cat_of(t):
     if a == 'parking' and t.get('access') != 'private': return 'parking'
     if a == 'drinking_water' or (a == 'water_point' and t.get('drinking_water') != 'no'): return 'water'
     if s == 'bicycle' or a in ('bicycle_repair_station', 'bicycle_rental'): return 'bike'
+    # camper
+    if tu in ('camp_site', 'caravan_site'): return 'camp'
+    if a == 'sanitary_dump_station' or t.get('sanitary_dump_station') in ('yes', 'customers'): return 'dump'
+    if a == 'shower': return 'shower'
+    if a == 'toilets': return 'toilets'
+    if s == 'laundry' or a == 'washing_machine': return 'laundry'
+    if t.get('leisure') == 'fitness_centre': return 'gym'
+    if s == 'gas': return 'gas'
     return None
 
-UNNAMED_OK = {'fuel', 'pharmacy', 'parking', 'water', 'bike'}
+UNNAMED_OK = {'fuel', 'pharmacy', 'parking', 'water', 'bike', 'camp', 'dump', 'shower', 'toilets', 'laundry', 'gas'}
 KEEP = ['brand', 'operator', 'cuisine', 'opening_hours', 'phone', 'contact:phone', 'website', 'contact:website',
-        'addr:street', 'addr:housenumber', 'addr:city', 'addr:place', 'wheelchair', 'stars', 'fee', 'surface', 'capacity', 'service:bicycle:repair', 'service:bicycle:rental', 'amenity', 'shop']
+        'addr:street', 'addr:housenumber', 'addr:city', 'addr:place', 'wheelchair', 'stars', 'fee', 'surface', 'capacity', 'service:bicycle:repair', 'service:bicycle:rental', 'amenity', 'shop',
+        'motorhome', 'caravans', 'maxheight', 'maxstay', 'access', 'shower', 'toilets', 'drinking_water', 'tents', 'power_supply', 'sanitary_dump_station', 'water_point', 'leisure', 'tourism', 'charge', 'description', 'parking', 'hot_water', 'changing_table']
 
 def center(geom):
     pts = []

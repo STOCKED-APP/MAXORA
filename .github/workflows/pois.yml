@@ -8,6 +8,7 @@ on:
   push:
     paths:
       - 'tools/build_pois.py'
+      - 'tools/build_protected.py'
       - '.github/workflows/pois.yml'
 
 permissions:
@@ -43,8 +44,19 @@ jobs:
             nwr/shop=supermarket,convenience,surf,bicycle \
             nwr/tourism=viewpoint,hotel,apartment,hostel,guest_house \
             nwr/sport=surfing,kitesurfing,windsurfing \
+            nwr/amenity=sanitary_dump_station,shower,toilets,washing_machine \
+            nwr/tourism=camp_site,caravan_site \
+            nwr/shop=laundry,gas \
+            nwr/leisure=fitness_centre \
             -o filtered.osm.pbf --overwrite
           osmium export filtered.osm.pbf -f geojsonseq --add-unique-id=type_id -o filtered.geojsonseq --overwrite
+
+      - name: Aree protette (dove non si può pernottare)
+        run: |
+          pip install -q shapely
+          osmium tags-filter fv.osm.pbf nwr/boundary=protected_area,national_park nwr/leisure=nature_reserve -o prot.osm.pbf --overwrite
+          osmium export prot.osm.pbf -f geojsonseq --geometry-types=polygon -o prot.geojsonseq --overwrite
+          python3 tools/build_protected.py prot.geojsonseq data/protected.json
 
       - name: Crea data/pois.json
         run: |
@@ -55,7 +67,7 @@ jobs:
         run: |
           git config user.name "maxora-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/pois.json
+          git add data/pois.json data/protected.json
           if git diff --cached --quiet; then echo "Nessun cambiamento"; exit 0; fi
           git commit -m "Luoghi aggiornati da OpenStreetMap"
           git push
