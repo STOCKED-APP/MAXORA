@@ -98,9 +98,27 @@ def run_data(c, run, steps, spots, tag):
     return times, out
 
 
+def load_spots(spots_path):
+    """spot dal database (modificabili dal pannello admin); il file è la riserva"""
+    try:
+        import re, urllib.request
+        cfg = open(os.path.join(os.path.dirname(__file__), '..', 'assets', 'config.js')).read()
+        url = re.search(r"supabaseUrl:\s*'([^']+)'", cfg).group(1)
+        key = re.search(r"supabaseKey:\s*'([^']+)'", cfg).group(1)
+        req = urllib.request.Request(url + '/rest/v1/surf_spots?select=id,data&active=eq.true&order=sort', headers={'apikey': key, 'Authorization': 'Bearer ' + key})
+        rows = json.loads(urllib.request.urlopen(req, timeout=30).read().decode())
+        if isinstance(rows, list) and rows:
+            note(f'spot dal database: {len(rows)}')
+            return [dict(r['data'], id=r['id']) for r in rows]
+    except Exception as e:
+        print('spot dal database non disponibili:', e, flush=True)
+    note('spot dal file (riserva)')
+    return json.load(open(spots_path))['spots']
+
+
 def main():
     spots_path, out_path = sys.argv[1], sys.argv[2]
-    spots = json.load(open(spots_path))['spots']
+    spots = load_spots(spots_path)
     c = Client(source='ecmwf')
     latest = c.latest(type='fc', stream='wave', param='swh', step=0).replace(tzinfo=UTC)
     if latest.hour in (6, 18):

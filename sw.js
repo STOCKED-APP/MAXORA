@@ -1,6 +1,6 @@
 // Maxora — service worker minimo: l'app si apre anche con rete debole.
 // Prima la rete, poi la copia salvata. I dati live (Supabase) non vengono mai salvati.
-const CACHE = 'maxora-v13';
+const CACHE = 'maxora-v14';
 const SHELL = ['./', 'index.html', 'assets/theme.css', 'assets/app.css', 'assets/app.js', 'assets/surf.js', 'assets/config.js', 'assets/icon.svg'];
 
 self.addEventListener('install', (e) => {

@@ -22,7 +22,7 @@
       beach: 'Spiaggia', reef: 'Reef', point: 'Punta', L: 'sinistra', R: 'destra', LR: 'destra e sinistra', approx: 'Posizione indicativa',
       tides: 'Maree del giorno', flat: 'piatto', poor: 'scarso', fair: 'discreto', good: 'buono', great: 'ottimo', offsh: 'largo {h} m',
       night: 'notte', src: 'Onde e vento: ECMWF Open Data (CC BY 4.0). Maree: calcolate da Maxora sul mareografo di Puerto del Rosario (IOC · REDMAR).',
-      ago: '{t} fa', from: 'da {d}', levelQ: 'Il tuo livello', go: 'VAI', openWith: 'Apri navigazione con', boat: 'Si raggiunge in barca dal porto di Corralejo'
+      ago: '{t} fa', from: 'da {d}', levelQ: 'Il tuo livello', go: 'VAI', openWith: 'Apri navigazione con', boat: 'Si raggiunge in barca dal porto di Corralejo', nowQ: 'Com\'è adesso', repBtn: 'Sei qui? Dì com\'è', size: 'Onde', quality: 'Com\'è il mare', crowd: 'Gente', sz0: 'Piatto', sz1: 'Ginocchio', sz2: 'Vita–petto', sz3: 'Testa', sz4: 'Sopra la testa', q1: 'Rovinato dal vento', q2: 'Mosso', q3: 'Pulito', c0: 'Vuoto', c1: 'Qualcuno', c2: 'Affollato', send: 'Invia', cancel: 'Annulla', sent: 'Grazie! Lo vedono tutti per 3 ore', repN: '{n} segnalazioni nelle ultime 3 ore', noRep: 'Nessuno ha ancora detto com\'è. Sei in spiaggia? Dillo tu.', corrected: 'voto corretto da chi è in acqua', fav: 'Preferito', favAdd: 'Aggiunto ai preferiti', favDel: 'Tolto dai preferiti', windLive: 'Vento misurato', gust: 'raffiche', sunrise: 'Alba', sunset: 'Tramonto', errRep: 'Invio non riuscito', repAlready: 'Hai già segnalato questo spot', repMany: 'Troppe segnalazioni, riprova più tardi', repOff: 'Segnalazioni non ancora attive', pickAll: 'Scegli onde e com\'è il mare', airport: 'aeroporto'
     },
     es: {
       surf: 'Surf', on: 'Modo surf', off: 'Modo carretera', lvl1: 'Principiante', lvl2: 'Intermedio', lvl3: 'Experto',
@@ -36,7 +36,7 @@
       beach: 'Playa', reef: 'Arrecife', point: 'Punta', L: 'izquierda', R: 'derecha', LR: 'derecha e izquierda', approx: 'Posición aproximada',
       tides: 'Mareas del día', flat: 'plano', poor: 'flojo', fair: 'regular', good: 'bueno', great: 'excelente', offsh: 'fuera {h} m',
       night: 'noche', src: 'Olas y viento: ECMWF Open Data (CC BY 4.0). Mareas: calculadas por Maxora con el mareógrafo de Puerto del Rosario (IOC · REDMAR).',
-      ago: 'hace {t}', from: 'del {d}', levelQ: 'Tu nivel', go: 'IR', openWith: 'Abrir navegación con', boat: 'Se llega en barco desde el puerto de Corralejo'
+      ago: 'hace {t}', from: 'del {d}', levelQ: 'Tu nivel', go: 'IR', openWith: 'Abrir navegación con', boat: 'Se llega en barco desde el puerto de Corralejo', nowQ: 'Cómo está ahora', repBtn: '¿Estás aquí? Cuenta cómo está', size: 'Olas', quality: 'Estado del mar', crowd: 'Gente', sz0: 'Plano', sz1: 'Rodilla', sz2: 'Cintura–pecho', sz3: 'Cabeza', sz4: 'Más de cabeza', q1: 'Roto por el viento', q2: 'Picado', q3: 'Limpio', c0: 'Vacío', c1: 'Algo de gente', c2: 'Lleno', send: 'Enviar', cancel: 'Cancelar', sent: '¡Gracias! Todos lo ven durante 3 horas', repN: '{n} avisos en las últimas 3 horas', noRep: 'Nadie ha contado aún cómo está. ¿Estás en la playa? Cuéntalo tú.', corrected: 'nota corregida por quien está en el agua', fav: 'Favorito', favAdd: 'Añadido a favoritos', favDel: 'Quitado de favoritos', windLive: 'Viento medido', gust: 'rachas', sunrise: 'Amanecer', sunset: 'Atardecer', errRep: 'No se pudo enviar', repAlready: 'Ya has avisado de este spot', repMany: 'Demasiados avisos, prueba más tarde', repOff: 'Avisos todavía no activos', pickAll: 'Elige olas y estado del mar', airport: 'aeropuerto'
     },
     en: {
       surf: 'Surf', on: 'Surf mode', off: 'Road mode', lvl1: 'Beginner', lvl2: 'Intermediate', lvl3: 'Expert',
@@ -50,7 +50,7 @@
       beach: 'Beach', reef: 'Reef', point: 'Point', L: 'left', R: 'right', LR: 'left and right', approx: 'Approximate position',
       tides: 'Tides of the day', flat: 'flat', poor: 'poor', fair: 'fair', good: 'good', great: 'great', offsh: 'out {h} m',
       night: 'night', src: 'Waves and wind: ECMWF Open Data (CC BY 4.0). Tides: computed by Maxora from the Puerto del Rosario tide gauge (IOC · REDMAR).',
-      ago: '{t} ago', from: 'from {d}', levelQ: 'Your level', go: 'GO', openWith: 'Navigate with', boat: 'Reached by boat from Corralejo harbour'
+      ago: '{t} ago', from: 'from {d}', levelQ: 'Your level', go: 'GO', openWith: 'Navigate with', boat: 'Reached by boat from Corralejo harbour', nowQ: 'How it is now', repBtn: 'Here now? Tell how it is', size: 'Waves', quality: 'Surface', crowd: 'Crowd', sz0: 'Flat', sz1: 'Knee', sz2: 'Waist–chest', sz3: 'Head', sz4: 'Overhead', q1: 'Blown out', q2: 'Choppy', q3: 'Clean', c0: 'Empty', c1: 'A few', c2: 'Crowded', send: 'Send', cancel: 'Cancel', sent: 'Thanks! Everyone sees it for 3 hours', repN: '{n} reports in the last 3 hours', noRep: 'Nobody has reported yet. At the beach? Tell everyone.', corrected: 'rating adjusted by surfers in the water', fav: 'Favourite', favAdd: 'Added to favourites', favDel: 'Removed from favourites', windLive: 'Measured wind', gust: 'gusts', sunrise: 'Sunrise', sunset: 'Sunset', errRep: 'Could not send', repAlready: 'You already reported this spot', repMany: 'Too many reports, try later', repOff: 'Reports not active yet', pickAll: 'Choose waves and surface', airport: 'airport'
     },
     de: {
       surf: 'Surf', on: 'Surfmodus', off: 'Straßenmodus', lvl1: 'Anfänger', lvl2: 'Fortgeschritten', lvl3: 'Experte',
@@ -64,7 +64,7 @@
       beach: 'Strand', reef: 'Riff', point: 'Pointbreak', L: 'links', R: 'rechts', LR: 'links und rechts', approx: 'Ungefähre Position',
       tides: 'Gezeiten des Tages', flat: 'flach', poor: 'schwach', fair: 'ok', good: 'gut', great: 'super', offsh: 'drau. {h} m',
       night: 'Nacht', src: 'Wellen und Wind: ECMWF Open Data (CC BY 4.0). Gezeiten: von Maxora aus dem Pegel Puerto del Rosario berechnet (IOC · REDMAR).',
-      ago: 'vor {t}', from: 'aus {d}', levelQ: 'Dein Level', go: 'LOS', openWith: 'Navigieren mit', boat: 'Per Boot ab dem Hafen von Corralejo'
+      ago: 'vor {t}', from: 'aus {d}', levelQ: 'Dein Level', go: 'LOS', openWith: 'Navigieren mit', boat: 'Per Boot ab dem Hafen von Corralejo', nowQ: 'Wie es jetzt ist', repBtn: 'Bist du hier? Sag, wie es ist', size: 'Wellen', quality: 'Oberfläche', crowd: 'Leute', sz0: 'Flach', sz1: 'Knie', sz2: 'Hüfte–Brust', sz3: 'Kopf', sz4: 'Über Kopf', q1: 'Verblasen', q2: 'Kabbelig', q3: 'Sauber', c0: 'Leer', c1: 'Ein paar', c2: 'Voll', send: 'Senden', cancel: 'Abbrechen', sent: 'Danke! Alle sehen es 3 Stunden lang', repN: '{n} Meldungen in den letzten 3 Stunden', noRep: 'Noch keine Meldung. Bist du am Strand? Sag es allen.', corrected: 'Bewertung von Surfern im Wasser korrigiert', fav: 'Favorit', favAdd: 'Zu Favoriten hinzugefügt', favDel: 'Aus Favoriten entfernt', windLive: 'Gemessener Wind', gust: 'Böen', sunrise: 'Sonnenaufgang', sunset: 'Sonnenuntergang', errRep: 'Senden fehlgeschlagen', repAlready: 'Du hast diesen Spot schon gemeldet', repMany: 'Zu viele Meldungen, später versuchen', repOff: 'Meldungen noch nicht aktiv', pickAll: 'Wellen und Oberfläche wählen', airport: 'Flughafen'
     }
   };
   const LOC = { es: 'es-ES', en: 'en-GB', it: 'it-IT', de: 'de-DE' };
@@ -93,6 +93,7 @@
   // Stato
   // ------------------------------------------------------------------
   const SF = {
+    favs: new Set(store.get('surfFavs', [])), reps: [], repsOk: false, form: null,
     on: false, level: store.get('surfLevel', 2), spots: [], byId: new Map(), fc: null, tides: null,
     times: [], idx: 0, markers: new Map(), live: null, loadedAt: 0, open: null, collapsed: store.get('surfCollapsed', false)
   };
@@ -182,9 +183,24 @@
     }
     let r = 5 * size * (0.2 + 0.8 * w.score) * (0.55 + 0.45 * periodScore(tp)) * tideS;
     const notYou = lvl < sp.lvl[0];
+    // chi è in acqua corregge il modello (solo per le ore vicine ad adesso)
+    let fixed = false;
+    const tk = SF.times[k];
+    if (Math.abs(tk - Date.now()) < 2 * 3600000) {
+      const rs = repsFor(sp.id, 2);
+      if (rs.length) {
+        const q = rs.reduce((a, x) => a + x.quality, 0) / rs.length;
+        const z = rs.reduce((a, x) => a + x.size, 0) / rs.length;
+        const repH = [0.1, 0.5, 1.1, 1.8, 2.8][Math.round(z)];
+        const sz2 = sizeScore(repH, lvl);
+        r = 0.4 * r + 0.6 * (5 * sz2 * (q >= 2.5 ? 1 : q >= 1.5 ? 0.65 : 0.3));
+        if (z < 0.5) r = Math.min(r, 0.5);
+        fixed = true;
+      }
+    }
     if (notYou) r = Math.min(r, 1);
     r = Math.round(clamp(r, 0, 5) * 2) / 2;
-    return { r, h, hs, tp, dir, ws, wd, wind: w.kind, tide: td, notYou };
+    return { r, h, hs, tp, dir, ws, wd, wind: w.kind, tide: td, notYou, fixed };
   }
   const color = (r) => (r == null ? '#9aa4ae' : r < 1 ? '#9aa4ae' : r < 2 ? '#e5484d' : r < 3 ? '#f5a524' : r < 4 ? '#2f9e5b' : '#14c8b0');
   const word = (x) => (x.r < 1 ? (x.h < 0.3 ? tr('flat') : tr('poor')) : x.r < 2 ? tr('poor') : x.r < 3 ? tr('fair') : x.r < 4 ? tr('good') : tr('great'));
@@ -203,8 +219,8 @@
   async function getJSON(u) { const r = await fetch(u + '?v=' + Math.floor(Date.now() / 300000), { cache: 'no-cache' }); if (!r.ok) throw new Error(u); return r.json(); }
   async function load(force) {
     if (!force && SF.fc && Date.now() - SF.loadedAt < 20 * 60000) return;
-    const [sp, fc, td] = await Promise.all([getJSON('data/surf_spots.json'), getJSON('data/surf.json'), getJSON('data/tides.json').catch(() => null)]);
-    SF.spots = sp.spots; SF.byId = new Map(sp.spots.map((s) => [s.id, s]));
+    const [spots, fc, td] = await Promise.all([loadSpots(), getJSON('data/surf.json'), getJSON('data/tides.json').catch(() => null)]);
+    SF.spots = spots; SF.byId = new Map(spots.map((s) => [s.id, s]));
     SF.fc = fc;
     SF.times = fc.times.map((s) => Date.parse(s.replace('Z', ':00Z')));
     SF.tides = td;
@@ -215,10 +231,62 @@
     SF.times.forEach((t, i) => { if (Math.abs(t - now) < Math.abs(SF.times[best] - now)) best = i; });
     if (!SF.picked) SF.idx = best;
   }
+  async function loadSpots() {
+    try {
+      const { data, error } = await M.sb.from('surf_spots').select('id,data,sort').order('sort');
+      if (!error && data && data.length) return data.map((x) => Object.assign({ id: x.id }, x.data));
+    } catch (e) { /* riserva */ }
+    return (await getJSON('data/surf_spots.json')).spots;
+  }
+  function repsFor(id, hours) {
+    const lim = Date.now() - (hours || 3) * 3600000;
+    return SF.reps.filter((r) => r.spot_id === id && Date.parse(r.created_at) > lim);
+  }
+  let repChannel = null;
+  async function loadReports() {
+    try {
+      const { data, error } = await M.sb.from('surf_reports').select('id,spot_id,size,quality,crowd,created_at,user_id').order('created_at', { ascending: false }).limit(300);
+      if (error) { SF.repsOk = false; return; }
+      SF.reps = data || []; SF.repsOk = true;
+      if (!repChannel) {
+        repChannel = M.sb.channel('surf-reports').on('postgres_changes', { event: '*', schema: 'public', table: 'surf_reports' }, (p) => {
+          const r = p.new;
+          if (!r || !r.id) return;
+          SF.reps = SF.reps.filter((x) => x.id !== r.id);
+          if (!r.removed_at) SF.reps.unshift(r);
+          drawAll();
+        }).subscribe();
+      }
+    } catch (e) { SF.repsOk = false; }
+  }
+  async function sendReport(spotId, size, quality, crowd) {
+    const { error } = await M.sb.from('surf_reports').insert({ spot_id: spotId, size, quality, crowd });
+    if (error) {
+      const m = (error.message || '');
+      M.toast(/relation|does not exist|schema cache/i.test(m) ? tr('repOff') : /già segnalato/.test(m) ? tr('repAlready') : /Troppi/.test(m) ? tr('repMany') : tr('errRep'));
+      return false;
+    }
+    M.toast(tr('sent'));
+    await loadReports();
+    return true;
+  }
+  function toggleFav(id) {
+    if (SF.favs.has(id)) { SF.favs.delete(id); M.toast(tr('favDel')); } else { SF.favs.add(id); M.toast(tr('favAdd')); }
+    store.set('surfFavs', [...SF.favs]);
+    drawAll();
+  }
+  // alba e tramonto del giorno (ricerca del momento in cui il sole passa -0,83°)
+  function sunTimes(ms) {
+    const dk = dayKey(ms);
+    let t = Date.parse(dk + 'T00:00:00Z');
+    const find = (from, to, up) => { let a = from, b = to; for (let i = 0; i < 30; i++) { const m = (a + b) / 2; const above = sunAlt(m, 28.4, -14.0) > -0.833; if (above === up) b = m; else a = m; } return b; };
+    const noon = t + 13 * 3600000;
+    return { rise: find(t + 3 * 3600000, noon, true), set: find(noon, t + 23 * 3600000, false) };
+  }
   async function loadLive() {
     try {
       const { data, error } = await M.sb.functions.invoke('tide-now', { method: 'GET' });
-      if (!error && data && data.resid_cm != null) { SF.live = data; drawTide(); if (SF.open) drawCard(); }
+      if (!error && data && (data.resid_cm != null || data.wind)) { SF.live = data; drawTide(); if (SF.open) drawCard(); }
     } catch (e) { /* facoltativo */ }
   }
 
@@ -232,6 +300,7 @@
   }
   function drawPins() {
     if (!SF.on) { SF.markers.forEach((m) => m.remove()); SF.markers.clear(); return; }
+    for (const [id, m] of SF.markers) if (!SF.byId.has(id)) { m.remove(); SF.markers.delete(id); }
     for (const sp of SF.spots) {
       let m = SF.markers.get(sp.id);
       if (!m) { m = new maplibregl.Marker({ element: pin(sp) }).setLngLat([sp.lng, sp.lat]).addTo(map); SF.markers.set(sp.id, m); }
@@ -241,7 +310,10 @@
       e.querySelector('.sf-num').textContent = x ? fmtR(x.r) : '–';
       const a = e.querySelector('.sf-arrow');
       a.style.transform = 'rotate(' + (((x && x.dir != null ? x.dir : sp.facing) + 180) % 360) + 'deg)';
+      m.setLngLat([sp.lng, sp.lat]);
       e.classList.toggle('dim', !x || x.notYou);
+      e.classList.toggle('fav', SF.favs.has(sp.id));
+      e.classList.toggle('rep', repsFor(sp.id, 3).length > 0);
       e.classList.toggle('sel', SF.open === sp.id);
       e.title = sp.name + (x ? ' · ' + fmtR(x.r) + '/5' : '');
     }
@@ -300,19 +372,29 @@
     );
     if (SF.live && Math.abs(Date.now() - t) < 3 * 3600000) {
       const r = SF.live.resid_cm;
-      box.appendChild(el('span', { class: 'live', title: SF.live.source }, [el('i'), tr('live') + ': ' + (Math.abs(r) < 4 ? tr('asfc') : r > 0 ? tr('above', { n: r }) : tr('below', { n: -r }))]));
+      if (r != null) box.appendChild(el('span', { class: 'live', title: SF.live.source }, [el('i'), tr('live') + ': ' + (Math.abs(r) < 4 ? tr('asfc') : r > 0 ? tr('above', { n: r }) : tr('below', { n: -r }))]));
     }
+    const w = liveWind();
+    if (w && Math.abs(Date.now() - t) < 3 * 3600000) box.appendChild(el('span', { class: 'live wind', title: w.station + ' · ' + hhmm(Date.parse(w.t)) }, [el('i'), windText(w, true)]));
+  }
+  function liveWind() {
+    const w = SF.live && SF.live.wind;
+    return w && w.kmh != null && Date.now() - Date.parse(w.t) < 2 * 3600000 ? w : null;
+  }
+  function windText(w, short) {
+    return tr('windLive') + ': ' + w.kmh + ' km/h' + (w.dir != null ? ' ' + compass(w.dir) : '') + (w.gust_kmh ? ' · ' + tr('gust') + ' ' + w.gust_kmh : '') + (short ? '' : ' (' + tr('airport') + ' ' + hhmm(Date.parse(w.t)) + ')');
   }
   function drawList() {
     const box = $('sfList');
     box.innerHTML = '';
     const rows = SF.spots.map((sp) => ({ sp, x: rate(sp, SF.idx, SF.level) })).filter((o) => o.x)
-      .sort((a, b) => (a.x.notYou - b.x.notYou) || (b.x.r - a.x.r) || (b.x.h - a.x.h));
-    rows.slice(0, 6).forEach(({ sp, x }) => {
+      .sort((a, b) => (a.x.notYou - b.x.notYou) || (b.x.r - a.x.r) || (SF.favs.has(b.sp.id) - SF.favs.has(a.sp.id)) || (b.x.h - a.x.h));
+    rows.slice(0, 8).forEach(({ sp, x }) => {
+      const nRep = repsFor(sp.id, 3).length;
       box.appendChild(el('button', { class: 'sf-row' + (x.notYou ? ' dim' : ''), onclick: () => openCard(sp.id, true) }, [
-        el('span', { class: 'sf-badge', style: '--c:' + color(x.r) }, [fmtR(x.r)]),
+        el('span', { class: 'sf-badge' + (x.fixed ? ' fixed' : ''), style: '--c:' + color(x.r) }, [fmtR(x.r)]),
         el('span', { class: 'sf-txt' }, [
-          el('span', { class: 't', text: sp.name }),
+          el('span', { class: 't' }, [SF.favs.has(sp.id) ? el('span', { class: 'sf-star', text: '★ ' }) : null, sp.name, nRep ? el('span', { class: 'sf-repn', text: ' · ' + nRep + ' 👁' }) : null]),
           el('span', { class: 's', text: x.notYou ? tr('notYou') : word(x) + ' · ' + line(x) })
         ])
       ]));
@@ -355,6 +437,45 @@
 
   function stat(k, v, sub) { return el('div', { class: 'p-stat' }, [el('div', { class: 'k', text: k }), el('div', { class: 'v', text: v }), sub ? el('div', { class: 'sf-sub', text: sub }) : null]); }
 
+  function chips(opts, val, onPick) {
+    return el('div', { class: 'sf-chips' }, opts.map(([v, label]) => el('button', { class: 'sf-chip' + (val === v ? ' on' : ''), 'aria-pressed': String(val === v), onclick: () => onPick(v), text: label })));
+  }
+  function drawNow(box, sp) {
+    box.appendChild(el('div', { class: 'sf-h', text: tr('nowQ') }));
+    const rs = repsFor(sp.id, 3);
+    if (rs.length) {
+      const list = el('div', { class: 'sf-reps' });
+      rs.slice(0, 4).forEach((r) => {
+        const m = Math.max(1, Math.round((Date.now() - Date.parse(r.created_at)) / 60000));
+        list.appendChild(el('div', { class: 'sf-rep q' + r.quality }, [
+          el('b', { text: tr('q' + r.quality) }), ' · ' + tr('sz' + r.size) + (r.crowd != null ? ' · ' + tr('c' + r.crowd) : ''),
+          el('span', { class: 'ago', text: tr('ago', { t: m < 60 ? m + ' min' : Math.round(m / 60) + ' h' }) })
+        ]));
+      });
+      box.append(el('div', { class: 'p-note', text: tr('repN', { n: rs.length }) }), list);
+    } else box.appendChild(el('div', { class: 'p-note', text: tr('noRep') }));
+    const f = SF.form && SF.form.spot === sp.id ? SF.form : null;
+    if (!f) {
+      box.appendChild(el('button', { class: 'sf-repbtn', onclick: () => { SF.form = { spot: sp.id, size: null, quality: null, crowd: null }; drawCard(); }, text: tr('repBtn') }));
+      return;
+    }
+    const redraw = () => { const top = $('sfCard').scrollTop; drawCard(); $('sfCard').scrollTop = top; };
+    const send = el('button', { class: 'p-go', text: tr('send') });
+    send.addEventListener('click', async () => {
+      if (f.size == null || f.quality == null) return M.toast(tr('pickAll'));
+      send.disabled = true;
+      const ok = await sendReport(sp.id, f.size, f.quality, f.crowd);
+      send.disabled = false;
+      if (ok) { SF.form = null; drawAll(); }
+    });
+    box.appendChild(el('div', { class: 'sf-form' }, [
+      el('div', { class: 'k', text: tr('size') }), chips([0, 1, 2, 3, 4].map((v) => [v, tr('sz' + v)]), f.size, (v) => { f.size = v; redraw(); }),
+      el('div', { class: 'k', text: tr('quality') }), chips([3, 2, 1].map((v) => [v, tr('q' + v)]), f.quality, (v) => { f.quality = v; redraw(); }),
+      el('div', { class: 'k', text: tr('crowd') }), chips([0, 1, 2].map((v) => [v, tr('c' + v)]), f.crowd, (v) => { f.crowd = f.crowd === v ? null : v; redraw(); }),
+      el('div', { class: 'sf-formacts' }, [send, el('button', { class: 'sf-cancel', text: tr('cancel'), onclick: () => { SF.form = null; redraw(); } })])
+    ]));
+  }
+
   function drawCard() {
     const sp = SF.byId.get(SF.open);
     if (!sp) return;
@@ -363,8 +484,11 @@
     const x = rate(sp, SF.idx, SF.level);
     const t = SF.times[SF.idx];
     box.append(
-      el('div', { class: 'p-kicker' }, [sp.zone[lang()] || sp.zone.es, ' · ', tr(sp.type), ' · ', tr(sp.wave)]),
-      el('div', { class: 'p-name', text: sp.name })
+      el('div', { class: 'p-kicker' }, [(sp.zone || {})[lang()] || (sp.zone || {}).es || '', ' · ', tr(sp.type), ' · ', tr(sp.wave)]),
+      el('div', { class: 'sf-namerow' }, [
+        el('div', { class: 'p-name', text: sp.name }),
+        el('button', { class: 'sf-fav' + (SF.favs.has(sp.id) ? ' on' : ''), 'aria-pressed': String(SF.favs.has(sp.id)), 'aria-label': tr('fav'), title: tr('fav'), onclick: () => toggleFav(sp.id), text: SF.favs.has(sp.id) ? '★' : '☆' })
+      ])
     );
     if (sp.approx) box.appendChild(el('div', { class: 'p-sub', text: tr('approx') + (sp.go ? ' · ' + tr('boat') : '') }));
     if (x) {
@@ -372,7 +496,8 @@
         el('div', { class: 'big' }, [fmtR(x.r), el('small', { text: '/5' })]),
         el('div', { class: 'txt' }, [
           el('div', { class: 'w', text: x.notYou ? tr('notYou') : word(x) }),
-          el('div', { class: 'when', text: dayLabel(t) + ' ' + hhmm(t) + (isDay(t) ? '' : ' · ' + tr('night')) })
+          el('div', { class: 'when', text: dayLabel(t) + ' ' + hhmm(t) + (isDay(t) ? '' : ' · ' + tr('night')) }),
+          x.fixed ? el('div', { class: 'sf-fixed', text: '👁 ' + tr('corrected') }) : null
         ])
       ]));
       const st = el('div', { class: 'p-stats sf-stats' });
@@ -383,7 +508,10 @@
         stat(tr('tideK'), x.tide ? (x.tide.rising ? '↗' : '↘') : '–', x.tide ? (x.tide.rising ? tr('rising') : tr('falling')) : '')
       );
       box.appendChild(st);
+      const w = liveWind();
+      if (w && Math.abs(Date.now() - t) < 3 * 3600000) box.appendChild(el('div', { class: 'p-note' }, [el('span', { class: 'sf-livedot' }), windText(w)]));
     }
+    drawNow(box, sp);
     // 48 ore
     box.appendChild(el('div', { class: 'sf-h', text: tr('next48') }));
     const ch = el('div', { class: 'sf-chart' });
@@ -440,6 +568,8 @@
         box.appendChild(el('div', { class: 'p-note' }, [el('span', { class: 'sf-livedot' }), tr('live') + ' (' + hhmm(Date.parse(SF.live.t)) + '): ' + (SF.live.rising ? tr('rising') : tr('falling')) + ' · ' + (Math.abs(r) < 4 ? tr('asfc') : r > 0 ? tr('above', { n: r }) : tr('below', { n: -r }))]));
       }
     }
+    const sun = sunTimes(t);
+    box.appendChild(el('div', { class: 'sf-sun' }, [el('span', { text: '☀︎ ' + tr('sunrise') + ' ' + hhmm(sun.rise) }), el('span', { text: '☾ ' + tr('sunset') + ' ' + hhmm(sun.set) })]));
     // quando funziona
     box.appendChild(el('div', { class: 'sf-h', text: tr('ideal') }));
     const idl = el('ul', { class: 'sf-ideal' });
@@ -450,8 +580,8 @@
       el('li', { text: tr('levels', { a: [...new Set([sp.lvl[0], sp.lvl[1]])].map((l) => tr('lvl' + l)).join(' – ') }) })
     );
     box.appendChild(idl);
-    box.appendChild(el('p', { class: 'p-desc', text: sp.note[lang()] || sp.note.es }));
-    if (sp.haz) box.appendChild(el('p', { class: 'sf-haz' }, [el('b', { text: tr('haz') + ': ' }), sp.haz[lang()] || sp.haz.es]));
+    box.appendChild(el('p', { class: 'p-desc', text: (sp.note || {})[lang()] || (sp.note || {}).es || '' }));
+    if (sp.haz && Object.keys(sp.haz).length) box.appendChild(el('p', { class: 'sf-haz' }, [el('b', { text: tr('haz') + ': ' }), sp.haz[lang()] || sp.haz.es]));
     // VAI
     const g = sp.go || [sp.lat, sp.lng];
     const ll = g[0] + ',' + g[1];
@@ -475,7 +605,11 @@
   function pad() {
     if (!SF.on) return;
     const h = $('sfSheet').getBoundingClientRect().height;
-    map.setPadding({ top: 70, bottom: Math.max(0, Math.min(h, window.innerHeight * 0.6) - 10), left: 0, right: 0 });
+    const bottom = Math.round(Math.max(0, Math.min(h, window.innerHeight * 0.6) - 10));
+    // cambiare il padding ferma le animazioni della mappa: solo se serve davvero
+    if (Math.abs((map.getPadding().bottom || 0) - bottom) < 6) return;
+    if (map.isMoving()) { if (!pad.wait) { pad.wait = true; map.once('moveend', () => { pad.wait = false; pad(); }); } return; }
+    map.setPadding({ top: 70, bottom, left: 0, right: 0 });
   }
   async function setOn(on, quiet) {
     SF.on = on;
@@ -490,6 +624,7 @@
     drawHead(); pad();
     try {
       await load();
+      await Promise.race([loadReports(), new Promise((r) => setTimeout(r, 2500))]);
       drawAll();
       if (!quiet) map.fitBounds([[-14.52, 28.04], [-13.80, 28.78]], { padding: { top: 16, bottom: 16, left: 24, right: 64 }, duration: 800 });
       loadLive(); setTimeout(loadLive, 5000);
@@ -514,7 +649,7 @@
   map.on('click', () => { if (SF.open) closeCard(); });
   window.addEventListener('resize', pad);
   M.onTexts(() => { $('surfBtn').setAttribute('aria-label', tr('surf')); drawAll(); });
-  setInterval(() => { if (SF.on) { load(true).then(drawAll).catch(() => {}); loadLive(); } }, 15 * 60000);
+  setInterval(() => { if (SF.on) { load(true).then(drawAll).catch(() => {}); loadLive(); loadReports().then(drawAll); } }, 15 * 60000);
 
   $('sfSheet').classList.toggle('collapsed', SF.collapsed);
   $('surfBtn').setAttribute('aria-label', tr('surf'));
