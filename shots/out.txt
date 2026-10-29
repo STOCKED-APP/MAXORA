@@ -1,0 +1,3 @@
+tutorial visibile: true
+fumetto: Busca calles, playas, restaurantes o gasolineras. Escribe "restaurantes" y los ves todos en el mapa.  1 / 7 Saltar Siguiente
+errori: nessuno
