@@ -24,7 +24,7 @@ def fetch(code, t0, t1):
     u = f'{IOC}?query=data&code={code}&timestart={t0:%Y-%m-%dT%H:%M}&timestop={t1:%Y-%m-%dT%H:%M}&format=json'
     for k in range(3):
         try:
-            r = urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'maxora-tides (github.com/STOCKED-APP/MAXORA)'}), timeout=180)
+            r = urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'maxora-tides (github.com/STOCKED-APP/MAXORA)'}), timeout=90)
             return json.loads(r.read().decode())
         except Exception as e:
             err = e
@@ -33,30 +33,47 @@ def fetch(code, t0, t1):
     return []
 
 
-def history(code, start, end):
-    rows = []
-    t = start
+_CACHE = {}
+
+
+def minutes(code, start, end):
+    """serie al minuto pulita (sensore principale), scaricata in parallelo a blocchi di 10 giorni"""
+    key = (code, start, end)
+    if key in _CACHE:
+        return _CACHE[key]
+    from concurrent.futures import ThreadPoolExecutor
+    spans, t = [], start
     while t < end:
-        t1 = min(t + timedelta(days=30), end)
-        d = fetch(code, t, t1)
-        rows += [x for x in d if isinstance(x, dict) and x.get('slevel') is not None]
-        t = t1
-        time.sleep(1)
+        spans.append((t, min(t + timedelta(days=10), end)))
+        t = spans[-1][1]
+    t0 = time.time()
+    with ThreadPoolExecutor(6) as ex:
+        parts = list(ex.map(lambda sp: fetch(code, *sp), spans))
+    rows = [x for d in parts for x in d if isinstance(x, dict) and x.get('slevel') is not None]
+    print(f'{code}: {len(rows)} righe in {time.time()-t0:.0f}s', flush=True)
     if not rows:
-        return pd.Series(dtype=float), None
+        _CACHE[key] = (pd.Series(dtype=float), None)
+        return _CACHE[key]
     df = pd.DataFrame(rows)
-    # sensore principale = quello con più dati
-    main = df['sensor'].value_counts().idxmax()
+    main = df['sensor'].value_counts().idxmax()  # sensore principale = quello con più dati
     df = df[df['sensor'] == main]
     s = pd.Series(df['slevel'].astype(float).values, index=pd.to_datetime(df['stime'], utc=True)).sort_index()
     s = s[~s.index.duplicated()]
     s = s[(s > -50) & (s < 50)]
-    # via picchi: scarto > 25 cm dalla mediana mobile di 15 min
-    med = s.rolling('15min', center=True).median()
+    med = s.rolling('15min', center=True).median()  # via picchi > 25 cm dalla mediana di 15 min
     s = s[(s - med).abs() < 0.25]
-    h = s.resample('1h').mean()
-    cnt = s.resample('1h').count()
-    h[cnt < 20] = np.nan
+    _CACHE[key] = (s, main)
+    return _CACHE[key]
+
+
+def history(code, start, end):
+    s, main = minutes(code, start, end)
+    if s.empty:
+        return pd.Series(dtype=float), None
+    # valore istantaneo allo scoccare dell'ora (media di 11 min centrata): nessuno sfasamento
+    sm = s.rolling('11min', center=True, min_periods=5).mean()
+    grid = pd.date_range(s.index[0].ceil('1h'), s.index[-1].floor('1h'), freq='1h')
+    h = sm.reindex(grid, method='nearest', tolerance=pd.Timedelta('3min'))
     return h, main
 
 
@@ -114,15 +131,8 @@ def main():
         pf = predict(c1, fine_idx)
         pe = extremes(list(fine_idx.to_pydatetime()), pf)
         # osservati: serie al minuto lisciata (30 min)
-        obs_raw = []
-        t = split
-        while t < split + timedelta(days=60) and t < now:
-            obs_raw += fetch('fue2', t, t + timedelta(days=30))
-            t += timedelta(days=30)
-        o = pd.DataFrame([x for x in obs_raw if isinstance(x, dict) and x.get('slevel') is not None and x.get('sensor') == sensor])
-        so = pd.Series(o['slevel'].astype(float).values, index=pd.to_datetime(o['stime'], utc=True)).sort_index()
-        so = so[~so.index.duplicated()]
-        so = so[(so - so.rolling('15min', center=True).median()).abs() < 0.25]
+        so = minutes('fue2', start, now)[0]
+        so = so[(so.index >= split) & (so.index < split + timedelta(days=60))]
         sm = so.resample('6min').mean().interpolate(limit=5).rolling(5, center=True).mean()
         oe = extremes(list(sm.index.to_pydatetime()), sm.values)
         oe = [e for e in oe if not math.isnan(e[1])]
@@ -176,6 +186,9 @@ def main():
     }
     with open(os.path.join(out_dir, 'tides.json'), 'w') as f:
         json.dump(data, f, separators=(',', ':'))
+    nxt = [e for e in data['extremes'] if e[0] >= now.strftime('%Y-%m-%dT%H:%MZ')][:4]
+    note('prossime maree (UTC): ' + json.dumps(nxt))
+
     # differenze con altri mareografi delle Canarie (per stimare Corralejo / costa ovest)
     try:
         sl = json.loads(urllib.request.urlopen(IOC + '?query=stationlist&showall=all&format=json', timeout=120).read().decode())
@@ -185,8 +198,8 @@ def main():
         for x in can:
             if x['Code'] in ('fue2', 'fuer2'):
                 continue
-            hh, _ = history(x['Code'], now - timedelta(days=365), now)
-            if hh.dropna().shape[0] < 24 * 200:
+            hh, _ = history(x['Code'], now - timedelta(days=120), now)
+            if hh.dropna().shape[0] < 24 * 90:
                 continue
             c = solve(hh)
             d = dict(zip(c['name'], zip(c['A'], c['g'])))
@@ -195,8 +208,6 @@ def main():
                 note(f"{x['Code']} {x['Location']}: M2 {d['M2'][0]*100:.1f}cm vs {ref['M2'][0]*100:.1f}cm, ritardo M2 {dg*12.42*60/360:+.1f} min")
     except Exception as e:
         note('confronto stazioni fallito: ' + repr(e))
-    nxt = [e for e in data['extremes'] if e[0] >= now.strftime('%Y-%m-%dT%H:%MZ')][:4]
-    note('prossime maree (UTC): ' + json.dumps(nxt))
 
 
 if __name__ == '__main__':

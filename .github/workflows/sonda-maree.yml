@@ -11,9 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pip install utide pandas numpy
-      - run: python3 tools/build_tides.py data --years 4
+      - run: python3 tools/build_tides.py data --years 3
       - name: Salva risultato
+        if: always()
         run: |
           git config user.name "maxora-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          [ -f data/tides.json ] || exit 0
           git add data/tides.json && git commit -qm "Maree calcolate [skip ci]" && git push -q
