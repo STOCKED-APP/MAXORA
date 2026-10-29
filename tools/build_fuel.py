@@ -30,9 +30,10 @@ def fetch():
             req = urllib.request.Request(URL, headers={'Accept': 'application/json', 'User-Agent': 'Maxora/0.12 (+https://github.com/STOCKED-APP/MAXORA)'})
             return json.loads(urllib.request.urlopen(req, timeout=90).read().decode('utf-8-sig'))
         except Exception as e:
-            print('retry', e, flush=True)
+            print('::warning::tentativo ' + str(k + 1) + ': ' + repr(e)[:300], flush=True)
             time.sleep(20 * (k + 1))
-    sys.exit('download prezzi fallito')
+    print('::error::download prezzi fallito', flush=True)
+    sys.exit(1)
 
 
 def main():
@@ -52,7 +53,8 @@ def main():
                     'town': (e.get('Localidad') or '').strip().title(), 'hours': (e.get('Horario') or '').strip(),
                     'lat': round(-lat if lat < 0 else lat, 6), 'lng': round(lng, 6), **{k: v for k, v in p.items() if v}})
     if len(out) < 10:
-        sys.exit(f'troppo poche stazioni: {len(out)}')
+        print(f'::error::troppo poche stazioni: {len(out)} su {len(doc.get("ListaEESSPrecio", []))}', flush=True)
+        sys.exit(1)
     stats = {}
     for k in TYPES:
         vals = sorted(s[k] for s in out if s.get(k))
@@ -67,4 +69,11 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception as e:
+        import traceback
+        print('::error::' + traceback.format_exc().replace('\n', ' | ')[-900:], flush=True)
+        sys.exit(1)
