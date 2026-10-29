@@ -1,7 +1,7 @@
 const { chromium } = require('playwright');
+const out = [];
 (async () => {
   const b = await chromium.launch();
-  const out = [];
   const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, locale: 'it-IT' });
   await ctx.addInitScript(() => { localStorage.setItem('maxora_lang', JSON.stringify('it')); localStorage.setItem('maxora_surfLevel', '2'); });
   const p = await ctx.newPage();
@@ -45,4 +45,4 @@ const { chromium } = require('playwright');
   out.push('errori: ' + (errs.join(' | ') || 'nessuno'));
   require('fs').writeFileSync('shots/out.txt', out.join('\n'));
   await b.close();
-})();
+})().catch((e) => { out.push('ERRORE: ' + e.message); require('fs').writeFileSync('shots/out.txt', out.join('\n')); process.exit(0); });
