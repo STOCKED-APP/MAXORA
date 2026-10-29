@@ -1,9 +1,0 @@
-prima: {"r":3,"h":1.1777513800000001}
-toast: Grazie! Lo vedono tutti per 3 ore
-lista: Pulito
-· Ginocchio · Vuoto
-1 min fa
-dopo: {"r":2.5,"h":1.1777513800000001,"comm":null}
-secondo invio: Hai già segnalato questo spot
-lista spot: 4 | Generoso | ottimo · 1,5 m · 12 s · NO · vento laterale 11 km/h // 3,5 | Majanicho | buono · 1,6 m · 12 s · NO · vento onshore 11 km/h // 3,5 | El Cotillo · Piedra Playa | buono · 1,6 m · 12 s · NO · vento onshore 11 km/h // 3,5 | Playa de Esquinzo | buono · 1,4 m · 12 s · NO · vento onshore 11 km/h
-errori: Failed to load resource: the server responded with a status of 400 ()
