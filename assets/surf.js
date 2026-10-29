@@ -390,9 +390,12 @@
       if (b.sp.tide && b.sp.tide !== 'all' && x.tide) L.push(['🌗', tr('aTide', { x: tr('t' + b.sp.tide), r: x.tide.rising ? '↗ ' + tr('rising') : '↘ ' + tr('falling') })]);
       if (x.h > 2.5 && SF.level < 3) L.push(['⚠️', tr('aBig')]);
     }
+    if (!store.get('advOpen', false)) box.classList.add('closed');
     box.append(
-      el('div', { class: 'adv-h' }, [el('span', { class: 'adv-i', text: '💡' }), el('span', { text: tr('advLabel') + ' · ' + when })]),
-      el('div', { class: 'adv-v', text: verdict }),
+      el('button', { class: 'adv-top', 'aria-expanded': String(store.get('advOpen', false)) }, [
+        el('div', { class: 'adv-h' }, [el('span', { class: 'adv-i', text: '💡' }), el('span', { text: tr('advLabel') + ' · ' + when })]),
+        el('div', { class: 'adv-v', text: verdict })
+      ]),
       el('ul', {}, L.map(([ic, tx]) => el('li', {}, [el('span', { class: 'ic', text: ic }), el('span', { text: tx })])))
     );
     if (b) box.appendChild(el('button', { class: 'adv-a', onclick: () => openCard(b.sp.id, true) }, [el('span', { class: 'ic', text: '★' }), el('span', { text: b.sp.name + ' · ' + fmtR(r) + '/5' }), el('b', { text: '›' })]));

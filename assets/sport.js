@@ -336,10 +336,12 @@
   function advBox(box, s, title, lines, acts) {
     box.innerHTML = '';
     const lvl = s == null ? 'bad' : s >= 4 ? 'good' : s >= 3 ? 'ok' : s >= 2 ? 'warn' : 'bad';
-    box.className = 'adv ' + lvl;
+    box.className = 'adv ' + lvl + (store.get('advOpen', false) ? '' : ' closed');
     box.append(
-      el('div', { class: 'adv-h' }, [el('span', { class: 'adv-i', text: '💡' }), el('span', { text: tr('advLabel') + ' · ' + title })]),
-      el('div', { class: 'adv-v', text: tr(s >= 4 ? 'v4' : s >= 3 ? 'v3' : s >= 2 ? 'v2' : 'v1') }),
+      el('button', { class: 'adv-top', 'aria-expanded': String(store.get('advOpen', false)) }, [
+        el('div', { class: 'adv-h' }, [el('span', { class: 'adv-i', text: '💡' }), el('span', { text: tr('advLabel') + ' · ' + title })]),
+        el('div', { class: 'adv-v', text: tr(s >= 4 ? 'v4' : s >= 3 ? 'v3' : s >= 2 ? 'v2' : 'v1') })
+      ]),
       el('ul', {}, lines.map(([ic, tx]) => el('li', {}, [el('span', { class: 'ic', text: ic }), el('span', { text: tx })])))
     );
     acts.filter(Boolean).forEach((x) => box.appendChild(el('button', { class: 'adv-a', onclick: x.go }, [el('span', { class: 'ic', text: x.ic }), el('span', { text: x.tx }), el('b', { text: '›' })])));
@@ -639,5 +641,14 @@
   $('spSheet').classList.toggle('collapsed', SP.collapsed);
   const saved = store.get('sportMode', null);
   if (saved && !surfOn()) setSport(saved, true).then(sync); else sync();
+  // consiglio: chiuso = una riga; si apre toccandolo (vale per surf, bici e corsa)
+  document.addEventListener('click', (e) => {
+    const top = e.target.closest && e.target.closest('.adv-top');
+    if (!top) return;
+    const open = !store.get('advOpen', false);
+    store.set('advOpen', open);
+    document.querySelectorAll('.adv').forEach((b) => b.classList.toggle('closed', !open));
+    document.querySelectorAll('.adv-top').forEach((b) => b.setAttribute('aria-expanded', String(open)));
+  });
   window.MAXORA_SPORT = { state: SP, score, setSport };
 })();

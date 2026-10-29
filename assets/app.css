@@ -783,3 +783,14 @@ body:has(#spCard:not(.hidden)) #spSheet, body:has(#sfCard:not(.hidden)) #sfSheet
 .acct-b { width: 100%; min-height: 46px; border-radius: 12px; border: 0; background: var(--text); color: var(--sheet); font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
 .acct-b.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
 .acct-b:disabled { opacity: .6; }
+
+/* v0.12.1 — consiglio richiudibile; il pannello scorre tutto insieme (niente parti ferme sopra la lista) */
+.adv-top { display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; position: relative; padding-right: 26px; }
+.adv-top::after { content: '⌃'; position: absolute; right: 2px; top: 50%; transform: translateY(-50%); font-size: 16px; font-weight: 800; color: var(--ac); }
+.adv.closed .adv-top::after { transform: translateY(-50%) rotate(180deg); }
+.adv.closed { padding-bottom: 10px; }
+.adv.closed ul, .adv.closed .adv-a { display: none; }
+.adv.closed .adv-v { margin-bottom: 0; font-size: 15px; }
+.sf-sheet .sheet-body, .sp-sheet .sheet-body { overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.sf-sheet.collapsed .sheet-body, .sp-sheet.collapsed .sheet-body { overflow: hidden; }
+.sf-sheet .sf-list, .sp-sheet .sf-list { max-height: none; overflow: visible; padding-bottom: 4px; }
