@@ -262,6 +262,8 @@
   if (map.__style === 'sat') setMapStyle('sat');
   map.touchZoomRotate.disableRotation();
 
+  // icone mancanti negli stili esterni: immagine vuota invece di un errore
+  map.on('styleimagemissing', (e) => { if (!map.hasImage(e.id)) map.addImage(e.id, { width: 1, height: 1, data: new Uint8Array(4) }); });
   map.on('style.load', () => {
     if (!map.getSource('police')) map.addSource('police', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
     if (!map.getLayer('police-fill')) map.addLayer({ id: 'police-fill', type: 'fill', source: 'police', paint: { 'fill-color': '#2b8fb0', 'fill-opacity': 0.12 } });
