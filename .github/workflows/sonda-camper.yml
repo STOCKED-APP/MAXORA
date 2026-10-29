@@ -1,0 +1,17 @@
+name: Sonda camper
+on: { push: { branches: [sonda-camper] } }
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          Q='[out:json][timeout:60];area["name"="Fuerteventura"]["place"="island"]->.a;(nwr["name"~"Laso"](area.a);nwr["tourism"~"caravan_site|camp_site"](area.a);nwr["amenity"="sanitary_dump_station"](area.a);nwr["sanitary_dump_station"](area.a);nwr["motorhome"~"yes|designated"](area.a););out center tags;'
+          curl -s --data-urlencode "data=$Q" https://overpass-api.de/api/interpreter -o o.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('o.json'))
+          for e in d['elements']:
+              c=e.get('center') or e
+              t=e.get('tags',{})
+              print('::notice::%s %s,%s %s' % (e['type']+str(e['id']), round(c.get('lat',0),6), round(c.get('lon',0),6), json.dumps(t,ensure_ascii=False)[:400]))
+          PY
