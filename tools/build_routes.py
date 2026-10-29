@@ -91,28 +91,28 @@ def smooth(a, w=5):
 def climb_stats(dist, ele):
     gain = loss = 0.0
     ref = ele[0]
-    for e in ele[1:]:        # isteresi 3 m: ignora il rumore del modello
-        if e - ref >= 3: gain += e - ref; ref = e
-        elif ref - e >= 3: loss += ref - e; ref = e
-    # pendenza su tratti di 200 m
-    grades = []
-    j = 0
+    for e in ele[1:]:        # isteresi 5 m: ignora il rumore del modello del terreno
+        if e - ref >= 5: gain += e - ref; ref = e
+        elif ref - e >= 5: loss += ref - e; ref = e
+    # pendenza massima su tratti di 500 m (più corti sono troppo influenzati dal modello)
+    maxg, j = 0.0, 0
     for i in range(len(dist)):
-        while j < len(dist) and dist[j] - dist[i] < 200: j += 1
-        if j < len(dist): grades.append((ele[j] - ele[i]) / (dist[j] - dist[i]) * 100)
-    maxg = max(grades) if grades else 0
-    # salita principale: tratto continuo in salita con più metri guadagnati
-    best = (0, 0, 0)  # guadagno, inizio, fine
-    lo_i = 0
+        while j < len(dist) and dist[j] - dist[i] < 500: j += 1
+        if j < len(dist): maxg = max(maxg, (ele[j] - ele[i]) / (dist[j] - dist[i]) * 100)
+    # salita principale: tratto in salita che non scende mai più di 15 m
+    best, start, top = None, 0, 0
     for i in range(1, len(ele)):
-        if ele[i] < ele[lo_i]: lo_i = i
-        g = ele[i] - ele[lo_i]
-        if g > best[0]: best = (g, lo_i, i)
+        if ele[i] > ele[top]: top = i
+        if ele[top] - ele[i] > 15 or i == len(ele) - 1:
+            g = ele[top] - ele[start]
+            if g >= 40 and (best is None or g > best[0]): best = (g, start, top)
+            start = top = i
+        if ele[i] < ele[start]: start = top = i
     main = None
-    if best[0] >= 40:
+    if best:
         L = dist[best[2]] - dist[best[1]]
-        main = {'from_km': round(dist[best[1]] / 1000, 1), 'km': round(L / 1000, 1), 'gain': round(best[0]), 'avg': round(best[0] / L * 100, 1)}
-    return round(gain), round(loss), round(maxg, 1), main
+        main = {'from_km': round(dist[best[1]] / 1000, 1), 'km': round(L / 1000, 1), 'gain': int(round(best[0])), 'avg': round(float(best[0] / L * 100), 1)}
+    return int(round(gain)), int(round(loss)), round(float(maxg), 1), main
 
 
 def main():
@@ -120,10 +120,23 @@ def main():
     routes = json.load(open(src))['routes']
     out = []
     for r in routes:
+        try:
+            o = build_one(r)
+        except Exception as e:
+            import traceback; traceback.print_exc()
+            note(f"{r['id']}: errore {e!r}")
+            continue
+        if o:
+            out.append(o)
+        time.sleep(1.5)
+    return finish(routes, out, dst)
+
+
+def build_one(r):
         rt = route(r['sport'], r['via'])
         if not rt:
             note(f"{r['id']}: percorso non tracciato, salto")
-            continue
+            return None
         coords = rt['geometry']['coordinates']
         # tappe: quanto lontano è finito il router dal punto voluto
         snap = [round(hav([lng, lat], min(coords, key=lambda c: hav(c, [lng, lat])))) for _, lat, lng in r['via']]
@@ -150,9 +163,11 @@ def main():
             'start': [line[0][1], line[0][0]],
             'line': line, 'profile': prof,
         })
-        out.append(o)
         note(f"{r['id']}: {o['km']} km, +{gain} m, max {maxg}%, quota {o['ele_min']}–{o['ele_max']} m, scarto tappe {snap} m, salita {main_climb}")
-        time.sleep(1.5)
+        return o
+
+
+def finish(routes, out, dst):
     doc = {'generated': time.strftime('%Y-%m-%dT%H:%MZ', time.gmtime()),
            'source': 'Percorsi: © OpenStreetMap contributors (ODbL), router FOSSGIS OSRM · Quote: Copernicus DEM GLO-30 © DLR/Airbus, ESA',
            'routes': out}
