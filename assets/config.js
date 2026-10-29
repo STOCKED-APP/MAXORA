@@ -7,5 +7,5 @@ window.MAXORA_CONFIG = {
     light: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
     dark: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json'
   },
-  version: '0.5.0'
+  version: '0.5.1'
 };

@@ -29,7 +29,7 @@
       ,searchPh: '¿A dónde vas?', sRecent: 'Recientes', sOurs: 'En Maxora', sStreets: 'Calles y lugares', sNone: 'Sin resultados. Prueba con otro nombre.', sOffline: 'Sin conexión: solo resultados de Maxora.',
       sNear: 'Cerca de ti', cBeach: 'Playas', cFood: 'Comer', cFuel: 'Gasolineras', cSurf: 'Surf', cView: 'Miradores',
       go: 'IR', openWith: 'Abrir navegación con', fromYou: 'Desde ti', alertsNear: 'Avisos cerca', alertsRoute: 'Avisos en el camino', none0: 'Ninguno',
-      routeNote: 'Maxora sigue avisándote en segundo plano mientras navegas.', approxRoute: 'aprox., en línea recta', share: 'Compartir', street: 'Calle', place: 'Lugar', town: 'Localidad', beachT: 'Playa', biz: 'Negocio', clearHist: 'Borrar historial', loadingMap: 'buscando…', nResults: '{n} en el mapa', noResultsArea: 'nada en esta zona', seeAll: 'Ver todos en el mapa', searchArea: 'Buscar en esta zona', hours: 'Horario', list: 'Lista', ahead: 'Delante de ti', nextKm: 'próximos {km} km', then: 'Después', you: 'Tú', reportBig: 'Avisar de algo', inDist: 'a {d}', roadClear: 'Vía despejada', roadClearSub: 'Nada avisado en los próximos {km} km'
+      routeNote: 'Maxora sigue avisándote en segundo plano mientras navegas.', approxRoute: 'aprox., en línea recta', share: 'Compartir', street: 'Calle', place: 'Lugar', town: 'Localidad', beachT: 'Playa', biz: 'Negocio', clearHist: 'Borrar historial', loadingMap: 'buscando…', nResults: '{n} en el mapa', noResultsArea: 'nada en esta zona', seeAll: 'Ver todos en el mapa', searchArea: 'Buscar en esta zona', hours: 'Horario', list: 'Lista', ahead: 'Delante de ti', nextKm: 'próximos {km} km', then: 'Después', you: 'Tú', reportBig: 'Avisar de algo', inDist: 'a {d}', roadClear: 'Vía despejada', roadClearSub: 'Nada avisado en los próximos {km} km', zoneTitle: 'En esta zona', zoneCount: '{n} avisos aquí', zoneNone: 'Nada en esta zona', zoneNoneSub: 'Mueve el mapa para ver otras zonas', fromYouD: 'a {d} de ti', alsoHere: 'También aquí'
     },
     en: {
       next: 'Next alert', clear: 'Road clear', clearSub: 'Nothing within {km} km', report: 'REPORT',
@@ -49,7 +49,7 @@
       ,searchPh: 'Where to?', sRecent: 'Recent', sOurs: 'On Maxora', sStreets: 'Streets & places', sNone: 'No results. Try another name.', sOffline: 'Offline: Maxora results only.',
       sNear: 'Near you', cBeach: 'Beaches', cFood: 'Food', cFuel: 'Fuel', cSurf: 'Surf', cView: 'Viewpoints',
       go: 'GO', openWith: 'Navigate with', fromYou: 'From you', alertsNear: 'Alerts nearby', alertsRoute: 'Alerts on the way', none0: 'None',
-      routeNote: 'Maxora keeps alerting you in the background while you drive.', approxRoute: 'approx., straight line', share: 'Share', street: 'Street', place: 'Place', town: 'Town', beachT: 'Beach', biz: 'Business', clearHist: 'Clear history', loadingMap: 'searching…', nResults: '{n} on the map', noResultsArea: 'nothing in this area', seeAll: 'Show all on the map', searchArea: 'Search this area', hours: 'Hours', list: 'List', ahead: 'Ahead of you', nextKm: 'next {km} km', then: 'Then', you: 'You', reportBig: 'Report something', inDist: 'in {d}', roadClear: 'Road clear', roadClearSub: 'Nothing reported in the next {km} km'
+      routeNote: 'Maxora keeps alerting you in the background while you drive.', approxRoute: 'approx., straight line', share: 'Share', street: 'Street', place: 'Place', town: 'Town', beachT: 'Beach', biz: 'Business', clearHist: 'Clear history', loadingMap: 'searching…', nResults: '{n} on the map', noResultsArea: 'nothing in this area', seeAll: 'Show all on the map', searchArea: 'Search this area', hours: 'Hours', list: 'List', ahead: 'Ahead of you', nextKm: 'next {km} km', then: 'Then', you: 'You', reportBig: 'Report something', inDist: 'in {d}', roadClear: 'Road clear', roadClearSub: 'Nothing reported in the next {km} km', zoneTitle: 'In this area', zoneCount: '{n} alerts here', zoneNone: 'Nothing in this area', zoneNoneSub: 'Move the map to see other areas', fromYouD: '{d} from you', alsoHere: 'Also here'
     },
     it: {
       next: 'Prossimo avviso', clear: 'Strada libera', clearSub: 'Niente entro {km} km', report: 'AVVISA',
@@ -69,7 +69,7 @@
       ,searchPh: 'Dove vai?', sRecent: 'Recenti', sOurs: 'Su Maxora', sStreets: 'Vie e luoghi', sNone: 'Nessun risultato. Prova un altro nome.', sOffline: 'Offline: solo risultati Maxora.',
       sNear: 'Vicino a te', cBeach: 'Spiagge', cFood: 'Mangiare', cFuel: 'Benzinai', cSurf: 'Surf', cView: 'Panorami',
       go: 'VAI', openWith: 'Apri navigazione con', fromYou: 'Da te', alertsNear: 'Avvisi vicini', alertsRoute: 'Avvisi sul percorso', none0: 'Nessuno',
-      routeNote: 'Maxora continua ad avvisarti in sottofondo mentre guidi.', approxRoute: 'approssimato, in linea d’aria', share: 'Condividi', street: 'Via', place: 'Luogo', town: 'Località', beachT: 'Spiaggia', biz: 'Attività', clearHist: 'Cancella cronologia', loadingMap: 'cerco…', nResults: '{n} sulla mappa', noResultsArea: 'niente in questa zona', seeAll: 'Vedi tutti sulla mappa', searchArea: 'Cerca in questa zona', hours: 'Orari', list: 'Lista', ahead: 'Davanti a te', nextKm: 'prossimi {km} km', then: 'Poi', you: 'Tu', reportBig: 'Segnala qualcosa', inDist: 'tra {d}', roadClear: 'Strada libera', roadClearSub: 'Niente segnalato nei prossimi {km} km'
+      routeNote: 'Maxora continua ad avvisarti in sottofondo mentre guidi.', approxRoute: 'approssimato, in linea d’aria', share: 'Condividi', street: 'Via', place: 'Luogo', town: 'Località', beachT: 'Spiaggia', biz: 'Attività', clearHist: 'Cancella cronologia', loadingMap: 'cerco…', nResults: '{n} sulla mappa', noResultsArea: 'niente in questa zona', seeAll: 'Vedi tutti sulla mappa', searchArea: 'Cerca in questa zona', hours: 'Orari', list: 'Lista', ahead: 'Davanti a te', nextKm: 'prossimi {km} km', then: 'Poi', you: 'Tu', reportBig: 'Segnala qualcosa', inDist: 'tra {d}', roadClear: 'Strada libera', roadClearSub: 'Niente segnalato nei prossimi {km} km', zoneTitle: 'In questa zona', zoneCount: '{n} avvisi qui', zoneNone: 'Niente in questa zona', zoneNoneSub: 'Sposta la mappa per vedere altre zone', fromYouD: 'a {d} da te', alsoHere: 'Anche qui'
     },
     de: {
       next: 'Nächste Meldung', clear: 'Freie Fahrt', clearSub: 'Nichts im Umkreis von {km} km', report: 'MELDEN',
@@ -89,7 +89,7 @@
       ,searchPh: 'Wohin?', sRecent: 'Zuletzt', sOurs: 'Auf Maxora', sStreets: 'Straßen & Orte', sNone: 'Keine Ergebnisse. Anderen Namen versuchen.', sOffline: 'Offline: nur Maxora-Ergebnisse.',
       sNear: 'In deiner Nähe', cBeach: 'Strände', cFood: 'Essen', cFuel: 'Tankstellen', cSurf: 'Surfen', cView: 'Aussichtspunkte',
       go: 'LOS', openWith: 'Navigieren mit', fromYou: 'Von dir', alertsNear: 'Meldungen in der Nähe', alertsRoute: 'Meldungen unterwegs', none0: 'Keine',
-      routeNote: 'Maxora warnt dich während der Fahrt im Hintergrund weiter.', approxRoute: 'ca., Luftlinie', share: 'Teilen', street: 'Straße', place: 'Ort', town: 'Ortschaft', beachT: 'Strand', biz: 'Betrieb', clearHist: 'Verlauf löschen', loadingMap: 'suche…', nResults: '{n} auf der Karte', noResultsArea: 'nichts in diesem Bereich', seeAll: 'Alle auf der Karte zeigen', searchArea: 'In diesem Bereich suchen', hours: 'Öffnungszeiten', list: 'Liste', ahead: 'Vor dir', nextKm: 'nächste {km} km', then: 'Danach', you: 'Du', reportBig: 'Etwas melden', inDist: 'in {d}', roadClear: 'Freie Fahrt', roadClearSub: 'Nichts gemeldet auf den nächsten {km} km'
+      routeNote: 'Maxora warnt dich während der Fahrt im Hintergrund weiter.', approxRoute: 'ca., Luftlinie', share: 'Teilen', street: 'Straße', place: 'Ort', town: 'Ortschaft', beachT: 'Strand', biz: 'Betrieb', clearHist: 'Verlauf löschen', loadingMap: 'suche…', nResults: '{n} auf der Karte', noResultsArea: 'nichts in diesem Bereich', seeAll: 'Alle auf der Karte zeigen', searchArea: 'In diesem Bereich suchen', hours: 'Öffnungszeiten', list: 'Liste', ahead: 'Vor dir', nextKm: 'nächste {km} km', then: 'Danach', you: 'Du', reportBig: 'Etwas melden', inDist: 'in {d}', roadClear: 'Freie Fahrt', roadClearSub: 'Nichts gemeldet auf den nächsten {km} km', zoneTitle: 'In diesem Bereich', zoneCount: '{n} Meldungen hier', zoneNone: 'Nichts in diesem Bereich', zoneNoneSub: 'Karte verschieben, um andere Bereiche zu sehen', fromYouD: '{d} von dir', alsoHere: 'Auch hier'
     }
   };
   const LOCALES = { es: 'es-ES', en: 'en-GB', it: 'it-IT', de: 'de-DE' };
@@ -117,6 +117,7 @@
     follow: true,
     selectedId: null,
     ahead: [],
+    view: [],
     alerted: new Set(store.get('alerted', [])),
     voted: new Set(store.get('voted', [])),
     voice: store.get('voice', true),
@@ -232,7 +233,7 @@
     if (!map.getLayer('police-line')) map.addLayer({ id: 'police-line', type: 'line', source: 'police', paint: { 'line-color': '#2b8fb0', 'line-width': 1.5, 'line-dasharray': [2, 2] } });
     drawPoliceZones();
   });
-  map.on('dragstart', () => { S.follow = false; updateChip(); });
+  map.on('dragstart', () => { S.follow = false; S.selectedId = null; updateChip(); });
 
   const meEl = el('div', { class: 'me' });
   const meMarker = new maplibregl.Marker({ element: meEl, rotationAlignment: 'map' });
@@ -380,8 +381,25 @@
     }
     out.sort((a, b) => a.d - b.d);
     S.ahead = out;
+    computeView();
     return out;
   }
+
+  // Modalità esplorazione: se sposti la mappa (o non c'è GPS) il pannello descrive la zona che stai guardando
+  const zoneMode = () => !S.pos || !S.follow;
+  function computeView() {
+    S.view = [];
+    if (!zoneMode()) return;
+    const c = map.getCenter(), b = map.getBounds();
+    const out = [];
+    for (const r of S.reports.values()) {
+      if (r.lat < b.getSouth() || r.lat > b.getNorth() || r.lng < b.getWest() || r.lng > b.getEast()) continue;
+      out.push({ r, d: S.pos ? distKm(S.pos, r) : null, dc: distKm({ lat: c.lat, lng: c.lng }, r) });
+    }
+    out.sort((a, b2) => a.dc - b2.dc);
+    S.view = out;
+  }
+  const panelList = () => (zoneMode() ? S.view : S.ahead);
 
   function checkProximity() {
     if (!S.pos) return;
@@ -503,24 +521,29 @@
       const r = S.reports.get(S.selectedId);
       return { r, d: S.pos ? distKm(S.pos, r) : null };
     }
-    return S.ahead[0] || null;
+    return panelList()[0] || null;
   }
 
   function drawHeader() {
-    $('aheadTitle').textContent = t('ahead');
+    const zone = zoneMode();
+    $('aheadTitle').textContent = zone ? t('zoneTitle') : t('ahead');
+    $('sheet').classList.toggle('zone', zone);
     const h = heroItem();
     // chiuso: il riassunto dice subito cosa c'è; aperto: quanta strada guardo
     if (S.collapsed && h) {
       const ty = typeOf(h.r);
       $('aheadSub').textContent = labelOf(ty) + (h.d != null ? ' · ' + distText(h.d, ty.is_police) : '');
     } else {
-      $('aheadSub').textContent = setting('maintenance', false) === true ? t('errMaint') : t('nextKm', { km: MAX_KM });
+      $('aheadSub').textContent = setting('maintenance', false) === true ? t('errMaint')
+        : zone ? (S.view.length ? t('zoneCount', { n: S.view.length }) : '') : t('nextKm', { km: MAX_KM });
     }
   }
 
   function drawRoad() {
     const road = $('road');
     road.innerHTML = '';
+    road.classList.toggle('hidden', zoneMode());
+    if (zoneMode()) return;
     road.append(el('div', { class: 'road-track' }), el('div', { class: 'road-me' }), el('div', { class: 'road-cap left', text: t('you') }), el('div', { class: 'road-cap right', text: MAX_KM + ' km' }));
     let lastLabel = -100;   // etichette mai sovrapposte: almeno 18% di distanza
     S.ahead.slice(0, 5).forEach(({ r, d }) => {
@@ -553,8 +576,8 @@
       ok.setAttribute('viewBox', '0 0 24 24'); ok.setAttribute('fill', 'none'); ok.setAttribute('stroke', 'var(--green)'); ok.setAttribute('stroke-width', '2.4'); ok.setAttribute('stroke-linecap', 'round'); ok.setAttribute('stroke-linejoin', 'round');
       ok.innerHTML = '<path d="M5 12l5 5 9-10"/>';
       ico.appendChild(ok);
-      title.textContent = t('roadClear');
-      meta.textContent = t('roadClearSub', { km: MAX_KM });
+      title.textContent = zoneMode() ? t('zoneNone') : t('roadClear');
+      meta.textContent = zoneMode() ? t('zoneNoneSub') : t('roadClearSub', { km: MAX_KM });
       $('cardActions').classList.add('hidden');
       hero.dataset.id = '';
       return;
@@ -565,11 +588,12 @@
     ico.style.background = tint(color, 0.15);
     ico.appendChild(typeIcon(ty, color));
     title.appendChild(document.createTextNode((r.title && r.source !== 'dgt' ? r.title : labelOf(ty)) + ' '));
-    if (h.d != null) title.appendChild(el('span', { class: 'hero-d', style: 'color:' + (ty.is_police ? 'var(--blue-text)' : 'var(--text)'), text: t('inDist', { d: distText(h.d, ty.is_police) }) }));
+    if (h.d != null && !zoneMode()) title.appendChild(el('span', { class: 'hero-d', style: 'color:' + (ty.is_police ? 'var(--blue-text)' : 'var(--text)'), text: t('inDist', { d: distText(h.d, ty.is_police) }) }));
     const mins = (Date.now() - new Date(r.created_at)) / 60000;
     const bits = [];
-    if (r.source === 'dgt') { bits.push('DGT'); if (r.title) bits.push(r.title); }
+    if (r.source === 'dgt') { bits.push('DGT' + (r.title ? ' ' + r.title.replace(/ · [^(]*/, ' ').trim() : '')); }
     else if (r.official) bits.push(t('official'));
+    if (zoneMode() && h.d != null) bits.push(t('fromYouD', { d: distText(h.d, ty.is_police) }));
     bits.push(t('ago', { t: fmtMin(mins) }));
     if (ty.is_police) bits.push(t('approx'));
     else if (r.confirms) bits.push(t('confirms', { n: r.confirms }));
@@ -582,8 +606,8 @@
 
   function drawThen() {
     const h = heroItem();
-    const rest = S.ahead.filter((x) => !h || x.r.id !== h.r.id).slice(0, 2);
-    $('thenTitle').textContent = t('then');
+    const rest = panelList().filter((x) => !h || x.r.id !== h.r.id).slice(0, zoneMode() ? 3 : 2);
+    $('thenTitle').textContent = zoneMode() ? t('alsoHere') : t('then');
     const list = $('thenList');
     list.innerHTML = '';
     rest.forEach(({ r, d }) => {
@@ -591,7 +615,7 @@
       const m = el('span', { class: 'then-dot' + (ty.is_police ? ' police' : '') });
       if (!ty.is_police) m.style.background = ty.color;
       list.appendChild(el('button', { class: 'then-row', onclick: () => select(r.id, true) }, [
-        m, el('span', { class: 'then-n', text: r.source === 'dgt' && r.title ? r.title : labelOf(ty) }), el('span', { class: 'then-d', text: distText(d, ty.is_police) })
+        m, el('span', { class: 'then-n', text: r.source === 'dgt' && r.title ? r.title : labelOf(ty) }), el('span', { class: 'then-d', text: d != null ? distText(d, ty.is_police) : '' })
       ]));
     });
     $('thenBox').classList.toggle('hidden', !rest.length);
@@ -1479,8 +1503,10 @@
   });
   $('centerBtn').addEventListener('click', () => {
     S.follow = true;
+    S.selectedId = null;
     if (S.pos) map.easeTo({ center: [S.pos.lng, S.pos.lat], zoom: 13.5, duration: 700 });
     else startGps();
+    refresh();
     updateChip();
   });
   document.querySelectorAll('#themeSeg button').forEach((b) => b.addEventListener('click', () => {
@@ -1493,7 +1519,8 @@
   $('voiceToggle').addEventListener('change', (e) => { S.voice = e.target.checked; store.set('voice', S.voice); });
   $('soundToggle').addEventListener('change', (e) => { S.sound = e.target.checked; store.set('sound', S.sound); if (S.sound) beep(); });
   map.on('click', () => { if (S.selectedId) { S.selectedId = null; refresh(); } });
-  map.on('moveend', () => { if (!S.pos) refresh(); });
+  let moveTimer;
+  map.on('moveend', () => { clearTimeout(moveTimer); moveTimer = setTimeout(() => { if (!S.follow || !S.pos) refresh(); }, 120); });
   window.addEventListener('resize', padMap);
 
   // ------------------------------------------------------------------
