@@ -1,22 +1,28 @@
 const { chromium } = require('playwright');
 (async () => {
   const b = await chromium.launch();
-  for (const [name, theme, mode] of [['chiaro','light','map'],['scuro','dark','map'],['satellite','light','sat']]) {
-    const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, colorScheme: theme });
-    await ctx.addInitScript(([t, m]) => { localStorage.setItem('maxora_theme', t); localStorage.setItem('maxora_mapMode', JSON.stringify(m)); }, [theme, mode]);
+  const out = [];
+  for (const [name, theme] of [['surf-chiaro', 'light'], ['surf-scuro', 'dark']]) {
+    const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, colorScheme: theme, locale: 'it-IT' });
+    await ctx.addInitScript(([t]) => { localStorage.setItem('maxora_theme', JSON.stringify(t)); localStorage.setItem('maxora_lang', JSON.stringify('it')); }, [theme]);
     const p = await ctx.newPage();
     const errs = [];
-    p.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') errs.push(m.text()); });
-    p.on('requestfailed', (r) => errs.push('FAIL ' + r.url().slice(0, 100)));
+    p.on('pageerror', (e) => errs.push('PAGE ' + e.message));
+    p.on('console', (m) => { if (m.type() === 'error') errs.push(m.text().slice(0, 160)); });
+    p.on('response', async (r) => { if (r.url().includes('tide-now')) { try { out.push('tide-now ' + r.status() + ' ' + (await r.text()).slice(0, 300)); } catch (e) {} } });
     await p.goto('https://stocked-app.github.io/MAXORA/?v=' + Date.now(), { waitUntil: 'load' });
+    await p.waitForTimeout(6000);
+    await p.click('#surfBtn');
     await p.waitForTimeout(9000);
-    if (mode === 'sat') {
-      const on = await p.evaluate(() => document.getElementById('layersBtn').classList.contains('on'));
-      if (!on) { await p.click('#layersBtn'); await p.waitForTimeout(8000); }
-    }
-    await p.screenshot({ path: `shots/${name}.png` });
-    console.log(`::notice::${name}: ${errs.slice(0, 6).join(' | ') || 'nessun errore'}`);
+    await p.screenshot({ path: `shots/${name}-1.png` });
+    const rows = await p.evaluate(() => [...document.querySelectorAll('.sf-row')].map((r) => r.innerText.replace(/\n/g, ' | ')).join(' // ') + ' ## ' + document.getElementById('sfTide').innerText.replace(/\n/g, ' ') + ' ## ' + document.getElementById('sfNote').innerText);
+    out.push(name + ': ' + rows);
+    await p.click('.sf-row');
+    await p.waitForTimeout(2500);
+    await p.screenshot({ path: `shots/${name}-2.png` });
+    out.push(name + ' errori: ' + (errs.join(' | ') || 'nessuno'));
     await ctx.close();
   }
+  require('fs').writeFileSync('shots/out.txt', out.join('\n'));
   await b.close();
 })();
