@@ -14,7 +14,7 @@
       advLabel: 'Consiglio', v4: 'Ottimo momento per uscire', v3: 'Buon momento, con qualche attenzione', v2: 'Si può uscire, ma non è l\'ideale', v1: 'Meglio un altro momento',
       aNight: 'Buio: luci e capo riflettente', aRain: 'Pioggia prevista: fondo scivoloso', aWind: 'Vento {v} km/h da {d}: parti controvento, evita i tratti esposti', aGust: 'Raffiche fino a {g} km/h nei tratti aperti',
       aHot: '{t}°: porta acqua, evita le ore centrali', aCold: '{t}°: strato antivento', aGood: 'Temperatura e vento nella norma', aBetter: 'Finestra migliore: {h}', aRoute: 'Percorso più adatto: {n}',
-      dRoad: 'Avvisi, traffico e controlli', dSurf: 'Onde, vento, maree e spot', dBike: 'Percorsi, vento e salite', dRun: 'Percorsi e ora migliore', exitMode: 'Esci', modeNow: 'Modalità {m}', road: 'Strada', surf: 'Surf', bike: 'Bici', run: 'Corsa', modes: 'Modalità',
+      camper: 'Camper', dCamper: 'Sosta, scarico, acqua, docce', dRoad: 'Avvisi, traffico e controlli', dSurf: 'Onde, vento, maree e spot', dBike: 'Percorsi, vento e salite', dRun: 'Percorsi e ora migliore', exitMode: 'Esci', modeNow: 'Modalità {m}', road: 'Strada', surf: 'Surf', bike: 'Bici', run: 'Corsa', modes: 'Modalità',
       bikeOn: 'Modalità bici', runOn: 'Modalità corsa', roadOn: 'Modalità strada',
       bestTime: 'Ora migliore: {h}', now: 'Adesso', temp: 'Temperatura', wind: 'Vento', gust: 'raffiche', rain: 'Pioggia', dry: 'asciutto', light: 'Luce',
       sunrise: 'alba {h}', sunset: 'tramonto {h}', night: 'notte', today: 'Oggi', tomorrow: 'Domani',
@@ -37,7 +37,7 @@
       advLabel: 'Consejo', v4: 'Momento ideal para salir', v3: 'Buen momento, con alguna precaución', v2: 'Se puede salir, pero no es lo ideal', v1: 'Mejor otro momento',
       aNight: 'Oscuridad: luces y prenda reflectante', aRain: 'Lluvia prevista: firme resbaladizo', aWind: 'Viento {v} km/h del {d}: sal en contra, evita tramos expuestos', aGust: 'Rachas de hasta {g} km/h en tramos abiertos',
       aHot: '{t}°: lleva agua, evita las horas centrales', aCold: '{t}°: capa cortavientos', aGood: 'Temperatura y viento normales', aBetter: 'Mejor franja: {h}', aRoute: 'Ruta más adecuada: {n}',
-      dRoad: 'Avisos, tráfico y controles', dSurf: 'Olas, viento, mareas y spots', dBike: 'Rutas, viento y subidas', dRun: 'Rutas y mejor hora', exitMode: 'Salir', modeNow: 'Modo {m}', road: 'Carretera', surf: 'Surf', bike: 'Bici', run: 'Correr', modes: 'Modos',
+      camper: 'Camper', dCamper: 'Pernocta, vaciado, agua, duchas', dRoad: 'Avisos, tráfico y controles', dSurf: 'Olas, viento, mareas y spots', dBike: 'Rutas, viento y subidas', dRun: 'Rutas y mejor hora', exitMode: 'Salir', modeNow: 'Modo {m}', road: 'Carretera', surf: 'Surf', bike: 'Bici', run: 'Correr', modes: 'Modos',
       bikeOn: 'Modo bici', runOn: 'Modo correr', roadOn: 'Modo carretera',
       bestTime: 'Mejor hora: {h}', now: 'Ahora', temp: 'Temperatura', wind: 'Viento', gust: 'rachas', rain: 'Lluvia', dry: 'seco', light: 'Luz',
       sunrise: 'amanecer {h}', sunset: 'atardecer {h}', night: 'noche', today: 'Hoy', tomorrow: 'Mañana',
@@ -60,7 +60,7 @@
       advLabel: 'Advice', v4: 'Great time to go out', v3: 'Good time, with some caution', v2: 'Possible, but not ideal', v1: 'Better another time',
       aNight: 'Dark: lights and reflective layer', aRain: 'Rain expected: slippery surface', aWind: 'Wind {v} km/h from {d}: start into the wind, avoid exposed sections', aGust: 'Gusts up to {g} km/h on open sections',
       aHot: '{t}°: carry water, avoid midday', aCold: '{t}°: windproof layer', aGood: 'Temperature and wind normal', aBetter: 'Best window: {h}', aRoute: 'Best route now: {n}',
-      dRoad: 'Alerts, traffic and checks', dSurf: 'Waves, wind, tides and spots', dBike: 'Routes, wind and climbs', dRun: 'Routes and best time', exitMode: 'Exit', modeNow: '{m} mode', road: 'Road', surf: 'Surf', bike: 'Bike', run: 'Run', modes: 'Modes',
+      camper: 'Camper', dCamper: 'Overnight, dump, water, showers', dRoad: 'Alerts, traffic and checks', dSurf: 'Waves, wind, tides and spots', dBike: 'Routes, wind and climbs', dRun: 'Routes and best time', exitMode: 'Exit', modeNow: '{m} mode', road: 'Road', surf: 'Surf', bike: 'Bike', run: 'Run', modes: 'Modes',
       bikeOn: 'Bike mode', runOn: 'Run mode', roadOn: 'Road mode',
       bestTime: 'Best time: {h}', now: 'Now', temp: 'Temperature', wind: 'Wind', gust: 'gusts', rain: 'Rain', dry: 'dry', light: 'Light',
       sunrise: 'sunrise {h}', sunset: 'sunset {h}', night: 'night', today: 'Today', tomorrow: 'Tomorrow',
@@ -83,7 +83,7 @@
       advLabel: 'Empfehlung', v4: 'Sehr gute Zeit zum Rausgehen', v3: 'Gute Zeit, mit etwas Vorsicht', v2: 'Möglich, aber nicht ideal', v1: 'Besser ein andermal',
       aNight: 'Dunkel: Licht und Reflektoren', aRain: 'Regen erwartet: rutschiger Untergrund', aWind: 'Wind {v} km/h aus {d}: gegen den Wind starten, offene Abschnitte meiden', aGust: 'Böen bis {g} km/h auf offenen Abschnitten',
       aHot: '{t}°: Wasser mitnehmen, Mittagshitze meiden', aCold: '{t}°: winddichte Schicht', aGood: 'Temperatur und Wind normal', aBetter: 'Bestes Zeitfenster: {h}', aRoute: 'Passendste Strecke: {n}',
-      dRoad: 'Meldungen, Verkehr, Kontrollen', dSurf: 'Wellen, Wind, Gezeiten, Spots', dBike: 'Strecken, Wind, Anstiege', dRun: 'Strecken und beste Zeit', exitMode: 'Beenden', modeNow: 'Modus {m}', road: 'Straße', surf: 'Surf', bike: 'Rad', run: 'Laufen', modes: 'Modi',
+      camper: 'Camper', dCamper: 'Stellplatz, Entsorgung, Wasser, Duschen', dRoad: 'Meldungen, Verkehr, Kontrollen', dSurf: 'Wellen, Wind, Gezeiten, Spots', dBike: 'Strecken, Wind, Anstiege', dRun: 'Strecken und beste Zeit', exitMode: 'Beenden', modeNow: 'Modus {m}', road: 'Straße', surf: 'Surf', bike: 'Rad', run: 'Laufen', modes: 'Modi',
       bikeOn: 'Radmodus', runOn: 'Laufmodus', roadOn: 'Straßenmodus',
       bestTime: 'Beste Zeit: {h}', now: 'Jetzt', temp: 'Temperatur', wind: 'Wind', gust: 'Böen', rain: 'Regen', dry: 'trocken', light: 'Licht',
       sunrise: 'Aufgang {h}', sunset: 'Untergang {h}', night: 'Nacht', today: 'Heute', tomorrow: 'Morgen',
@@ -570,17 +570,19 @@
     surf: '<path d="M2 16c2 0 2.5-1.5 5-1.5S9.5 16 12 16s2.5-1.5 5-1.5 3 1.5 5 1.5"/><path d="M2 20c2 0 2.5-1.5 5-1.5S9.5 20 12 20s2.5-1.5 5-1.5 3 1.5 5 1.5"/><path d="M5.5 12.5C6 8 9 5 13 5c2.5 0 4.2 1.3 4.2 3.2 0 1.6-1.2 2.6-2.7 2.6-1.3 0-2.2-.8-2.2-1.9"/>',
     bike: '<circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5L9 9h6l3.5 7.5M9 9l3.5 7.5L15 9M13 5.5h2.5"/>',
     run: '<circle cx="15" cy="4.5" r="2"/><path d="M8 21l3-6 3 2v4M6 12l3-4 4 1 2 4 3 1M11 15l-2-3"/>',
+    camper: '<path d="M2 17V8a2 2 0 0 1 2-2h11l5 5v6"/><path d="M2 17h20"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M6 9h4v3H6zM13 9h2"/>',
     modes: '<rect x="4" y="4" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="2"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="2"/>'
   };
-  const DESC = { road: 'dRoad', surf: 'dSurf', bike: 'dBike', run: 'dRun' };
+  const DESC = { road: 'dRoad', surf: 'dSurf', bike: 'dBike', run: 'dRun', camper: 'dCamper' };
   const svg = (k) => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[k] + '</svg>';
   const surfOn = () => window.MAXORA_SURF && window.MAXORA_SURF.isOn();
-  const current = () => (surfOn() ? 'surf' : SP.mode || 'road');
+  const camperOn = () => window.MAXORA_CAMPER && window.MAXORA_CAMPER.isOn();
+  const current = () => (surfOn() ? 'surf' : camperOn() ? 'camper' : SP.mode || 'road');
   const menu = el('div', { class: 'mode-menu hidden', id: 'modeMenu', role: 'menu' });
   document.body.appendChild(menu);
   function drawMenu() {
     menu.innerHTML = '';
-    ['road', 'surf', 'bike', 'run'].forEach((k) => {
+    ['road', 'surf', 'bike', 'run', 'camper'].forEach((k) => {
       const b = el('button', { class: 'mode-item m-' + k + (current() === k ? ' on' : ''), role: 'menuitemradio', 'aria-checked': String(current() === k), onclick: () => choose(k) }, []);
       const ic = el('span', { class: 'mi-ico' }); ic.innerHTML = svg(k);
       b.append(ic, el('span', { class: 'mi-txt' }, [el('b', { text: tr(k) }), el('small', { text: tr(DESC[k]) })]));
@@ -592,8 +594,10 @@
     if (k === current()) return;
     if (surfOn() && k !== 'surf') await window.MAXORA_SURF.setOn(false, true);
     if (SP.mode && k !== SP.mode) await setSport(null, true);
+    if (camperOn() && k !== 'camper') await window.MAXORA_CAMPER.setOn(false);
     splash(k);
-    if (k === 'surf') await window.MAXORA_SURF.setOn(true, false, true);
+    if (k === 'camper') { window.MAXORA_CAMPER.setOn(true); }
+    else if (k === 'surf') await window.MAXORA_SURF.setOn(true, false, true);
     else if (k === 'bike' || k === 'run') await setSport(k);
     sync();
     if (window.MAXORA_TOUR) window.MAXORA_TOUR.modeTips(k);
@@ -657,7 +661,9 @@
 
   $('spSheet').classList.toggle('collapsed', SP.collapsed);
   const saved = store.get('sportMode', null);
-  if (saved && !surfOn()) setSport(saved, true).then(sync); else sync();
+  if (saved && !surfOn()) setSport(saved, true).then(sync);
+  else if (!surfOn() && store.get('camperOn', false) && window.MAXORA_CAMPER) window.MAXORA_CAMPER.setOn(true).then(sync);
+  else sync();
   // consiglio: chiuso = una riga; si apre toccandolo (vale per surf, bici e corsa)
   document.addEventListener('click', (e) => {
     const top = e.target.closest && e.target.closest('.adv-top');

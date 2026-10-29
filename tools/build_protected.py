@@ -29,6 +29,12 @@ def main(src, dst):
         name = p.get('name') or p.get('name:es') or ''
         if not name:
             continue
+        # solo aree naturali: niente beni culturali (classe 22), hotel o siti archeologici
+        cls = str(p.get('protect_class') or '')
+        if cls in ('21', '22', '23', '24', '25', '26', '27', '28', '29') or p.get('heritage') or p.get('historic'):
+            continue
+        if any(name.lower().startswith(x) for x in ('hotel', 'zona arqueol', 'zona paleont', 'yacimiento', 'monumento')):
+            continue
         g = g.simplify(0.00025, preserve_topology=True)
         m = mapping(g)
         def rnd(c):

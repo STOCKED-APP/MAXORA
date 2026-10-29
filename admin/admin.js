@@ -1177,6 +1177,92 @@
     }
   };
 
+  // ------------------------------------------------------------------
+  // CAMPER: áreas y puntos verificados (se ven con ★ en el modo camper)
+  // ------------------------------------------------------------------
+  const CP_KINDS = [['service', '🚐 Área camper'], ['camp', '⛺ Camping'], ['sleep', '🛏 Pernocta'], ['dump', '🚽 Vaciado'], ['water', '💧 Agua'], ['shower', '🚿 Ducha'], ['parking', '🅿️ Aparcamiento'], ['other', '📍 Otro']];
+  const CP_SERV = [['dump', 'Vaciado'], ['water', 'Agua'], ['power', 'Luz'], ['shower', 'Ducha'], ['wc', 'Baño'], ['wifi', 'Wifi'], ['laundry', 'Lavadora'], ['trash', 'Basura'], ['overnight', 'Se puede pernoctar']];
+  function camperEditor(item, onDone) {
+    const d = item || { kind: 'service', services: [], text: {}, approx: false };
+    const f = {
+      name: el('input', { value: d.name || '', maxlength: '100' }),
+      kind: el('select', {}, CP_KINDS.map(([a, b]) => el('option', { value: a, text: b }))),
+      price: el('input', { value: d.price || '', placeholder: 'ej. Gratis, 15 €/noche' }),
+      source: el('input', { value: d.source || '', placeholder: 'De dónde viene la información' }),
+      lat: el('input', { type: 'number', step: 'any', value: d.lat ?? '' }), lng: el('input', { type: 'number', step: 'any', value: d.lng ?? '' }),
+      approx: el('input', { type: 'checkbox' }), active: el('input', { type: 'checkbox' }), verified: el('input', { type: 'date', value: d.verified_at || '' }),
+      serv: CP_SERV.map(([k, n]) => { const c = el('input', { type: 'checkbox', value: k }); c.checked = (d.services || []).includes(k); return el('label', { class: 'check' }, [c, n]); }),
+      text: LANGS.map((l) => el('textarea', { maxlength: '400', placeholder: 'Descripción · ' + LANG_NAMES[l] }))
+    };
+    f.kind.value = d.kind; f.approx.checked = !!d.approx; f.active.checked = item ? item.active : true;
+    f.text.forEach((x, k) => { x.value = (d.text || {})[LANGS[k]] || ''; });
+    const mapBox = el('div', { class: 'amap small' });
+    const save = el('button', { class: 'btn primary', text: item ? 'Guardar cambios' : 'Crear punto' });
+    const panel = el('div', { class: 'panel' }, [
+      el('div', { class: 'row' }, [el('h2', { text: item ? 'Editar: ' + d.name : 'Nuevo punto camper' }), el('span', { class: 'spacer' }), el('button', { class: 'btn small ghost', text: 'Cerrar', onclick: () => onDone(false) })]),
+      el('div', { class: 'grid cols-2', style: 'margin-top:12px;align-items:start' }, [
+        el('div', { class: 'grid' }, [
+          el('label', {}, ['Nombre', f.name]),
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Tipo', f.kind]), el('label', {}, ['Precio', f.price])]),
+          el('div', {}, [el('div', { class: 'sub', text: 'Servicios' }), el('div', { class: 'row', style: 'flex-wrap:wrap;gap:10px' }, f.serv)]),
+          el('div', { class: 'grid' }, f.text.map((x) => el('label', {}, [x.placeholder, x]))),
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Fuente', f.source]), el('label', {}, ['Comprobado el', f.verified])]),
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Latitud', f.lat]), el('label', {}, ['Longitud', f.lng])]),
+          el('div', { class: 'row' }, [el('label', { class: 'check' }, [f.active, 'Visible en la app']), el('label', { class: 'check' }, [f.approx, 'Posición aproximada'])])
+        ]),
+        el('div', {}, [el('p', { class: 'sub', text: 'Toca el mapa para colocar el punto (o arrastra el marcador).' }), mapBox])
+      ]),
+      el('div', { class: 'row', style: 'margin-top:16px' }, [save])
+    ]);
+    setTimeout(() => { const pk = pickerMap(mapBox, d.lat, d.lng, (la, ln) => { f.lat.value = la; f.lng.value = ln; f.approx.checked = false; }); [f.lat, f.lng].forEach((i) => i.addEventListener('change', () => pk.setPos(f.lat.value, f.lng.value))); }, 0);
+    save.addEventListener('click', async () => {
+      if (!f.name.value.trim() || f.lat.value === '' || f.lng.value === '') return toast('Nombre y posición son obligatorios');
+      const text = {}; LANGS.forEach((l, k) => { if (f.text[k].value.trim()) text[l] = f.text[k].value.trim(); });
+      const row = { name: f.name.value.trim(), kind: f.kind.value, lat: Number(f.lat.value), lng: Number(f.lng.value), price: f.price.value.trim() || null, source: f.source.value.trim() || null,
+        services: f.serv.map((l) => l.querySelector('input')).filter((c) => c.checked).map((c) => c.value), text, approx: f.approx.checked, active: f.active.checked,
+        verified_at: f.verified.value || null, updated_at: new Date().toISOString() };
+      save.disabled = true;
+      const res = item ? await sb.from('camper_spots').update(row).eq('id', item.id) : await sb.from('camper_spots').insert(row);
+      save.disabled = false;
+      if (res.error) return fail(res.error, 'Guardar');
+      toast('Guardado: la app lo ve al abrir el modo camper.');
+      onDone(true);
+    });
+    return panel;
+  }
+  VIEWS.camper = {
+    eyebrow: 'Isla', title: 'Camper',
+    async render(view, head) {
+      head.append(el('button', { class: 'btn primary', text: 'Nuevo punto', onclick: () => openEditor(null) }));
+      const { data, error } = await sb.from('camper_spots').select('*').order('name');
+      if (error) return fail(error, 'Camper');
+      view.appendChild(el('div', { class: 'kpis' }, [kpi('Puntos', data.length), kpi('Visibles', data.filter((x) => x.active).length, 'hot'), kpi('Posición aproximada', data.filter((x) => x.approx).length, data.some((x) => x.approx) ? 'warn' : '')]));
+      view.appendChild(el('p', { class: 'sub', style: 'margin:0 0 14px', text: 'Los puntos marcados como "aproximados" conviene comprobarlos: abre el punto, toca el mapa en el sitio exacto y guarda. Los datos de OpenStreetMap (gasolineras, duchas, baños, agua…) se cargan solos cada noche.' }));
+      const editorBox = el('div', { style: 'margin-bottom:16px' });
+      view.appendChild(editorBox);
+      function openEditor(item) {
+        maps.forEach((m) => { try { m.remove(); } catch (e) {} }); maps = [];
+        editorBox.innerHTML = '';
+        editorBox.appendChild(camperEditor(item, (changed) => { editorBox.innerHTML = ''; if (changed) route(); }));
+        editorBox.scrollIntoView({ behavior: 'smooth' });
+      }
+      view.appendChild(el('div', { class: 'panel' }, [el('div', { class: 'table-wrap' }, [el('table', {}, [
+        el('thead', {}, [el('tr', {}, ['Nombre', 'Tipo', 'Servicios', 'Precio', 'Estado', ''].map((h) => el('th', { text: h })))]),
+        el('tbody', {}, data.map((x) => el('tr', {}, [
+          el('td', {}, [el('b', { text: x.name }), x.approx ? el('div', { class: 'sub', text: '≈ posición aproximada' }) : null]),
+          el('td', { text: (CP_KINDS.find((k) => k[0] === x.kind) || [0, x.kind])[1] }),
+          el('td', { text: (x.services || []).map((s) => (CP_SERV.find((k) => k[0] === s) || [0, s])[1]).join(', ') }),
+          el('td', { text: x.price || '—' }),
+          el('td', { text: x.active ? 'Visible' : 'Oculto' }),
+          el('td', {}, [el('div', { class: 'row' }, [
+            el('button', { class: 'btn small', text: 'Editar', onclick: () => openEditor(x) }),
+            el('button', { class: 'btn small ghost', text: 'Borrar', onclick: async () => { if (!confirm('¿Borrar "' + x.name + '"?')) return; const r = await sb.from('camper_spots').delete().eq('id', x.id); if (r.error) return fail(r.error); route(); } })
+          ])])
+        ])))
+      ])])]));
+    }
+  };
+
   VIEWS.surf = {
     eyebrow: 'Isla', title: 'Surf',
     async render(view, head) {
