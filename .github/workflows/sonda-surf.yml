@@ -1,23 +1,21 @@
 name: Sonda surf
-permissions:
-  contents: write
 on:
   push:
     branches: [sonda-surf]
+permissions:
+  contents: write
 jobs:
   p:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt-get update -q && sudo apt-get install -y -q osmium-tool
-      - run: |
-          curl -fsSL --retry 3 -A "Maxora/0.3" -o c.pbf https://download.geofabrik.de/africa/canary-islands-latest.osm.pbf || curl -fsSL --retry 3 -A "Maxora/0.3" -o c.pbf https://download.geofabrik.de/europe/spain/canarias-latest.osm.pbf
-          osmium extract -b -14.55,27.99,-13.70,28.80 c.pbf -o fv.pbf --overwrite
-          osmium tags-filter fv.pbf nwr/sport=surfing nwr/natural=beach nwr/natural=reef nwr/leisure=beach_resort -o s.pbf --overwrite
-          osmium export s.pbf -f geojsonseq -o surf.geojsonseq --overwrite
-      - run: pip install ecmwf-opendata cfgrib eccodes xarray
-      - run: python3 tools/surf_probe.py
-      - run: |
+      - run: pip install -q ecmwf-opendata cfgrib eccodes xarray numpy rasterio
+      - run: python3 tools/build_routes.py data/routes_src.json data/routes.json
+        continue-on-error: true
+      - run: python3 tools/build_weather.py data/weather.json
+        continue-on-error: true
+      - if: always()
+        run: |
           git config user.name maxora-bot; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f probe_out.txt && git commit -qm "out [skip ci]" && git push -q
+          git add -f data/routes.json data/weather.json 2>/dev/null; git commit -qm "out [skip ci]" && git push -q

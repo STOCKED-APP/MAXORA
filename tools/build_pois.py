@@ -20,11 +20,13 @@ def cat_of(t):
     if s == 'surf' or sp in ('surfing', 'kitesurfing', 'windsurfing'): return 'surf'
     if tu in ('hotel', 'apartment', 'hostel', 'guest_house'): return 'hotel'
     if a == 'parking' and t.get('access') != 'private': return 'parking'
+    if a == 'drinking_water' or (a == 'water_point' and t.get('drinking_water') != 'no'): return 'water'
+    if s == 'bicycle' or a in ('bicycle_repair_station', 'bicycle_rental'): return 'bike'
     return None
 
-UNNAMED_OK = {'fuel', 'pharmacy', 'parking'}
+UNNAMED_OK = {'fuel', 'pharmacy', 'parking', 'water', 'bike'}
 KEEP = ['brand', 'operator', 'cuisine', 'opening_hours', 'phone', 'contact:phone', 'website', 'contact:website',
-        'addr:street', 'addr:housenumber', 'addr:city', 'addr:place', 'wheelchair', 'stars', 'fee', 'surface', 'capacity']
+        'addr:street', 'addr:housenumber', 'addr:city', 'addr:place', 'wheelchair', 'stars', 'fee', 'surface', 'capacity', 'service:bicycle:repair', 'service:bicycle:rental', 'amenity', 'shop']
 
 def center(geom):
     pts = []

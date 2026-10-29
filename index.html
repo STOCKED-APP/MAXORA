@@ -48,6 +48,10 @@
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg>
 </button>
 
+<button class="layers-btn surf-btn" id="surfBtn" aria-pressed="false">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16c2 0 2.5-1.5 5-1.5S9.5 16 12 16s2.5-1.5 5-1.5 3 1.5 5 1.5"/><path d="M2 20c2 0 2.5-1.5 5-1.5S9.5 20 12 20s2.5-1.5 5-1.5 3 1.5 5 1.5"/><path d="M5.5 12.5C6 8 9 5 13 5c2.5 0 4.2 1.3 4.2 3.2 0 1.6-1.2 2.6-2.7 2.6-1.3 0-2.2-.8-2.2-1.9"/></svg>
+</button>
+
 <!-- Ricerca -->
 <div class="search hidden" id="search" role="dialog" aria-modal="true" aria-label="Buscar">
   <div class="search-head">
@@ -142,6 +146,32 @@
   </div>
 </section>
 
+<!-- Modalità surf -->
+<section id="sfSheet" class="sheet sf-sheet hidden">
+  <button class="sheet-handle" id="sfToggle" aria-expanded="true" aria-controls="sfBody">
+    <span class="grip"></span>
+    <span class="sh-title" id="sfTitle">Surf</span>
+    <span class="sh-sub" id="sfSub"></span>
+    <svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+  </button>
+  <div class="sheet-body" id="sfBody">
+    <div class="seg wide sf-level" id="sfLevel">
+      <button data-lvl="1"></button><button data-lvl="2"></button><button data-lvl="3"></button>
+    </div>
+    <div class="sf-times" id="sfTimes"></div>
+    <div class="sf-tide" id="sfTide"></div>
+    <div class="sf-list" id="sfList"></div>
+    <p class="sf-note" id="sfNote"></p>
+  </div>
+</section>
+
+<section class="place sf-card hidden" id="sfCard" aria-live="polite">
+  <button class="icon-btn place-close" id="sfClose" aria-label="Cerrar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div id="sfCardBody"></div>
+</section>
+
 <!-- Pannello: scegli tipo di avviso -->
 <div class="overlay hidden" id="typesOverlay">
   <div class="panel" role="dialog" aria-modal="true" aria-labelledby="typesTitle">
@@ -211,5 +241,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/config.js"></script>
 <script src="assets/app.js"></script>
+<script src="assets/surf.js"></script>
 </body>
 </html>

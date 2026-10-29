@@ -938,6 +938,164 @@
   };
 
   // ------------------------------------------------------------------
+  // SURF: spot (finestre ideali) e segnalazioni "cómo está ahora"
+  // ------------------------------------------------------------------
+  const SURF_SIZE = ['Plano', 'Rodilla', 'Cintura-pecho', 'Cabeza', 'Más de cabeza'];
+  const SURF_QUAL = { 1: 'Roto por el viento', 2: 'Picado', 3: 'Limpio' };
+  const SURF_CROWD = ['Vacío', 'Algo de gente', 'Lleno'];
+  const TIDE_OPTS = [['low', 'Baja'], ['lowmid', 'Baja–media'], ['mid', 'Media'], ['midhigh', 'Media–alta'], ['high', 'Alta'], ['all', 'Cualquiera']];
+
+  function surfSpotEditor(item, onDone) {
+    const d = item ? item.data : { lvl: [1, 3], win: [250, 350], facing: 280, off: 90, tide: 'all', minH: 0.5, maxH: 2.5, type: 'beach', wave: 'LR', zone: {}, note: {}, haz: {} };
+    const num = (v, step) => el('input', { type: 'number', step: step || 'any', value: v ?? '' });
+    const sel = (opts, v) => { const s = el('select', {}, opts.map(([a, b]) => el('option', { value: a, text: b }))); s.value = v; return s; };
+    const f = {
+      id: el('input', { value: item ? item.id : '', placeholder: 'ej. rocky-point', disabled: !!item }),
+      name: el('input', { value: d.name || '', maxlength: '80' }),
+      lat: num(d.lat), lng: num(d.lng), mlat: num(d.m ? d.m[0] : ''), mlng: num(d.m ? d.m[1] : ''),
+      facing: num(d.facing, '1'), w0: num(d.win[0], '1'), w1: num(d.win[1], '1'), off: num(d.off, '1'),
+      tide: sel(TIDE_OPTS, d.tide), l0: sel([[1, 'Principiante'], [2, 'Intermedio'], [3, 'Experto']], d.lvl[0]), l1: sel([[1, 'Principiante'], [2, 'Intermedio'], [3, 'Experto']], d.lvl[1]),
+      minH: num(d.minH, '0.1'), maxH: num(d.maxH, '0.1'),
+      type: sel([['beach', 'Playa'], ['reef', 'Arrecife'], ['point', 'Punta']], d.type), wave: sel([['LR', 'Derecha e izquierda'], ['R', 'Derecha'], ['L', 'Izquierda']], d.wave),
+      zone: LANGS.map((l) => el('input', { value: (d.zone || {})[l] || '', placeholder: 'Zona · ' + LANG_NAMES[l] })),
+      note: LANGS.map((l) => el('textarea', { value: (d.note || {})[l] || '', placeholder: 'Descripción · ' + LANG_NAMES[l], maxlength: '300' })),
+      haz: LANGS.map((l) => el('input', { value: (d.haz || {})[l] || '', placeholder: 'Peligros · ' + LANG_NAMES[l] })),
+      approx: el('input', { type: 'checkbox', checked: !!d.approx }),
+      active: el('input', { type: 'checkbox', checked: item ? item.active : true }),
+      sort: num(item ? item.sort : 50, '1')
+    };
+    const mapBox = el('div', { class: 'amap small' });
+    const save = el('button', { class: 'btn primary', text: item ? 'Guardar cambios' : 'Crear spot' });
+    const help = 'Grados: 0 = norte, 90 = este, 180 = sur, 270 = oeste. "Mar de fondo de" = desde dónde llegan las olas que funcionan (de… a…, en sentido horario). "Viento terral" = desde dónde sopla el viento ideal. Punto del modelo = celda del modelo de olas ECMWF (cada 0,25°) delante del spot, en el mar.';
+    const panel = el('div', { class: 'panel' }, [
+      el('div', { class: 'row' }, [el('h2', { text: item ? 'Editar: ' + d.name : 'Nuevo spot' }), el('span', { class: 'spacer' }), el('button', { class: 'btn small ghost', text: 'Cerrar', onclick: () => onDone(false) })]),
+      el('p', { class: 'sub', text: help }),
+      el('div', { class: 'grid cols-2', style: 'margin-top:14px;align-items:start' }, [
+        el('div', { class: 'grid' }, [
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Código (no cambia)', f.id]), el('label', {}, ['Nombre', f.name])]),
+          el('div', { class: 'grid cols-3' }, [el('label', {}, ['Orientación de la costa (°)', f.facing]), el('label', {}, ['Mar de fondo de (°)', f.w0]), el('label', {}, ['… a (°)', f.w1])]),
+          el('div', { class: 'grid cols-3' }, [el('label', {}, ['Viento terral desde (°)', f.off]), el('label', {}, ['Marea ideal', f.tide]), el('label', {}, ['Tipo', f.type])]),
+          el('div', { class: 'grid cols-3' }, [el('label', {}, ['Nivel mínimo', f.l0]), el('label', {}, ['Nivel máximo', f.l1]), el('label', {}, ['Ola', f.wave])]),
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Funciona desde (m)', f.minH]), el('label', {}, ['Aguanta hasta (m)', f.maxH])]),
+          el('div', { class: 'grid cols-2' }, f.zone.map((x) => el('label', {}, [x.placeholder, x]))),
+          el('div', { class: 'grid cols-2' }, f.note.map((x) => el('label', {}, [x.placeholder, x]))),
+          el('div', { class: 'grid cols-2' }, f.haz.map((x) => el('label', {}, [x.placeholder, x]))),
+          el('div', { class: 'grid cols-3' }, [el('label', {}, ['Latitud', f.lat]), el('label', {}, ['Longitud', f.lng]), el('label', {}, ['Orden', f.sort])]),
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Modelo: latitud', f.mlat]), el('label', {}, ['Modelo: longitud', f.mlng])]),
+          el('div', { class: 'row' }, [el('label', { class: 'check' }, [f.active, 'Visible en la app']), el('label', { class: 'check' }, [f.approx, 'Posición aproximada'])])
+        ]),
+        el('div', {}, [el('p', { class: 'sub', text: 'Toca el mapa para colocar el spot.' }), mapBox])
+      ]),
+      el('div', { class: 'row', style: 'margin-top:16px' }, [save])
+    ]);
+    setTimeout(() => {
+      const pk = pickerMap(mapBox, d.lat, d.lng, (la, ln) => {
+        f.lat.value = la; f.lng.value = ln;
+        if (f.mlat.value === '') { f.mlat.value = Math.round(la * 4) / 4; f.mlng.value = Math.round(ln * 4) / 4; }
+      });
+      [f.lat, f.lng].forEach((i) => i.addEventListener('change', () => pk.setPos(f.lat.value, f.lng.value)));
+    }, 0);
+    save.addEventListener('click', async () => {
+      const id = f.id.value.trim().toLowerCase();
+      if (!item && !/^[a-z0-9-]{3,40}$/.test(id)) return toast('Código: solo letras minúsculas, números y guiones');
+      if (!f.name.value.trim() || f.lat.value === '' || f.lng.value === '') return toast('Nombre y posición son obligatorios');
+      const L = (arr) => { const o = {}; LANGS.forEach((l, k) => { if (arr[k].value.trim()) o[l] = arr[k].value.trim(); }); return o; };
+      const n = (x) => Number(x.value);
+      const data = Object.assign({}, d, {
+        name: f.name.value.trim(), lat: n(f.lat), lng: n(f.lng), type: f.type.value, wave: f.wave.value,
+        facing: n(f.facing), win: [n(f.w0), n(f.w1)], off: n(f.off), tide: f.tide.value,
+        lvl: [n(f.l0), Math.max(n(f.l0), n(f.l1))], minH: n(f.minH), maxH: n(f.maxH),
+        m: [f.mlat.value === '' ? Math.round(n(f.lat) * 4) / 4 : n(f.mlat), f.mlng.value === '' ? Math.round(n(f.lng) * 4) / 4 : n(f.mlng)],
+        zone: L(f.zone), note: L(f.note), haz: L(f.haz)
+      });
+      if (f.approx.checked) data.approx = true; else delete data.approx;
+      save.disabled = true;
+      const row = { data, active: f.active.checked, sort: n(f.sort) || 0 };
+      const res = item ? await sb.from('surf_spots').update(row).eq('id', item.id) : await sb.from('surf_spots').insert(Object.assign({ id }, row));
+      if (res.error) { save.disabled = false; return fail(res.error, 'Guardar'); }
+      toast('Guardado. La app lo usa ya; la previsión del spot llega en la próxima actualización (máx. 3 h).');
+      onDone(true);
+    });
+    return panel;
+  }
+
+  VIEWS.surf = {
+    eyebrow: 'Isla', title: 'Surf',
+    async render(view, head) {
+      head.append(
+        el('button', { class: 'btn primary', text: 'Nuevo spot', onclick: () => openEditor(null) }),
+        el('a', { class: 'btn', href: 'https://github.com/STOCKED-APP/MAXORA/actions/workflows/surf.yml', target: '_blank', rel: 'noopener', text: 'Previsiones en GitHub' })
+      );
+      let fc = null, td = null;
+      try { fc = await (await fetch('../data/surf.json', { cache: 'no-cache' })).json(); } catch (e) { /* nada */ }
+      try { td = await (await fetch('../data/tides.json', { cache: 'no-cache' })).json(); } catch (e) { /* nada */ }
+      const [spots, reps] = await Promise.all([
+        sb.from('surf_spots').select('*').order('sort'),
+        sb.from('surf_reports').select('*').gte('created_at', new Date(Date.now() - 7 * 86400000).toISOString()).order('created_at', { ascending: false }).limit(300)
+      ]);
+      if (spots.error) {
+        view.appendChild(el('div', { class: 'panel empty', text: 'Falta activar las tablas de surf en la base de datos (migración 006_surf.sql). Hasta entonces la app usa la lista de spots del archivo.' }));
+        return;
+      }
+      const live = (reps.data || []).filter(isLive);
+      const v = td && td.validation;
+      view.appendChild(el('div', { class: 'kpis' }, [
+        kpi('Spots', (spots.data || []).length),
+        kpi('Avisos surf activos', live.length, 'hot'),
+        kpi('Avisos surf 7 días', (reps.data || []).length),
+        kpi('Previsión olas', fc ? ago(fc.generated.replace('Z', ':00Z')) : '—'),
+        kpi('Mareas: error horario', v ? '±' + v.time_err_min_median_abs + ' min' : '—'),
+        kpi('Mareas: error altura', v ? '±' + v.height_err_cm_median_abs + ' cm' : '—')
+      ]));
+      const editorBox = el('div', { style: 'margin-bottom:16px' });
+      const listBox = el('div');
+      const repBox = el('div', { style: 'margin-top:16px' });
+      view.append(editorBox, listBox, repBox);
+      function openEditor(item) {
+        maps.forEach((m) => { try { m.remove(); } catch (e) {} }); maps = [];
+        editorBox.innerHTML = '';
+        editorBox.appendChild(surfSpotEditor(item, (changed) => { editorBox.innerHTML = ''; if (changed) route(); }));
+        editorBox.scrollIntoView({ behavior: 'smooth' });
+      }
+      const byId = new Map((spots.data || []).map((x) => [x.id, x]));
+      listBox.appendChild(el('div', { class: 'table-wrap' }, [el('table', {}, [
+        el('thead', {}, [el('tr', {}, ['Spot', 'Nivel', 'Mar de fondo', 'Terral', 'Marea', 'Altura útil', 'Avisos ahora', 'Visible', ''].map((h) => el('th', { text: h })))]),
+        el('tbody', {}, (spots.data || []).map((x) => {
+          const d = x.data, n = live.filter((r) => r.spot_id === x.id).length;
+          return el('tr', {}, [
+            el('td', {}, [el('b', { text: d.name }), d.approx ? el('span', { class: 'muted', text: ' · aprox.' }) : null]),
+            el('td', { text: ['', 'Princ.', 'Inter.', 'Exp.'][d.lvl[0]] + '–' + ['', 'Princ.', 'Inter.', 'Exp.'][d.lvl[1]] }),
+            el('td', { text: d.win[0] + '°–' + d.win[1] + '°' }), el('td', { text: d.off + '°' }),
+            el('td', { text: (TIDE_OPTS.find((t) => t[0] === d.tide) || ['', d.tide])[1] }),
+            el('td', { text: d.minH + '–' + d.maxH + ' m' }),
+            el('td', { text: String(n) }),
+            el('td', {}, [el('span', { class: 'pill ' + (x.active ? 'ok' : ''), text: x.active ? 'sí' : 'no' })]),
+            el('td', {}, [el('div', { class: 'acts' }, [el('button', { class: 'btn small', text: 'Editar', onclick: () => openEditor(x) })])])
+          ]);
+        }))
+      ])]));
+      repBox.appendChild(el('div', { class: 'panel' }, [
+        el('h2', { text: 'Avisos de surfistas (7 días)' }),
+        el('p', { class: 'sub', text: 'Cada aviso dura 3 horas y corrige la nota del spot en la app. Quita los falsos y bloquea a quien abuse.' }),
+        (reps.data || []).length ? el('div', { class: 'table-wrap' }, [el('table', {}, [
+          el('thead', {}, [el('tr', {}, ['Cuándo', 'Spot', 'Tamaño', 'Estado', 'Gente', 'Usuario', 'Estado', ''].map((h) => el('th', { text: h })))]),
+          el('tbody', {}, reps.data.map((r) => el('tr', {}, [
+            el('td', { text: fmtDT(r.created_at) }),
+            el('td', { text: byId.get(r.spot_id) ? byId.get(r.spot_id).data.name : r.spot_id }),
+            el('td', { text: SURF_SIZE[r.size] || '' }), el('td', { text: SURF_QUAL[r.quality] || '' }), el('td', { text: r.crowd == null ? '—' : SURF_CROWD[r.crowd] }),
+            el('td', { class: 'id', text: shortId(r.user_id) }),
+            el('td', {}, [el('span', { class: 'pill ' + (isLive(r) ? 'ok' : r.removed_at ? 'bad' : ''), text: isLive(r) ? 'activo' : r.removed_at ? 'quitado' : 'caducado' })]),
+            el('td', {}, [el('div', { class: 'acts' }, [
+              isLive(r) ? el('button', { class: 'btn small', text: 'Quitar', onclick: async () => { const { error } = await sb.from('surf_reports').update({ removed_at: new Date().toISOString() }).eq('id', r.id); if (error) return fail(error); toast('Quitado'); route(); } }) : null,
+              r.user_id ? el('button', { class: 'btn small danger', text: 'Bloquear', onclick: async () => { if (!confirm('¿Bloquear este dispositivo? No podrá avisar más.')) return; const { error } = await sb.from('blocked_users').upsert({ user_id: r.user_id, reason: 'surf' }); if (error) return fail(error); toast('Bloqueado'); } }) : null
+            ])])
+          ])))
+        ])]) : el('div', { class: 'empty', text: 'Todavía no hay avisos de surfistas.' })
+      ]));
+    }
+  };
+
+  // ------------------------------------------------------------------
   // NOTIFICHE PUSH
   // ------------------------------------------------------------------
   VIEWS.push = {

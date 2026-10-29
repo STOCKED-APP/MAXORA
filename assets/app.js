@@ -279,7 +279,7 @@
   let tempMarker = null;
 
   function padMap() {
-    const h = $('sheet').getBoundingClientRect().height;
+    const h = $(document.body.classList.contains('surf-on') ? 'sfSheet' : 'sheet').getBoundingClientRect().height;
     map.setPadding({ top: 70, bottom: Math.max(0, h - 10), left: 0, right: 0 });
   }
 
@@ -1507,7 +1507,9 @@
     drawSettings();
     refresh();
     showBroadcast();
+    textHooks.forEach((f) => { try { f(); } catch (e) { console.warn(e); } });
   }
+  const textHooks = [];
 
   // ------------------------------------------------------------------
   // Eventi interfaccia
@@ -1585,6 +1587,13 @@
   // ------------------------------------------------------------------
   // Avvio
   // ------------------------------------------------------------------
+  // Per i moduli aggiuntivi (modalità surf)
+  window.MAXORA = {
+    map, sb, el, store, toast, padMap, closePlace, exitResults,
+    lang: () => lang, onTexts: (f) => textHooks.push(f), pos: () => S.pos,
+    unfollow: () => { S.follow = false; S.selectedId = null; updateChip(); }
+  };
+
   async function boot() {
     $('sheet').classList.toggle('collapsed', S.collapsed);
     $('sheetToggle').setAttribute('aria-expanded', String(!S.collapsed));
