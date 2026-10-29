@@ -4,18 +4,25 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: probe
+      - name: geocode
         run: |
-          Q='[out:json][timeout:90];(nwr["name"~"Laso|Antigua",i]["leisure"](27.99,-14.55,28.80,-13.80);nwr["leisure"="stadium"](28.35,-14.1,28.45,-13.95););out center tags;'
-          for u in https://overpass-api.de/api/interpreter https://overpass.kumi.systems/api/interpreter; do
-            curl -s -m 120 -A "Maxora/0.13 (+https://github.com/STOCKED-APP/MAXORA)" --data-urlencode "data=$Q" "$u" -o o.json && head -c 1 o.json | grep -q '{' && break
-          done
-          echo "::notice::$(head -c 300 o.json | tr '\n' ' ')"
-          cat > p.py <<'PY'
-          import json
-          d=json.load(open('o.json'))
-          for e in d['elements']:
-              c=e.get('center') or e; t=e.get('tags',{})
-              print('::notice::%s%s %s,%s %s' % (e['type'][0],e['id'],round(c.get('lat',0),6),round(c.get('lon',0),6),json.dumps(t,ensure_ascii=False)[:350]))
+          cat > g.py <<'PY'
+          import json, time, urllib.request, urllib.parse
+          Q = ["Puertito de la Cruz, Fuerteventura", "Faro del Tostón, El Cotillo", "Ermita de San Benito Abad, Pájara", "Playa del Junquillo, Fuerteventura",
+               "Calle Tenesor, Puerto del Rosario", "Playa del Mal Nombre, Fuerteventura", "Playa de Sotavento, Fuerteventura", "Muelle de Morro Jable", "Playa de Butihondo",
+               "Playa de la Mujer, Tindaya", "Caleta Beatriz, Fuerteventura", "Mararía, La Oliva", "Playa de Tabaibejo, Fuerteventura", "Playa de Guerepe", "Playa de Bigocho",
+               "Puerto Nuevo, Pájara", "Estadio Juan Laso, Antigua", "Playa de Baja Gómez", "Playa de La Escalera, La Oliva", "Risco del Paso, Fuerteventura", "Puerto de Morro Jable"]
+          out = []
+          for q in Q:
+              u = 'https://nominatim.openstreetmap.org/search?' + urllib.parse.urlencode({'q': q, 'format': 'json', 'limit': 2, 'viewbox': '-14.55,28.80,-13.80,27.99', 'bounded': 1})
+              try:
+                  r = json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'Maxora/0.14 (+https://github.com/STOCKED-APP/MAXORA)'}), timeout=30).read())
+              except Exception as e:
+                  r = [{'error': str(e)}]
+              out.append(q + ' => ' + ' || '.join('%s,%s %s/%s %s' % (x.get('lat'), x.get('lon'), x.get('class'), x.get('type'), (x.get('display_name') or x.get('error') or '')[:70]) for x in r))
+              time.sleep(1.2)
+          print('::notice::' + ' ## '.join(out[:7]))
+          print('::notice::' + ' ## '.join(out[7:14]))
+          print('::notice::' + ' ## '.join(out[14:]))
           PY
-          python3 p.py || true
+          python3 g.py
