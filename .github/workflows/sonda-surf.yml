@@ -10,12 +10,12 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - run: pip install -q ecmwf-opendata cfgrib eccodes xarray numpy rasterio
-      - run: python3 tools/build_routes.py data/routes_src.json data/routes.json
-        continue-on-error: true
-      - run: python3 tools/build_weather.py data/weather.json
-        continue-on-error: true
+      - run: sudo apt-get update -q && sudo apt-get install -y -q osmium-tool && pip install -q osmium
+      - run: |
+          curl -fsSL --retry 3 -A "Maxora/0.9" -o c.pbf https://download.geofabrik.de/africa/canary-islands-latest.osm.pbf
+          osmium extract -b -14.55,27.99,-13.70,28.80 c.pbf -o fv.pbf --overwrite
+          python3 tools/routes_probe.py fv.pbf
       - if: always()
         run: |
           git config user.name maxora-bot; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f data/routes.json data/weather.json 2>/dev/null; git commit -qm "out [skip ci]" && git push -q
+          git add -f probe_out.txt && git commit -qm "out [skip ci]" && git push -q
