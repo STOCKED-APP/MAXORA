@@ -185,6 +185,36 @@
     if (await checkAdmin()) { $('newPassForm').classList.add('hidden'); $('loginForm').classList.remove('hidden'); start(); }
     else $('newPassErr').textContent = 'Contraseña cambiada, pero esta cuenta no es administradora.';
   });
+  // cambiar la contraseña desde dentro del panel
+  $('passBtn').addEventListener('click', () => {
+    if (document.querySelector('.pass-modal')) return;
+    const p1 = el('input', { type: 'password', autocomplete: 'new-password', minlength: '10' });
+    const p2 = el('input', { type: 'password', autocomplete: 'new-password', minlength: '10' });
+    const err = el('p', { class: 'err', role: 'alert' });
+    const ok = el('button', { class: 'btn primary', type: 'submit', text: 'Guardar' });
+    const close = () => modal.remove();
+    const form = el('form', { class: 'login-card' }, [
+      el('h1', { text: 'Cambiar contraseña' }),
+      el('p', { class: 'sub', text: 'Cuenta: ' + (me && me.email || '') }),
+      el('label', {}, ['Nueva contraseña (mín. 10 caracteres)', p1]),
+      el('label', {}, ['Repite la contraseña', p2]),
+      ok, el('button', { class: 'btn ghost', type: 'button', text: 'Cancelar', onclick: close }), err
+    ]);
+    const modal = el('div', { class: 'pass-modal' }, [form]);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (p1.value.length < 10) { err.textContent = 'Mínimo 10 caracteres.'; return; }
+      if (p1.value !== p2.value) { err.textContent = 'Las dos contraseñas no coinciden.'; return; }
+      ok.disabled = true;
+      const { error } = await sb.auth.updateUser({ password: p1.value });
+      ok.disabled = false;
+      if (error) { err.textContent = /reauth|nonce/i.test(error.message) ? 'Por seguridad, sal y vuelve a entrar, luego repite el cambio.' : 'Error: ' + error.message; return; }
+      p1.value = ''; p2.value = '';
+      close(); toast('Contraseña cambiada');
+    });
+    document.body.appendChild(modal);
+    setTimeout(() => p1.focus(), 50);
+  });
   $('logoutBtn').addEventListener('click', async () => { await sb.auth.signOut(); location.hash = ''; location.reload(); });
 
   // ------------------------------------------------------------------
