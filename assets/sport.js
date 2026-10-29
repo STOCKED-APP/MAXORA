@@ -11,6 +11,9 @@
   // ------------------------------------------------------------------
   const TX = {
     it: {
+      advLabel: 'Consiglio', v4: 'Ottimo momento per uscire', v3: 'Buon momento, con qualche attenzione', v2: 'Si può uscire, ma non è l\'ideale', v1: 'Meglio un altro momento',
+      aNight: 'Buio: luci e capo riflettente', aRain: 'Pioggia prevista: fondo scivoloso', aWind: 'Vento {v} km/h da {d}: parti controvento, evita i tratti esposti', aGust: 'Raffiche fino a {g} km/h nei tratti aperti',
+      aHot: '{t}°: porta acqua, evita le ore centrali', aCold: '{t}°: strato antivento', aGood: 'Temperatura e vento nella norma', aBetter: 'Finestra migliore: {h}', aRoute: 'Percorso più adatto: {n}',
       dRoad: 'Avvisi, traffico e controlli', dSurf: 'Onde, vento, maree e spot', dBike: 'Percorsi, vento e salite', dRun: 'Percorsi e ora migliore', exitMode: 'Esci', modeNow: 'Modalità {m}', road: 'Strada', surf: 'Surf', bike: 'Bici', run: 'Corsa', modes: 'Modalità',
       bikeOn: 'Modalità bici', runOn: 'Modalità corsa', roadOn: 'Modalità strada',
       bestTime: 'Ora migliore: {h}', now: 'Adesso', temp: 'Temperatura', wind: 'Vento', gust: 'raffiche', rain: 'Pioggia', dry: 'asciutto', light: 'Luce',
@@ -31,6 +34,9 @@
       future: 'Registrare le uscite arriverà più avanti: per ora scarica il GPX e registra con l\'app che usi.'
     },
     es: {
+      advLabel: 'Consejo', v4: 'Momento ideal para salir', v3: 'Buen momento, con alguna precaución', v2: 'Se puede salir, pero no es lo ideal', v1: 'Mejor otro momento',
+      aNight: 'Oscuridad: luces y prenda reflectante', aRain: 'Lluvia prevista: firme resbaladizo', aWind: 'Viento {v} km/h del {d}: sal en contra, evita tramos expuestos', aGust: 'Rachas de hasta {g} km/h en tramos abiertos',
+      aHot: '{t}°: lleva agua, evita las horas centrales', aCold: '{t}°: capa cortavientos', aGood: 'Temperatura y viento normales', aBetter: 'Mejor franja: {h}', aRoute: 'Ruta más adecuada: {n}',
       dRoad: 'Avisos, tráfico y controles', dSurf: 'Olas, viento, mareas y spots', dBike: 'Rutas, viento y subidas', dRun: 'Rutas y mejor hora', exitMode: 'Salir', modeNow: 'Modo {m}', road: 'Carretera', surf: 'Surf', bike: 'Bici', run: 'Correr', modes: 'Modos',
       bikeOn: 'Modo bici', runOn: 'Modo correr', roadOn: 'Modo carretera',
       bestTime: 'Mejor hora: {h}', now: 'Ahora', temp: 'Temperatura', wind: 'Viento', gust: 'rachas', rain: 'Lluvia', dry: 'seco', light: 'Luz',
@@ -51,6 +57,9 @@
       future: 'Registrar las salidas llegará más adelante: por ahora descarga el GPX y registra con tu app.'
     },
     en: {
+      advLabel: 'Advice', v4: 'Great time to go out', v3: 'Good time, with some caution', v2: 'Possible, but not ideal', v1: 'Better another time',
+      aNight: 'Dark: lights and reflective layer', aRain: 'Rain expected: slippery surface', aWind: 'Wind {v} km/h from {d}: start into the wind, avoid exposed sections', aGust: 'Gusts up to {g} km/h on open sections',
+      aHot: '{t}°: carry water, avoid midday', aCold: '{t}°: windproof layer', aGood: 'Temperature and wind normal', aBetter: 'Best window: {h}', aRoute: 'Best route now: {n}',
       dRoad: 'Alerts, traffic and checks', dSurf: 'Waves, wind, tides and spots', dBike: 'Routes, wind and climbs', dRun: 'Routes and best time', exitMode: 'Exit', modeNow: '{m} mode', road: 'Road', surf: 'Surf', bike: 'Bike', run: 'Run', modes: 'Modes',
       bikeOn: 'Bike mode', runOn: 'Run mode', roadOn: 'Road mode',
       bestTime: 'Best time: {h}', now: 'Now', temp: 'Temperature', wind: 'Wind', gust: 'gusts', rain: 'Rain', dry: 'dry', light: 'Light',
@@ -71,6 +80,9 @@
       future: 'Recording your rides is coming later: for now download the GPX and record with your usual app.'
     },
     de: {
+      advLabel: 'Empfehlung', v4: 'Sehr gute Zeit zum Rausgehen', v3: 'Gute Zeit, mit etwas Vorsicht', v2: 'Möglich, aber nicht ideal', v1: 'Besser ein andermal',
+      aNight: 'Dunkel: Licht und Reflektoren', aRain: 'Regen erwartet: rutschiger Untergrund', aWind: 'Wind {v} km/h aus {d}: gegen den Wind starten, offene Abschnitte meiden', aGust: 'Böen bis {g} km/h auf offenen Abschnitten',
+      aHot: '{t}°: Wasser mitnehmen, Mittagshitze meiden', aCold: '{t}°: winddichte Schicht', aGood: 'Temperatur und Wind normal', aBetter: 'Bestes Zeitfenster: {h}', aRoute: 'Passendste Strecke: {n}',
       dRoad: 'Meldungen, Verkehr, Kontrollen', dSurf: 'Wellen, Wind, Gezeiten, Spots', dBike: 'Strecken, Wind, Anstiege', dRun: 'Strecken und beste Zeit', exitMode: 'Beenden', modeNow: 'Modus {m}', road: 'Straße', surf: 'Surf', bike: 'Rad', run: 'Laufen', modes: 'Modi',
       bikeOn: 'Radmodus', runOn: 'Laufmodus', roadOn: 'Straßenmodus',
       bestTime: 'Beste Zeit: {h}', now: 'Jetzt', temp: 'Temperatur', wind: 'Wind', gust: 'Böen', rain: 'Regen', dry: 'trocken', light: 'Licht',
@@ -320,18 +332,52 @@
     const on = box.querySelector('.sf-slot.on');
     if (on) on.scrollIntoView({ block: 'nearest', inline: 'center' });
   }
+  // riquadro CONSIGLIO: giudizio, motivi, ora migliore e percorso più adatto
+  function advBox(box, s, title, lines, acts) {
+    box.innerHTML = '';
+    const lvl = s == null ? 'bad' : s >= 4 ? 'good' : s >= 3 ? 'ok' : s >= 2 ? 'warn' : 'bad';
+    box.className = 'adv ' + lvl;
+    box.append(
+      el('div', { class: 'adv-h' }, [el('span', { class: 'adv-i', text: '💡' }), el('span', { text: tr('advLabel') + ' · ' + title })]),
+      el('div', { class: 'adv-v', text: tr(s >= 4 ? 'v4' : s >= 3 ? 'v3' : s >= 2 ? 'v2' : 'v1') }),
+      el('ul', {}, lines.map(([ic, tx]) => el('li', {}, [el('span', { class: 'ic', text: ic }), el('span', { text: tx })])))
+    );
+    acts.filter(Boolean).forEach((x) => box.appendChild(el('button', { class: 'adv-a', onclick: x.go }, [el('span', { class: 'ic', text: x.ic }), el('span', { text: x.tx }), el('b', { text: '›' })])));
+  }
   function drawAdvice() {
-    const box = $('spAdvice'); box.innerHTML = '';
-    const w = wxAt(centerPoint(), SP.idx);
-    if (!w) return;
+    const box = $('spAdvice');
+    const p = centerPoint(), w = wxAt(p, SP.idx);
+    if (!w) { box.innerHTML = ''; box.className = 'adv'; return; }
     const t = SP.times[SP.idx];
-    const tips = [];
-    if (sunAlt(t + 5400000, 28.4, -14) <= -2) tips.push(tr('adviceNight'));
-    if (w.p > 0.3) tips.push(tr('adviceRain'));
-    if (w.ws >= 25) tips.push(tr('adviceWind', { d: compass(w.wd) }));
-    if (w.t >= (SP.mode === 'run' ? 23 : 27)) tips.push(tr('adviceHot'));
-    if (!tips.length) tips.push(tr('adviceGood'));
-    box.textContent = tips.join(' ');
+    const s = score(SP.mode, w, t, 'road');
+    const L = [];
+    if (sunAlt(t + 5400000, 28.4, -14) <= -2) L.push(['🔦', tr('aNight')]);
+    if (w.p > 0.3) L.push(['🌧', tr('aRain')]);
+    if (w.ws >= (SP.mode === 'bike' ? 20 : 25)) L.push(['💨', tr('aWind', { v: w.ws, d: compass(w.wd) })]);
+    if (w.g && w.g > 45) L.push(['⚠️', tr('aGust', { g: w.g })]);
+    if (w.t >= (SP.mode === 'run' ? 22 : 27)) L.push(['🌡', tr('aHot', { t: Math.round(w.t) })]);
+    else if (w.t < (SP.mode === 'run' ? 10 : 14)) L.push(['🧥', tr('aCold', { t: Math.round(w.t) })]);
+    if (!L.length) L.push(['✓', tr('aGood')]);
+    // finestra migliore nelle prossime 48 ore, se è davvero meglio
+    let best = null;
+    SP.times.forEach((tt, k) => {
+      if (tt < Date.now() - 90 * 60000 || tt > Date.now() + 48 * 3600000) return;
+      const x = score(SP.mode, wxAt(p, k), tt, 'road');
+      if (x != null && (!best || x > best.s)) best = { k, t: tt, s: x };
+    });
+    const better = best && best.k !== SP.idx && best.s >= (s || 0) + 1 ? { ic: '⏱', tx: tr('aBetter', { h: dayLabel(best.t).toLowerCase() + ' ' + hh(best.t) + '–' + hh(best.t + 3 * 3600000) + ' · ★ ' + fmtR(best.s) }), go: () => { SP.idx = best.k; SP.picked = true; drawAll(); } } : null;
+    // percorso più adatto adesso: voto più alto, poi meno vento contro al ritorno
+    let route = null;
+    SP.routes.filter((r) => r.sport === SP.mode).forEach((r) => {
+      const ww = wxAt(r._wx, SP.idx), rs = score(r.sport, ww, t, r.surface);
+      if (rs == null) return;
+      const wr = windOnRoute(r, ww), pen = wr.calm ? 0 : Math.max(0, wr.head1) - Math.max(0, wr.head0) + (wr.cross || 0) * 20;
+      const v = rs * 100 - pen - hazardsOn(r).length * 50;
+      if (!route || v > route.v) route = { r, v, s: rs };
+    });
+    const rt = route && route.s >= 2 ? { ic: '🧭', tx: tr('aRoute', { n: route.r.name[lang()] || route.r.name.es }) + ' · ★ ' + fmtR(route.s), go: () => openCard(route.r.id, true) } : null;
+    const when = Math.abs(t - Date.now()) < 90 * 60000 ? tr('now') : dayLabel(t) + ' ' + hh(t) + '–' + hh(t + 3 * 3600000);
+    advBox(box, s, when, L, [better, rt]);
   }
   function routeRow(r) {
     const s = score(r.sport, wxAt(r._wx, SP.idx), SP.times[SP.idx], r.surface);
