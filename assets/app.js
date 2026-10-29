@@ -206,7 +206,7 @@
     document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#13171c' : '#f7f6f2');
     if (map) {
       const key = styleKey();
-      if (map.__style !== key) { map.__style = key; map.setStyle(styleFor(key), { diff: false }); }   // diff:false = ridisegna anche le zone polizia
+      if (map.__style !== key) { map.__style = key; setMapStyle(key); }
       $('layersBtn').classList.toggle('on', S.mapMode === 'sat');
       $('layersBtn').setAttribute('aria-pressed', String(S.mapMode === 'sat'));
     }
@@ -217,34 +217,41 @@
   // ------------------------------------------------------------------
   // Mappa
   // ------------------------------------------------------------------
-  // Vista satellite: ortofoto ufficiali PNOA (Istituto Geografico Nazionale, CC BY 4.0) + nomi delle strade sopra
-  const SAT_STYLE = {
-    version: 8,
-    sources: {
-      sat: {
-        type: 'raster', tileSize: 256, maxzoom: 19,
-        tiles: ['https://www.ign.es/wmts/pnoa-ma?request=GetTile&service=WMTS&VERSION=1.0.0&Layer=OI.OrthoimageCoverage&Style=default&Format=image%2Fjpeg&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileRow={y}&TileCol={x}'],
-        attribution: 'PNOA CC BY 4.0 scne.es · © Instituto Geográfico Nacional'
-      },
-      lab: {
-        type: 'raster', tileSize: 256, maxzoom: 20,
-        tiles: ['a', 'b', 'c', 'd'].map((x) => 'https://' + x + '.basemaps.cartocdn.com/rastertiles/dark_only_labels/{z}/{x}/{y}@2x.png'),
-        attribution: '© CARTO © OpenStreetMap'
-      }
-    },
-    layers: [
-      { id: 'sat', type: 'raster', source: 'sat', paint: { 'raster-fade-duration': 150 } },
-      { id: 'lab', type: 'raster', source: 'lab' }
-    ]
+  // Vista satellite: ortofoto ufficiali PNOA (Istituto Geografico Nazionale, CC BY 4.0)
+  // + solo le scritte (strade, paesi) prese dallo stile scuro OpenFreeMap
+  const SAT_BASE = {
+    type: 'raster', tileSize: 256, maxzoom: 19,
+    tiles: ['https://www.ign.es/wmts/pnoa-ma?request=GetTile&service=WMTS&VERSION=1.0.0&Layer=OI.OrthoimageCoverage&Style=default&Format=image%2Fjpeg&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileRow={y}&TileCol={x}'],
+    attribution: 'PNOA CC BY 4.0 scne.es · © Instituto Geográfico Nacional'
   };
+  let satStyle = null;
+  async function getSatStyle() {
+    if (satStyle) return satStyle;
+    const st = { version: 8, sources: { sat: SAT_BASE }, layers: [{ id: 'sat', type: 'raster', source: 'sat', paint: { 'raster-fade-duration': 150 } }] };
+    try {
+      const d = await (await fetch(CFG.mapStyles.dark)).json();
+      st.glyphs = d.glyphs; st.sprite = d.sprite;
+      st.sources.openmaptiles = d.sources.openmaptiles;
+      d.layers.filter((l) => l.type === 'symbol' && !/oneway/.test(l.id)).forEach((l) => {
+        const paint = Object.assign({}, l.paint, { 'text-color': '#ffffff', 'text-halo-color': 'rgba(0,0,0,0.85)', 'text-halo-width': 1.4 });
+        st.layers.push(Object.assign({}, l, { paint }));
+      });
+      satStyle = st;
+    } catch (e) { console.warn('scritte satellite non disponibili', e); return st; }
+    return satStyle;
+  }
   S.mapMode = store.get('mapMode', 'map');
   const styleKey = () => (S.mapMode === 'sat' ? 'sat' : isDark() ? 'dark' : 'light');
-  const styleFor = (k) => (k === 'sat' ? SAT_STYLE : k === 'dark' ? CFG.mapStyles.dark : CFG.mapStyles.light);
+  const styleFor = (k) => (k === 'dark' ? CFG.mapStyles.dark : CFG.mapStyles.light);
+  async function setMapStyle(key) {
+    const st = key === 'sat' ? await getSatStyle() : styleFor(key);
+    if (map.__style === key) map.setStyle(st, { diff: false });   // diff:false = ridisegna anche le zone polizia
+  }
 
   const center0 = { lat: 28.40, lng: -14.02, zoom: 8.6 };
   const map = new maplibregl.Map({
     container: 'map',
-    style: styleFor(styleKey()),
+    style: styleFor(styleKey() === 'sat' ? (isDark() ? 'dark' : 'light') : styleKey()),
     maxZoom: 19,
     center: [center0.lng, center0.lat],
     zoom: center0.zoom,
@@ -252,6 +259,7 @@
     pitchWithRotate: false
   });
   map.__style = styleKey();
+  if (map.__style === 'sat') setMapStyle('sat');
   map.touchZoomRotate.disableRotation();
 
   map.on('style.load', () => {

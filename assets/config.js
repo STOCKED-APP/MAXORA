@@ -4,8 +4,8 @@ window.MAXORA_CONFIG = {
   supabaseUrl: 'https://rplepprrnvabbhhpjcse.supabase.co',
   supabaseKey: 'sb_publishable_taJqR87W3AmrAps0eh8UEA_N7eYgvTs',
   mapStyles: {
-    light: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
-    dark: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json'
+    light: 'https://tiles.openfreemap.org/styles/positron',   // OpenFreeMap: gratis, senza chiave, uso commerciale ok
+    dark: 'https://tiles.openfreemap.org/styles/dark'
   },
-  version: '0.6.1'
+  version: '0.6.2'
 };
