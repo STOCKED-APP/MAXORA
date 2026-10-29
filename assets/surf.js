@@ -438,6 +438,7 @@
     drawCard();
     $('sfCard').classList.remove('hidden');
     $('sfCard').scrollTop = 0;
+    if (window.MAXORA_TOUR) window.MAXORA_TOUR.cardTips('surf');
     drawPins();
     const ph = Math.min(window.innerHeight * 0.62, $('sfCard').getBoundingClientRect().height || 380);
     if (fly !== false) map.flyTo({ center: [sp.lng, sp.lat], zoom: Math.max(map.getZoom(), 12), duration: 800, padding: { top: 80, bottom: ph, left: 0, right: 0 } });

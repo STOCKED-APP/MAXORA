@@ -398,6 +398,7 @@
     drawCard();
     $('spCard').classList.remove('hidden');
     $('spCard').scrollTop = 0;
+    if (window.MAXORA_TOUR) window.MAXORA_TOUR.cardTips('sport');
     drawMap();
     const b = new maplibregl.LngLatBounds(r.line[0], r.line[0]);
     r.line.forEach((p) => b.extend(p));
@@ -436,7 +437,7 @@
     if (wr.calm) msg = tr('windCalm');
     else if (r.back) msg = wr.head0 > 0 ? tr('headFirst', { d: compass(w.wd) }) : tr('tailFirst', { d: compass(w.wd) });
     else msg = wr.head0 >= wr.head1 ? tr('loopOk') : tr('reverse');
-    box.appendChild(el('p', { class: 'p-desc', text: msg + (!wr.calm && wr.cross > 0.15 && r.sport === 'bike' ? ' ' + tr('crossStrong') : '') }));
+    box.appendChild(el('p', { class: 'p-desc sp-wind', text: msg + (!wr.calm && wr.cross > 0.15 && r.sport === 'bike' ? ' ' + tr('crossStrong') : '') }));
     // ore migliori
     const bs = bestSlots(r, 4);
     if (bs.length) {
@@ -552,6 +553,7 @@
     const ic = el('span', { class: 'mc-ico' }); ic.innerHTML = svg(k);
     chip.append(
       el('button', { class: 'mc-main', onclick: (e) => { e.stopPropagation(); drawMenu(); menu.classList.remove('hidden'); } }, [ic, el('b', { text: tr(k) })]),
+      el('button', { class: 'mc-help', 'aria-label': '?', title: '?', onclick: (e) => { e.stopPropagation(); if (window.MAXORA_TOUR) window.MAXORA_TOUR.legend(k); } }, ['?']),
       el('button', { class: 'mc-x', 'aria-label': tr('exitMode'), title: tr('exitMode'), onclick: (e) => { e.stopPropagation(); choose('road'); } }, ['✕'])
     );
   }

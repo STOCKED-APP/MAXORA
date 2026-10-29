@@ -153,7 +153,7 @@
       if (st.mode !== 'road' && window.MAXORA_MODES) {
         if (st.mode === 'surf') store.set('surfLevel', st.level);
         window.MAXORA_MODES.choose(st.mode);
-      } else setTimeout(() => coach(ROAD), 500);
+      } else setTimeout(roadTips, 500);
     }
   }
   function bullet(t) { return el('li', {}, [icon('rules', 18, 'tu-check'), el('span', { text: t })]); }
@@ -204,66 +204,282 @@
   function go(d) { st.step = Math.max(0, Math.min(STEPS.length - 1, st.step + d)); draw(); }
 
   // ------------------------------------------------------------------
-  // Spiegazioni sui pulsanti veri (lo schermo si scurisce, resta acceso solo il pulsante)
+  // Guida degli indicatori: [titolo, spiegazione] per ogni elemento
   // ------------------------------------------------------------------
-  const ROAD = [['searchOpen', 'c_search'], ['sheetToggle', 'c_sheet'], ['reportBtn', 'c_report'], ['surfBtn', 'c_modes'], ['layersBtn', 'c_layers'], ['centerBtn', 'c_locate'], ['discoverBtn', 'c_discover']];
-  const MODE_TIPS = {
-    surf: [['.sf-pin', 's_pin'], ['sfList', 's_list'], ['sfTimes', 's_times'], ['sfLevel', 's_level']],
-    bike: [['spNow', 'b_now'], ['spTimes', 'b_times'], ['spList', 'b_list'], ['.sp-report', 'b_report']],
-    run: [['spNow', 'b_now'], ['spTimes', 'b_times'], ['spList', 'b_list']]
-  };
-  let cm = null;
-  function target(sel) { return sel.charAt(0) === '.' ? document.querySelector(sel) : $(sel); }
-  function visible(n) { if (!n) return false; const r = n.getBoundingClientRect(); return r.width > 4 && r.height > 4 && r.bottom > 0 && r.top < window.innerHeight; }
-  function coach(list) {
-    const items = list.filter(([sel]) => visible(target(sel)));
-    if (!items.length) return;
-    let i = 0;
-    if (!cm) {
-      cm = el('div', { class: 'cm-root' }, [el('div', { class: 'cm-hole' }), el('div', { class: 'cm-tip' })]);
-      document.body.appendChild(cm);
+  const G = {
+    it: {
+      r_search: ['Ricerca', 'Cerca vie, spiagge, ristoranti o benzinai. Scrivi "ristoranti" e li vedi tutti sulla mappa.'],
+      r_road: ['La strada davanti a te', 'Il cerchio a sinistra sei tu. I quadratini sono gli avvisi in ordine di distanza, con i km sopra. Linea verde e vuota = strada libera.'],
+      r_hero: ['L\'avviso più vicino', 'Tipo, distanza e da quanto tempo è stato segnalato. Tocca ✓ se c\'è ancora o ✕ se non c\'è più.'],
+      r_marker: ['Avvisi sulla mappa', 'Ogni colore è un tipo: arancione traffico, giallo lavori, rosso incidente o pericolo. Il cerchio blu tratteggiato è una zona con controlli di polizia (mai il punto esatto).'],
+      r_report: ['Segnala', 'Vedi un incidente, lavori, sabbia o traffico? Toccalo e scegli cosa succede. Solo da fermo o da passeggero.'],
+      r_modes: ['Modalità', 'Passa da Strada a Surf, Bici o Corsa. L\'etichetta colorata in alto ti dice sempre dove sei; la ✕ ti riporta alla strada.'],
+      r_layers: ['Mappa o satellite', 'Cambia tra mappa normale e foto satellitare.'],
+      r_locate: ['La tua posizione', 'Torna su di te e la mappa ti segue. Il pallino verde vuol dire che il GPS è acceso.'],
+      r_discover: ['Scopri l\'isola', 'Posti da vedere e attività locali, con foto e indicazioni.'],
+      s_pin: ['Gli spot', 'Ogni stella è uno spot e il numero è il voto da 0 a 5 per il tuo livello. Colori: grigio piatto, rosso scarso, arancione discreto, verde buono, azzurro ottimo. La freccetta indica da dove arriva l\'onda. Stelle grigie e sbiadite = non adatte al tuo livello.'],
+      s_level: ['Il tuo livello', 'Principiante, intermedio o esperto: lo stesso mare ha un voto diverso per ognuno.'],
+      s_times: ['Le ore', 'Ogni colonna è una fascia di 3 ore: altezza e colore mostrano lo spot migliore in quel momento. Tocca un\'ora e tutta la mappa si aggiorna.'],
+      s_tide: ['Marea e dati reali', 'Se la marea sale o scende e l\'ora della prossima alta o bassa. "Reale ora" è la misura del mareografo del porto confrontata con la previsione. "Vento misurato" arriva dall\'aeroporto.'],
+      s_row: ['Uno spot nella lista', 'Stelle = voto. Poi: altezza dell\'onda allo spot (m), periodo in secondi (più alto = onda più potente), direzione da cui arriva, energia in kJ (la forza dell\'onda), vento in km/h. 👁 = segnalazioni dei surfisti in spiaggia.'],
+      s_wind: ['Stato del vento', 'glassy = mare liscio, senza vento · offshore = da terra, il migliore · cross-off = laterale da terra · cross-shore = laterale · cross-on = laterale dal mare · onshore = dal mare, rovina le onde.'],
+      sc_score: ['Voto dello spot', 'Voto per l\'ora scelta e il tuo livello. "Corretto dai surfisti" vuol dire che tiene conto di chi è in spiaggia adesso.'],
+      sc_stats: ['I numeri', 'Onde: altezza allo spot ("largo" = in mare aperto). Periodo: secondi tra un\'onda e l\'altra. Energia: forza dell\'onda. Vento e stato del vento. Marea: sale o scende e la prossima alta o bassa.'],
+      sc_chart: ['Prossime 48 ore', 'Il numero è l\'altezza dell\'onda, la barra è il voto. Le ore di notte sono più chiare. Tocca una colonna per sceglierla.'],
+      sc_days: ['Prossimi giorni', 'Per ogni giorno: voto migliore, altezza minima–massima e l\'ora migliore.'],
+      sc_tides: ['Maree del giorno', 'Orari di alta (blu) e bassa (arancione) marea.'],
+      sc_rep: ['Com\'è adesso', 'Sei in spiaggia? Dì grandezza, qualità e folla: lo vedono tutti per 3 ore e il voto si corregge.'],
+      b_big: ['Voto delle condizioni', 'Da 0 a 5 stelle per uscire adesso: verde o azzurro buono, arancione così così, rosso sconsigliato. Conta caldo, vento, raffiche, pioggia e luce.'],
+      b_temp: ['Temperatura', 'Temperatura prevista nell\'interno dell\'isola.'],
+      b_wind: ['Vento', 'La freccia indica verso dove soffia, il numero è la velocità in km/h. Sotto: da dove arriva e le raffiche massime.'],
+      b_light: ['Luce', 'Alba e tramonto di oggi.'],
+      b_times: ['L\'ora migliore', 'Ogni colonna è una fascia di 3 ore: più alta e più verde, meglio è. Le ore di buio sono sbiadite. Tocca per scegliere un\'ora.'],
+      b_adv: ['Consiglio', 'Il suggerimento del momento: caldo, vento forte, buio o pioggia.'],
+      b_row: ['Un percorso', 'Stelle = condizioni all\'ora scelta. Poi: km totali, +m di salita, fondo (asfalto, sterrato, lungomare, sentiero), difficoltà, sigla del sentiero ufficiale e ⚠ avvisi stradali sul percorso.'],
+      b_map: ['Sulla mappa', 'L\'icona segna la partenza, la linea ha il colore delle condizioni. 💧 fontanelle · 🔧 officine e noleggi bici.'],
+      b_report: ['Ciclisti in strada', 'In bici su strada? Avvisa gli automobilisti: vedono l\'avviso per 30 minuti.'],
+      bc_stats: ['I numeri del percorso', 'Chilometri totali, metri di salita e voto delle condizioni per l\'ora scelta.'],
+      bc_prof: ['Altimetria', 'Quanto sali e scendi lungo il percorso: quota massima in alto a sinistra, lunghezza a destra. Sotto, la salita principale con la pendenza media.'],
+      bc_wind: ['Vento sul percorso', 'Ti dice se partire controvento e tornare col vento a favore, o se conviene fare il giro al contrario.'],
+      bc_best: ['Ore migliori', 'Le fasce orarie migliori per questo percorso nelle prossime 48 ore. Tocca per sceglierle.'],
+      bc_gpx: ['GPX', 'Scarica il percorso per Garmin, Strava o Komoot e seguilo con la tua app.'],
+      legend: 'Legenda', legendSub: 'Cosa vuol dire ogni indicatore'
+    },
+    es: {
+      r_search: ['Búsqueda', 'Busca calles, playas, restaurantes o gasolineras. Escribe "restaurantes" y los ves todos en el mapa.'],
+      r_road: ['La carretera delante', 'El círculo de la izquierda eres tú. Los cuadraditos son los avisos por distancia, con los km encima. Línea verde y vacía = vía despejada.'],
+      r_hero: ['El aviso más cercano', 'Tipo, distancia y hace cuánto se avisó. Toca ✓ si sigue o ✕ si ya no está.'],
+      r_marker: ['Avisos en el mapa', 'Cada color es un tipo: naranja tráfico, amarillo obras, rojo accidente o peligro. El círculo azul discontinuo es una zona con controles de policía (nunca el punto exacto).'],
+      r_report: ['Avisar', '¿Ves un accidente, obras, arena o tráfico? Tócalo y elige qué pasa. Solo parado o de pasajero.'],
+      r_modes: ['Modos', 'Cambia entre Carretera, Surf, Bici o Correr. La etiqueta de color arriba te dice dónde estás; la ✕ te devuelve a la carretera.'],
+      r_layers: ['Mapa o satélite', 'Cambia entre mapa normal y foto de satélite.'],
+      r_locate: ['Tu posición', 'Vuelve a ti y el mapa te sigue. El punto verde indica que el GPS está activo.'],
+      r_discover: ['Descubre la isla', 'Lugares para ver y negocios locales, con fotos y cómo llegar.'],
+      s_pin: ['Los spots', 'Cada estrella es un spot y el número es la nota de 0 a 5 para tu nivel. Colores: gris plano, rojo flojo, naranja regular, verde bueno, azul excelente. La flecha indica de dónde llega la ola. Estrellas grises y apagadas = no aptas para tu nivel.'],
+      s_level: ['Tu nivel', 'Principiante, intermedio o experto: el mismo mar tiene una nota distinta para cada uno.'],
+      s_times: ['Las horas', 'Cada columna es una franja de 3 horas: altura y color muestran el mejor spot en ese momento. Toca una hora y todo el mapa se actualiza.'],
+      s_tide: ['Marea y datos reales', 'Si la marea sube o baja y la hora de la próxima alta o baja. "Real ahora" es la medida del mareógrafo del puerto comparada con la previsión. "Viento medido" viene del aeropuerto.'],
+      s_row: ['Un spot en la lista', 'Estrellas = nota. Luego: altura de la ola en el spot (m), periodo en segundos (más alto = ola más potente), dirección de llegada, energía en kJ (la fuerza de la ola), viento en km/h. 👁 = avisos de surfistas en la playa.'],
+      s_wind: ['Estado del viento', 'glassy = mar liso, sin viento · offshore = de tierra, el mejor · cross-off = lateral de tierra · cross-shore = lateral · cross-on = lateral de mar · onshore = de mar, estropea las olas.'],
+      sc_score: ['Nota del spot', 'Nota para la hora elegida y tu nivel. "Corregido por surfistas" significa que tiene en cuenta a quien está en la playa ahora.'],
+      sc_stats: ['Los números', 'Olas: altura en el spot ("fuera" = mar abierto). Periodo: segundos entre olas. Energía: fuerza de la ola. Viento y su estado. Marea: sube o baja y la próxima alta o baja.'],
+      sc_chart: ['Próximas 48 horas', 'El número es la altura de la ola, la barra es la nota. Las horas de noche están más claras. Toca una columna para elegirla.'],
+      sc_days: ['Próximos días', 'Para cada día: mejor nota, altura mínima–máxima y la mejor hora.'],
+      sc_tides: ['Mareas del día', 'Horas de marea alta (azul) y baja (naranja).'],
+      sc_rep: ['Cómo está ahora', '¿Estás en la playa? Di tamaño, calidad y gente: lo ven todos durante 3 horas y la nota se corrige.'],
+      b_big: ['Nota de las condiciones', 'De 0 a 5 estrellas para salir ahora: verde o azul bueno, naranja regular, rojo desaconsejado. Cuenta calor, viento, rachas, lluvia y luz.'],
+      b_temp: ['Temperatura', 'Temperatura prevista en el interior de la isla.'],
+      b_wind: ['Viento', 'La flecha indica hacia dónde sopla, el número es la velocidad en km/h. Debajo: de dónde viene y las rachas máximas.'],
+      b_light: ['Luz', 'Amanecer y atardecer de hoy.'],
+      b_times: ['La mejor hora', 'Cada columna es una franja de 3 horas: más alta y más verde, mejor. Las horas de noche están apagadas. Toca para elegir una hora.'],
+      b_adv: ['Consejo', 'La recomendación del momento: calor, viento fuerte, oscuridad o lluvia.'],
+      b_row: ['Una ruta', 'Estrellas = condiciones a la hora elegida. Luego: km totales, +m de desnivel, firme (asfalto, pista, paseo, sendero), dificultad, código del sendero oficial y ⚠ avisos en la ruta.'],
+      b_map: ['En el mapa', 'El icono marca la salida, la línea tiene el color de las condiciones. 💧 fuentes · 🔧 talleres y alquiler de bicis.'],
+      b_report: ['Ciclistas en la vía', '¿En bici por carretera? Avisa a los conductores: ven el aviso durante 30 minutos.'],
+      bc_stats: ['Los números de la ruta', 'Kilómetros totales, metros de desnivel y nota de las condiciones para la hora elegida.'],
+      bc_prof: ['Perfil', 'Cuánto subes y bajas en la ruta: altitud máxima arriba a la izquierda, longitud a la derecha. Debajo, la subida principal con la pendiente media.'],
+      bc_wind: ['Viento en la ruta', 'Te dice si salir con viento en contra y volver a favor, o si conviene hacer la vuelta al revés.'],
+      bc_best: ['Mejores horas', 'Las mejores franjas para esta ruta en las próximas 48 horas. Toca para elegirlas.'],
+      bc_gpx: ['GPX', 'Descarga la ruta para Garmin, Strava o Komoot y síguela con tu app.'],
+      legend: 'Leyenda', legendSub: 'Qué significa cada indicador'
+    },
+    en: {
+      r_search: ['Search', 'Search streets, beaches, restaurants or fuel. Type "restaurants" to see them all on the map.'],
+      r_road: ['The road ahead', 'The circle on the left is you. The small squares are alerts by distance, with km above. A green, empty line = road clear.'],
+      r_hero: ['The nearest alert', 'Type, distance and how long ago it was reported. Tap ✓ if it\'s still there or ✕ if it\'s gone.'],
+      r_marker: ['Alerts on the map', 'Each colour is a type: orange traffic, yellow roadworks, red accident or hazard. The dashed blue circle is an area with police checks (never the exact spot).'],
+      r_report: ['Report', 'See an accident, roadworks, sand or traffic? Tap and choose what\'s happening. Only when stopped or as a passenger.'],
+      r_modes: ['Modes', 'Switch between Road, Surf, Bike and Run. The coloured label at the top always shows where you are; the ✕ takes you back to Road.'],
+      r_layers: ['Map or satellite', 'Switch between the normal map and satellite imagery.'],
+      r_locate: ['Your position', 'Back to you, with the map following. The green dot means GPS is on.'],
+      r_discover: ['Discover the island', 'Places to see and local businesses, with photos and directions.'],
+      s_pin: ['The spots', 'Each star is a spot and the number is its 0–5 rating for your level. Colours: grey flat, red poor, orange fair, green good, blue great. The small arrow shows where the swell comes from. Grey, faded stars = not for your level.'],
+      s_level: ['Your level', 'Beginner, intermediate or expert: the same sea rates differently for each.'],
+      s_times: ['The hours', 'Each column is a 3-hour slot: height and colour show the best spot at that time. Tap an hour and the whole map updates.'],
+      s_tide: ['Tide and live data', 'Whether the tide is rising or falling and the next high or low. "Live now" is the harbour tide gauge compared with the forecast. "Measured wind" comes from the airport.'],
+      s_row: ['A spot in the list', 'Stars = rating. Then: wave height at the spot (m), period in seconds (higher = more powerful), direction, energy in kJ (the wave\'s power), wind in km/h. 👁 = reports from surfers on the beach.'],
+      s_wind: ['Wind state', 'glassy = smooth sea, no wind · offshore = from land, the best · cross-off = side wind from land · cross-shore = side wind · cross-on = side wind from sea · onshore = from the sea, spoils the waves.'],
+      sc_score: ['Spot rating', 'Rating for the chosen hour and your level. "Corrected by surfers" means it takes into account people on the beach now.'],
+      sc_stats: ['The numbers', 'Waves: height at the spot ("out" = open sea). Period: seconds between waves. Energy: wave power. Wind and wind state. Tide: rising or falling and the next high or low.'],
+      sc_chart: ['Next 48 hours', 'The number is the wave height, the bar is the rating. Night hours are lighter. Tap a column to pick it.'],
+      sc_days: ['Next days', 'For each day: best rating, min–max height and the best hour.'],
+      sc_tides: ['Tides of the day', 'High (blue) and low (orange) tide times.'],
+      sc_rep: ['How it is now', 'On the beach? Share size, quality and crowd: everyone sees it for 3 hours and the rating adjusts.'],
+      b_big: ['Conditions rating', '0 to 5 stars for going out now: green or blue good, orange so-so, red not advised. Based on heat, wind, gusts, rain and daylight.'],
+      b_temp: ['Temperature', 'Forecast temperature inland.'],
+      b_wind: ['Wind', 'The arrow shows where it blows to, the number is the speed in km/h. Below: where it comes from and the strongest gusts.'],
+      b_light: ['Light', 'Today\'s sunrise and sunset.'],
+      b_times: ['The best time', 'Each column is a 3-hour slot: taller and greener is better. Dark hours are faded. Tap to choose an hour.'],
+      b_adv: ['Tip', 'Advice for the moment: heat, strong wind, darkness or rain.'],
+      b_row: ['A route', 'Stars = conditions at the chosen hour. Then: total km, +m climbing, surface (road, gravel, promenade, trail), difficulty, official trail code and ⚠ road alerts on the route.'],
+      b_map: ['On the map', 'The icon marks the start, the line has the colour of the conditions. 💧 fountains · 🔧 bike shops and rentals.'],
+      b_report: ['Cyclists on the road', 'Riding on the road? Let drivers know: they see the alert for 30 minutes.'],
+      bc_stats: ['Route numbers', 'Total kilometres, metres of climbing and conditions rating for the chosen hour.'],
+      bc_prof: ['Elevation', 'How much you climb and descend: max altitude top left, length on the right. Below, the main climb with its average gradient.'],
+      bc_wind: ['Wind on the route', 'Tells you whether to start into the wind and come back with it, or ride the loop the other way.'],
+      bc_best: ['Best hours', 'The best slots for this route in the next 48 hours. Tap to pick one.'],
+      bc_gpx: ['GPX', 'Download the route for Garmin, Strava or Komoot and follow it in your app.'],
+      legend: 'Legend', legendSub: 'What each indicator means'
+    },
+    de: {
+      r_search: ['Suche', 'Suche Straßen, Strände, Restaurants oder Tankstellen. Tippe "Restaurants" und sieh alle auf der Karte.'],
+      r_road: ['Die Straße vor dir', 'Der Kreis links bist du. Die Quadrate sind Meldungen nach Entfernung, mit km darüber. Grüne, leere Linie = freie Fahrt.'],
+      r_hero: ['Die nächste Meldung', 'Art, Entfernung und wie lange es her ist. Tippe ✓, wenn sie noch da ist, oder ✕, wenn sie weg ist.'],
+      r_marker: ['Meldungen auf der Karte', 'Jede Farbe ist eine Art: orange Stau, gelb Baustelle, rot Unfall oder Gefahr. Der gestrichelte blaue Kreis ist ein Bereich mit Polizeikontrollen (nie der genaue Punkt).'],
+      r_report: ['Melden', 'Unfall, Baustelle, Sand oder Stau? Tippen und auswählen. Nur im Stand oder als Beifahrer.'],
+      r_modes: ['Modi', 'Wechsle zwischen Straße, Surf, Rad und Laufen. Das farbige Etikett oben zeigt immer, wo du bist; das ✕ bringt dich zurück zur Straße.'],
+      r_layers: ['Karte oder Satellit', 'Wechsle zwischen normaler Karte und Satellitenbild.'],
+      r_locate: ['Deine Position', 'Zurück zu dir, die Karte folgt dir. Der grüne Punkt heißt: GPS ist an.'],
+      r_discover: ['Insel entdecken', 'Sehenswertes und lokale Betriebe, mit Fotos und Weg.'],
+      s_pin: ['Die Spots', 'Jeder Stern ist ein Spot, die Zahl ist die Bewertung 0–5 für dein Level. Farben: grau flach, rot schwach, orange ok, grün gut, blau super. Der Pfeil zeigt, woher der Swell kommt. Graue, blasse Sterne = nicht für dein Level.'],
+      s_level: ['Dein Level', 'Anfänger, Fortgeschritten oder Experte: dasselbe Meer wird für jeden anders bewertet.'],
+      s_times: ['Die Stunden', 'Jede Spalte ist ein 3-Stunden-Fenster: Höhe und Farbe zeigen den besten Spot. Tippe auf eine Stunde, die ganze Karte aktualisiert sich.'],
+      s_tide: ['Gezeiten und Live-Daten', 'Ob das Wasser steigt oder fällt und das nächste Hoch oder Niedrig. "Live jetzt" ist der Hafenpegel im Vergleich zur Prognose. "Gemessener Wind" kommt vom Flughafen.'],
+      s_row: ['Ein Spot in der Liste', 'Sterne = Bewertung. Dann: Wellenhöhe am Spot (m), Periode in Sekunden (höher = kräftiger), Richtung, Energie in kJ (Wellenkraft), Wind in km/h. 👁 = Meldungen von Surfern am Strand.'],
+      s_wind: ['Windlage', 'glassy = glattes Meer, kein Wind · offshore = vom Land, am besten · cross-off = seitlich vom Land · cross-shore = seitlich · cross-on = seitlich vom Meer · onshore = vom Meer, macht die Wellen kaputt.'],
+      sc_score: ['Spot-Bewertung', 'Bewertung für die gewählte Stunde und dein Level. "Von Surfern korrigiert" heißt: Meldungen vom Strand fließen ein.'],
+      sc_stats: ['Die Zahlen', 'Wellen: Höhe am Spot ("draußen" = offenes Meer). Periode: Sekunden zwischen Wellen. Energie: Wellenkraft. Wind und Windlage. Tide: steigend oder fallend und das nächste Hoch oder Niedrig.'],
+      sc_chart: ['Nächste 48 Stunden', 'Die Zahl ist die Wellenhöhe, der Balken die Bewertung. Nachtstunden sind heller. Tippe auf eine Spalte.'],
+      sc_days: ['Nächste Tage', 'Pro Tag: beste Bewertung, min–max Höhe und die beste Stunde.'],
+      sc_tides: ['Gezeiten des Tages', 'Zeiten für Hoch- (blau) und Niedrigwasser (orange).'],
+      sc_rep: ['Wie es jetzt ist', 'Am Strand? Teile Größe, Qualität und Andrang: alle sehen es 3 Stunden lang, die Bewertung passt sich an.'],
+      b_big: ['Bewertung der Bedingungen', '0 bis 5 Sterne fürs Rausgehen jetzt: grün oder blau gut, orange so lala, rot nicht empfohlen. Hitze, Wind, Böen, Regen und Licht zählen.'],
+      b_temp: ['Temperatur', 'Vorhergesagte Temperatur im Inland.'],
+      b_wind: ['Wind', 'Der Pfeil zeigt, wohin er weht, die Zahl ist die Geschwindigkeit in km/h. Darunter: woher er kommt und die stärksten Böen.'],
+      b_light: ['Licht', 'Sonnenauf- und -untergang heute.'],
+      b_times: ['Die beste Zeit', 'Jede Spalte ist ein 3-Stunden-Fenster: höher und grüner ist besser. Dunkle Stunden sind blass. Tippe, um eine Stunde zu wählen.'],
+      b_adv: ['Tipp', 'Der Hinweis für jetzt: Hitze, starker Wind, Dunkelheit oder Regen.'],
+      b_row: ['Eine Strecke', 'Sterne = Bedingungen zur gewählten Stunde. Dann: km gesamt, +m Anstieg, Untergrund (Asphalt, Schotter, Promenade, Pfad), Schwierigkeit, Code des offiziellen Wegs und ⚠ Meldungen auf der Strecke.'],
+      b_map: ['Auf der Karte', 'Das Symbol markiert den Start, die Linie hat die Farbe der Bedingungen. 💧 Brunnen · 🔧 Radläden und Verleih.'],
+      b_report: ['Radfahrer auf der Straße', 'Mit dem Rad auf der Straße? Sag Autofahrern Bescheid: sie sehen die Meldung 30 Minuten lang.'],
+      bc_stats: ['Zahlen der Strecke', 'Kilometer gesamt, Höhenmeter und Bewertung für die gewählte Stunde.'],
+      bc_prof: ['Höhenprofil', 'Wie viel du hoch und runter fährst: maximale Höhe oben links, Länge rechts. Darunter der Hauptanstieg mit mittlerer Steigung.'],
+      bc_wind: ['Wind auf der Strecke', 'Sagt dir, ob du gegen den Wind starten und mit ihm zurückkommen sollst, oder die Runde andersherum fährst.'],
+      bc_best: ['Beste Stunden', 'Die besten Zeitfenster für diese Strecke in den nächsten 48 Stunden. Tippe zum Auswählen.'],
+      bc_gpx: ['GPX', 'Lade die Strecke für Garmin, Strava oder Komoot herunter und folge ihr in deiner App.'],
+      legend: 'Legende', legendSub: 'Was jedes Symbol bedeutet'
     }
-    cm.classList.remove('hidden');
+  };
+  const g = (k) => (G[lang()] && G[lang()][k]) || G.es[k];
+
+  // [elemento, voce della guida]
+  const ROAD = [['#searchOpen', 'r_search'], ['#road', 'r_road'], ['#hero', 'r_hero'], ['.mk', 'r_marker'], ['#reportBtn', 'r_report'], ['#surfBtn', 'r_modes'], ['#layersBtn', 'r_layers'], ['#centerBtn', 'r_locate'], ['#discoverBtn', 'r_discover']];
+  const MODE_TIPS = {
+    surf: [['.sf-pin', 's_pin'], ['#sfLevel', 's_level'], ['#sfTimes', 's_times'], ['#sfTide', 's_tide'], ['#sfList .sf-row', 's_row'], ['#sfList .sf-row', 's_wind']],
+    bike: [['#spNow .sp-big', 'b_big'], ['#spNow .sp-cell:nth-child(2)', 'b_temp'], ['#spNow .sp-cell:nth-child(3)', 'b_wind'], ['#spNow .sp-cell:nth-child(4)', 'b_light'], ['#spTimes', 'b_times'], ['#spAdvice', 'b_adv'], ['#spList .sf-row', 'b_row'], ['.sp-start', 'b_map'], ['.sp-report', 'b_report']],
+    run: [['#spNow .sp-big', 'b_big'], ['#spNow .sp-cell:nth-child(2)', 'b_temp'], ['#spNow .sp-cell:nth-child(3)', 'b_wind'], ['#spNow .sp-cell:nth-child(4)', 'b_light'], ['#spTimes', 'b_times'], ['#spAdvice', 'b_adv'], ['#spList .sf-row', 'b_row'], ['.sp-start', 'b_map']]
+  };
+  const CARD_TIPS = {
+    surf: [['#sfCardBody .sf-score', 'sc_score'], ['#sfCardBody .sf-stats', 'sc_stats'], ['#sfCardBody .sf-repbtn', 'sc_rep'], ['#sfCardBody .sf-chart', 'sc_chart'], ['#sfCardBody .sf-days', 'sc_days'], ['#sfCardBody .sf-tides', 'sc_tides']],
+    sport: [['#spCardBody .sf-stats', 'bc_stats'], ['#spCardBody .sp-prof', 'bc_prof'], ['#spCardBody .sp-wind', 'bc_wind'], ['#spCardBody .sf-tides', 'bc_best'], ['#spCardBody .p-sec', 'bc_gpx']]
+  };
+  const SHEETS = { road: ['sheet', 'sheetToggle'], surf: ['sfSheet', 'sfToggle'], bike: ['spSheet', 'spToggle'], run: ['spSheet', 'spToggle'] };
+
+  // ------------------------------------------------------------------
+  // Spiegazioni sui pulsanti veri: lo schermo si scurisce e resta acceso un elemento alla volta
+  // ------------------------------------------------------------------
+  let cm = null;
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  function openSheet(k) {
+    const s = SHEETS[k] && $(SHEETS[k][0]);
+    if (s && s.classList.contains('collapsed')) { $(SHEETS[k][1]).click(); return true; }
+    return false;
+  }
+  async function reveal(n) {
+    // porta l'elemento in vista dentro il pannello o la scheda che lo contiene
+    try { n.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } catch (e) { /* niente */ }
+    await wait(250);
+    const r = n.getBoundingClientRect();
+    if (r.width < 4 || r.height < 4 || r.bottom < 0 || r.top > window.innerHeight) return false;
+    const x = Math.min(window.innerWidth - 2, Math.max(1, r.left + r.width / 2)), y = Math.min(window.innerHeight - 2, Math.max(1, r.top + Math.min(r.height, 40) / 2));
+    const hit = document.elementFromPoint(x, y);
+    return !!hit && (n === hit || n.contains(hit) || hit.closest('.cm-root'));
+  }
+  async function coach(list) {
+    if (!cm) { cm = el('div', { class: 'cm-root hidden' }, [el('div', { class: 'cm-hole' }), el('div', { class: 'cm-tip' })]); document.body.appendChild(cm); }
     const hole = cm.querySelector('.cm-hole'), tip = cm.querySelector('.cm-tip');
-    function show() {
-      const [sel, key] = items[i];
-      const n = target(sel);
+    let i = 0, alive = true;
+    const end = () => { alive = false; cm.classList.add('hidden'); };
+    async function show(dir) {
+      while (alive && i >= 0 && i < list.length) {
+        const n = document.querySelector(list[i][0]);
+        cm.classList.add('hidden');
+        if (n && await reveal(n)) break;
+        i += dir || 1;
+      }
+      if (!alive || i < 0 || i >= list.length) return end();
+      cm.classList.remove('hidden');
+      const n = document.querySelector(list[i][0]);
       const r = n.getBoundingClientRect();
-      const padd = 6;
-      const h = Math.min(r.height, window.innerHeight * 0.45);
-      Object.assign(hole.style, { left: (r.left - padd) + 'px', top: (r.top - padd) + 'px', width: (r.width + padd * 2) + 'px', height: (h + padd * 2) + 'px' });
+      const pad = 6, h = Math.min(r.height, window.innerHeight * 0.4);
+      Object.assign(hole.style, { left: (r.left - pad) + 'px', top: (r.top - pad) + 'px', width: (r.width + pad * 2) + 'px', height: (h + pad * 2) + 'px' });
+      const [title, text] = g(list[i][1]);
       tip.innerHTML = '';
       tip.append(
-        el('p', { text: tr(key) }),
+        el('b', { class: 'cm-t', text: title }),
+        el('p', { text: text }),
         el('div', { class: 'cm-nav' }, [
-          el('span', { class: 'cm-n', text: (i + 1) + ' / ' + items.length }),
+          el('span', { class: 'cm-n', text: (i + 1) + ' / ' + list.length }),
           el('button', { class: 'cm-skip', text: tr('skip'), onclick: end }),
-          el('button', { class: 'cm-next', text: i === items.length - 1 ? tr('done') : tr('next'), onclick: () => { if (i === items.length - 1) end(); else { i++; show(); } } })
+          el('button', { class: 'cm-next', text: i === list.length - 1 ? tr('done') : tr('next'), onclick: () => { i++; show(1); } })
         ])
       );
-      // il fumetto va sopra o sotto il pulsante, dove c'è più spazio
       const below = r.top + h / 2 < window.innerHeight / 2;
-      tip.style.top = below ? Math.min(window.innerHeight - 170, r.top + h + 18) + 'px' : '';
-      tip.style.bottom = below ? '' : Math.max(16, window.innerHeight - r.top + 18) + 'px';
+      tip.style.top = below ? Math.min(window.innerHeight - tip.offsetHeight - 12, r.top + h + 18) + 'px' : '';
+      tip.style.bottom = below ? '' : Math.max(12, window.innerHeight - r.top + 18) + 'px';
     }
-    function end() { cm.classList.add('hidden'); }
-    show();
+    await show(1);
   }
-  function modeTips(k) {
-    if (!MODE_TIPS[k] || store.get('tips_' + k, false)) return;
-    store.set('tips_' + k, true);
-    setTimeout(() => coach(MODE_TIPS[k]), 1900);
+  async function modeTips(k) {
+    if (!MODE_TIPS[k] || store.get('tips2_' + k, false)) return;
+    store.set('tips2_' + k, true);
+    await wait(1700);
+    if (openSheet(k)) await wait(400);
+    coach(MODE_TIPS[k]);
+  }
+  async function cardTips(k) {
+    if (!CARD_TIPS[k] || store.get('tips2_card_' + k, false)) return;
+    store.set('tips2_card_' + k, true);
+    await wait(1200);
+    coach(CARD_TIPS[k]);
+  }
+  async function roadTips() {
+    if (openSheet('road')) await wait(400);
+    coach(ROAD);
+  }
+
+  // ------------------------------------------------------------------
+  // Legenda: tutte le spiegazioni della modalità, sempre a portata di mano
+  // ------------------------------------------------------------------
+  let lg = null;
+  function legend(k) {
+    const sets = k === 'surf' ? [MODE_TIPS.surf, CARD_TIPS.surf] : k === 'bike' || k === 'run' ? [MODE_TIPS[k], CARD_TIPS.sport] : [ROAD];
+    const seen = new Set();
+    const rows = [];
+    sets.flat().forEach(([, key]) => { if (!seen.has(key)) { seen.add(key); const [t, x] = g(key); rows.push(el('div', { class: 'lg-row' }, [el('b', { text: t }), el('p', { text: x })])); } });
+    if (!lg) { lg = el('div', { class: 'overlay lg-ov' }); document.body.appendChild(lg); lg.addEventListener('click', (e) => { if (e.target === lg) lg.classList.add('hidden'); }); }
+    lg.innerHTML = '';
+    lg.classList.remove('hidden');
+    const close = el('button', { class: 'icon-btn', 'aria-label': 'OK', onclick: () => lg.classList.add('hidden') });
+    close.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+    lg.appendChild(el('div', { class: 'panel tall lg-panel', role: 'dialog', 'aria-modal': 'true' }, [
+      el('div', { class: 'panel-head' }, [el('h2', { text: g('legend') }), close]),
+      el('p', { class: 'panel-sub', text: g('legendSub') }),
+      el('div', { class: 'lg-list' }, rows)
+    ]));
   }
 
   // ------------------------------------------------------------------
   // Avvio
   // ------------------------------------------------------------------
   const again = $('tourAgain');
+  const leg = el('button', { class: 'tour-again', id: 'legendBtn', onclick: () => { M.closeOverlays(); legend(document.body.dataset.mode || 'road'); } });
+  if (again) { again.parentNode.insertBefore(leg, again); leg.textContent = g('legend') + ' · ' + g('legendSub'); }
   if (again) {
     again.textContent = tr('again');
-    again.addEventListener('click', () => { M.closeOverlays(); ['road', 'surf', 'bike', 'run'].forEach((k) => store.set('tips_' + k, false)); open(); });
+    again.addEventListener('click', () => { M.closeOverlays(); ['road', 'surf', 'bike', 'run', 'card_surf', 'card_sport'].forEach((k) => store.set('tips2_' + k, false)); open(); });
   }
-  M.onTexts(() => { if (again) again.textContent = tr('again'); if (root && !root.classList.contains('hidden')) draw(); });
-  window.MAXORA_TOUR = { open, coach, modeTips };
+  M.onTexts(() => { if (again) again.textContent = tr('again'); leg.textContent = g('legend') + ' · ' + g('legendSub'); if (root && !root.classList.contains('hidden')) draw(); });
+  window.MAXORA_TOUR = { open, coach, modeTips, cardTips, legend };
   if (!store.get('tourDone', false)) setTimeout(open, 400);
 })();

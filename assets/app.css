@@ -733,3 +733,11 @@ body[data-mode="run"]  { --mode: var(--m-run); }
 .cm-n { flex: 1; font-size: 13px; color: var(--muted); font-weight: 700; }
 .cm-skip { border: 0; background: transparent; color: var(--muted); font-weight: 700; min-height: 44px; padding: 0 8px; }
 .cm-next { min-height: 44px; padding: 0 20px; border: 0; border-radius: 22px; background: var(--accent); color: var(--on-accent); font-weight: 800; }
+.cm-t { display: block; font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+.cm-tip p { font-weight: 500; font-size: 15px; }
+.mode-chip .mc-help { width: 38px; font-size: 16px; font-weight: 800; border-left: 1px solid rgba(255,255,255,.35); }
+.lg-list { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.lg-row { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 12px 14px; }
+.lg-row b { display: block; font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+.lg-row p { margin: 0; font-size: 14px; line-height: 1.45; color: var(--text); }
+.lg-ov { z-index: 50; }
