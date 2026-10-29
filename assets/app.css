@@ -596,3 +596,19 @@ body.surf-on #sheet, body.surf-on .mk, body.surf-on #alert { display: none !impo
 .sf-sun { display: flex; gap: 16px; margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--muted); }
 .sf-pin.fav .sf-num { border-color: var(--amber); }
 .sf-pin.rep::after { content: ''; position: absolute; right: 0; top: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--blue); border: 2px solid var(--sheet); z-index: 2; }
+
+/* v0.7.2 — stelle, energia, stato del vento (come i siti di surf) */
+.sf-badge { width: auto; min-width: 46px; padding: 0 7px; display: inline-flex; align-items: center; justify-content: center; gap: 2px; }
+.sf-badge i { font-style: normal; font-size: .78em; opacity: .85; }
+.sf-badge.sm { min-width: 44px; }
+.sf-stars { position: relative; display: inline-block; font-size: 13px; line-height: 1; letter-spacing: 1px; color: var(--track); vertical-align: -1px; }
+.sf-stars::before { content: '★★★★★'; }
+.sf-stars::after { content: '★★★★★'; position: absolute; left: 0; top: 0; width: var(--p); overflow: hidden; white-space: nowrap; color: #f5b301; }
+.sf-score .sf-stars { font-size: 20px; margin-bottom: 4px; }
+.sf-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sf-pin { width: 44px; height: 44px; }
+.sf-pin .sf-num { width: 40px; height: 40px; border: 0; border-radius: 0; box-shadow: none; padding-top: 3px; font-size: 12px;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+.sf-pin { filter: drop-shadow(0 2px 3px rgba(0,0,0,.4)); }
+.sf-pin.sel .sf-num { transform: scale(1.25); }

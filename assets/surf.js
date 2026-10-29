@@ -11,7 +11,7 @@
   // ------------------------------------------------------------------
   const TX = {
     it: {
-      surf: 'Surf', on: 'Modalità surf', off: 'Modalità strada', lvl1: 'Principiante', lvl2: 'Intermedio', lvl3: 'Esperto',
+      energy: 'Energia', energySub: 'potenza onda', windState: 'Stato vento', surf: 'Surf', on: 'Modalità surf', off: 'Modalità strada', lvl1: 'Principiante', lvl2: 'Intermedio', lvl3: 'Esperto',
       best: 'I migliori', now: 'adesso', today: 'Oggi', tomorrow: 'Domani', tide: 'Marea', rising: 'sale', falling: 'scende',
       high: 'Alta', low: 'Bassa', live: 'Reale ora', above: '+{n} cm sulla previsione', below: '−{n} cm sotto la previsione', asfc: 'come da previsione',
       waves: 'Onde', period: 'Periodo', wind: 'Vento', tideK: 'Marea', offshore: 'offshore', cross: 'laterale', onshore: 'onshore', calm: 'calmo',
@@ -25,7 +25,7 @@
       ago: '{t} fa', from: 'da {d}', levelQ: 'Il tuo livello', go: 'VAI', openWith: 'Apri navigazione con', boat: 'Si raggiunge in barca dal porto di Corralejo', nowQ: 'Com\'è adesso', repBtn: 'Sei qui? Dì com\'è', size: 'Onde', quality: 'Com\'è il mare', crowd: 'Gente', sz0: 'Piatto', sz1: 'Ginocchio', sz2: 'Vita–petto', sz3: 'Testa', sz4: 'Sopra la testa', q1: 'Rovinato dal vento', q2: 'Mosso', q3: 'Pulito', c0: 'Vuoto', c1: 'Qualcuno', c2: 'Affollato', send: 'Invia', cancel: 'Annulla', sent: 'Grazie! Lo vedono tutti per 3 ore', repN: '{n} segnalazioni nelle ultime 3 ore', repN1: '1 segnalazione nelle ultime 3 ore', noRep: 'Nessuno ha ancora detto com\'è. Sei in spiaggia? Dillo tu.', corrected: 'voto corretto da chi è in acqua', fav: 'Preferito', favAdd: 'Aggiunto ai preferiti', favDel: 'Tolto dai preferiti', windLive: 'Vento misurato', gust: 'raffiche', sunrise: 'Alba', sunset: 'Tramonto', errRep: 'Invio non riuscito', repAlready: 'Hai già segnalato questo spot', repMany: 'Troppe segnalazioni, riprova più tardi', repOff: 'Segnalazioni non ancora attive', pickAll: 'Scegli onde e com\'è il mare', airport: 'aeroporto'
     },
     es: {
-      surf: 'Surf', on: 'Modo surf', off: 'Modo carretera', lvl1: 'Principiante', lvl2: 'Intermedio', lvl3: 'Experto',
+      energy: 'Energía', energySub: 'potencia ola', windState: 'Estado viento', surf: 'Surf', on: 'Modo surf', off: 'Modo carretera', lvl1: 'Principiante', lvl2: 'Intermedio', lvl3: 'Experto',
       best: 'Los mejores', now: 'ahora', today: 'Hoy', tomorrow: 'Mañana', tide: 'Marea', rising: 'sube', falling: 'baja',
       high: 'Alta', low: 'Baja', live: 'Real ahora', above: '+{n} cm sobre la previsión', below: '−{n} cm bajo la previsión', asfc: 'como la previsión',
       waves: 'Olas', period: 'Periodo', wind: 'Viento', tideK: 'Marea', offshore: 'terral', cross: 'lateral', onshore: 'de mar', calm: 'calma',
@@ -39,7 +39,7 @@
       ago: 'hace {t}', from: 'del {d}', levelQ: 'Tu nivel', go: 'IR', openWith: 'Abrir navegación con', boat: 'Se llega en barco desde el puerto de Corralejo', nowQ: 'Cómo está ahora', repBtn: '¿Estás aquí? Cuenta cómo está', size: 'Olas', quality: 'Estado del mar', crowd: 'Gente', sz0: 'Plano', sz1: 'Rodilla', sz2: 'Cintura–pecho', sz3: 'Cabeza', sz4: 'Más de cabeza', q1: 'Roto por el viento', q2: 'Picado', q3: 'Limpio', c0: 'Vacío', c1: 'Algo de gente', c2: 'Lleno', send: 'Enviar', cancel: 'Cancelar', sent: '¡Gracias! Todos lo ven durante 3 horas', repN: '{n} avisos en las últimas 3 horas', repN1: '1 aviso en las últimas 3 horas', noRep: 'Nadie ha contado aún cómo está. ¿Estás en la playa? Cuéntalo tú.', corrected: 'nota corregida por quien está en el agua', fav: 'Favorito', favAdd: 'Añadido a favoritos', favDel: 'Quitado de favoritos', windLive: 'Viento medido', gust: 'rachas', sunrise: 'Amanecer', sunset: 'Atardecer', errRep: 'No se pudo enviar', repAlready: 'Ya has avisado de este spot', repMany: 'Demasiados avisos, prueba más tarde', repOff: 'Avisos todavía no activos', pickAll: 'Elige olas y estado del mar', airport: 'aeropuerto'
     },
     en: {
-      surf: 'Surf', on: 'Surf mode', off: 'Road mode', lvl1: 'Beginner', lvl2: 'Intermediate', lvl3: 'Expert',
+      energy: 'Energy', energySub: 'wave power', windState: 'Wind state', surf: 'Surf', on: 'Surf mode', off: 'Road mode', lvl1: 'Beginner', lvl2: 'Intermediate', lvl3: 'Expert',
       best: 'Best spots', now: 'now', today: 'Today', tomorrow: 'Tomorrow', tide: 'Tide', rising: 'rising', falling: 'falling',
       high: 'High', low: 'Low', live: 'Live now', above: '+{n} cm above forecast', below: '−{n} cm below forecast', asfc: 'as forecast',
       waves: 'Waves', period: 'Period', wind: 'Wind', tideK: 'Tide', offshore: 'offshore', cross: 'cross-shore', onshore: 'onshore', calm: 'calm',
@@ -53,7 +53,7 @@
       ago: '{t} ago', from: 'from {d}', levelQ: 'Your level', go: 'GO', openWith: 'Navigate with', boat: 'Reached by boat from Corralejo harbour', nowQ: 'How it is now', repBtn: 'Here now? Tell how it is', size: 'Waves', quality: 'Surface', crowd: 'Crowd', sz0: 'Flat', sz1: 'Knee', sz2: 'Waist–chest', sz3: 'Head', sz4: 'Overhead', q1: 'Blown out', q2: 'Choppy', q3: 'Clean', c0: 'Empty', c1: 'A few', c2: 'Crowded', send: 'Send', cancel: 'Cancel', sent: 'Thanks! Everyone sees it for 3 hours', repN: '{n} reports in the last 3 hours', repN1: '1 report in the last 3 hours', noRep: 'Nobody has reported yet. At the beach? Tell everyone.', corrected: 'rating adjusted by surfers in the water', fav: 'Favourite', favAdd: 'Added to favourites', favDel: 'Removed from favourites', windLive: 'Measured wind', gust: 'gusts', sunrise: 'Sunrise', sunset: 'Sunset', errRep: 'Could not send', repAlready: 'You already reported this spot', repMany: 'Too many reports, try later', repOff: 'Reports not active yet', pickAll: 'Choose waves and surface', airport: 'airport'
     },
     de: {
-      surf: 'Surf', on: 'Surfmodus', off: 'Straßenmodus', lvl1: 'Anfänger', lvl2: 'Fortgeschritten', lvl3: 'Experte',
+      energy: 'Energie', energySub: 'Wellenkraft', windState: 'Windlage', surf: 'Surf', on: 'Surfmodus', off: 'Straßenmodus', lvl1: 'Anfänger', lvl2: 'Fortgeschritten', lvl3: 'Experte',
       best: 'Die besten Spots', now: 'jetzt', today: 'Heute', tomorrow: 'Morgen', tide: 'Gezeiten', rising: 'steigend', falling: 'fallend',
       high: 'Hoch', low: 'Niedrig', live: 'Live jetzt', above: '+{n} cm über Prognose', below: '−{n} cm unter Prognose', asfc: 'wie vorhergesagt',
       waves: 'Wellen', period: 'Periode', wind: 'Wind', tideK: 'Tide', offshore: 'ablandig', cross: 'sideshore', onshore: 'auflandig', calm: 'still',
@@ -154,14 +154,21 @@
     if (h <= o1) return 1 - 0.55 * (h - i1) / (o1 - i1);
     return Math.max(0.05, 0.45 - (h - o1) * 0.4);
   }
+  // stato del vento con i termini che usano tutti i surfisti (come Surf-Forecast)
+  const WSTATE = { glassy: 'glassy', offshore: 'offshore', crossoff: 'cross-off', cross: 'cross-shore', crosson: 'cross-on', onshore: 'onshore' };
   function windInfo(sp, ws, wd) {
     if (ws == null || wd == null) return { score: 0.7, kind: 'cross' };
-    if (ws < 7) return { score: 1, kind: 'calm' };
+    if (ws <= 5) return { score: 1, kind: 'glassy' };
     const rel = angleDiff(wd, sp.off);
-    if (rel <= 50) return { score: ws <= 30 ? 1 : 0.75, kind: 'offshore' };
+    if (rel <= 30) return { score: ws <= 30 ? 1 : 0.75, kind: 'offshore' };
+    if (rel <= 70) return { score: clamp(1 - (ws - 7) / 45, 0.5, 1), kind: 'crossoff' };
     if (rel <= 110) return { score: clamp(1 - (ws - 7) / 35, 0.35, 0.95), kind: 'cross' };
-    return { score: clamp(1 - (ws - 5) / 15, 0, 0.85), kind: 'onshore' };
+    if (rel <= 150) return { score: clamp(1 - (ws - 6) / 22, 0.1, 0.85), kind: 'crosson' };
+    return { score: clamp(1 - (ws - 5) / 15, 0, 0.8), kind: 'onshore' };
   }
+  // energia dell'onda in kJ (per metro di cresta, su una lunghezza d'onda): ρ·g²·H²·T² / 16π
+  const energy = (hs, tp) => (hs == null || tp == null ? null : Math.round(1025 * 9.81 * 9.81 * hs * hs * tp * tp / (16 * Math.PI) / 1000));
+  function stars(r) { return el('span', { class: 'sf-stars', style: '--p:' + ((r || 0) / 5 * 100) + '%', 'aria-label': fmtR(r) + '/5' }); }
   const periodScore = (tp) => (tp == null ? 0.6 : tp < 6 ? 0.35 : tp < 8 ? 0.55 : tp < 10 ? 0.75 : tp < 12 ? 0.9 : 1);
 
   function rate(sp, k, lvl) {
@@ -209,7 +216,9 @@
     const parts = [num(Math.max(0.1, x.h), 1) + ' m'];
     if (x.tp) parts.push(num(x.tp, 0) + ' s');
     if (x.dir != null) parts.push(compass(x.dir));
-    if (x.ws != null) parts.push(tr('wind').toLowerCase() + ' ' + tr(x.wind) + ' ' + x.ws + ' km/h');
+    const e = energy(x.h, x.tp);
+    if (e != null) parts.push(e + ' kJ');
+    if (x.ws != null) parts.push(x.ws + ' km/h ' + WSTATE[x.wind]);
     return parts.join(' · ');
   }
 
@@ -392,10 +401,10 @@
     rows.slice(0, 8).forEach(({ sp, x }) => {
       const nRep = repsFor(sp.id, 3).length;
       box.appendChild(el('button', { class: 'sf-row' + (x.notYou ? ' dim' : ''), onclick: () => openCard(sp.id, true) }, [
-        el('span', { class: 'sf-badge' + (x.fixed ? ' fixed' : ''), style: '--c:' + color(x.r) }, [fmtR(x.r)]),
+        el('span', { class: 'sf-badge' + (x.fixed ? ' fixed' : ''), style: '--c:' + color(x.r) }, [el('i', { text: '★' }), fmtR(x.r)]),
         el('span', { class: 'sf-txt' }, [
           el('span', { class: 't' }, [SF.favs.has(sp.id) ? el('span', { class: 'sf-star', text: '★ ' }) : null, sp.name, nRep ? el('span', { class: 'sf-repn', text: ' · ' + nRep + ' 👁' }) : null]),
-          el('span', { class: 's', text: x.notYou ? tr('notYou') : word(x) + ' · ' + line(x) })
+          el('span', { class: 's' }, [x.notYou ? tr('notYou') : [stars(x.r), ' ' + line(x)]].flat())
         ])
       ]));
     });
@@ -495,6 +504,7 @@
       box.appendChild(el('div', { class: 'sf-score', style: '--c:' + color(x.r) }, [
         el('div', { class: 'big' }, [fmtR(x.r), el('small', { text: '/5' })]),
         el('div', { class: 'txt' }, [
+          stars(x.r),
           el('div', { class: 'w', text: x.notYou ? tr('notYou') : word(x) }),
           el('div', { class: 'when', text: dayLabel(t) + ' ' + hhmm(t) + (isDay(t) ? '' : ' · ' + tr('night')) }),
           x.fixed ? el('div', { class: 'sf-fixed', text: '👁 ' + tr('corrected') }) : null
@@ -504,8 +514,10 @@
       st.append(
         stat(tr('waves'), num(Math.max(0.1, x.h), 1) + ' m', tr('offsh', { h: num(x.hs, 1) })),
         stat(tr('period'), x.tp ? num(x.tp, 0) + ' s' : '–', x.dir != null ? tr('from', { d: compass(x.dir) }) : ''),
-        stat(tr('wind'), x.ws != null ? x.ws + ' km/h' : '–', x.wd != null ? tr(x.wind) + ' · ' + compass(x.wd) : ''),
-        stat(tr('tideK'), x.tide ? (x.tide.rising ? '↗' : '↘') : '–', x.tide ? (x.tide.rising ? tr('rising') : tr('falling')) : '')
+        stat(tr('energy'), energy(x.h, x.tp) != null ? energy(x.h, x.tp) + ' kJ' : '–', tr('energySub')),
+        stat(tr('wind'), x.ws != null ? x.ws + ' km/h' : '–', x.wd != null ? tr('from', { d: compass(x.wd) }) : ''),
+        stat(tr('windState'), WSTATE[x.wind] || '–', ''),
+        stat(tr('tideK'), x.tide ? (x.tide.rising ? '↗' : '↘') : '–', x.tide ? (x.tide.rising ? tr('rising') : tr('falling')) + ' · ' + (x.tide.next.k === 'H' ? tr('high') : tr('low')) + ' ' + hhmm(x.tide.next.t) : '')
       );
       box.appendChild(st);
       const w = liveWind();
@@ -549,7 +561,7 @@
     [...days.values()].slice(0, 10).forEach((d) => {
       tb.appendChild(el('button', { class: 'sf-dayrow' + (d.i === SF.idx ? ' on' : ''), onclick: () => pick(d.i) }, [
         el('span', { class: 'dn', text: dayLabel(d.t) }),
-        el('span', { class: 'sf-badge sm', style: '--c:' + color(d.best.r) }, [fmtR(d.best.r)]),
+        el('span', { class: 'sf-badge sm', style: '--c:' + color(d.best.r) }, [el('i', { text: '★' }), fmtR(d.best.r)]),
         el('span', { class: 'dh', text: num(Math.max(0.1, d.hmin), 1) + '–' + num(Math.max(0.1, d.hmax), 1) + ' m' }),
         el('span', { class: 'dw', text: tr('bestAt', { h: hh(SF.times[d.i]) + ':00' }) })
       ]));
