@@ -24,6 +24,13 @@ def num(s):
         return None
 
 
+def coord(s):
+    try:
+        return float((s or '').strip().replace(',', '.'))
+    except ValueError:
+        return None
+
+
 def fetch():
     for k in range(5):
         try:
@@ -40,7 +47,7 @@ def main():
     doc = fetch()
     out = []
     for e in doc.get('ListaEESSPrecio', []):
-        lat, lng = num(e.get('Latitud')), num(e.get('Longitud (WGS84)'))
+        lat, lng = coord(e.get('Latitud')), coord(e.get('Longitud (WGS84)'))
         if lat is None or lng is None:
             continue
         mun = (e.get('Municipio') or '').strip().lower()
@@ -51,7 +58,7 @@ def main():
             continue
         out.append({'id': e.get('IDEESS'), 'name': (e.get('Rótulo') or '').strip().title(), 'addr': (e.get('Dirección') or '').strip().title(),
                     'town': (e.get('Localidad') or '').strip().title(), 'hours': (e.get('Horario') or '').strip(),
-                    'lat': round(-lat if lat < 0 else lat, 6), 'lng': round(lng, 6), **{k: v for k, v in p.items() if v}})
+                    'lat': round(lat, 6), 'lng': round(lng, 6), **{k: v for k, v in p.items() if v}})
     if len(out) < 10:
         print('::notice::esempio ' + json.dumps(doc.get('ListaEESSPrecio', [{}])[0], ensure_ascii=False)[:900], flush=True)
         print(f'::error::troppo poche stazioni: {len(out)} su {len(doc.get("ListaEESSPrecio", []))}', flush=True)
