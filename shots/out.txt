@@ -1,0 +1,5 @@
+prima: {"r":3,"h":1.1777513800000001}
+ERRORE: page.evaluate: TypeError: Cannot read properties of undefined (reading 'click')
+    at eval (eval at evaluate (:234:30), <anonymous>:1:121)
+    at UtilityScript.evaluate (<anonymous>:236:17)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
