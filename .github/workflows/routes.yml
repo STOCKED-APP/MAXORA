@@ -3,7 +3,7 @@ name: Percorsi
 
 on:
   schedule:
-    - cron: '29 5 1 * *'
+    - cron: '29 5 * * 1'      # ogni lunedì: sentieri e strade OSM sempre aggiornati
   workflow_dispatch:
   push:
     branches: [main]
@@ -26,13 +26,17 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - run: pip install -q numpy rasterio
-      - run: python3 tools/build_routes.py data/routes_src.json data/routes.json
+      - run: sudo apt-get update -q && sudo apt-get install -y -q osmium-tool && pip install -q numpy rasterio osmium
+      - name: Sentieri ufficiali e cime da OpenStreetMap (estratto Geofabrik)
+        run: |
+          curl -fsSL --retry 3 -A "Maxora/0.9 (+https://github.com/STOCKED-APP/MAXORA)" -o c.pbf https://download.geofabrik.de/africa/canary-islands-latest.osm.pbf
+          osmium extract -b -14.55,27.99,-13.70,28.80 c.pbf -o fv.pbf --overwrite
+      - run: python3 tools/build_routes.py data/routes_src.json data/routes.json fv.pbf
       - name: Pubblica
         run: |
           git config user.name "maxora-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/routes.json
+          git add data/routes.json data/routes_report.json
           if git diff --cached --quiet; then echo "Nessun cambiamento"; exit 0; fi
           git commit -qm "Percorsi aggiornati"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done

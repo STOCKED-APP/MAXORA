@@ -115,31 +115,68 @@ def climb_stats(dist, ele):
     return int(round(gain)), int(round(loss)), round(float(maxg), 1), main
 
 
+REPORT = []
+MAX_SNAP = 250      # se il tracciato passa a più di 250 m da una tappa, il percorso è sbagliato: non lo pubblico
+
+
 def main():
     src, dst = sys.argv[1], sys.argv[2]
+    pbf = sys.argv[3] if len(sys.argv) > 3 else None
     routes = json.load(open(src))['routes']
+    peaks = osm_peaks(pbf) if pbf else {}
     out = []
     for r in routes:
         try:
-            o = build_one(r)
+            o = build_one(r, peaks)
         except Exception as e:
             import traceback; traceback.print_exc()
-            note(f"{r['id']}: errore {e!r}")
+            REPORT.append({'id': r['id'], 'error': repr(e)})
             continue
         if o:
             out.append(o)
         time.sleep(1.5)
+    if pbf:
+        for r in osm_routes(pbf):
+            try:
+                o = finalize(r, r.pop('_coords'), [])
+            except Exception as e:
+                REPORT.append({'id': r['id'], 'error': repr(e)})
+                continue
+            if o:
+                out.append(o)
     return finish(routes, out, dst)
 
 
-def build_one(r):
-        rt = route(r['sport'], r['via'])
-        if not rt:
-            note(f"{r['id']}: percorso non tracciato, salto")
-            return None
-        coords = rt['geometry']['coordinates']
-        # tappe: quanto lontano è finito il router dal punto voluto
-        snap = [round(hav([lng, lat], min(coords, key=lambda c: hav(c, [lng, lat])))) for _, lat, lng in r['via']]
+def resolve_via(via, peaks):
+    """una tappa può essere ["@Nome della cima"]: la posizione si prende da OpenStreetMap"""
+    res = []
+    for v in via:
+        if isinstance(v[0], str) and v[0].startswith('@'):
+            p = peaks.get(v[0][1:])
+            if not p:
+                raise ValueError('cima non trovata: ' + v[0])
+            res.append([v[0][1:], p[0], p[1]])
+        else:
+            res.append(v)
+    return res
+
+
+def build_one(r, peaks):
+    via = resolve_via(r['via'], peaks)
+    rt = route(r['sport'], via)
+    if not rt:
+        REPORT.append({'id': r['id'], 'error': 'non tracciato'})
+        return None
+    coords = rt['geometry']['coordinates']
+    snap = [round(hav([lng, lat], min(coords, key=lambda c: hav(c, [lng, lat])))) for _, lat, lng in via]
+    if max(snap) > MAX_SNAP:
+        REPORT.append({'id': r['id'], 'error': 'tappa lontana dal tracciato', 'snap': snap})
+        note(f"{r['id']}: scartato, tappe a {snap} m dal tracciato")
+        return None
+    return finalize(r, coords, snap)
+
+
+def finalize(r, coords, snap):
         pts, dist, total = resample(coords, 25)
         ele = smooth(elevations(pts), 7)
         gain, loss, maxg, main_climb = climb_stats(dist, list(ele))
@@ -148,13 +185,13 @@ def build_one(r):
             gain, loss = gain + loss, loss + gain
         else:
             total2 = total
-        # profilo: al massimo 160 punti
+        if r.get('level') is None:   # difficoltà stimata per i sentieri importati
+            r['level'] = 3 if (gain > 600 or total2 > 25000) else 2 if (gain > 250 or total2 > 10000) else 1
         n = len(dist)
         idx = sorted(set([round(i * (n - 1) / 159) for i in range(160)])) if n > 160 else list(range(n))
         prof = [[round(dist[i] / 1000, 2), round(float(ele[i]))] for i in idx]
-        # linea per la mappa: un punto ogni ~25 m, 5 decimali
         line = [[round(p[0], 5), round(p[1], 5)] for p in pts]
-        o = {k: r[k] for k in ('id', 'sport', 'surface', 'loop', 'level', 'name', 'note') if k in r}
+        o = {k: r[k] for k in ('id', 'sport', 'surface', 'loop', 'level', 'name', 'note', 'ref', 'official') if k in r}
         o.update({
             'back': bool(r.get('back')),
             'km': round(total2 / 1000, 1), 'oneway_km': round(total / 1000, 1),
@@ -163,8 +200,77 @@ def build_one(r):
             'start': [line[0][1], line[0][0]],
             'line': line, 'profile': prof,
         })
-        note(f"{r['id']}: {o['km']} km, +{gain} m, max {maxg}%, quota {o['ele_min']}–{o['ele_max']} m, scarto tappe {snap} m, salita {main_climb}")
+        REPORT.append({'id': r['id'], 'km': o['km'], 'gain': gain, 'max_grade': maxg, 'ele': [o['ele_min'], o['ele_max']], 'snap': snap, 'loop': o.get('loop')})
         return o
+
+
+def osm_peaks(pbf):
+    import osmium
+    class H(osmium.SimpleHandler):
+        def __init__(s): super().__init__(); s.p = {}
+        def node(s, n):
+            t = n.tags
+            if t.get('natural') in ('volcano', 'peak') and t.get('name'):
+                s.p[t.get('name')] = (n.location.lat, n.location.lon)
+    h = H(); h.apply_file(pbf)
+    return h.p
+
+
+SKIP_REL = {'GR 131', 'E7'}
+NOTE_TRAIL = {'es': 'Sendero oficial {ref}, señalizado en el terreno.', 'en': 'Official trail {ref}, waymarked on the ground.',
+              'it': 'Sentiero ufficiale {ref}, segnalato sul terreno.', 'de': 'Offizieller Wanderweg {ref}, vor Ort markiert.'}
+NOTE_BIKE = {'es': 'Ruta ciclista señalizada {ref}.', 'en': 'Signed cycling route {ref}.', 'it': 'Percorso ciclabile segnalato {ref}.', 'de': 'Beschilderte Radroute {ref}.'}
+
+
+def osm_routes(pbf):
+    """sentieri e percorsi ufficiali mappati su OpenStreetMap (relazioni route=hiking/bicycle/mtb…)"""
+    import osmium
+    class Rel(osmium.SimpleHandler):
+        def __init__(s): super().__init__(); s.rels = []
+        def relation(s, r):
+            t = r.tags
+            if t.get('type') == 'route' and t.get('route') in ('hiking', 'foot', 'walking', 'running', 'bicycle', 'mtb'):
+                ref = t.get('ref', '')
+                if ref in SKIP_REL or t.get('network') in ('iwn', 'nwn'):
+                    return
+                s.rels.append({'id': r.id, 'route': t.get('route'), 'name': t.get('name') or ref, 'ref': ref,
+                               'ways': [m.ref for m in r.members if m.type == 'w']})
+    rh = Rel(); rh.apply_file(pbf)
+    need = {w for r in rh.rels for w in r['ways']}
+    class Way(osmium.SimpleHandler):
+        def __init__(s): super().__init__(); s.g = {}
+        def way(s, w):
+            if w.id in need:
+                try: s.g[w.id] = [[n.lon, n.lat] for n in w.nodes]
+                except osmium.InvalidLocationError: pass
+    wh = Way(); wh.apply_file(pbf, locations=True)
+    out = []
+    for r in rh.rels:
+        segs = [wh.g[w] for w in r['ways'] if w in wh.g and len(wh.g[w]) > 1]
+        if not segs:
+            continue
+        line = list(segs[0])
+        if len(segs) > 1 and min(hav(line[0], segs[1][0]), hav(line[0], segs[1][-1])) < min(hav(line[-1], segs[1][0]), hav(line[-1], segs[1][-1])):
+            line.reverse()
+        gaps = 0
+        for sgm in segs[1:]:
+            a, b = hav(line[-1], sgm[0]), hav(line[-1], sgm[-1])
+            sg = sgm if a <= b else list(reversed(sgm))
+            if min(a, b) > 150: gaps += 1
+            line.extend(sg[1:] if min(a, b) < 1 else sg)
+        if gaps > 2:
+            REPORT.append({'id': 'osm-%d' % r['id'], 'name': r['name'], 'error': 'tracciato a pezzi (%d salti)' % gaps})
+            continue
+        is_bike = r['route'] in ('bicycle', 'mtb')
+        nm = r['name'] if (not r['ref'] or r['ref'] in r['name']) else r['name'] + ' · ' + r['ref']
+        loop = hav(line[0], line[-1]) < 300
+        out.append({'id': 'osm-%d' % r['id'], 'sport': 'bike' if is_bike else 'run',
+                    'surface': ('gravel' if r['route'] == 'mtb' else 'road') if is_bike else 'trail',
+                    'loop': loop, 'level': None, 'official': True, 'ref': r['ref'],
+                    'name': {k: nm for k in ('es', 'en', 'it', 'de')},
+                    'note': {k: (NOTE_BIKE if is_bike else NOTE_TRAIL)[k].replace('{ref}', r['ref'] or '') for k in NOTE_TRAIL},
+                    '_coords': line})
+    return out
 
 
 def finish(routes, out, dst):
@@ -173,6 +279,9 @@ def finish(routes, out, dst):
            'routes': out}
     with open(dst, 'w') as f:
         json.dump(doc, f, separators=(',', ':'), ensure_ascii=False)
+    with open(dst.replace('.json', '_report.json'), 'w') as f:
+        json.dump(REPORT, f, ensure_ascii=False, indent=0)
+    note(f'{len(out)} percorsi pubblicati; scartati: ' + ', '.join(x['id'] for x in REPORT if 'error' in x))
     if len(out) < len(routes) // 2:
         sys.exit('troppi percorsi mancanti')
 

@@ -398,38 +398,6 @@
    }
   },
   {
-   "id": "calderon",
-   "sport": "run",
-   "surface": "trail",
-   "loop": false,
-   "back": true,
-   "level": 2,
-   "name": {
-    "es": "Lajares – Calderón Hondo",
-    "en": "Lajares – Calderón Hondo",
-    "it": "Lajares – Calderón Hondo",
-    "de": "Lajares – Calderón Hondo"
-   },
-   "via": [
-    [
-     "Lajares",
-     28.6763,
-     -13.9365
-    ],
-    [
-     "Calderón Hondo",
-     28.698576,
-     -13.920864
-    ]
-   ],
-   "note": {
-    "es": "Sendero de tierra volcánica hasta el borde del cráter.",
-    "en": "Volcanic dirt trail up to the crater rim.",
-    "it": "Sentiero di terra vulcanica fino al bordo del cratere.",
-    "de": "Vulkanischer Pfad bis zum Kraterrand."
-   }
-  },
-  {
    "id": "costa-sur",
    "sport": "bike",
    "surface": "road",
@@ -559,6 +527,179 @@
     "en": "A hill run up to the island's highest lighthouse.",
     "it": "Corsa in salita fino al faro più alto dell'isola.",
     "de": "Berglauf hinauf zum höchsten Leuchtturm der Insel."
+   },
+   "back": true
+  },
+  {
+   "id": "pista-norte",
+   "sport": "bike",
+   "surface": "gravel",
+   "loop": false,
+   "level": 2,
+   "name": {
+    "es": "Pista del norte: Corralejo – Majanicho – El Cotillo",
+    "en": "North track: Corralejo – Majanicho – El Cotillo",
+    "it": "Pista del nord: Corralejo – Majanicho – El Cotillo",
+    "de": "Nordpiste: Corralejo – Majanicho – El Cotillo"
+   },
+   "via": [
+    [
+     "Corralejo",
+     28.7303,
+     -13.8673
+    ],
+    [
+     "Mejillones",
+     28.75612,
+     -13.89335
+    ],
+    [
+     "Majanicho",
+     28.73923,
+     -13.93743
+    ],
+    [
+     "Punta Blanca",
+     28.71662,
+     -14.00143
+    ],
+    [
+     "El Cotillo",
+     28.6838,
+     -14.0117
+    ]
+   ],
+   "note": {
+    "es": "Pista de tierra junto al mar por toda la costa norte, pasando por los spots de surf. Gravel o MTB.",
+    "en": "Dirt track along the whole north coast past the surf spots. Gravel or MTB.",
+    "it": "Pista sterrata lungo tutta la costa nord, passando per gli spot di surf. Gravel o MTB.",
+    "de": "Schotterpiste an der ganzen Nordküste vorbei an den Surfspots. Gravel oder MTB."
+   }
+  },
+  {
+   "id": "majanicho-run",
+   "sport": "run",
+   "surface": "trail",
+   "loop": false,
+   "level": 3,
+   "name": {
+    "es": "Corralejo – Majanicho por la pista",
+    "en": "Corralejo – Majanicho on the track",
+    "it": "Corralejo – Majanicho sulla pista",
+    "de": "Corralejo – Majanicho über die Piste"
+   },
+   "via": [
+    [
+     "Corralejo",
+     28.7303,
+     -13.8673
+    ],
+    [
+     "Mejillones",
+     28.75612,
+     -13.89335
+    ],
+    [
+     "Majanicho",
+     28.73923,
+     -13.93743
+    ]
+   ],
+   "note": {
+    "es": "Pista de tierra junto al mar, sin sombra. Viento de cara a la vuelta si sopla el alisio.",
+    "en": "Dirt track by the sea, no shade. Headwind on the way back if the trade wind blows.",
+    "it": "Pista sterrata lungo il mare, senza ombra. Vento contro al ritorno se soffia l'aliseo.",
+    "de": "Schotterpiste am Meer, kein Schatten. Gegenwind zurück bei Passat."
+   },
+   "back": true
+  },
+  {
+   "id": "bayuyo",
+   "sport": "run",
+   "surface": "trail",
+   "loop": false,
+   "level": 2,
+   "name": {
+    "es": "Volcanes de Bayuyo",
+    "en": "Bayuyo volcanoes",
+    "it": "Vulcani di Bayuyo",
+    "de": "Vulkane von Bayuyo"
+   },
+   "via": [
+    [
+     "Corralejo",
+     28.7303,
+     -13.8673
+    ],
+    [
+     "@Bayuyo"
+    ]
+   ],
+   "note": {
+    "es": "Subida a la cadena volcánica de Bayuyo con vistas a Lobos y Lanzarote.",
+    "en": "Climb to the Bayuyo volcanic chain with views of Lobos and Lanzarote.",
+    "it": "Salita alla catena vulcanica di Bayuyo con vista su Lobos e Lanzarote.",
+    "de": "Aufstieg zur Vulkankette Bayuyo mit Blick auf Lobos und Lanzarote."
+   },
+   "back": true
+  },
+  {
+   "id": "arena",
+   "sport": "run",
+   "surface": "trail",
+   "loop": false,
+   "level": 2,
+   "name": {
+    "es": "Montaña de la Arena",
+    "en": "Montaña de la Arena",
+    "it": "Montaña de la Arena",
+    "de": "Montaña de la Arena"
+   },
+   "via": [
+    [
+     "Villaverde",
+     28.6375,
+     -13.9045
+    ],
+    [
+     "@Montaña de la Arena"
+    ]
+   ],
+   "note": {
+    "es": "Volcán de picón negro sobre Villaverde (425 m).",
+    "en": "Black-cinder volcano above Villaverde (425 m).",
+    "it": "Vulcano di lapilli neri sopra Villaverde (425 m).",
+    "de": "Schwarzer Schlackenvulkan über Villaverde (425 m)."
+   },
+   "back": true
+  },
+  {
+   "id": "gairia",
+   "sport": "run",
+   "surface": "trail",
+   "loop": false,
+   "level": 2,
+   "name": {
+    "es": "Caldera de Gairía",
+    "en": "Caldera de Gairía",
+    "it": "Caldera de Gairía",
+    "de": "Caldera de Gairía"
+   },
+   "via": [
+    [
+     "Tiscamanita",
+     28.353,
+     -14.038
+    ],
+    [
+     "@Gairía"
+    ]
+   ],
+   "note": {
+    "es": "Volcán con cráter abierto y coladas de lava en el centro de la isla.",
+    "en": "Volcano with an open crater and lava fields in the centre of the island.",
+    "it": "Vulcano con cratere aperto e colate di lava al centro dell'isola.",
+    "de": "Vulkan mit offenem Krater und Lavafeldern in der Inselmitte."
    },
    "back": true
   }

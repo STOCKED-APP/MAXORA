@@ -16,7 +16,7 @@
       bestTime: 'Ora migliore: {h}', now: 'Adesso', temp: 'Temperatura', wind: 'Vento', gust: 'raffiche', rain: 'Pioggia', dry: 'asciutto', light: 'Luce',
       sunrise: 'alba {h}', sunset: 'tramonto {h}', night: 'notte', today: 'Oggi', tomorrow: 'Domani',
       routes: 'Percorsi', km: 'km', up: 'salita', surface_road: 'asfalto', surface_gravel: 'sterrato', surface_paved: 'lungomare', surface_trail: 'sentiero',
-      lvl1: 'facile', lvl2: 'medio', lvl3: 'impegnativo', loop: 'giro ad anello', back: 'andata e ritorno',
+      oneway: 'solo andata', official: 'segnalato', lvl1: 'facile', lvl2: 'medio', lvl3: 'impegnativo', loop: 'giro ad anello', back: 'andata e ritorno',
       alertsOn1: '1 avviso sul percorso', water1: '1 punto acqua vicino al percorso', alertsOn: '{n} avvisi sul percorso', noAlerts: 'nessun avviso sul percorso', water: '{n} punti acqua vicino al percorso', noWater: 'nessuna fontanella sul percorso: porta acqua',
       profile: 'Altimetria', maxGrade: 'pendenza max {g}%', climb: 'Salita principale: {km} km al {avg}% (+{gain} m) dal km {from}',
       windRoute: 'Il vento sul percorso', headFirst: 'Parti controvento ({d}) e torni con il vento a favore.', tailFirst: 'All\'andata hai il vento a favore: il ritorno sarà controvento ({d}). Tieni energie.',
@@ -36,7 +36,7 @@
       bestTime: 'Mejor hora: {h}', now: 'Ahora', temp: 'Temperatura', wind: 'Viento', gust: 'rachas', rain: 'Lluvia', dry: 'seco', light: 'Luz',
       sunrise: 'amanecer {h}', sunset: 'atardecer {h}', night: 'noche', today: 'Hoy', tomorrow: 'Mañana',
       routes: 'Rutas', km: 'km', up: 'desnivel', surface_road: 'asfalto', surface_gravel: 'pista', surface_paved: 'paseo', surface_trail: 'sendero',
-      lvl1: 'fácil', lvl2: 'media', lvl3: 'exigente', loop: 'circular', back: 'ida y vuelta',
+      oneway: 'solo ida', official: 'señalizado', lvl1: 'fácil', lvl2: 'media', lvl3: 'exigente', loop: 'circular', back: 'ida y vuelta',
       alertsOn1: '1 aviso en la ruta', water1: '1 punto de agua cerca de la ruta', alertsOn: '{n} avisos en la ruta', noAlerts: 'ningún aviso en la ruta', water: '{n} puntos de agua cerca de la ruta', noWater: 'ninguna fuente en la ruta: lleva agua',
       profile: 'Perfil', maxGrade: 'pendiente máx. {g}%', climb: 'Subida principal: {km} km al {avg}% (+{gain} m) desde el km {from}',
       windRoute: 'El viento en la ruta', headFirst: 'Sales con viento en contra ({d}) y vuelves a favor.', tailFirst: 'A la ida el viento va a favor: la vuelta será en contra ({d}). Guarda fuerzas.',
@@ -56,7 +56,7 @@
       bestTime: 'Best time: {h}', now: 'Now', temp: 'Temperature', wind: 'Wind', gust: 'gusts', rain: 'Rain', dry: 'dry', light: 'Light',
       sunrise: 'sunrise {h}', sunset: 'sunset {h}', night: 'night', today: 'Today', tomorrow: 'Tomorrow',
       routes: 'Routes', km: 'km', up: 'climbing', surface_road: 'road', surface_gravel: 'gravel', surface_paved: 'promenade', surface_trail: 'trail',
-      lvl1: 'easy', lvl2: 'moderate', lvl3: 'hard', loop: 'loop', back: 'out and back',
+      oneway: 'one way', official: 'waymarked', lvl1: 'easy', lvl2: 'moderate', lvl3: 'hard', loop: 'loop', back: 'out and back',
       alertsOn1: '1 alert on the route', water1: '1 water point near the route', alertsOn: '{n} alerts on the route', noAlerts: 'no alerts on the route', water: '{n} water points near the route', noWater: 'no fountains on the route: carry water',
       profile: 'Elevation', maxGrade: 'max grade {g}%', climb: 'Main climb: {km} km at {avg}% (+{gain} m) from km {from}',
       windRoute: 'Wind on the route', headFirst: 'Headwind on the way out ({d}), tailwind home.', tailFirst: 'Tailwind on the way out: the return will be into the wind ({d}). Save energy.',
@@ -76,7 +76,7 @@
       bestTime: 'Beste Zeit: {h}', now: 'Jetzt', temp: 'Temperatur', wind: 'Wind', gust: 'Böen', rain: 'Regen', dry: 'trocken', light: 'Licht',
       sunrise: 'Aufgang {h}', sunset: 'Untergang {h}', night: 'Nacht', today: 'Heute', tomorrow: 'Morgen',
       routes: 'Strecken', km: 'km', up: 'Anstieg', surface_road: 'Asphalt', surface_gravel: 'Schotter', surface_paved: 'Promenade', surface_trail: 'Pfad',
-      lvl1: 'leicht', lvl2: 'mittel', lvl3: 'schwer', loop: 'Rundkurs', back: 'hin und zurück',
+      oneway: 'einfache Strecke', official: 'markiert', lvl1: 'leicht', lvl2: 'mittel', lvl3: 'schwer', loop: 'Rundkurs', back: 'hin und zurück',
       alertsOn1: '1 Meldung auf der Strecke', water1: '1 Wasserstelle nahe der Strecke', alertsOn: '{n} Meldungen auf der Strecke', noAlerts: 'keine Meldungen auf der Strecke', water: '{n} Wasserstellen nahe der Strecke', noWater: 'keine Brunnen auf der Strecke: Wasser mitnehmen',
       profile: 'Höhenprofil', maxGrade: 'max. Steigung {g}%', climb: 'Hauptanstieg: {km} km mit {avg}% (+{gain} m) ab km {from}',
       windRoute: 'Wind auf der Strecke', headFirst: 'Hinweg mit Gegenwind ({d}), zurück mit Rückenwind.', tailFirst: 'Hinweg mit Rückenwind: zurück geht es gegen den Wind ({d}). Kräfte sparen.',
@@ -340,7 +340,7 @@
       el('span', { class: 'sf-badge', style: '--c:' + color(s) }, [el('i', { text: '★' }), fmtR(s)]),
       el('span', { class: 'sf-txt' }, [
         el('span', { class: 't', text: r.name[lang()] || r.name.es }),
-        el('span', { class: 's', text: num(r.km, 1) + ' km · +' + r.gain + ' m · ' + tr('surface_' + r.surface) + ' · ' + tr('lvl' + r.level) + (hz ? ' · ⚠ ' + hz : '') })
+        el('span', { class: 's', text: num(r.km, 1) + ' km · +' + r.gain + ' m · ' + tr('surface_' + r.surface) + ' · ' + tr('lvl' + r.level) + (r.official && r.ref ? ' · ' + r.ref : '') + (hz ? ' · ⚠ ' + hz : '') })
       ])
     ]);
   }
@@ -415,7 +415,7 @@
     const t = SP.times[SP.idx];
     const s = score(r.sport, w, t, r.surface);
     box.append(
-      el('div', { class: 'p-kicker', text: tr(r.sport) + ' · ' + tr('surface_' + r.surface) + ' · ' + tr(r.back ? 'back' : 'loop') + ' · ' + tr('lvl' + r.level) }),
+      el('div', { class: 'p-kicker', text: tr(r.sport) + ' · ' + tr('surface_' + r.surface) + ' · ' + tr(r.back ? 'back' : r.loop ? 'loop' : 'oneway') + (r.official ? ' · ' + tr('official') + (r.ref ? ' ' + r.ref : '') : '') + ' · ' + tr('lvl' + r.level) }),
       el('div', { class: 'p-name', text: r.name[lang()] || r.name.es })
     );
     const st = el('div', { class: 'p-stats sf-stats' });
