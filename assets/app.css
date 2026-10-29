@@ -860,3 +860,24 @@ body[data-mode="camper"] { --mode: var(--m-camper); }
 .adv-src { font-size: 11px; color: var(--muted); margin-top: 6px; }
 .adv.closed .adv-src { display: none; }
 .sp-h { font-family: var(--font-mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 14px 0 6px; }
+
+/* v0.14.1 — camper semplice: 4 schede, stato chiaro, scheda luogo a righe */
+body:has(#cpCard:not(.hidden)) #cpSheet { display: none; }
+.cp-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin: 4px 16px 0; }
+.cp-tab { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 9px 4px 8px; border-radius: 14px; border: 1.5px solid var(--border); background: var(--card); color: var(--muted); font: inherit; cursor: pointer; }
+.cp-tab .i { font-size: 22px; line-height: 1; }
+.cp-tab .l { font-size: 11.5px; font-weight: 800; line-height: 1.15; text-align: center; }
+.cp-tab.on { border-color: var(--mode); color: var(--text); background: color-mix(in srgb, var(--mode) 16%, var(--card)); }
+.cp-st { color: var(--sc) !important; font-weight: 700; }
+.cp-row.star .t::after { content: ' ★'; color: #8b5cf6; }
+.cp-more { width: 100%; min-height: 44px; border-radius: 14px; border: 1px dashed var(--border); background: transparent; color: var(--text); font: inherit; font-weight: 700; font-size: 14px; margin-top: 2px; }
+.cp-banner { display: flex; flex-direction: column; gap: 2px; margin: 10px 0; padding: 10px 12px; border-radius: 14px; border-left: 5px solid var(--sc); background: color-mix(in srgb, var(--sc) 14%, var(--card)); }
+.cp-banner b { font-size: 15px; }
+.cp-banner span { font-size: 12.5px; color: var(--muted); }
+.cp-facts { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin: 10px 0; }
+.cp-f { display: flex; justify-content: space-between; gap: 12px; padding: 11px 12px; border: 0; border-top: 1px solid var(--border); background: transparent; color: var(--text); font: inherit; font-size: 14px; text-align: left; }
+.cp-f:first-child { border-top: 0; }
+.cp-f .k { color: var(--muted); flex: none; }
+.cp-f .v { font-weight: 700; text-align: right; }
+.cp-f.link { cursor: pointer; }
+.cp-f.link .v { color: var(--mode); }
