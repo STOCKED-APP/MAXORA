@@ -1022,7 +1022,9 @@
     ];
     const ourNames = new Set(ours.map((x) => norm(x.name)));
     items = items.filter((x) => !ourNames.has(norm(x.name)));
-    const ref = S.pos || { lat: (box.s + box.n) / 2, lng: (box.w + box.e) / 2 };
+    const mid = { lat: (box.s + box.n) / 2, lng: (box.w + box.e) / 2 };
+    // cercando "ristoranti corralejo" conta il centro del paese, non dove sono io
+    const ref = R.where ? mid : (S.pos && inBox(S.pos) ? S.pos : mid);
     items.sort((a, b) => distKm(ref, a) - distKm(ref, b));
     ours.sort((a, b) => (b.sponsor ? 1 : 0) - (a.sponsor ? 1 : 0));
     R.items = [...ours, ...items];
@@ -1031,8 +1033,10 @@
     const n = R.items.length;
     setResultsBar(catLabel(cat) + (R.where ? ' · ' + R.where : '') + ' · ' + (failed && !n ? t('sOffline') : n ? t('nResults', { n }) : t('noResultsArea')));
     if (fit && n) {
-      const bb = new maplibregl.LngLatBounds([R.items[0].lng, R.items[0].lat], [R.items[0].lng, R.items[0].lat]);
-      R.items.forEach((x) => bb.extend([x.lng, x.lat]));
+      // inquadro i più vicini (non tutti): il paese si apre leggibile, gli altri si vedono spostando la mappa
+      const core = [...ours, ...items.slice(0, 15)];
+      const bb = new maplibregl.LngLatBounds([core[0].lng, core[0].lat], [core[0].lng, core[0].lat]);
+      core.forEach((x) => bb.extend([x.lng, x.lat]));
       const bottom = ($('results').getBoundingClientRect().height || 150) + 24;
       R.fitting = true;
       map.fitBounds(bb, { padding: { top: 90, bottom, left: 40, right: 40 }, maxZoom: 15, duration: 900 });
@@ -1042,7 +1046,7 @@
   }
 
   function pinFor(item, i) {
-    const n = el('div', { class: 'rpin' + (item.sponsor ? ' spon' : item.ours ? ' ours' : ''), role: 'button', 'aria-label': item.name });
+    const n = el('div', { class: 'rpin' + (item.sponsor ? ' spon' : item.ours ? ' ours' : ''), role: 'button', title: item.name, 'data-ll': item.lng + ',' + item.lat });
     n.style.setProperty('--c', R.cat.color);
     const dot = el('span', { class: 'rpin-dot' });
     dot.appendChild(svgIcon(item.icon));
