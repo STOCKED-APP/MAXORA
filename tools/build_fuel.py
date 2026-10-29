@@ -53,6 +53,7 @@ def main():
                     'town': (e.get('Localidad') or '').strip().title(), 'hours': (e.get('Horario') or '').strip(),
                     'lat': round(-lat if lat < 0 else lat, 6), 'lng': round(lng, 6), **{k: v for k, v in p.items() if v}})
     if len(out) < 10:
+        print('::notice::esempio ' + json.dumps(doc.get('ListaEESSPrecio', [{}])[0], ensure_ascii=False)[:900], flush=True)
         print(f'::error::troppo poche stazioni: {len(out)} su {len(doc.get("ListaEESSPrecio", []))}', flush=True)
         sys.exit(1)
     stats = {}
