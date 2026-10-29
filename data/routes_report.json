@@ -1,0 +1,498 @@
+[
+{
+"id": "norte",
+"km": 52.9,
+"gain": 332,
+"max_grade": 4.7,
+"ele": [
+6,
+242
+],
+"snap": [
+10,
+31,
+23,
+2,
+125,
+10
+],
+"loop": true
+},
+{
+"id": "betancuria",
+"km": 50.1,
+"gain": 858,
+"max_grade": 9.9,
+"ele": [
+184,
+589
+],
+"snap": [
+12,
+17,
+1,
+93,
+2,
+62,
+12
+],
+"loop": true
+},
+{
+"id": "pared",
+"km": 82.0,
+"gain": 1329,
+"max_grade": 13.5,
+"ele": [
+2,
+409
+],
+"snap": [
+8,
+9,
+2,
+62,
+1,
+8
+],
+"loop": true
+},
+{
+"id": "tefia",
+"km": 44.9,
+"gain": 539,
+"max_grade": 11.7,
+"ele": [
+25,
+388
+],
+"snap": [
+20,
+67,
+48,
+26,
+20
+],
+"loop": true
+},
+{
+"id": "cofete",
+"km": 37.7,
+"gain": 546,
+"max_grade": 7.3,
+"ele": [
+30,
+229
+],
+"snap": [
+18,
+88
+],
+"loop": false
+},
+{
+"id": "corralejo-paseo",
+"km": 13.7,
+"gain": 27,
+"max_grade": 1.6,
+"ele": [
+0,
+13
+],
+"snap": [
+86,
+78
+],
+"loop": false
+},
+{
+"id": "caleta-paseo",
+"km": 8.7,
+"gain": 15,
+"max_grade": 1.4,
+"ele": [
+1,
+11
+],
+"snap": [
+108,
+83
+],
+"loop": false
+},
+{
+"id": "puerto-paseo",
+"km": 8.2,
+"gain": 17,
+"max_grade": 2.2,
+"ele": [
+0,
+14
+],
+"snap": [
+209,
+101
+],
+"loop": false
+},
+{
+"id": "morro-paseo",
+"km": 6.0,
+"gain": 53,
+"max_grade": 2.9,
+"ele": [
+3,
+39
+],
+"snap": [
+18,
+120
+],
+"loop": false
+},
+{
+"id": "cotillo-faro",
+"km": 8.5,
+"gain": 5,
+"max_grade": 0.6,
+"ele": [
+3,
+10
+],
+"snap": [
+23,
+74
+],
+"loop": false
+},
+{
+"id": "costa-sur",
+"km": 48.2,
+"gain": 652,
+"max_grade": 5.7,
+"ele": [
+3,
+121
+],
+"snap": [
+8,
+18
+],
+"loop": false
+},
+{
+"id": "entallada",
+"km": 25.7,
+"gain": 355,
+"max_grade": 10.9,
+"ele": [
+3,
+178
+],
+"snap": [
+16,
+42,
+67
+],
+"loop": false
+},
+{
+"id": "pozo-negro",
+"km": 34.0,
+"gain": 293,
+"max_grade": 3.7,
+"ele": [
+2,
+249
+],
+"snap": [
+12,
+11
+],
+"loop": false
+},
+{
+"id": "playitas-faro",
+"km": 13.9,
+"gain": 265,
+"max_grade": 11.3,
+"ele": [
+9,
+179
+],
+"snap": [
+42,
+67
+],
+"loop": false
+},
+{
+"id": "pista-norte",
+"km": 23.7,
+"gain": 32,
+"max_grade": 1.8,
+"ele": [
+2,
+19
+],
+"snap": [
+10,
+194,
+59,
+99,
+23
+],
+"loop": false
+},
+{
+"id": "majanicho-run",
+"km": 20.2,
+"gain": 42,
+"max_grade": 1.8,
+"ele": [
+2,
+19
+],
+"snap": [
+10,
+194,
+59
+],
+"loop": false
+},
+{
+"id": "bayuyo",
+"km": 8.5,
+"gain": 249,
+"max_grade": 24.8,
+"ele": [
+13,
+266
+],
+"snap": [
+10,
+15
+],
+"loop": false
+},
+{
+"id": "arena",
+"km": 9.9,
+"gain": 124,
+"max_grade": 6.1,
+"ele": [
+217,
+302
+],
+"snap": [
+125,
+233
+],
+"loop": false
+},
+{
+"id": "gairia",
+"km": 7.1,
+"gain": 162,
+"max_grade": 12.9,
+"ele": [
+222,
+360
+],
+"snap": [
+25,
+6
+],
+"loop": false
+},
+{
+"id": "osm-4243073",
+"name": "Playa del Esquinzo - Barranco del Jable",
+"error": "tracciato a pezzi (3 salti)"
+},
+{
+"id": "osm-4243148",
+"name": "Betancuria - Degollada Vieja - Antigua",
+"error": "tracciato a pezzi (3 salti)"
+},
+{
+"id": "osm-4129900",
+"km": 9.3,
+"gain": 264,
+"max_grade": 9.3,
+"ele": [
+3,
+267
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-4242958",
+"km": 4.1,
+"gain": 266,
+"max_grade": 14.9,
+"ele": [
+199,
+460
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-4243063",
+"km": 2.6,
+"gain": 11,
+"max_grade": 2.9,
+"ele": [
+85,
+191
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-4243089",
+"km": 12.4,
+"gain": 378,
+"max_grade": 20.6,
+"ele": [
+190,
+499
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-4243134",
+"km": 6.5,
+"gain": 197,
+"max_grade": 10.1,
+"ele": [
+213,
+455
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-4243135",
+"km": 11.7,
+"gain": 307,
+"max_grade": 22.0,
+"ele": [
+200,
+476
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-4243240",
+"km": 4.1,
+"gain": 251,
+"max_grade": 20.5,
+"ele": [
+285,
+564
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-4243251",
+"km": 7.9,
+"gain": 455,
+"max_grade": 22.3,
+"ele": [
+244,
+673
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-4243261",
+"km": 1.7,
+"gain": 0,
+"max_grade": 0.0,
+"ele": [
+191,
+239
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-4243263",
+"km": 8.9,
+"gain": 838,
+"max_grade": 21.4,
+"ele": [
+15,
+795
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-4243264",
+"km": 6.4,
+"gain": 286,
+"max_grade": 17.7,
+"ele": [
+58,
+347
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-4243273",
+"km": 10.8,
+"gain": 281,
+"max_grade": 15.3,
+"ele": [
+5,
+159
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-6061484",
+"km": 5.1,
+"gain": 240,
+"max_grade": 22.9,
+"ele": [
+2,
+243
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-6315354",
+"km": 13.7,
+"gain": 24,
+"max_grade": 4.7,
+"ele": [
+2,
+98
+],
+"snap": [],
+"loop": false
+},
+{
+"id": "osm-19895877",
+"km": 28.1,
+"gain": 792,
+"max_grade": 10.4,
+"ele": [
+199,
+667
+],
+"snap": [],
+"loop": false
+}
+]
