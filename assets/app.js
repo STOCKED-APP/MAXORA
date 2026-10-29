@@ -99,7 +99,7 @@
   // ------------------------------------------------------------------
   const store = {
     get(k, d) { try { const v = localStorage.getItem('maxora_' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
-    set(k, v) { try { localStorage.setItem('maxora_' + k, JSON.stringify(v)); } catch (e) {} }
+    set(k, v) { try { localStorage.setItem('maxora_' + k, JSON.stringify(v)); } catch (e) {} if (window.MAXORA_ACCOUNT) window.MAXORA_ACCOUNT.changed(k); }
   };
   let lang = store.get('lang', null) || (navigator.language || 'es').slice(0, 2);
   if (!T[lang]) lang = 'es';
