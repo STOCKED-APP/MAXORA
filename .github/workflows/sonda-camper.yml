@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: probe
         run: |
-          Q='[out:json][timeout:90];(nwr["name"~"Laso"](27.99,-14.55,28.80,-13.80);nwr["tourism"~"caravan_site|camp_site"](27.99,-14.55,28.80,-13.80);nwr["amenity"="sanitary_dump_station"](27.99,-14.55,28.80,-13.80);nwr["sanitary_dump_station"](27.99,-14.55,28.80,-13.80);nwr["motorhome"](27.99,-14.55,28.80,-13.80););out center tags;'
+          Q='[out:json][timeout:90];(nwr["name"~"Laso|Antigua",i]["leisure"](27.99,-14.55,28.80,-13.80);nwr["leisure"="stadium"](28.35,-14.1,28.45,-13.95););out center tags;'
           for u in https://overpass-api.de/api/interpreter https://overpass.kumi.systems/api/interpreter; do
             curl -s -m 120 -A "Maxora/0.13 (+https://github.com/STOCKED-APP/MAXORA)" --data-urlencode "data=$Q" "$u" -o o.json && head -c 1 o.json | grep -q '{' && break
           done
