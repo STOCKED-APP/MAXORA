@@ -1,0 +1,71 @@
+{
+ "slug": "entallada",
+ "name": "Faro de la Entallada",
+ "coords": {
+  "lat": 28.230278,
+  "lng": -13.948611,
+  "wikidata": "Q5856468"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Faro de La Entallada.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Faro_de_La_Entallada.jpg",
+   "width": 10064,
+   "height": 3099,
+   "description": "Faro de La Entallada, Tuineje, Fuerteventura, Canary Islands. Panoramic view from south east."
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Entallada Lighthouse.jpg",
+   "tier": "search",
+   "author": "Alistair Young",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Entallada_Lighthouse.jpg",
+   "width": 2560,
+   "height": 1526,
+   "description": "Entallada Lighthouse"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Beim Leuchtturm (Faro de la Entallada) 10.jpg",
+   "tier": "search",
+   "author": "JensKunstfreund",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Beim_Leuchtturm_(Faro_de_la_Entallada)_10.jpg",
+   "width": 8088,
+   "height": 6066,
+   "description": "Around the lighthouse (Faro de la Entallada)"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Tuineje Gran Tarajal - Calle Matías López - port - Restaurante Faro La Entallada 03 ies.jpg",
+   "tier": "search",
+   "author": "Frank Vincentz",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Tuineje_Gran_Tarajal_-_Calle_Mat%C3%ADas_L%C3%B3pez_-_port_-_Restaurante_Faro_La_Entallada_03_ies.jpg",
+   "width": 5616,
+   "height": 3744,
+   "description": "Restaurante Faro La Entallada, Calle Matías López in Gran Tarajal, Tuineje, Fuerteventura, Canary Islands"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Tuineje - Calle Laurel - Faro de la Entallada 03 ies.jpg",
+   "tier": "search",
+   "author": "Frank Vincentz",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Tuineje_-_Calle_Laurel_-_Faro_de_la_Entallada_03_ies.jpg",
+   "width": 5616,
+   "height": 3744,
+   "description": "Faro de la Entallada at Calle Laurel in Tuineje, Fuerteventura, Canary Islands"
+  }
+ ]
+}

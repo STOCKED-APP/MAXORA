@@ -1,0 +1,67 @@
+{
+ "slug": "garcey",
+ "name": "Playa del Garcey",
+ "coords": null,
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Shipwreck of the SS American Star on the shore of Fuerteventura.jpg",
+   "tier": "quality",
+   "author": "Wollex",
+   "license": "CC BY-SA 3.0",
+   "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Shipwreck_of_the_SS_American_Star_on_the_shore_of_Fuerteventura.jpg",
+   "width": 2048,
+   "height": 1536,
+   "description": "The wreckage of the American Star (SS America) seen from land side, Fuerteventura, Canary Islands."
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Playa de Garcey - panoramio.jpg",
+   "tier": "search",
+   "author": "Jarek Prokop",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_de_Garcey_-_panoramio.jpg",
+   "width": 4912,
+   "height": 2763,
+   "description": "Playa de Garcey"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Playa de Garcey (3314115501).jpg",
+   "tier": "search",
+   "author": "Tony Hisgett from Birmingham, UK",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_de_Garcey_(3314115501).jpg",
+   "width": 4752,
+   "height": 3168,
+   "description": "Playa de Garcey"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Playa de Garcey 2 (3314957276).jpg",
+   "tier": "search",
+   "author": "Tony Hisgett from Birmingham, UK",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_de_Garcey_2_(3314957276).jpg",
+   "width": 4557,
+   "height": 3073,
+   "description": "Playa de Garcey 2"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Playa de Garcey access road - panoramio.jpg",
+   "tier": "search",
+   "author": "Jarek Prokop",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_de_Garcey_access_road_-_panoramio.jpg",
+   "width": 4912,
+   "height": 2763,
+   "description": "Playa de Garcey access road"
+  }
+ ]
+}

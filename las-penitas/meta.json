@@ -1,0 +1,71 @@
+{
+ "slug": "las-penitas",
+ "name": "Barranco de las Peñitas",
+ "coords": {
+  "lat": 28.38907,
+  "lng": -14.09765,
+  "wikidata": "Q131563532"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Barranco de las Peñitas - Fuerteventura 01.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Barranco_de_las_Pe%C3%B1itas_-_Fuerteventura_01.jpg",
+   "width": 4756,
+   "height": 2742,
+   "description": "Barranco de las Peñitas near Vega de Río Palmas, Fuerteventura, Canary Islands."
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Barranco de las Peñitas - Fuerteventura 02.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Barranco_de_las_Pe%C3%B1itas_-_Fuerteventura_02.jpg",
+   "width": 4732,
+   "height": 3156,
+   "description": "Barranco de las Peñitas near Vega de Río Palmas, Fuerteventura, Canary Islands."
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Vega de Río Palmas - Fuerteventura.jpg",
+   "tier": "search",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Vega_de_R%C3%ADo_Palmas_-_Fuerteventura.jpg",
+   "width": 7517,
+   "height": 1683,
+   "description": "Panorama of the village Vega de Río Palmas, view from south, Fuerteventura, Canary Islands, Spain"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Iglesia de Nuestra Señora de la Peña - Vega de Rio Palmas.jpg",
+   "tier": "search",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Iglesia_de_Nuestra_Se%C3%B1ora_de_la_Pe%C3%B1a_-_Vega_de_Rio_Palmas.jpg",
+   "width": 4216,
+   "height": 2784,
+   "description": "Interior of the Iglesia de Nuestra Señora de la Peña, Vega de Rio Palmas, Fuerteventura, Canary Islands, Spain. The pilgrimage church was built in the 17th century. The alabaster figurine of St. Mary "
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Vega de Rio Palmas - panoramio.jpg",
+   "tier": "search",
+   "author": "mroszewski",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Vega_de_Rio_Palmas_-_panoramio.jpg",
+   "width": 1600,
+   "height": 1200,
+   "description": "Vega de Rio Palmas"
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "slug": "punta-jandia",
+ "name": "Faro de Punta Jandía",
+ "coords": {
+  "lat": 28.0657,
+  "lng": -14.5071,
+  "wikidata": "Q18619044"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Faro de Punta Jandía - 02.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Faro_de_Punta_Jand%C3%ADa_-_02.jpg",
+   "width": 8142,
+   "height": 2933,
+   "description": "Faro de Punta Jandía, Jandía, Fuerteventura, Canary Islands, Spain."
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Faro de Punta Jandía - 01.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Faro_de_Punta_Jand%C3%ADa_-_01.jpg",
+   "width": 4653,
+   "height": 3061,
+   "description": "Faro de Punta Jandía, Jandía, Fuerteventura, Canary Islands, Spain."
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Road to Faro de Punta Jandía.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Road_to_Faro_de_Punta_Jand%C3%ADa.jpg",
+   "width": 10764,
+   "height": 2460,
+   "description": "Road to the village Puerto de la Cruz and the Faro de Punta Jandía, Jandía, Fuerteventura, Canary Islands, Spain."
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Punta de Jandía 01.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Punta_de_Jand%C3%ADa_01.jpg",
+   "width": 4693,
+   "height": 3110,
+   "description": "Coast at the Faro de Punta Jandía, Jandía, Fuerteventura, Canary Islands, Spain."
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Pájara - Carretera Punta de Jandía - Punta de Jandía - Faro 10 ies.jpg",
+   "tier": "search",
+   "author": "Frank Vincentz",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:P%C3%A1jara_-_Carretera_Punta_de_Jand%C3%ADa_-_Punta_de_Jand%C3%ADa_-_Faro_10_ies.jpg",
+   "width": 5616,
+   "height": 3744,
+   "description": "Faro Punta de Jandía, Carretera Punta de Jandía in Pájara, Fuerteventura, Canary Islands"
+  }
+ ]
+}

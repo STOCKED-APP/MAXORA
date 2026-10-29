@@ -1,0 +1,71 @@
+{
+ "slug": "el-cotillo",
+ "name": "Lagunas de El Cotillo",
+ "coords": {
+  "lat": 28.683611,
+  "lng": -14.011111,
+  "wikidata": "Q1324017"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Playa del Castillo (El Cotillo, Fuerteventura) 08.jpg",
+   "tier": "search",
+   "author": "Dariusz Jemielniak (\"Pundit\")",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_del_Castillo_(El_Cotillo,_Fuerteventura)_08.jpg",
+   "width": 3840,
+   "height": 2160,
+   "description": "Playa del Castillo (El Cotillo, Fuerteventura)"
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Playa del Castillo (El Cotillo, Fuerteventura) 15.jpg",
+   "tier": "search",
+   "author": "Dariusz Jemielniak (\"Pundit\")",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_del_Castillo_(El_Cotillo,_Fuerteventura)_15.jpg",
+   "width": 3840,
+   "height": 2160,
+   "description": "Playa del Castillo (El Cotillo, Fuerteventura)"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Playa del Castillo (El Cotillo, Fuerteventura) 10.jpg",
+   "tier": "search",
+   "author": "Dariusz Jemielniak (\"Pundit\")",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_del_Castillo_(El_Cotillo,_Fuerteventura)_10.jpg",
+   "width": 3840,
+   "height": 2160,
+   "description": "Playa del Castillo (El Cotillo, Fuerteventura)"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Playa del Castillo (El Cotillo, Fuerteventura) 17.jpg",
+   "tier": "search",
+   "author": "Dariusz Jemielniak (\"Pundit\")",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_del_Castillo_(El_Cotillo,_Fuerteventura)_17.jpg",
+   "width": 3840,
+   "height": 2160,
+   "description": "Playa del Castillo (El Cotillo, Fuerteventura)"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Playa del Castillo (El Cotillo, Fuerteventura) 12.jpg",
+   "tier": "search",
+   "author": "Dariusz Jemielniak (\"Pundit\")",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_del_Castillo_(El_Cotillo,_Fuerteventura)_12.jpg",
+   "width": 8844,
+   "height": 1645,
+   "description": "Playa del Castillo (El Cotillo, Fuerteventura)"
+  }
+ ]
+}

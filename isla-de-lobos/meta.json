@@ -1,0 +1,71 @@
+{
+ "slug": "isla-de-lobos",
+ "name": "Isla de Lobos",
+ "coords": {
+  "lat": 28.75169,
+  "lng": -13.82149,
+  "wikidata": "Q1051489"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Libélula (Tramea sp), isla Lobos, islas Galápagos, Ecuador, 2015-07-25, DD 61.jpg",
+   "tier": "quality",
+   "author": "Diego Delso",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Lib%C3%A9lula_(Tramea_sp),_isla_Lobos,_islas_Gal%C3%A1pagos,_Ecuador,_2015-07-25,_DD_61.jpg",
+   "width": 7085,
+   "height": 4222,
+   "description": "Exemplar of a Saddlebags glider (Tramea sp.) female, Cerro Brujo, San Cristobal Island, Galápagos Islands, Ecuador."
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Piquero patiazul (Sula nebouxii), isla Lobos, islas Galápagos, Ecuador, 2015-07-25, DD 35.JPG",
+   "tier": "quality",
+   "author": "Diego Delso",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Piquero_patiazul_(Sula_nebouxii),_isla_Lobos,_islas_Gal%C3%A1pagos,_Ecuador,_2015-07-25,_DD_35.JPG",
+   "width": 7068,
+   "height": 5268,
+   "description": "Couple of Blue-footed boobies (Sula nebouxii) during a mating ritual, Lobos Island, Galápagos Islands, Ecuador. The  blue-footed booby is a long-winged seabird with a wingspan of up to 1.5 m (4.9 ft)."
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Iguana marina (Amblyrhynchus cristatus), isla Lobos, islas Galápagos, Ecuador, 2015-07-25, DD 47.JPG",
+   "tier": "quality",
+   "author": "Diego Delso",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Iguana_marina_(Amblyrhynchus_cristatus),_isla_Lobos,_islas_Gal%C3%A1pagos,_Ecuador,_2015-07-25,_DD_47.JPG",
+   "width": 8361,
+   "height": 5089,
+   "description": "Exemplar of a juvenile marine iguana (Amblyrhynchus cristatus) lying on a rock in the coast of Lobos Island, Galápagos Islands, Ecuador."
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Lobo marino (Zalophus californianus wollebaeki), Punta Pitt, isla de San Cristóbal, islas Galápagos, Ecuador, 2015-07-24, DD 11.JPG",
+   "tier": "quality",
+   "author": "Diego Delso",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Lobo_marino_(Zalophus_californianus_wollebaeki),_Punta_Pitt,_isla_de_San_Crist%C3%B3bal,_islas_Gal%C3%A1pagos,_Ecuador,_2015-07-24,_DD_11.JPG",
+   "width": 8642,
+   "height": 5762,
+   "description": "Galápagos sea lion (Zalophus wollebaeki) in Punta Pitt, San Cristóbal Island, Galápagos Islands, Ecuador."
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Lobo marino (Zalophus californianus wollebaeki), Punta Pitt, isla de San Cristóbal, islas Galápagos, Ecuador, 2015-07-24, DD 12.JPG",
+   "tier": "quality",
+   "author": "Diego Delso",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Lobo_marino_(Zalophus_californianus_wollebaeki),_Punta_Pitt,_isla_de_San_Crist%C3%B3bal,_islas_Gal%C3%A1pagos,_Ecuador,_2015-07-24,_DD_12.JPG",
+   "width": 8688,
+   "height": 5792,
+   "description": "Close-up of a Galápagos sea lion (Zalophus wollebaeki) in Punta Pitt, San Cristóbal Island, Galápagos Islands, Ecuador."
+  }
+ ]
+}

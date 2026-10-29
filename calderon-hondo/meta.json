@@ -1,0 +1,67 @@
+{
+ "slug": "calderon-hondo",
+ "name": "Calderón Hondo",
+ "coords": null,
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Calderon Hondo.jpg",
+   "tier": "search",
+   "author": "Matzetatz",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Calderon_Hondo.jpg",
+   "width": 4032,
+   "height": 2268,
+   "description": "This photo shows the Calderon Hondo on the Canarian Island Fuerteventura. It was taken in the City Lajares"
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Calderon Hondo Pano.jpg",
+   "tier": "search",
+   "author": "Jensibua",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "source": "https://commons.wikimedia.org/wiki/File:Calderon_Hondo_Pano.jpg",
+   "width": 9575,
+   "height": 1341,
+   "description": "Krater Hondo auf Fuerteventura"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Volcano crater - Montana Colorada - Lajares - montana de la Mancha - calderon Hondo - Fuerteventura - 68.jpg",
+   "tier": "search",
+   "author": "Norbert Nagel, Mörfelden-Walldorf, Germany",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Volcano_crater_-_Montana_Colorada_-_Lajares_-_montana_de_la_Mancha_-_calderon_Hondo_-_Fuerteventura_-_68.jpg",
+   "width": 4320,
+   "height": 3240,
+   "description": "Volcano crater wall - volcano Hondo, Montana Colorada near Lajares, Fuerteventura, Canary Islands, Spain"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Volcano crater panoramic - Montana Colorada - Lajares - montana de la Mancha - calderon Hondo - Fuerteventura - 67.jpg",
+   "tier": "search",
+   "author": "Norbert Nagel, Mörfelden-Walldorf, Germany",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Volcano_crater_panoramic_-_Montana_Colorada_-_Lajares_-_montana_de_la_Mancha_-_calderon_Hondo_-_Fuerteventura_-_67.jpg",
+   "width": 6366,
+   "height": 3308,
+   "description": "Volcano crater panoramic - volcano Hondo, Montana Colorada near Lajares, Fuerteventura, Canary Islands, Spain"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Volcano crater - Montana Colorada - Lajares - montana de la Mancha - calderon Hondo - Fuerteventura - 70.jpg",
+   "tier": "search",
+   "author": "Norbert Nagel, Mörfelden-Walldorf, Germany",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Volcano_crater_-_Montana_Colorada_-_Lajares_-_montana_de_la_Mancha_-_calderon_Hondo_-_Fuerteventura_-_70.jpg",
+   "width": 4320,
+   "height": 3240,
+   "description": "Volcano crater wall - volcano Hondo, Montana Colorada near Lajares, Fuerteventura, Canary Islands, Spain"
+  }
+ ]
+}

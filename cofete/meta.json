@@ -1,0 +1,71 @@
+{
+ "slug": "cofete",
+ "name": "Playa de Cofete",
+ "coords": {
+  "lat": 28.111667,
+  "lng": -14.390278,
+  "wikidata": "Q23986978"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Cofete Cemetery - Fuerteventura - 02.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Cofete_Cemetery_-_Fuerteventura_-_02.jpg",
+   "width": 4717,
+   "height": 3145,
+   "description": "Cemetery of Cofete; Jandía, Fuerteventura, Canary Islands, Spain.\nDeutsch:  Friedhof von Cofete; Jandía, Fuerteventura, Kanarische Inseln, Spanien."
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Cofete Cemetery - Fuerteventura - 01.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Cofete_Cemetery_-_Fuerteventura_-_01.jpg",
+   "width": 4613,
+   "height": 3046,
+   "description": "Cemetery of Cofete; Jandía, Fuerteventura, Canary Islands, Spain.\nDeutsch:  Friedhof von Cofete; Jandía, Fuerteventura, Kanarische Inseln, Spanien.\n\n\n\n\n\nThis is a photograph of a Special Area of Conse"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Playa de Cofete - Fuerteventura - 02.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_de_Cofete_-_Fuerteventura_-_02.jpg",
+   "width": 4649,
+   "height": 3069,
+   "description": "Playa de Cofete; Jandía, Fuerteventura, Canary Islands, Spain.\nDeutsch:  Playa de Cofete; Jandía, Fuerteventura, Kanarische Inseln, Spanien.\n\n\n\n\n\nThis is a photograph of a Special Area of Conservation"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Playa de Cofete - Fuerteventura - 01.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_de_Cofete_-_Fuerteventura_-_01.jpg",
+   "width": 8384,
+   "height": 2345,
+   "description": "Playa de Cofete; Jandía, Fuerteventura, Canary Islands, Spain.\nDeutsch:  Playa de Cofete; Jandía, Fuerteventura, Kanarische Inseln, Spanien.\n\n\n\n\n\nThis is a photograph of a Special Area of Conservation"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:View from Degollada de Cofete.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:View_from_Degollada_de_Cofete.jpg",
+   "width": 11205,
+   "height": 4229,
+   "description": "View from the Degollada de Cofete to the Playa de Cofete with the village Cofete and the Villa Winter; Jandía, Fuerteventura, Canary Islands, Spain."
+  }
+ ]
+}

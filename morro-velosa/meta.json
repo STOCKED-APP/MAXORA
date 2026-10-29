@@ -1,0 +1,67 @@
+{
+ "slug": "morro-velosa",
+ "name": "Mirador Morro Velosa",
+ "coords": null,
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Northern Fuerteventura from Morro Velosa.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Northern_Fuerteventura_from_Morro_Velosa.jpg",
+   "width": 9708,
+   "height": 1809,
+   "description": "Panoramic view of Northern Fuerteventura from Mirador de Morro Velosa"
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Fuerteventura - Mirador de Guise y Ayose - Statues.jpg",
+   "tier": "quality",
+   "author": "Cayambe",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Fuerteventura_-_Mirador_de_Guise_y_Ayose_-_Statues.jpg",
+   "width": 6333,
+   "height": 4431,
+   "description": "Fuerteventura, Canary Islands, Spain: Statues of the Guanche kings Guise and Ayose at the view point carrying their names (mirador de Guise y Ayose). The bronze statues were sculptured by Emiliano Her"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Betancuria - FV-30 - Morro Velosa (Mirador Corrales de Guize) 02 ies.jpg",
+   "tier": "search",
+   "author": "Frank Vincentz",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Betancuria_-_FV-30_-_Morro_Velosa_(Mirador_Corrales_de_Guize)_02_ies.jpg",
+   "width": 5616,
+   "height": 3744,
+   "description": "Morro Velosa seen from Mirador Corrales de Guize, FV-30 in Betancuria, Fuerteventura, Canary Islands"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Fuerteventura-Mirador Morro Velosa-22-2015-gje.jpg",
+   "tier": "search",
+   "author": "Gerd Eichmann",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Fuerteventura-Mirador_Morro_Velosa-22-2015-gje.jpg",
+   "width": 5184,
+   "height": 3032,
+   "description": "Mirador de Morro Velosa‎ on the Canary Island of Fuerteventura"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Fuerteventura-Mirador Morro Velosa-14-2015-gje.jpg",
+   "tier": "search",
+   "author": "Gerd Eichmann",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Fuerteventura-Mirador_Morro_Velosa-14-2015-gje.jpg",
+   "width": 5184,
+   "height": 3188,
+   "description": "Mirador de Morro Velosa‎ on the Canary Island of Fuerteventura"
+  }
+ ]
+}

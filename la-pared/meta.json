@@ -1,0 +1,71 @@
+{
+ "slug": "la-pared",
+ "name": "Playa de La Pared",
+ "coords": {
+  "lat": 28.21811,
+  "lng": -14.2215,
+  "wikidata": "Q23982386"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:View from Pico de la Zarza 09.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:View_from_Pico_de_la_Zarza_09.jpg",
+   "width": 14681,
+   "height": 2279,
+   "description": "View from the Pico de la Zarza in northeastern direction to the Istmo de la Pared; Jandía, Fuerteventura, Canary Islands, Spain."
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Barranco de Pecenescal - Fuerteventura.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Barranco_de_Pecenescal_-_Fuerteventura.jpg",
+   "width": 11163,
+   "height": 2373,
+   "description": "Barranco de Pecenescal, Jandia, Pájara, Fuerteventura, Canary Islands"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Doorgang in muur. Locatie, Chinese tuin Het Verborgen Rijk van Ming. Locatie. Hortus Haren 01.jpg",
+   "tier": "quality",
+   "author": "Dominicus Johannes Bergsma",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Doorgang_in_muur._Locatie,_Chinese_tuin_Het_Verborgen_Rijk_van_Ming._Locatie._Hortus_Haren_01.jpg",
+   "width": 4589,
+   "height": 3101,
+   "description": "Passage in wall known as Moon gate. Location, Chinese garden, the Hidden Realm of Ming. Location: Hortus Haren, one of the oldest botanical gardens in the Netherlands."
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Rani ki vav - Patan - Gujarat - Wall Decorations.jpg",
+   "tier": "quality",
+   "author": "Snehrashmi",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Rani_ki_vav_-_Patan_-_Gujarat_-_Wall_Decorations.jpg",
+   "width": 5184,
+   "height": 3456,
+   "description": "This is a photo of ASI monument number"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Dülmen, Kirchspiel, ehem. Sondermunitionslager Visbeck, Laufgang -- 2023 -- 6796 (bw).jpg",
+   "tier": "quality",
+   "author": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Kirchspiel,_ehem._Sondermunitionslager_Visbeck,_Laufgang_--_2023_--_6796_(bw).jpg",
+   "width": 6590,
+   "height": 4393,
+   "description": "Observation window in the wall of the walkways at the Dülmen-Visbeck Special Ammunition Storage, Dernekamp, Kirchspiel, Dülmen, North Rhine-Westphalia, GermanyThe Bundeswehr Ammunition Depot, located "
+  }
+ ]
+}

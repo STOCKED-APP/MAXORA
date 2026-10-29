@@ -1,0 +1,71 @@
+{
+ "slug": "sotavento",
+ "name": "Playa de Sotavento",
+ "coords": {
+  "lat": 28.100556,
+  "lng": -14.271389,
+  "wikidata": "Q23979390"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Llano del Jable - Panorama 02.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Llano_del_Jable_-_Panorama_02.jpg",
+   "width": 20858,
+   "height": 3470,
+   "description": "View from the Llano del Jable to the Montaña Enrique (left) and the Montaña Quemada (right), in the background the Caldera de Taburiente with the Pico Bejenado (1854 m, left), the Risco de la Perra wi"
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Luftbild Playa de Sotavento, Lagune - 51512711614.jpg",
+   "tier": "search",
+   "author": "dirkvorderstrasse",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Luftbild_Playa_de_Sotavento,_Lagune_-_51512711614.jpg",
+   "width": 3429,
+   "height": 2284,
+   "description": "Jandia, Fuerteventura, Kanarische Inseln, Spanien"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Pájara - Playa de Sotavento 02 ies.jpg",
+   "tier": "search",
+   "author": "Frank Vincentz",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:P%C3%A1jara_-_Playa_de_Sotavento_02_ies.jpg",
+   "width": 5616,
+   "height": 3744,
+   "description": "Playa de Sotavento in Pájara, Fuerteventura, Canary Islands"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Playa de Sotavento - panoramio.jpg",
+   "tier": "search",
+   "author": "Canarina",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Playa_de_Sotavento_-_panoramio.jpg",
+   "width": 3264,
+   "height": 2448,
+   "description": "Playa de Sotavento"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Pájara - Playa de Sotavento 01 ies.jpg",
+   "tier": "search",
+   "author": "Frank Vincentz",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:P%C3%A1jara_-_Playa_de_Sotavento_01_ies.jpg",
+   "width": 5616,
+   "height": 3744,
+   "description": "Playa de Sotavento in Pájara, Fuerteventura, Canary Islands"
+  }
+ ]
+}

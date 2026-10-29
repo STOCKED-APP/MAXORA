@@ -1,0 +1,71 @@
+{
+ "slug": "ajuy",
+ "name": "Cuevas de Ajuy",
+ "coords": {
+  "lat": 28.40325,
+  "lng": -14.15597,
+  "wikidata": "Q131583828"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Caleta Negra - Ajuy - 01.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Caleta_Negra_-_Ajuy_-_01.jpg",
+   "width": 4730,
+   "height": 3165,
+   "description": "Caleta Negra north of Ajuy, Pájara, Fuerteventura, Canary Islands, Spain"
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Abandoned houses - Ajuy - Fuerteventura.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Abandoned_houses_-_Ajuy_-_Fuerteventura.jpg",
+   "width": 13134,
+   "height": 1952,
+   "description": "Abandoned houses near Ajuy, Fuerteventura."
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Lava in limestone- Ajuy - Fuerteventura.jpg",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Lava_in_limestone-_Ajuy_-_Fuerteventura.jpg",
+   "width": 4760,
+   "height": 3170,
+   "description": "Lava in limestone, fossil dunes of Ajuy, Fuerteventura, Canary Islands."
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Breakers - Fuerteventura.JPG",
+   "tier": "quality",
+   "author": "H. Zell",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Breakers_-_Fuerteventura.JPG",
+   "width": 4752,
+   "height": 2929,
+   "description": "Breakers at the Coast near Ajuy, Fuerteventura, Canary Islands, Spain"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Pájara - Ajuy - Monumento Natural - Hornos 04 ies.jpg",
+   "tier": "search",
+   "author": "Frank Vincentz",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:P%C3%A1jara_-_Ajuy_-_Monumento_Natural_-_Hornos_04_ies.jpg",
+   "width": 5616,
+   "height": 3744,
+   "description": "Lime kilns in the area of the Monumento Natural Ajuy in Ajuy, Pájara, Fuerteventura, Canary Islands"
+  }
+ ]
+}

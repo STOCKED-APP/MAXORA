@@ -1,0 +1,121 @@
+[
+ {
+  "slug": "cofete",
+  "n": 5,
+  "coords": {
+   "lat": 28.111667,
+   "lng": -14.390278,
+   "wikidata": "Q23986978"
+  }
+ },
+ {
+  "slug": "sotavento",
+  "n": 5,
+  "coords": {
+   "lat": 28.100556,
+   "lng": -14.271389,
+   "wikidata": "Q23979390"
+  }
+ },
+ {
+  "slug": "dunas-corralejo",
+  "n": 5,
+  "coords": null
+ },
+ {
+  "slug": "isla-de-lobos",
+  "n": 5,
+  "coords": {
+   "lat": 28.75169,
+   "lng": -13.82149,
+   "wikidata": "Q1051489"
+  }
+ },
+ {
+  "slug": "el-cotillo",
+  "n": 5,
+  "coords": {
+   "lat": 28.683611,
+   "lng": -14.011111,
+   "wikidata": "Q1324017"
+  }
+ },
+ {
+  "slug": "ajuy",
+  "n": 5,
+  "coords": {
+   "lat": 28.40325,
+   "lng": -14.15597,
+   "wikidata": "Q131583828"
+  }
+ },
+ {
+  "slug": "garcey",
+  "n": 5,
+  "coords": null
+ },
+ {
+  "slug": "morro-velosa",
+  "n": 5,
+  "coords": null
+ },
+ {
+  "slug": "calderon-hondo",
+  "n": 5,
+  "coords": null
+ },
+ {
+  "slug": "entallada",
+  "n": 5,
+  "coords": {
+   "lat": 28.230278,
+   "lng": -13.948611,
+   "wikidata": "Q5856468"
+  }
+ },
+ {
+  "slug": "betancuria",
+  "n": 5,
+  "coords": {
+   "lat": 28.424722,
+   "lng": -14.057219,
+   "wikidata": "Q830969"
+  }
+ },
+ {
+  "slug": "morro-jable",
+  "n": 5,
+  "coords": {
+   "lat": 28.044611,
+   "lng": -14.335189,
+   "wikidata": "Q5658668"
+  }
+ },
+ {
+  "slug": "la-pared",
+  "n": 5,
+  "coords": {
+   "lat": 28.21811,
+   "lng": -14.2215,
+   "wikidata": "Q23982386"
+  }
+ },
+ {
+  "slug": "las-penitas",
+  "n": 5,
+  "coords": {
+   "lat": 28.38907,
+   "lng": -14.09765,
+   "wikidata": "Q131563532"
+  }
+ },
+ {
+  "slug": "punta-jandia",
+  "n": 5,
+  "coords": {
+   "lat": 28.0657,
+   "lng": -14.5071,
+   "wikidata": "Q18619044"
+  }
+ }
+]

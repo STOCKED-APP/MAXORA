@@ -1,0 +1,71 @@
+{
+ "slug": "betancuria",
+ "name": "Betancuria",
+ "coords": {
+  "lat": 28.424722,
+  "lng": -14.057219,
+  "wikidata": "Q830969"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Betancuria (Fuerteventura, Spain), Kaktus -- 2025 -- 7205.jpg",
+   "tier": "quality",
+   "author": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Betancuria_(Fuerteventura,_Spain),_Kaktus_--_2025_--_7205.jpg",
+   "width": 6720,
+   "height": 4480,
+   "description": "Cactus with fruit in Betancuria, Fuerteventura, Spain"
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Betancuria (Fuerteventura, Spain), altes Wasserrad -- 2025 -- 7203.jpg",
+   "tier": "quality",
+   "author": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Betancuria_(Fuerteventura,_Spain),_altes_Wasserrad_--_2025_--_7203.jpg",
+   "width": 6698,
+   "height": 4465,
+   "description": "Remains of an old water wheel in Betancuria, Fuerteventura, Spain"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Betancuria (Fuerteventura, Spain), Iglesia de Santa María -- 2025 -- 7185.jpg",
+   "tier": "quality",
+   "author": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Betancuria_(Fuerteventura,_Spain),_Iglesia_de_Santa_Mar%C3%ADa_--_2025_--_7185.jpg",
+   "width": 6652,
+   "height": 4435,
+   "description": "Portal of the church Iglesia de Santa María, Betancuria, Fuerteventura, Spain"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Betancuria (Fuerteventura, Spain), Iglesia de Santa María -- 2025 -- 7199.jpg",
+   "tier": "quality",
+   "author": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Betancuria_(Fuerteventura,_Spain),_Iglesia_de_Santa_Mar%C3%ADa_--_2025_--_7199.jpg",
+   "width": 5973,
+   "height": 4480,
+   "description": "Tower of the church Iglesia de Santa María, Betancuria, Fuerteventura, Spain"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Betancuria (Fuerteventura, Spain), Iglesia de Santa María -- 2025 -- 7188.jpg",
+   "tier": "quality",
+   "author": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Betancuria_(Fuerteventura,_Spain),_Iglesia_de_Santa_Mar%C3%ADa_--_2025_--_7188.jpg",
+   "width": 5345,
+   "height": 4276,
+   "description": "Portal of the church Iglesia de Santa María, Betancuria, Fuerteventura, Spain"
+  }
+ ]
+}

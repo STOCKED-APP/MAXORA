@@ -1,0 +1,67 @@
+{
+ "slug": "dunas-corralejo",
+ "name": "Dunas de Corralejo",
+ "coords": null,
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Azul, Dunas de Corralejo, Fuerteventura, España, 2015.JPG",
+   "tier": "search",
+   "author": "Benjamín Núñez González",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Azul,_Dunas_de_Corralejo,_Fuerteventura,_Espa%C3%B1a,_2015.JPG",
+   "width": 4000,
+   "height": 3000,
+   "description": "Azul, Dunas de Corralejo"
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Horizonte, Dunas de Corralejo, Fuerteventura, España, 2015.JPG",
+   "tier": "search",
+   "author": "Benjamín Núñez González",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Horizonte,_Dunas_de_Corralejo,_Fuerteventura,_Espa%C3%B1a,_2015.JPG",
+   "width": 4000,
+   "height": 3000,
+   "description": "Horizonte, Dunas de Corralejo."
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Arena, Dunas de Corralejo, Fuerteventura, España, 2015.JPG",
+   "tier": "search",
+   "author": "Benjamín Núñez González",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Arena,_Dunas_de_Corralejo,_Fuerteventura,_Espa%C3%B1a,_2015.JPG",
+   "width": 4000,
+   "height": 3000,
+   "description": "Arena, Dunas de Corralejo."
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Matas, Dunas de Corralejo, Fuerteventura, España, 2015.JPG",
+   "tier": "search",
+   "author": "Benjamín Núñez González",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Matas,_Dunas_de_Corralejo,_Fuerteventura,_Espa%C3%B1a,_2015.JPG",
+   "width": 4000,
+   "height": 3000,
+   "description": "Matas, Dunas de Corralejo."
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Montaña y duna, Dunas de Corralejo, Fuerteventura, España, 2015.JPG",
+   "tier": "search",
+   "author": "Benjamín Núñez González",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Monta%C3%B1a_y_duna,_Dunas_de_Corralejo,_Fuerteventura,_Espa%C3%B1a,_2015.JPG",
+   "width": 4000,
+   "height": 3000,
+   "description": "Montaña y duna, Dunas de Corralejo."
+  }
+ ]
+}

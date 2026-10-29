@@ -1,0 +1,71 @@
+{
+ "slug": "morro-jable",
+ "name": "Playa del Matorral, Morro Jable",
+ "coords": {
+  "lat": 28.044611,
+  "lng": -14.335189,
+  "wikidata": "Q5658668"
+ },
+ "photos": [
+  {
+   "file": "1.jpg",
+   "title": "File:Morro Jable (Fuerteventura, Spain), Strand -- 2025 -- 2487.jpg",
+   "tier": "quality",
+   "author": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Morro_Jable_(Fuerteventura,_Spain),_Strand_--_2025_--_2487.jpg",
+   "width": 5472,
+   "height": 3648,
+   "description": "Structures with different colored sand on the beach of Morro Jable, Fuerteventura, Spain"
+  },
+  {
+   "file": "2.jpg",
+   "title": "File:Morro Jable (Fuerteventura, Spain), Strand, Brandung -- 2025 -- 2465.jpg",
+   "tier": "quality",
+   "author": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Morro_Jable_(Fuerteventura,_Spain),_Strand,_Brandung_--_2025_--_2465.jpg",
+   "width": 5428,
+   "height": 2714,
+   "description": "Breaking waves on the beach of Morro Jable, Fuerteventura, Spain"
+  },
+  {
+   "file": "3.jpg",
+   "title": "File:Morro Jable (Fuerteventura, Spain), Strand, Brandung -- 2025 -- 2478.jpg",
+   "tier": "quality",
+   "author": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Morro_Jable_(Fuerteventura,_Spain),_Strand,_Brandung_--_2025_--_2478.jpg",
+   "width": 5458,
+   "height": 3639,
+   "description": "Breaking waves on the beach of Morro Jable, Fuerteventura, Spain"
+  },
+  {
+   "file": "4.jpg",
+   "title": "File:Morro Jable (Fuerteventura, Spain), Strand, Rettungsturm -- 2025 -- 2498.jpg",
+   "tier": "quality",
+   "author": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Morro_Jable_(Fuerteventura,_Spain),_Strand,_Rettungsturm_--_2025_--_2498.jpg",
+   "width": 5458,
+   "height": 3639,
+   "description": "Lifeguard tower on the beach of Morro Jable, Fuerteventura, Spain"
+  },
+  {
+   "file": "5.jpg",
+   "title": "File:Morro Jable (Fuerteventura, Spain), Strand, Rettungsturm -- 2025 -- 2447.jpg",
+   "tier": "quality",
+   "author": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Morro_Jable_(Fuerteventura,_Spain),_Strand,_Rettungsturm_--_2025_--_2447.jpg",
+   "width": 5472,
+   "height": 3648,
+   "description": "Lifeguard tower on the beach of Morro Jable, Fuerteventura, Spain"
+  }
+ ]
+}
