@@ -1,5 +1,6 @@
 import json, sys, time
-def note(s): print('::notice::' + str(s).replace('\n', ' | ')[:3800], flush=True)
+LOG=open('probe_out.txt','w')
+def note(s): LOG.write(str(s)+'\n'); LOG.flush()
 # --- OSM: luoghi surf e spiagge con nome
 try:
     feats = [json.loads(l) for l in open('surf.geojsonseq') if l.strip().startswith('{')] if False else []

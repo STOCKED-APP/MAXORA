@@ -1,4 +1,6 @@
 name: Sonda surf
+permissions:
+  contents: write
 on:
   push:
     branches: [sonda-surf]
@@ -16,3 +18,6 @@ jobs:
           osmium export s.pbf -f geojsonseq -o surf.geojsonseq --overwrite
       - run: pip install ecmwf-opendata cfgrib eccodes xarray
       - run: python3 tools/surf_probe.py
+      - run: |
+          git config user.name maxora-bot; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f probe_out.txt && git commit -qm "out [skip ci]" && git push -q
