@@ -169,7 +169,9 @@ def build_one(r, peaks):
         return None
     coords = rt['geometry']['coordinates']
     snap = [round(hav([lng, lat], min(coords, key=lambda c: hav(c, [lng, lat])))) for _, lat, lng in via]
-    if max(snap) > MAX_SNAP:
+    # una cima deve essere raggiunta davvero (entro 120 m), le altre tappe entro 250 m
+    peak_bad = any(isinstance(v[0], str) and v[0].startswith('@') and sn > 120 for v, sn in zip(r['via'], snap))
+    if max(snap) > MAX_SNAP or peak_bad:
         REPORT.append({'id': r['id'], 'error': 'tappa lontana dal tracciato', 'snap': snap})
         note(f"{r['id']}: scartato, tappe a {snap} m dal tracciato")
         return None
@@ -180,6 +182,12 @@ def finalize(r, coords, snap):
         pts, dist, total = resample(coords, 25)
         ele = smooth(elevations(pts), 7)
         gain, loss, maxg, main_climb = climb_stats(dist, list(ele))
+        if r.get('official') and not r.get('loop') and loss > gain:
+            # sentiero lineare: lo mostriamo nel verso in salita, come si percorre di solito
+            coords = list(reversed(coords))
+            pts, dist, total = resample(coords, 25)
+            ele = smooth(elevations(pts), 7)
+            gain, loss, maxg, main_climb = climb_stats(dist, list(ele))
         if r.get('back'):          # andata e ritorno
             total2 = total * 2
             gain, loss = gain + loss, loss + gain
