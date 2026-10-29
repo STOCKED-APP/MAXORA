@@ -1,0 +1,41 @@
+# Maxora — maree di Fuerteventura dal mareografo di Puerto del Rosario (analisi armonica), ogni lunedì
+name: Maree
+
+on:
+  schedule:
+    - cron: '41 4 * * 1'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_tides.py'
+      - '.github/workflows/tides.yml'
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: tides
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q utide pandas numpy
+      - run: python3 tools/build_tides.py data --years 3
+      - name: Pubblica
+        if: always()
+        run: |
+          [ -f data/tides.json ] || exit 0
+          git config user.name "maxora-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/tides.json
+          if git diff --cached --quiet; then echo "Nessun cambiamento"; exit 0; fi
+          git commit -qm "Maree aggiornate"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done
+          curl -fsS -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/pages/builds || true

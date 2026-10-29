@@ -1,0 +1,40 @@
+# Maxora — previsioni surf (onde e vento ECMWF, dati aperti CC BY 4.0) ogni 3 ore
+name: Previsioni surf
+
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_surf.py'
+      - 'data/surf_spots.json'
+      - '.github/workflows/surf.yml'
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: surf
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q ecmwf-opendata cfgrib eccodes xarray numpy
+      - run: python3 tools/build_surf.py data/surf_spots.json data/surf.json
+      - name: Pubblica
+        run: |
+          git config user.name "maxora-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/surf.json
+          if git diff --cached --quiet; then echo "Nessun cambiamento"; exit 0; fi
+          git commit -qm "Previsioni surf aggiornate"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done
+          curl -fsS -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/pages/builds || true
