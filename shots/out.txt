@@ -1,0 +1,9 @@
+lista: 10
+pista-norte: BICI · STERRATO · SOLO ANDATA · MEDIO | Pista del nord: Corralejo – Majanicho – El Cotillo | km | 23,7 | salita | +32 m | condizioni | ★ 1,5 | Oggi 18:00 | ALTIMETRIA · PENDENZA MAX 2% | 22 m | 23,7 km | 2 m | IL VENTO S
+lista: 23
+bayuyo: CORSA · SENTIERO · ANDATA E RITORNO · MEDIO | Vulcani di Bayuyo | km | 8,5 | salita | +249 m | condizioni | ★ 1 | Oggi 18:00 | ALTIMETRIA · PENDENZA MAX 25% | 266 m | 4,2 km | 13 m | Salita principale: 4,1 km al 6,1% (+2
+osm-4243263: CORSA · SENTIERO · SOLO ANDATA · SEGNALATO PR-FV 54 · IMPEGNATIVO | Morro Jable - Pico de la Zarza · PR-FV 54 | km | 8,9 | salita | +838 m | condizioni | ★ 0,5 | Oggi 18:00 | ALTIMETRIA · PENDENZA MAX 21% | 795 m | 8,9 k
+osm-4243063: CORSA · SENTIERO · SOLO ANDATA · SEGNALATO SL-FV 2 · FACILE | Calderón Hondo - Lajares · SL-FV 2 | km | 2,6 | salita | +106 m | condizioni | ★ 1 | Oggi 18:00 | ALTIMETRIA · PENDENZA MAX 9% | 191 m | 2,6 km | 85 m | Salit
+gairia: CORSA · SENTIERO · ANDATA E RITORNO · MEDIO | Caldera de Gairía | km | 7,1 | salita | +162 m | condizioni | ★ 0,5 | Oggi 18:00 | ALTIMETRIA · PENDENZA MAX 13% | 360 m | 3,6 km | 222 m | Salita principale: 2,7 km al 5,2% 
+majanicho-run: CORSA · SENTIERO · ANDATA E RITORNO · IMPEGNATIVO | Corralejo – Majanicho sulla pista | km | 20,2 | salita | +42 m | condizioni | ★ 1 | Oggi 18:00 | ALTIMETRIA · PENDENZA MAX 2% | 22 m | 10,1 km | 2 m | IL VENTO SUL PERC
+errori: nessuno
