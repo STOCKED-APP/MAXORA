@@ -623,15 +623,15 @@
     if (map.isMoving()) { if (!pad.wait) { pad.wait = true; map.once('moveend', () => { pad.wait = false; pad(); }); } return; }
     map.setPadding({ top: 70, bottom, left: 0, right: 0 });
   }
-  async function setOn(on, quiet) {
+  async function setOn(on, quiet, noToast) {
     SF.on = on;
     store.set('surfOn', on);
     document.body.classList.toggle('surf-on', on);
     if (window.MAXORA_MODES) window.MAXORA_MODES.sync();
     $('sfSheet').classList.toggle('hidden', !on);
-    if (!on) { closeCard(); drawPins(); M.padMap(); if (!quiet) M.toast(tr('off')); return; }
+    if (!on) { closeCard(); drawPins(); M.padMap(); if (!quiet && !noToast) M.toast(tr('off')); return; }
     M.closePlace(); M.exitResults(); if (!quiet) M.unfollow();
-    if (!quiet) M.toast(tr('on'));
+    if (!quiet && !noToast) M.toast(tr('on'));
     drawHead(); pad();
     try {
       await load();

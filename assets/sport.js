@@ -11,7 +11,7 @@
   // ------------------------------------------------------------------
   const TX = {
     it: {
-      road: 'Strada', surf: 'Surf', bike: 'Bici', run: 'Corsa', modes: 'Modalità',
+      dRoad: 'Avvisi, traffico e controlli', dSurf: 'Onde, vento, maree e spot', dBike: 'Percorsi, vento e salite', dRun: 'Percorsi e ora migliore', exitMode: 'Esci', modeNow: 'Modalità {m}', road: 'Strada', surf: 'Surf', bike: 'Bici', run: 'Corsa', modes: 'Modalità',
       bikeOn: 'Modalità bici', runOn: 'Modalità corsa', roadOn: 'Modalità strada',
       bestTime: 'Ora migliore: {h}', now: 'Adesso', temp: 'Temperatura', wind: 'Vento', gust: 'raffiche', rain: 'Pioggia', dry: 'asciutto', light: 'Luce',
       sunrise: 'alba {h}', sunset: 'tramonto {h}', night: 'notte', today: 'Oggi', tomorrow: 'Domani',
@@ -31,7 +31,7 @@
       future: 'Registrare le uscite arriverà più avanti: per ora scarica il GPX e registra con l\'app che usi.'
     },
     es: {
-      road: 'Carretera', surf: 'Surf', bike: 'Bici', run: 'Correr', modes: 'Modos',
+      dRoad: 'Avisos, tráfico y controles', dSurf: 'Olas, viento, mareas y spots', dBike: 'Rutas, viento y subidas', dRun: 'Rutas y mejor hora', exitMode: 'Salir', modeNow: 'Modo {m}', road: 'Carretera', surf: 'Surf', bike: 'Bici', run: 'Correr', modes: 'Modos',
       bikeOn: 'Modo bici', runOn: 'Modo correr', roadOn: 'Modo carretera',
       bestTime: 'Mejor hora: {h}', now: 'Ahora', temp: 'Temperatura', wind: 'Viento', gust: 'rachas', rain: 'Lluvia', dry: 'seco', light: 'Luz',
       sunrise: 'amanecer {h}', sunset: 'atardecer {h}', night: 'noche', today: 'Hoy', tomorrow: 'Mañana',
@@ -51,7 +51,7 @@
       future: 'Registrar las salidas llegará más adelante: por ahora descarga el GPX y registra con tu app.'
     },
     en: {
-      road: 'Road', surf: 'Surf', bike: 'Bike', run: 'Run', modes: 'Modes',
+      dRoad: 'Alerts, traffic and checks', dSurf: 'Waves, wind, tides and spots', dBike: 'Routes, wind and climbs', dRun: 'Routes and best time', exitMode: 'Exit', modeNow: '{m} mode', road: 'Road', surf: 'Surf', bike: 'Bike', run: 'Run', modes: 'Modes',
       bikeOn: 'Bike mode', runOn: 'Run mode', roadOn: 'Road mode',
       bestTime: 'Best time: {h}', now: 'Now', temp: 'Temperature', wind: 'Wind', gust: 'gusts', rain: 'Rain', dry: 'dry', light: 'Light',
       sunrise: 'sunrise {h}', sunset: 'sunset {h}', night: 'night', today: 'Today', tomorrow: 'Tomorrow',
@@ -71,7 +71,7 @@
       future: 'Recording your rides is coming later: for now download the GPX and record with your usual app.'
     },
     de: {
-      road: 'Straße', surf: 'Surf', bike: 'Rad', run: 'Laufen', modes: 'Modi',
+      dRoad: 'Meldungen, Verkehr, Kontrollen', dSurf: 'Wellen, Wind, Gezeiten, Spots', dBike: 'Strecken, Wind, Anstiege', dRun: 'Strecken und beste Zeit', exitMode: 'Beenden', modeNow: 'Modus {m}', road: 'Straße', surf: 'Surf', bike: 'Rad', run: 'Laufen', modes: 'Modi',
       bikeOn: 'Radmodus', runOn: 'Laufmodus', roadOn: 'Straßenmodus',
       bestTime: 'Beste Zeit: {h}', now: 'Jetzt', temp: 'Temperatur', wind: 'Wind', gust: 'Böen', rain: 'Regen', dry: 'trocken', light: 'Licht',
       sunrise: 'Aufgang {h}', sunset: 'Untergang {h}', night: 'Nacht', today: 'Heute', tomorrow: 'Morgen',
@@ -502,8 +502,10 @@
     road: '<path d="M4 20L9 4M20 20L15 4M12 6v2M12 11v2M12 16v2"/>',
     surf: '<path d="M2 16c2 0 2.5-1.5 5-1.5S9.5 16 12 16s2.5-1.5 5-1.5 3 1.5 5 1.5"/><path d="M2 20c2 0 2.5-1.5 5-1.5S9.5 20 12 20s2.5-1.5 5-1.5 3 1.5 5 1.5"/><path d="M5.5 12.5C6 8 9 5 13 5c2.5 0 4.2 1.3 4.2 3.2 0 1.6-1.2 2.6-2.7 2.6-1.3 0-2.2-.8-2.2-1.9"/>',
     bike: '<circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5L9 9h6l3.5 7.5M9 9l3.5 7.5L15 9M13 5.5h2.5"/>',
-    run: '<circle cx="15" cy="4.5" r="2"/><path d="M8 21l3-6 3 2v4M6 12l3-4 4 1 2 4 3 1M11 15l-2-3"/>'
+    run: '<circle cx="15" cy="4.5" r="2"/><path d="M8 21l3-6 3 2v4M6 12l3-4 4 1 2 4 3 1M11 15l-2-3"/>',
+    modes: '<rect x="4" y="4" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="2"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="2"/>'
   };
+  const DESC = { road: 'dRoad', surf: 'dSurf', bike: 'dBike', run: 'dRun' };
   const svg = (k) => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[k] + '</svg>';
   const surfOn = () => window.MAXORA_SURF && window.MAXORA_SURF.isOn();
   const current = () => (surfOn() ? 'surf' : SP.mode || 'road');
@@ -512,8 +514,10 @@
   function drawMenu() {
     menu.innerHTML = '';
     ['road', 'surf', 'bike', 'run'].forEach((k) => {
-      menu.appendChild(el('button', { class: 'mode-item' + (current() === k ? ' on' : ''), role: 'menuitemradio', 'aria-checked': String(current() === k), onclick: () => choose(k) }, []));
-      const b = menu.lastChild; b.innerHTML = svg(k); b.appendChild(el('span', { text: tr(k) }));
+      const b = el('button', { class: 'mode-item m-' + k + (current() === k ? ' on' : ''), role: 'menuitemradio', 'aria-checked': String(current() === k), onclick: () => choose(k) }, []);
+      const ic = el('span', { class: 'mi-ico' }); ic.innerHTML = svg(k);
+      b.append(ic, el('span', { class: 'mi-txt' }, [el('b', { text: tr(k) }), el('small', { text: tr(DESC[k]) })]));
+      menu.appendChild(b);
     });
   }
   async function choose(k) {
@@ -521,15 +525,41 @@
     if (k === current()) return;
     if (surfOn() && k !== 'surf') await window.MAXORA_SURF.setOn(false, true);
     if (SP.mode && k !== SP.mode) await setSport(null, true);
-    if (k === 'surf') await window.MAXORA_SURF.setOn(true);
-    else if (k === 'bike' || k === 'run') { await setSport(k); M.toast(tr(k + 'On')); }
-    else M.toast(tr('roadOn'));
+    splash(k);
+    if (k === 'surf') await window.MAXORA_SURF.setOn(true, false, true);
+    else if (k === 'bike' || k === 'run') await setSport(k);
     sync();
+  }
+  // annuncio grande al cambio di modalità: niente dubbi su dove sei
+  let splashT;
+  function splash(k) {
+    let n = $('modeSplash');
+    if (!n) { n = el('div', { id: 'modeSplash', class: 'mode-splash', 'aria-live': 'polite' }); document.body.appendChild(n); }
+    n.className = 'mode-splash m-' + k;
+    n.innerHTML = '';
+    const ic = el('span', { class: 'ms-ico' }); ic.innerHTML = svg(k);
+    n.append(ic, el('b', { text: tr('modeNow', { m: tr(k) }) }), el('small', { text: tr(DESC[k]) }));
+    n.classList.add('show');
+    clearTimeout(splashT); splashT = setTimeout(() => n.classList.remove('show'), 1400);
+  }
+  // etichetta fissa in alto con la modalità attiva e la ✕ per tornare alla strada
+  const chip = el('div', { class: 'mode-chip hidden', id: 'modeChip' });
+  document.body.appendChild(chip);
+  function drawChip(k) {
+    chip.className = 'mode-chip m-' + k + (k === 'road' ? ' hidden' : '');
+    chip.innerHTML = '';
+    const ic = el('span', { class: 'mc-ico' }); ic.innerHTML = svg(k);
+    chip.append(
+      el('button', { class: 'mc-main', onclick: (e) => { e.stopPropagation(); drawMenu(); menu.classList.remove('hidden'); } }, [ic, el('b', { text: tr(k) })]),
+      el('button', { class: 'mc-x', 'aria-label': tr('exitMode'), title: tr('exitMode'), onclick: (e) => { e.stopPropagation(); choose('road'); } }, ['✕'])
+    );
   }
   function sync() {
     const k = current();
+    document.body.dataset.mode = k;
+    drawChip(k);
     const btn = $('surfBtn');
-    btn.innerHTML = svg(k === 'road' ? 'surf' : k);
+    btn.innerHTML = svg(k === 'road' ? 'modes' : k);
     btn.classList.toggle('on', k !== 'road');
     btn.setAttribute('aria-pressed', String(k !== 'road'));
     btn.setAttribute('aria-label', tr('modes'));
