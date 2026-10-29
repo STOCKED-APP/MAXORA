@@ -783,7 +783,8 @@
       const textBox = el('div', { style: 'flex:1;min-width:0' }, [
         sponsor ? el('span', { class: 'tag', text: t('sponsor') }) : null,
         el('div', { class: 't', text: x.name }),
-        el('div', { class: 's', text: (x.category || '') + (desc ? ' · ' + desc : '') })
+        el('div', { class: 's', text: (isBiz ? (x.category || '') : pcat(x.category)) + (desc ? ' · ' + desc : '') }),
+        (x.photo_credits && x.photo_credits[0] && x.photo_credits[0].author) ? el('div', { class: 'cr', text: '© ' + x.photo_credits[0].author + ' · ' + x.photo_credits[0].license }) : null
       ]);
       if (isBiz && (x.phone || x.website)) {
         const acts = el('div', { class: 'disc-actions' });
@@ -838,9 +839,15 @@
   const descOf = (x) => (x.description && (x.description[lang] || x.description.es)) || '';
   const isSponsor = (x) => x.plan && x.plan !== 'free' && (!x.sponsor_until || new Date(x.sponsor_until) >= new Date(new Date().toDateString()));
 
+  const PCAT = {
+    playa: { es: 'Playa', en: 'Beach', it: 'Spiaggia', de: 'Strand' }, mirador: { es: 'Mirador', en: 'Viewpoint', it: 'Belvedere', de: 'Aussichtspunkt' },
+    pueblo: { es: 'Pueblo', en: 'Village', it: 'Paese', de: 'Dorf' }, naturaleza: { es: 'Naturaleza', en: 'Nature', it: 'Natura', de: 'Natur' },
+    cultura: { es: 'Cultura', en: 'Culture', it: 'Cultura', de: 'Kultur' }, surf: { es: 'Surf', en: 'Surf', it: 'Surf', de: 'Surfen' }, otro: { es: 'Lugar', en: 'Place', it: 'Luogo', de: 'Ort' }
+  };
+  const pcat = (c) => (PCAT[c] && (PCAT[c][lang] || PCAT[c].es)) || c || '';
   function fromPlace(x) {
     const ic = /playa|beach/i.test(x.category) ? 'beach' : /mirador/i.test(x.category) ? 'view' : /surf/i.test(x.category) ? 'surf' : 'star';
-    return { kind: 'place', id: x.id, name: x.name, sub: x.category, lat: x.lat, lng: x.lng, icon: ic, ours: true, raw: x };
+    return { kind: 'place', id: x.id, name: x.name, sub: pcat(x.category), lat: x.lat, lng: x.lng, icon: ic, ours: true, raw: x };
   }
   function fromBiz(x) {
     const ic = /restaurante|bar/i.test(x.category) ? 'food' : /surf/i.test(x.category) ? 'surf' : 'star';
@@ -1333,6 +1340,20 @@
       el('div', { class: 'p-sub', text: item.sub || '' })
     );
 
+    const photos = [...(x.photos || [])];
+    // ogni foto con il suo credito (autore · licenza), obbligatorio per le foto con licenza libera
+    const credits = Array.isArray(x.photo_credits) ? x.photo_credits : [];
+    if (photos.length) box.appendChild(el('div', { class: 'p-photos' }, photos.slice(0, 6).map((u, i) => {
+      const c = credits[i];
+      return el('figure', { class: 'p-fig' }, [
+        el('img', { src: u, alt: item.name, loading: 'lazy' }),
+        c && c.author ? el('figcaption', {}, [c.source ? el('a', { href: c.source, target: '_blank', rel: 'noopener', text: '© ' + c.author + ' · ' + c.license }) : '© ' + c.author + ' · ' + c.license]) : null
+      ]);
+    })));
+    // descrizione e orari subito sotto le foto
+    const desc = item.ours ? descOf(x) : '';
+    if (desc) box.appendChild(el('p', { class: 'p-desc', text: desc }));
+    if (x.tags && x.tags.opening_hours) box.appendChild(el('p', { class: 'p-desc' }, [el('b', { text: t('hours') + ': ' }), x.tags.opening_hours]));
     // Numeri: distanza + avvisi
     const near = [], onWay = [];
     for (const r of S.reports.values()) {
@@ -1363,12 +1384,6 @@
       if (onWay.length) box.appendChild(el('div', { class: 'p-note', text: t('alertsRoute') + ': ' + t('approxRoute') }));
     }
 
-    // Foto e descrizione (solo schede Maxora)
-    const photos = [...(x.photos || [])];
-    if (photos.length) box.appendChild(el('div', { class: 'p-photos' }, photos.slice(0, 6).map((u) => el('img', { src: u, alt: '', loading: 'lazy' }))));
-    const desc = item.ours ? descOf(x) : '';
-    if (desc) box.appendChild(el('p', { class: 'p-desc', text: desc }));
-    if (x.tags && x.tags.opening_hours) box.appendChild(el('p', { class: 'p-desc' }, [el('b', { text: t('hours') + ': ' }), x.tags.opening_hours]));
 
     // Azioni
     const acts = el('div', { class: 'p-actions' });

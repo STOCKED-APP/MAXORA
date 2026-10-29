@@ -1,14 +1,9 @@
 # Maxora — raccoglie foto candidate (licenza libera) da Wikimedia Commons nel ramo "foto-candidati"
 name: Foto candidate luoghi
 
+# Solo manuale: GitHub → Actions → "Foto candidate luoghi" → Run workflow
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'tools/fetch_photos.py'
-      - 'tools/geo.py'
-      - '.github/workflows/photos.yml'
 
 permissions:
   contents: write
@@ -22,12 +17,8 @@ jobs:
       - name: Coordinate
         run: python3 tools/geo.py "Calderón Hondo" "Calderon Hondo, La Oliva" "Lagos de El Cotillo" "Mirador Morro Velosa"
       - name: Cerca e scarica
-        if: false
-        env:
-          ONLY: isla-de-lobos,la-pared
         run: python3 tools/fetch_photos.py /tmp/foto
       - name: Pubblica nel ramo foto-candidati
-        if: false
         run: |
           cd /tmp/foto
           git init -q -b foto-candidati
@@ -35,4 +26,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -q -m "Foto candidate da Wikimedia Commons"
-          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" foto-candidati:foto-candidati-2
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" foto-candidati

@@ -150,3 +150,4 @@ details summary { cursor: pointer; color: var(--muted); font-size: 12px; }
   opacity: 0; transition: opacity .2s; pointer-events: none; max-width: 90vw; text-align: center;
 }
 .toast.show { opacity: 1; }
+.photos .ph-cr { position: absolute; left: 4px; bottom: 4px; width: 20px; height: 20px; border-radius: 6px; background: rgba(0,0,0,.6); color: #fff; font-size: 11px; display: grid; place-items: center; }

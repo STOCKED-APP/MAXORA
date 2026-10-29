@@ -732,25 +732,27 @@
   const PLACE_CATS = ['playa', 'mirador', 'pueblo', 'naturaleza', 'cultura', 'surf', 'otro'];
   const BIZ_CATS = ['restaurante', 'bar', 'surf / kite', 'excursiones', 'alquiler', 'alojamiento', 'tienda', 'servicios', 'otro'];
 
-  function photosEditor(list, folder, single) {
+  function photosEditor(list, folder, single, creditList) {
     let urls = (list || []).slice();
+    // crediti allineati alle foto: togliendo una foto si toglie anche il suo credito; le foto caricate da te non ne hanno
+    let credits = urls.map((_, i) => (creditList && creditList[i]) || null);
     const box = el('div', { class: 'photos' });
     const input = el('input', { type: 'file', accept: 'image/*', multiple: !single, style: 'max-width:260px' });
     function draw() {
       box.innerHTML = '';
-      urls.forEach((u, k) => box.appendChild(el('div', { class: 'ph' }, [el('img', { src: u, alt: '' }), el('button', { type: 'button', 'aria-label': 'Quitar foto', text: '×', onclick: () => { urls.splice(k, 1); draw(); } })])));
+      urls.forEach((u, k) => box.appendChild(el('div', { class: 'ph' }, [el('img', { src: u, alt: '' }), el('button', { type: 'button', 'aria-label': 'Quitar foto', text: '×', onclick: () => { urls.splice(k, 1); credits.splice(k, 1); draw(); } }), credits[k] ? el('span', { class: 'ph-cr', title: credits[k].author + ' · ' + credits[k].license, text: '©' }) : null])));
     }
     input.addEventListener('change', async () => {
       const files = [...input.files];
       for (const file of files) {
         if (file.size > 8 * 1024 * 1024) { toast('Foto demasiado grande (máx. 8 MB)'); continue; }
-        try { toast('Subiendo foto…'); const u = await upload(file, folder); if (single) urls = [u]; else urls.push(u); draw(); }
+        try { toast('Subiendo foto…'); const u = await upload(file, folder); if (single) { urls = [u]; credits = [null]; } else { urls.push(u); credits.push(null); } draw(); }
         catch (e) { fail(e, 'Foto'); }
       }
       input.value = '';
     });
     draw();
-    return { node: el('div', { class: 'grid' }, [box, input]), get: () => urls };
+    return { node: el('div', { class: 'grid' }, [box, input]), get: () => urls, credits: () => credits.map((c) => c || {}) };
   }
 
   function editorPanel(kind, item, onDone) {
@@ -774,7 +776,7 @@
     };
     f.cat.value = x.category || (isBiz ? BIZ_CATS[0] : PLACE_CATS[0]);
     f.plan.value = x.plan || 'free';
-    const photos = photosEditor(x.photos, kind);
+    const photos = photosEditor(x.photos, kind, false, x.photo_credits);
     const logo = isBiz ? photosEditor(x.logo_url ? [x.logo_url] : [], 'logos', true) : null;
     const mapBox = el('div', { class: 'amap small' });
 
@@ -819,7 +821,7 @@
       if (f.lat.value === '' || f.lng.value === '') return toast('Coloca el punto en el mapa');
       if (isBiz && f.web.value && !/^https?:\/\//.test(f.web.value.trim())) return toast('La web debe empezar por https://');
       const description = {}; LANGS.forEach((l, k) => { if (f.desc[k].value.trim()) description[l] = f.desc[k].value.trim(); });
-      const row = { name: f.name.value.trim(), category: f.cat.value, description, lat: Number(f.lat.value), lng: Number(f.lng.value), photos: photos.get(), active: f.active.checked };
+      const row = { name: f.name.value.trim(), category: f.cat.value, description, lat: Number(f.lat.value), lng: Number(f.lng.value), photos: photos.get(), photo_credits: photos.credits(), active: f.active.checked };
       if (isBiz) Object.assign(row, { phone: f.phone.value.trim() || null, website: f.web.value.trim() || null, address: f.addr.value.trim() || null, plan: f.plan.value, sponsor_until: f.until.value || null, logo_url: logo.get()[0] || null });
       else Object.assign(row, { featured: f.featured.checked, sort: Number(f.sort.value) || 0 });
       save.disabled = true;

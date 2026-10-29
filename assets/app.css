@@ -466,3 +466,9 @@ body.results-on .locate { display: none; }
 .hero-t { font-size: 18px; }
 .hero-m { -webkit-line-clamp: 1; white-space: nowrap; text-overflow: ellipsis; display: block; }
 .vote { width: 44px; height: 44px; }
+/* Foto con crediti */
+.p-fig { margin: 0; flex: none; display: flex; flex-direction: column; gap: 4px; max-width: 220px; }
+.p-fig img { height: 140px; width: auto; max-width: 220px; border-radius: 14px; object-fit: cover; background: var(--card); }
+.p-fig figcaption { font-size: 10px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.p-fig figcaption a { color: var(--muted); text-decoration: none; }
+.disc .cr { font-size: 10px; color: var(--muted); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
