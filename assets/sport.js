@@ -377,7 +377,8 @@
     });
     const rt = route && route.s >= 2 ? { ic: '🧭', tx: tr('aRoute', { n: route.r.name[lang()] || route.r.name.es }) + ' · ★ ' + fmtR(route.s), go: () => openCard(route.r.id, true) } : null;
     const when = Math.abs(t - Date.now()) < 90 * 60000 ? tr('now') : dayLabel(t) + ' ' + hh(t) + '–' + hh(t + 3 * 3600000);
-    advBox(box, s, when, L, [better, rt]);
+    // giudizio = percorso migliore (coerente con la lista), altrimenti meteo generale
+    advBox(box, route ? route.s : s, when, L, [better, rt]);
   }
   function routeRow(r) {
     const s = score(r.sport, wxAt(r._wx, SP.idx), SP.times[SP.idx], r.surface);
@@ -448,7 +449,7 @@
     drawMap();
     const b = new maplibregl.LngLatBounds(r.line[0], r.line[0]);
     r.line.forEach((p) => b.extend(p));
-    const ph = Math.min(window.innerHeight * 0.56, $('spCard').getBoundingClientRect().height || 380);
+    const ph = Math.min(window.innerHeight * 0.62, $('spCard').getBoundingClientRect().height || 380);
     // margini espliciti: la scheda copre la parte bassa dello schermo
     map.setPadding({ top: 0, bottom: 0, left: 0, right: 0 });
     map.fitBounds(b, { padding: { top: 84, bottom: Math.round(ph) + 16, left: 28, right: 72 }, maxZoom: 15, duration: fly === false ? 0 : 800 });
@@ -519,7 +520,7 @@
   // Entrare / uscire
   // ------------------------------------------------------------------
   function pad() {
-    if (!SP.mode) return;
+    if (!SP.mode || SP.open) return;
     const h = $('spSheet').getBoundingClientRect().height;
     map.setPadding({ top: 70, bottom: Math.max(0, Math.min(h, window.innerHeight * 0.6) - 10), left: 0, right: 0 });
   }

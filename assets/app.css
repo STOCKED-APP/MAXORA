@@ -762,3 +762,9 @@ body[data-mode="run"]  { --mode: var(--m-run); }
 .adv-a { display: flex; align-items: center; gap: 8px; width: 100%; margin-top: 6px; min-height: 38px; padding: 0 10px 0 8px; border: 0; border-radius: 12px; background: var(--card); color: var(--text); font: inherit; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; }
 .adv-a span:nth-child(2) { flex: 1; min-width: 0; }
 .adv-a b { color: var(--ac); font-size: 18px; }
+
+/* v0.11.1 — scheda aperta = pannello nascosto (niente sovrapposizioni) */
+body:has(#spCard:not(.hidden)) #spSheet, body:has(#sfCard:not(.hidden)) #sfSheet { display: none; }
+.sp-card, .sf-card { max-height: 62vh; }
+.sp-cell .s { white-space: normal; overflow: visible; line-height: 1.25; }
+.sp-cell .k { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

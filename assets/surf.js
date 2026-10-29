@@ -675,7 +675,7 @@
   // Entrare / uscire
   // ------------------------------------------------------------------
   function pad() {
-    if (!SF.on) return;
+    if (!SF.on || SF.open) return;
     const h = $('sfSheet').getBoundingClientRect().height;
     const bottom = Math.round(Math.max(0, Math.min(h, window.innerHeight * 0.6) - 10));
     // cambiare il padding ferma le animazioni della mappa: solo se serve davvero
