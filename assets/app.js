@@ -295,17 +295,23 @@
     });
     return st;
   }
+  // Giorno: fondo color sabbia (Fuerteventura è un'isola desertica), il resto dei colori resta quello della mappa
+  function dayStyle(st) {
+    st.layers = st.layers.map((l) => (l.type === 'background' ? Object.assign({}, l, { paint: Object.assign({}, l.paint, { 'background-color': '#efe5cf' }) }) : l));
+    return st;
+  }
   async function setMapStyle(key) {
     const st = key === 'sat' ? await getSatStyle() : styleFor(key);
     if (map.__style !== key) return;
     if (key === 'dark') map.setStyle(st, { diff: false, transformStyle: (prev, next) => nightStyle(next) });
+    else if (key === 'light') map.setStyle(st, { diff: false, transformStyle: (prev, next) => dayStyle(next) });
     else map.setStyle(st, { diff: false });   // diff:false = ridisegna anche le zone polizia
   }
 
   const center0 = { lat: 28.40, lng: -14.02, zoom: 8.6 };
   const map = new maplibregl.Map({
     container: 'map',
-    style: styleKey() === 'light' ? styleFor('light') : { version: 8, sources: {}, layers: [{ id: 'bg', type: 'background', paint: { 'background-color': isDark() ? '#15191d' : '#f2efe9' } }] },
+    style: { version: 8, sources: {}, layers: [{ id: 'bg', type: 'background', paint: { 'background-color': isDark() ? '#15191d' : '#f2efe9' } }] },
     maxZoom: 19,
     center: [center0.lng, center0.lat],
     zoom: center0.zoom,
@@ -313,7 +319,7 @@
     pitchWithRotate: false
   });
   map.__style = styleKey();
-  if (map.__style !== 'light') setMapStyle(map.__style);
+  setMapStyle(map.__style);
   map.touchZoomRotate.disableRotation();
 
   // icone mancanti negli stili esterni: immagine vuota invece di un errore
