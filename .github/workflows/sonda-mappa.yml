@@ -2,23 +2,16 @@ name: Sonda mappa
 on:
   push:
     branches: [sonda-mappa]
+permissions:
+  contents: write
 jobs:
   p:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - run: sleep 60   # attende la pubblicazione di GitHub Pages
+      - run: npm i playwright@1.49.1 && npx playwright install --with-deps chromium
+      - run: mkdir -p shots && node shot.js
       - run: |
-          python3 - <<'PY'
-          import json, urllib.request
-          def g(u):
-              return urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent':'maxora-probe'}), timeout=30).read()
-          for s in ['positron','dark','fiord','liberty','bright']:
-              try:
-                  d=json.loads(g('https://tiles.openfreemap.org/styles/'+s))
-                  sym=[l['id'] for l in d['layers'] if l['type']=='symbol']
-                  print('::notice::'+s+' OK name='+str(d.get('name'))+' src='+json.dumps({k:v.get('url') for k,v in d['sources'].items()})+' glyphs='+str(d.get('glyphs'))+' layers='+str(len(d['layers']))+' symbols='+','.join(sym))
-              except Exception as e:
-                  print('::notice::'+s+' ERR '+repr(e))
-          for u in ['https://tiles.openfreemap.org/planet']:
-              try: print('::notice::'+u+' '+g(u)[:300].decode())
-              except Exception as e: print('::notice::'+u+' ERR '+repr(e))
-          PY
+          git config user.name maxora-bot; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add shots && git commit -qm "screenshot [skip ci]" && git push -q
