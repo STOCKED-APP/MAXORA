@@ -10,6 +10,7 @@ on:
     paths:
       - 'tools/build_surf.py'
       - 'data/surf_spots.json'
+      - 'tools/build_weather.py'
       - '.github/workflows/surf.yml'
 
 permissions:
@@ -28,11 +29,14 @@ jobs:
       - uses: actions/checkout@v4
       - run: pip install -q ecmwf-opendata cfgrib eccodes xarray numpy
       - run: python3 tools/build_surf.py data/surf_spots.json data/surf.json
+      - name: Meteo per bici e corsa
+        run: python3 tools/build_weather.py data/weather.json
+        continue-on-error: true
       - name: Pubblica
         run: |
           git config user.name "maxora-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/surf.json
+          git add data/surf.json data/weather.json
           if git diff --cached --quiet; then echo "Nessun cambiamento"; exit 0; fi
           git commit -qm "Previsioni surf aggiornate"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done

@@ -612,3 +612,43 @@ body.surf-on #sheet, body.surf-on .mk, body.surf-on #alert { display: none !impo
 }
 .sf-pin { filter: drop-shadow(0 2px 3px rgba(0,0,0,.4)); }
 .sf-pin.sel .sf-num { transform: scale(1.25); }
+
+/* =====================================================================
+   v0.9 — Menu modalità, bici e corsa
+   ===================================================================== */
+body.sport-on #sheet { display: none !important; }
+.mode-menu { position: fixed; z-index: 30; right: 76px; top: calc(env(safe-area-inset-top) + 130px); display: flex; flex-direction: column; gap: 4px; padding: 6px; border-radius: 22px; background: var(--sheet); border: 1px solid var(--border); box-shadow: var(--shadow); animation: rise .18s ease; }
+.mode-item { display: flex; align-items: center; gap: 12px; min-width: 160px; min-height: 48px; padding: 0 14px; border: 0; border-radius: 16px; background: transparent; color: var(--text); font-weight: 700; font-size: 15px; text-align: left; }
+.mode-item.on { background: var(--text); color: var(--sheet); }
+@media (min-width: 560px) { .mode-menu { right: calc(50% - 260px + 76px); } }
+
+.sp-sheet .sheet-body { max-height: 64vh; }
+.sp-now { display: grid; grid-template-columns: auto 1fr 1fr 1.3fr; gap: 8px; margin: 8px 20px 0; align-items: stretch; }
+.sp-big { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; border-radius: 18px; background: var(--c); color: #0d1013; padding: 8px; }
+.sp-big b { font-size: 24px; font-weight: 800; line-height: 1; }
+.sp-big .sf-stars { font-size: 10px; letter-spacing: 0; }
+.sp-big .sf-stars::before { color: rgba(0,0,0,.18); }
+.sp-big .sf-stars::after { color: #0d1013; }
+.sp-cell { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 8px 10px; min-width: 0; }
+.sp-cell .k { font-size: 11px; color: var(--muted); font-weight: 600; }
+.sp-cell .v { font-weight: 800; font-size: 18px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.sp-cell .s { font-size: 11.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sp-arrow { display: inline-block; font-weight: 800; }
+.sf-slot.night { opacity: .5; }
+.sp-advice { margin: 8px 20px 0; font-size: 13px; font-weight: 600; line-height: 1.4; }
+.sp-actions { margin: 10px 20px 0; }
+.sp-report { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 10px 14px; border-radius: 16px; border: 1.5px dashed #2f9e5b; background: color-mix(in srgb, #2f9e5b 10%, transparent); color: var(--text); text-align: left; }
+.sp-report b { font-size: 14px; }
+.sp-report span { font-size: 12px; color: var(--muted); }
+
+.maplibregl-marker.sp-start, .maplibregl-marker.sp-poi { position: absolute; }
+.sp-start { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--sheet); border: 2.5px solid var(--text); box-shadow: 0 3px 10px rgba(0,0,0,.3); font-size: 15px; cursor: pointer; }
+.sp-start.sel { transform: scale(1.2); }
+.sp-poi { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--sheet); border: 1px solid var(--border); font-size: 12px; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+
+.sp-prof { width: 100%; height: auto; display: block; }
+.sp-prof .fill { fill: color-mix(in srgb, var(--accent) 22%, transparent); }
+.sp-prof .ln { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.sp-prof .lb { font-size: 10px; fill: var(--muted); font-family: var(--font); font-weight: 700; }
+.sp-card .sf-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sp-card .p-actions .p-sec { flex: 1 1 100%; }

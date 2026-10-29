@@ -517,7 +517,8 @@
     arena: '<path d="M3 17c3-4 6-4 9 0s6 4 9 0M3 11c3-4 6-4 9 0s6 4 9 0"/>',
     parking_lleno: '<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M10 17V8h3a2.5 2.5 0 010 5h-3"/>',
     policia: '<path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>',
-    evento: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>'
+    evento: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+    ciclistas: '<circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5L9 9h6l3.5 7.5M9 9l3.5 7.5L15 9M13 5.5h2.5"/>'
   };
   function typeIcon(ty, color) {
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -1591,7 +1592,9 @@
   window.MAXORA = {
     map, sb, el, store, toast, padMap, closePlace, exitResults,
     lang: () => lang, onTexts: (f) => textHooks.push(f), pos: () => S.pos,
-    unfollow: () => { S.follow = false; S.selectedId = null; updateChip(); }
+    unfollow: () => { S.follow = false; S.selectedId = null; updateChip(); },
+    reports: () => [...S.reports.values()], report: (type) => send(type),
+    typeLabel: (r) => labelOf(typeOf(r)), typeColor: (r) => typeOf(r).color, distKm
   };
 
   async function boot() {

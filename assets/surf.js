@@ -627,8 +627,7 @@
     SF.on = on;
     store.set('surfOn', on);
     document.body.classList.toggle('surf-on', on);
-    $('surfBtn').classList.toggle('on', on);
-    $('surfBtn').setAttribute('aria-pressed', String(on));
+    if (window.MAXORA_MODES) window.MAXORA_MODES.sync();
     $('sfSheet').classList.toggle('hidden', !on);
     if (!on) { closeCard(); drawPins(); M.padMap(); if (!quiet) M.toast(tr('off')); return; }
     M.closePlace(); M.exitResults(); if (!quiet) M.unfollow();
@@ -649,7 +648,6 @@
   // ------------------------------------------------------------------
   // Eventi
   // ------------------------------------------------------------------
-  $('surfBtn').addEventListener('click', () => setOn(!SF.on));
   $('sfClose').addEventListener('click', closeCard);
   $('sfToggle').addEventListener('click', () => {
     SF.collapsed = !SF.collapsed; store.set('surfCollapsed', SF.collapsed);
@@ -660,11 +658,10 @@
   document.querySelectorAll('#sfLevel button').forEach((b) => b.addEventListener('click', () => { SF.level = Number(b.dataset.lvl); store.set('surfLevel', SF.level); drawAll(); }));
   map.on('click', () => { if (SF.open) closeCard(); });
   window.addEventListener('resize', pad);
-  M.onTexts(() => { $('surfBtn').setAttribute('aria-label', tr('surf')); drawAll(); });
+  M.onTexts(() => { drawAll(); });
   setInterval(() => { if (SF.on) { load(true).then(drawAll).catch(() => {}); loadLive(); loadReports().then(drawAll); } }, 15 * 60000);
 
   $('sfSheet').classList.toggle('collapsed', SF.collapsed);
-  $('surfBtn').setAttribute('aria-label', tr('surf'));
   if (store.get('surfOn', false)) setOn(true, true);
-  window.MAXORA_SURF = { rate: (id, k, l) => rate(SF.byId.get(id), k, l || SF.level), state: SF, tideAt };
+  window.MAXORA_SURF = { rate: (id, k, l) => rate(SF.byId.get(id), k, l || SF.level), state: SF, tideAt, setOn, isOn: () => SF.on };
 })();

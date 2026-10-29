@@ -38,9 +38,9 @@ jobs:
         run: |
           osmium extract -b -14.55,27.99,-13.80,28.80 canarias.osm.pbf -o fv.osm.pbf --overwrite
           osmium tags-filter fv.osm.pbf \
-            nwr/amenity=restaurant,fast_food,cafe,bar,pub,fuel,pharmacy,parking \
+            nwr/amenity=restaurant,fast_food,cafe,bar,pub,fuel,pharmacy,parking,drinking_water,water_point,bicycle_repair_station,bicycle_rental \
             nwr/natural=beach \
-            nwr/shop=supermarket,convenience,surf \
+            nwr/shop=supermarket,convenience,surf,bicycle \
             nwr/tourism=viewpoint,hotel,apartment,hostel,guest_house \
             nwr/sport=surfing,kitesurfing,windsurfing \
             -o filtered.osm.pbf --overwrite

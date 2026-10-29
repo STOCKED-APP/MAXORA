@@ -165,6 +165,31 @@
   </div>
 </section>
 
+<!-- Modalità bici e corsa -->
+<section id="spSheet" class="sheet sp-sheet hidden">
+  <button class="sheet-handle" id="spToggle" aria-expanded="true" aria-controls="spBody">
+    <span class="grip"></span>
+    <span class="sh-title" id="spTitle"></span>
+    <span class="sh-sub" id="spSub"></span>
+    <svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+  </button>
+  <div class="sheet-body" id="spBody">
+    <div class="sp-now" id="spNow"></div>
+    <div class="sf-times" id="spTimes"></div>
+    <div class="sp-advice" id="spAdvice"></div>
+    <div class="sf-list" id="spList"></div>
+    <div class="sp-actions" id="spActions"></div>
+    <p class="sf-note" id="spNote"></p>
+  </div>
+</section>
+
+<section class="place sf-card sp-card hidden" id="spCard" aria-live="polite">
+  <button class="icon-btn place-close" id="spClose" aria-label="Cerrar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div id="spCardBody"></div>
+</section>
+
 <section class="place sf-card hidden" id="sfCard" aria-live="polite">
   <button class="icon-btn place-close" id="sfClose" aria-label="Cerrar">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -242,5 +267,6 @@
 <script src="assets/config.js"></script>
 <script src="assets/app.js"></script>
 <script src="assets/surf.js"></script>
+<script src="assets/sport.js"></script>
 </body>
 </html>
