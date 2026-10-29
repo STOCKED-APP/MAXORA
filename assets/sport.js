@@ -529,6 +529,7 @@
     if (k === 'surf') await window.MAXORA_SURF.setOn(true, false, true);
     else if (k === 'bike' || k === 'run') await setSport(k);
     sync();
+    if (window.MAXORA_TOUR) window.MAXORA_TOUR.modeTips(k);
   }
   // annuncio grande al cambio di modalità: niente dubbi su dove sei
   let splashT;

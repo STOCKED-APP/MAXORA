@@ -1591,7 +1591,8 @@
   // Per i moduli aggiuntivi (modalità surf)
   window.MAXORA = {
     map, sb, el, store, toast, padMap, closePlace, exitResults,
-    lang: () => lang, onTexts: (f) => textHooks.push(f), pos: () => S.pos,
+    lang: () => lang, onTexts: (f) => textHooks.push(f), pos: () => S.pos, startGps, closeOverlays,
+    setLang: (l) => { if (T[l]) { lang = l; store.set('lang', l); applyTexts(); } },
     unfollow: () => { S.follow = false; S.selectedId = null; updateChip(); },
     reports: () => [...S.reports.values()], report: (type) => send(type),
     typeLabel: (r) => labelOf(typeOf(r)), typeColor: (r) => typeOf(r).color, distKm
@@ -1608,7 +1609,8 @@
     loadCatalog();
     setTimeout(prefetchPois, 2500);
     subscribe();
-    startGps();
+    // al primo avvio la posizione si chiede dentro il tutorial, dopo averne spiegato il motivo
+    if (store.get('tourDone', false)) startGps();
     setInterval(loadAll, 60000);
     setInterval(() => { for (const r of S.reports.values()) if (!isLive(r)) S.reports.delete(r.id); refresh(); }, 20000);
     if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
