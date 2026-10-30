@@ -2,69 +2,46 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const out = [];
 const log = (s) => { out.push(s); fs.writeFileSync('shots/out.txt', out.join('\n')); };
+const URL = 'https://stocked-app.github.io/MAXORA/';
+const tips = () => { ['tourDone', 'tips2_surf', 'tips2_bike', 'tips2_run', 'tips2_camper', 'tips2_card_surf', 'tips2_card_sport'].forEach((k) => localStorage.setItem('maxora_' + k, 'true')); };
 (async () => {
   const b = await chromium.launch();
-  for (const scheme of ['light', 'dark']) {
-    const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, locale: 'it-IT', colorScheme: scheme, geolocation: { latitude: 28.7205, longitude: -13.8695 }, permissions: ['geolocation'], hasTouch: true, isMobile: true });
-    await ctx.addInitScript(() => { ['tourDone', 'tips2_surf', 'tips2_bike', 'tips2_run', 'tips2_camper', 'tips2_card_surf', 'tips2_card_sport'].forEach((k) => localStorage.setItem('maxora_' + k, 'true'));
-      window.__lt = 0; try { new PerformanceObserver((l) => l.getEntries().forEach((e) => { window.__lt += e.duration; })).observe({ type: 'longtask', buffered: true }); } catch (e) {} });
+  async function run(tag, opts, steps) {
+    const ctx = await b.newContext(Object.assign({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, locale: 'it-IT', hasTouch: true, isMobile: true }, opts.ctx || {}));
+    await ctx.addInitScript(opts.init || tips, opts.arg);
     const p = await ctx.newPage();
     const errs = [];
     p.on('pageerror', (e) => errs.push(e.message));
     p.on('console', (m) => { if (m.type() === 'error') errs.push(m.text().slice(0, 140)); });
-    const t0 = Date.now();
-    await p.goto('https://stocked-app.github.io/MAXORA/?v=' + Date.now(), { waitUntil: 'load' });
-    await p.waitForFunction(() => window.MAXORA && window.MAXORA.map && window.MAXORA.map.loaded(), null, { timeout: 30000 }).catch(() => {});
-    log(scheme + ' map ready ms: ' + (Date.now() - t0));
-    const S = scheme[0];
+    await p.goto(URL + '?v=' + Date.now(), { waitUntil: 'load' });
+    await p.waitForTimeout(6000);
     let i = 0;
-    const shot = async (name, fn, wait) => {
-      try {
-        const lt0 = await p.evaluate(() => window.__lt);
-        if (fn) await fn();
-        await p.waitForTimeout(wait || 2500);
-        await p.screenshot({ path: `shots/${S}${String(++i).padStart(2, '0')}-${name}.png` });
-        const lt = await p.evaluate(() => window.__lt);
-        log(`${S}${i} ${name} longtask+${Math.round(lt - lt0)}ms dom=${await p.evaluate(() => document.getElementsByTagName('*').length)}`);
-      } catch (e) { log(name + ' ERR ' + e.message.slice(0, 160)); }
-    };
-    const ev = (f, a) => p.evaluate(f, a);
-    const reset = async () => { await ev(() => { try { window.MAXORA.closeOverlays(); } catch (e) {} document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' })); }); await p.waitForTimeout(400); };
-    await shot('home', null, 5000);
-    await shot('sheet-toggle', () => ev(() => document.getElementById('sheetToggle').click()));
-    await ev(() => document.getElementById('sheetToggle').click());
-    await shot('report', () => ev(() => document.getElementById('reportBtn').click()));
-    await reset();
-    await shot('discover', () => ev(() => document.getElementById('discoverBtn').click()), 3500);
-    await shot('discover-scroll', () => ev(() => { const l = document.getElementById('discoverList'); (l.closest('.overlay-sheet') || l.parentElement).scrollTop = 600; l.scrollTop = 600; }));
-    await reset();
-    await shot('search', () => ev(() => document.getElementById('searchOpen').click()));
-    await shot('search-typed', async () => { await p.fill('#searchInput', 'farmacia'); }, 3500);
-    await shot('results', () => p.keyboard.press('Enter'), 3500);
-    await shot('place', () => ev(() => { const c = document.querySelector('#rTrack > *'); c && c.click(); }), 3500);
-    await shot('place-scroll', () => ev(() => { const b = document.getElementById('placeBody'); const s = document.getElementById('place'); s.scrollTop = 500; b.scrollTop = 500; }));
-    await reset(); await ev(() => { const x = document.getElementById('resultsClose'); x && x.click(); });
-    await shot('settings', () => ev(() => document.getElementById('settingsBtn').click()));
-    await reset();
-    await shot('layers-sat', () => ev(() => document.getElementById('layersBtn').click()), 5000);
-    await ev(() => document.getElementById('layersBtn').click());
-    await shot('streets-z16', () => ev(() => { window.MAXORA.unfollow(); window.MAXORA.map.jumpTo({ center: [-13.8655, 28.7385], zoom: 16 }); }), 4000);
-    await shot('modes-menu', () => ev(() => document.getElementById('surfBtn').click()));
-    await reset();
-    for (const m of ['surf', 'bike', 'run', 'camper']) {
-      await shot(m, () => ev((k) => window.MAXORA_MODES.choose(k), m), 6000);
-      await shot(m + '-card', () => ev(() => { const c = document.querySelector('#uiCards .uc[data-id]'); c && c.click(); }), 3500);
-      await shot(m + '-card-scroll', () => ev(() => { document.querySelectorAll('.sp-card, #spCard, #sfCard, .cp-card, [id$=CardBody]').forEach((n) => { n.scrollTop = 700; }); }));
-      await reset();
-      await ev(() => { const c = document.querySelector('.sf-close, #sfClose, #spClose'); if (c && c.offsetParent) c.click(); });
-      await shot(m + '-list', () => ev(() => window.MAXORA_UI.showList()), 2500);
-      await ev(() => window.MAXORA_UI.hideList());
-      if (scheme === 'dark') break;
+    for (const [name, fn, wait] of steps) {
+      try { if (fn) await fn(p, ctx); await p.waitForTimeout(wait || 2500); await p.screenshot({ path: `shots/${tag}${++i}-${name}.png` }); } catch (e) { log(tag + ' ' + name + ' ERR ' + e.message.slice(0, 120)); }
     }
-    await ev(() => window.MAXORA_MODES.choose('road'));
-    log(scheme + ' errori: ' + (errs.join(' | ') || 'nessuno'));
+    log(tag + ' errori: ' + (errs.join(' | ') || 'nessuno'));
     await ctx.close();
   }
+  const ev = (f, a) => (p) => p.evaluate(f, a);
+  // 1) telefono piccolo, GPS ok
+  await run('s', { ctx: { viewport: { width: 360, height: 640 }, geolocation: { latitude: 28.7205, longitude: -13.8695 }, permissions: ['geolocation'] } }, [
+    ['home'], ['report', ev(() => document.getElementById('reportBtn').click())],
+    ['surf', ev(() => { window.MAXORA.closeOverlays(); window.MAXORA_MODES.choose('surf'); }), 6000],
+    ['surfcard', ev(() => document.querySelector('#uiCards .uc[data-id]').click()), 3000],
+    ['bike', ev(() => { document.getElementById('sfClose').click(); window.MAXORA_MODES.choose('bike'); }), 6000],
+  ]);
+  // 2) GPS negato
+  await run('n', { ctx: {} }, [['home'], ['search', ev(() => document.getElementById('searchOpen').click())], ['discover', ev(() => { document.getElementById('searchBack').click(); document.getElementById('discoverBtn').click(); }), 3500], ['report', ev(() => { window.MAXORA.closeOverlays(); document.getElementById('reportBtn').click(); })]]);
+  // 3) prima apertura (tutorial) in inglese e tedesco
+  await run('e', { ctx: { locale: 'en-GB' }, init: () => {} }, [['tour1'], ['home', ev(() => { localStorage.setItem('maxora_tourDone', 'true'); location.reload(); }), 7000], ['settings', ev(() => document.getElementById('settingsBtn').click())]]);
+  await run('g', { ctx: { locale: 'de-DE', geolocation: { latitude: 28.7205, longitude: -13.8695 }, permissions: ['geolocation'] } }, [['home'], ['camper', ev(() => window.MAXORA_MODES.choose('camper')), 6000], ['run', ev(() => window.MAXORA_MODES.choose('run')), 6000]]);
+  // 4) senza rete dopo il primo caricamento
+  await run('o', { ctx: { geolocation: { latitude: 28.7205, longitude: -13.8695 }, permissions: ['geolocation'] } }, [
+    ['online'], ['offline-reload', async (p, ctx) => { await p.waitForTimeout(3000); await ctx.setOffline(true); await p.reload({ waitUntil: 'load' }).catch(() => {}); }, 7000],
+    ['offline-report', ev(() => document.getElementById('reportBtn').click())],
+    ['offline-search', async (p) => { await p.evaluate(() => { window.MAXORA.closeOverlays(); document.getElementById('searchOpen').click(); }); await p.fill('#searchInput', 'cotillo'); }, 4000]
+  ]);
+  // 5) tablet orizzontale
+  await run('t', { ctx: { viewport: { width: 1180, height: 820 }, isMobile: false, geolocation: { latitude: 28.7205, longitude: -13.8695 }, permissions: ['geolocation'] } }, [['home'], ['surf', ev(() => window.MAXORA_MODES.choose('surf')), 6000], ['place', ev(() => { window.MAXORA_MODES.choose('road'); document.getElementById('discoverBtn').click(); }), 3500]]);
   await b.close();
 })().catch((e) => { log('ERRORE: ' + e.message); process.exit(0); });
-// rerun 1793361101
