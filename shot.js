@@ -67,3 +67,4 @@ const log = (s) => { out.push(s); fs.writeFileSync('shots/out.txt', out.join('\n
   }
   await b.close();
 })().catch((e) => { log('ERRORE: ' + e.message); process.exit(0); });
+// rerun 1793361101
