@@ -1,0 +1,3 @@
+o errori: nessuno
+g errori: nessuno
+n errori: nessuno
