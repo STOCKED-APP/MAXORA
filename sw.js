@@ -2,10 +2,10 @@
 // File dell'app: prima la rete (max 4 s), poi la copia salvata.
 // Librerie e font esterni: copia salvata subito, aggiornata in sottofondo.
 // Mappa: le ultime ~600 tessere viste restano sul telefono. I dati live (Supabase) non vengono mai salvati.
-const CACHE = 'maxora-v55';
+const CACHE = 'maxora-v56';
 const LIBS = 'maxora-libs-v1';
 const TILES = 'maxora-tiles-v1';
-const SHELL = ['./', 'index.html', 'assets/theme.css', 'assets/app.css', 'assets/app.js', 'assets/ui.js', 'assets/surf.js', 'assets/camper.js', 'assets/sport.js', 'assets/waves.js', 'assets/diary.js', 'assets/tour.js', 'assets/account.js', 'assets/fuel.js', 'assets/follow.js', 'assets/radar.js', 'assets/config.js', 'assets/icon.svg'];
+const SHELL = ['./', 'index.html', 'assets/theme.css', 'assets/app.css', 'assets/app.js', 'assets/ui.js', 'assets/surf.js', 'assets/camper.js', 'assets/sport.js', 'assets/waves.js', 'assets/diary.js', 'assets/tour.js', 'assets/account.js', 'assets/fuel.js', 'assets/follow.js', 'assets/radar.js', 'assets/config.js', 'assets/icon.svg', 'assets/icon-180.png', 'assets/icon-192.png', 'manifest.webmanifest'];
 const LIB_HOSTS = ['unpkg.com', 'cdn.jsdelivr.net', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 const TILE_HOSTS = ['tiles.openfreemap.org'];
 

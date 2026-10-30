@@ -1174,3 +1174,26 @@ html, body { max-width: 100%; overflow-x: hidden; }
 /* consiglio aperto: si allarga sotto la riga, a tutta larghezza */
 .ui-top:has(.adv:not(.closed)) { left: 16px; top: calc(env(safe-area-inset-top) + 128px); }
 @media (min-width: 560px) { .ui-top:has(.adv:not(.closed)) { left: calc(50% - 240px + 16px); } }
+
+/* v0.26 — apertura animata */
+#splash { position: fixed; inset: 0; z-index: 1000; background: #f3e6cc; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; font-family: var(--font); transition: opacity .45s ease, transform .45s ease; }
+#splash.out { opacity: 0; transform: scale(1.04); pointer-events: none; }
+#splash svg { margin-bottom: 16px; }
+.sp-word { font-size: 46px; font-weight: 800; letter-spacing: -0.03em; color: #2b1a10; opacity: 0; animation: sp-word .6s .95s ease-out forwards; }
+.sp-tag { font-size: 15px; font-weight: 700; color: #7a5a3a; opacity: 0; animation: sp-fade .5s 1.25s ease-out forwards; }
+.sp-sun { animation: sp-sun .9s cubic-bezier(.2,.8,.3,1) both; }
+.sp-far { animation: sp-far .7s .15s cubic-bezier(.2,.8,.3,1) both; }
+.sp-v2 { animation: sp-up2 .8s .3s cubic-bezier(.2,.8,.3,1) both; }
+.sp-v1 { animation: sp-up1 .85s .4s cubic-bezier(.2,.8,.3,1) both; }
+.sp-sea { animation: sp-sea .6s .1s ease-out both; }
+.sp-roll { animation: sp-roll 3s linear infinite; }
+.sp-roll2 { animation: sp-roll 4.6s linear infinite reverse; }
+@keyframes sp-sun { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes sp-far { from { transform: translateY(16px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes sp-up2 { from { transform: translateY(42px); } to { transform: none; } }
+@keyframes sp-up1 { from { transform: translateY(52px); } to { transform: none; } }
+@keyframes sp-sea { from { transform: translateY(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes sp-roll { from { transform: translateX(0); } to { transform: translateX(-40px); } }
+@keyframes sp-word { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes sp-fade { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { #splash *, #splash { animation: none !important; opacity: 1 !important; transform: none !important; } }
