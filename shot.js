@@ -3,9 +3,9 @@ const out = [];
 (async () => {
   const b = await chromium.launch();
   const errs = [];
-  for (const [name, scheme, zoom, center] of [['surf-light', 'light', 9.3, [-14.05, 28.45]], ['surf-dark', 'dark', 10.5, [-14.0, 28.66]]]) {
+  for (const [name, scheme, zoom, center] of [['sat-far', 'dark', 9.3, [-14.05, 28.45]], ['sat-mid', 'dark', 12.5, [-13.95, 28.73]], ['sat-near', 'dark', 15, [-13.868, 28.735]], ['light-z12', 'light', 12, [-13.87, 28.72]]]) {
     const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, locale: 'it-IT', colorScheme: scheme });
-    await ctx.addInitScript(() => { ['tourDone', 'tips2_surf', 'tips2_bike', 'tips2_run', 'tips2_camper'].forEach((k) => localStorage.setItem('maxora_' + k, 'true')); });
+    await ctx.addInitScript((n) => { if (n.startsWith('sat')) localStorage.setItem('maxora_mapMode', JSON.stringify('sat')); ['tourDone', 'tips2_surf', 'tips2_bike', 'tips2_run', 'tips2_camper'].forEach((k) => localStorage.setItem('maxora_' + k, 'true')); }, name);
     const p = await ctx.newPage();
     p.on('pageerror', (e) => errs.push(name + ' PAGE ' + e.message));
     p.on('console', (m) => { if (m.type() === 'error') errs.push(name + ' ' + m.text().slice(0, 160)); });
