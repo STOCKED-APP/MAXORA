@@ -290,7 +290,7 @@
       el('a', { href: 'https://maps.apple.com/?daddr=' + ll, target: '_blank', rel: 'noopener', text: 'Apple' })
     ]);
     const appsBox = el('div', { class: 'hidden' }, [el('div', { class: 'p-note', text: tr('openWith') }), apps]);
-    box.append(el('div', { class: 'p-actions' }, [el('button', { class: 'p-go', onclick: () => appsBox.classList.toggle('hidden'), text: tr('go') })]), appsBox);
+    box.append(el('div', { class: 'p-actions' }, [el('button', { class: 'p-go', onclick: () => (M.navSheet ? M.navSheet(apps, nameOf(x)) : appsBox.classList.toggle('hidden')), text: tr('go') })]), appsBox);
     card.classList.remove('hidden'); card.scrollTop = 0;
     drawMap();
     if (fly) {

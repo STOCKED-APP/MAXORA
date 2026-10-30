@@ -1511,6 +1511,30 @@
     return Math.hypot(px - (ax + u * bx), py - (ay + u * by));
   }
 
+  // VAI: le app di navigazione in un pannello ben visibile sopra tutto (non più nascoste in fondo alla scheda)
+  const NAV_ICON = { Google: '🗺', Waze: '🚙', Apple: '🍎' };
+  function navSheet(apps, name) {
+    const old = document.querySelector('.nav-ov'); if (old) old.remove();
+    const close = () => ov.remove();
+    const links = [...apps.querySelectorAll('a')].map((a) => {
+      const n = a.cloneNode(true);
+      n.className = 'nav-a';
+      n.textContent = '';
+      const k = a.textContent.trim();
+      n.append(el('span', { class: 'i', text: NAV_ICON[k] || '➜' }), el('b', { text: { Google: 'Google Maps', Waze: 'Waze', Apple: 'Apple Maps' }[k] || k }), el('span', { class: 'go', text: '›' }));
+      n.addEventListener('click', (e) => { if (a.onclick) a.onclick(e); setTimeout(close, 300); });
+      return n;
+    });
+    const ov = el('div', { class: 'nav-ov', onclick: (e) => { if (e.target === ov) close(); } }, [
+      el('div', { class: 'nav-sh', role: 'dialog', 'aria-modal': 'true' }, [
+        el('div', { class: 'nav-k', text: t('openWith') }),
+        name ? el('div', { class: 'nav-n', text: name }) : null,
+        el('div', { class: 'nav-list' }, links),
+        el('button', { class: 'nav-x', onclick: close, text: '✕' })
+      ])
+    ]);
+    document.body.appendChild(ov);
+  }
   function openPlace(item) {
     S.follow = false;
     S.dest = item;
@@ -1584,7 +1608,7 @@
       el('a', { href: 'https://waze.com/ul?ll=' + ll + '&navigate=yes', target: '_blank', rel: 'noopener', text: 'Waze', onclick: () => goEvent(item) }),
       el('a', { href: 'https://maps.apple.com/?daddr=' + ll + '&dirflg=d', target: '_blank', rel: 'noopener', text: 'Apple', onclick: () => goEvent(item) })
     );
-    const goBtn = el('button', { class: 'p-go', onclick: () => { appsBox.classList.toggle('hidden'); goBtn.setAttribute('aria-expanded', String(!appsBox.classList.contains('hidden'))); } }, [t('go')]);
+    const goBtn = el('button', { class: 'p-go', onclick: () => navSheet(apps, item.name) }, [t('go')]);
     goBtn.setAttribute('aria-expanded', 'false');
     acts.appendChild(goBtn);
     const tg = x.tags || {};
@@ -1741,7 +1765,7 @@
   // ------------------------------------------------------------------
   // Per i moduli aggiuntivi (modalità surf)
   window.MAXORA = {
-    map, sb, el, store, toast, padMap, closePlace, exitResults, openPlace,
+    map, sb, el, store, toast, padMap, closePlace, exitResults, openPlace, navSheet,
     lang: () => lang, onTexts: (f) => textHooks.push(f), pos: () => S.pos, startGps, closeOverlays,
     setLang: (l) => { if (T[l]) { lang = l; store.set('lang', l); applyTexts(); } },
     unfollow: () => { S.follow = false; S.selectedId = null; updateChip(); },

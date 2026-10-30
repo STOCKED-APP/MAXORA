@@ -1020,3 +1020,16 @@ body.ui-list:has(#sfCard:not(.hidden)) .ui-back, body.ui-list:has(#spCard:not(.h
 .searchbar, .layers-btn, .ui-rb:not(.on) { background: var(--chip-solid); }
 .sf-pin, .cp-pin, .sp-start, .sp-poi, .mk { will-change: transform; }
 .locate, .chip-zone, .zone-chip { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; background: var(--chip-solid); }
+
+/* v0.18.2 — VAI: scelta dell'app di navigazione in un pannello ben visibile */
+.nav-ov { position: fixed; inset: 0; z-index: 80; background: rgba(0,0,0,.45); display: flex; align-items: flex-end; justify-content: center; animation: navIn .18s ease-out; }
+@keyframes navIn { from { opacity: 0; } to { opacity: 1; } }
+.nav-sh { position: relative; width: 100%; max-width: 520px; background: var(--sheet); color: var(--text); border-radius: 26px 26px 0 0; padding: 18px 16px calc(18px + env(safe-area-inset-bottom)); box-shadow: var(--shadow); }
+.nav-k { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.nav-n { font-size: 19px; font-weight: 800; margin: 4px 40px 12px 0; line-height: 1.2; }
+.nav-list { display: flex; flex-direction: column; gap: 8px; }
+.nav-a { display: flex; align-items: center; gap: 12px; min-height: 58px; padding: 0 16px; border-radius: 16px; background: var(--card); border: 1px solid var(--border); color: var(--text); text-decoration: none; }
+.nav-a .i { font-size: 24px; }
+.nav-a b { flex: 1; font-size: 16px; }
+.nav-a .go { font-size: 22px; color: var(--muted); }
+.nav-x { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--card); color: var(--text); font-size: 16px; }

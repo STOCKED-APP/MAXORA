@@ -673,7 +673,7 @@
     ]);
     const appsBox = el('div', { class: 'hidden' }, [el('div', { class: 'p-note', text: tr('openWith') }), apps]);
     box.append(
-      el('div', { class: 'p-actions' }, [el('button', { class: 'p-go', onclick: () => appsBox.classList.toggle('hidden') }, [tr('go')])]),
+      el('div', { class: 'p-actions' }, [el('button', { class: 'p-go', onclick: () => (M.navSheet ? M.navSheet(apps, sp.name) : appsBox.classList.toggle('hidden')) }, [tr('go')])]),
       appsBox,
       el('div', { class: 'p-note', text: tr('disc') }),
       el('div', { class: 'p-note sf-src', text: tr('src') })

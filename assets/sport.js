@@ -538,7 +538,7 @@
     box.append(
       el('div', { class: 'p-actions' }, [
         window.MAXORA_FOLLOW ? el('button', { class: 'p-go fw-go', onclick: () => followRoute(r) }, ['▶ ' + window.MAXORA_FOLLOW.label()]) : null,
-        el('button', { class: window.MAXORA_FOLLOW ? 'p-sec' : 'p-go', onclick: () => appsBox.classList.toggle('hidden') }, [tr('go')]),
+        el('button', { class: window.MAXORA_FOLLOW ? 'p-sec' : 'p-go', onclick: () => (M.navSheet ? M.navSheet(apps, (r.name[lang()] || r.name.es)) : appsBox.classList.toggle('hidden')) }, [tr('go')]),
         el('button', { class: 'p-sec', onclick: () => gpx(r), text: '⬇ ' + tr('gpx') })
       ]),
       appsBox,
