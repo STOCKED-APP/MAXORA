@@ -383,7 +383,7 @@
   // [elemento, voce della guida]
   const ROAD = [['#searchOpen', 'r_search'], ['#road', 'r_road'], ['#hero', 'r_hero'], ['.mk', 'r_marker'], ['#reportBtn', 'r_report'], ['#surfBtn', 'r_modes'], ['#layersBtn', 'r_layers'], ['#centerBtn', 'r_locate'], ['#discoverBtn', 'r_discover']];
   const MODE_TIPS = {
-    surf: [['.sf-pin', 's_pin'], ['#uiRail .ui-rb', 's_level'], ['#sfTimes', 's_times'], ['#sfTide', 's_tide'], ['#sfAdvice', 's_adv'], ['#uiCards .uc', 's_row'], ['#uiCards .uc', 's_wind']],
+    surf: [['.sf-pin', 's_pin'], ['#uiRail .ui-rb:last-child', 's_level'], ['#sfTimes', 's_times'], ['#sfTide', 's_tide'], ['#sfAdvice', 's_adv'], ['#uiCards .uc', 's_row'], ['#uiCards .uc', 's_wind']],
     bike: [['#spAdvice', 'b_adv'], ['#spTimes', 'b_times'], ['#uiCards .uc', 'b_row'], ['.sp-start', 'b_map'], ['#uiRail .ui-rb', 'b_report']],
     camper: [['#uiRail', 'c_chips'], ['#cpRules', 'c_rules'], ['#uiCards .uc', 'c_row'], ['.cp-pin', 'c_map']],
     run: [['#spAdvice', 'b_adv'], ['#spTimes', 'b_times'], ['#uiCards .uc', 'b_row'], ['.sp-start', 'b_map']]

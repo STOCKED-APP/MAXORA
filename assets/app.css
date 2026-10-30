@@ -1123,3 +1123,6 @@ body.rd-far .rd-mk, body.ui-compact .rd-mk, body.surf-on .rd-mk { display: none;
 .place.sp-card .p-actions { flex-wrap: wrap; row-gap: 8px; }
 .place.sp-card .p-actions .p-go { flex: 1 1 100%; min-height: 50px; }
 .place.sp-card .p-actions .p-sec { flex: 1 1 40%; min-height: 42px; font-size: 13.5px; }
+.fw-sum-card .p-go { background: var(--mode, var(--accent)); color: #fff; border-radius: 999px; }
+.fw-sum-card .p-sec { border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--text); font: inherit; font-weight: 700; font-size: 14px; }
+.dy-save { background: var(--mode, #2f7cf6) !important; color: #fff !important; border: 0 !important; border-radius: 999px !important; min-height: 50px; font-weight: 800; }

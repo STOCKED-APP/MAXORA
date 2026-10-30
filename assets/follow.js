@@ -13,28 +13,28 @@
       startV: 'Percorso avviato: {n}. {km} chilometri.', windV: 'Vento {v} chilometri orari da {d}.', inD: 'tra {d}', noteV: 'Tra {d}: {t}', hazV: 'Tra {d}: {t} segnalato sul percorso.',
       climbV: 'Tra {d} inizia la salita principale: {km} chilometri al {avg} per cento.', headV: 'Tra {d} tratto controvento per {km} chilometri.', head: 'Tratto controvento per {km} km',
       waterV: 'Ultima acqua per {km} chilometri.', water: 'Ultima acqua per {km} km', turnV: 'Punto di ritorno. Ora si torna indietro.', turn: 'Punto di ritorno', finishV: 'Arrivo. Bravo!',
-      climb: 'Salita principale · {km} km al {avg}%', sumT: 'Uscita terminata', dist: 'distanza', moving: 'in movimento', avg: 'media', gpx: 'Scarica GPX (Strava, Garmin)', close: 'Chiudi',
+      climb: 'Salita principale · {km} km al {avg}%', sumT: 'Uscita terminata', dist: 'distanza', moving: 'in movimento', avg: 'media', gpx: 'Invia a Strava, Garmin…', close: 'Fatto',
       gpsWait: 'Cerco il GPS…', gpsNo: 'GPS non disponibile: attiva la posizione', keep: 'Tieni lo schermo acceso: il GPS del browser si ferma a schermo spento.', confirmStop: 'Terminare l\'uscita?' },
     es: { follow: 'Seguir ruta', done: 'hechos', left: 'faltan', speed: 'km/h', pace: 'min/km', time: 'tiempo', eta: 'llegada', stop: 'Terminar', voiceOn: 'Voz activada', voiceOff: 'Voz desactivada',
       toStart: 'Ve a la salida: {d}', onRoute: 'En el recorrido', off: 'Fuera del recorrido {d}: vuelve a la línea', offV: 'Estás fuera del recorrido. Vuelve a la línea.', backV: 'De nuevo en el recorrido.',
       startV: 'Recorrido iniciado: {n}. {km} kilómetros.', windV: 'Viento de {v} kilómetros por hora del {d}.', inD: 'en {d}', noteV: 'En {d}: {t}', hazV: 'En {d}: {t} avisado en el recorrido.',
       climbV: 'En {d} empieza la subida principal: {km} kilómetros al {avg} por ciento.', headV: 'En {d} tramo con viento en contra durante {km} kilómetros.', head: 'Viento en contra durante {km} km',
       waterV: 'Último punto de agua en {km} kilómetros.', water: 'Último agua en {km} km', turnV: 'Punto de vuelta. Ahora se regresa.', turn: 'Punto de vuelta', finishV: 'Llegada. ¡Bien hecho!',
-      climb: 'Subida principal · {km} km al {avg}%', sumT: 'Salida terminada', dist: 'distancia', moving: 'en movimiento', avg: 'media', gpx: 'Descargar GPX (Strava, Garmin)', close: 'Cerrar',
+      climb: 'Subida principal · {km} km al {avg}%', sumT: 'Salida terminada', dist: 'distancia', moving: 'en movimiento', avg: 'media', gpx: 'Enviar a Strava, Garmin…', close: 'Listo',
       gpsWait: 'Buscando GPS…', gpsNo: 'GPS no disponible: activa la ubicación', keep: 'Mantén la pantalla encendida: el GPS del navegador se para con la pantalla apagada.', confirmStop: '¿Terminar la salida?' },
     en: { follow: 'Follow route', done: 'done', left: 'to go', speed: 'km/h', pace: 'min/km', time: 'time', eta: 'arrival', stop: 'Finish', voiceOn: 'Voice on', voiceOff: 'Voice off',
       toStart: 'Go to the start: {d}', onRoute: 'On route', off: 'Off route by {d}: get back on the line', offV: 'You are off route. Get back on the line.', backV: 'Back on route.',
       startV: 'Route started: {n}. {km} kilometres.', windV: 'Wind {v} kilometres per hour from {d}.', inD: 'in {d}', noteV: 'In {d}: {t}', hazV: 'In {d}: {t} reported on the route.',
       climbV: 'In {d} the main climb starts: {km} kilometres at {avg} percent.', headV: 'In {d} headwind section for {km} kilometres.', head: 'Headwind for {km} km',
       waterV: 'Last water for {km} kilometres.', water: 'Last water for {km} km', turnV: 'Turnaround point. Head back now.', turn: 'Turnaround point', finishV: 'Finish. Well done!',
-      climb: 'Main climb · {km} km at {avg}%', sumT: 'Activity finished', dist: 'distance', moving: 'moving', avg: 'average', gpx: 'Download GPX (Strava, Garmin)', close: 'Close',
+      climb: 'Main climb · {km} km at {avg}%', sumT: 'Activity finished', dist: 'distance', moving: 'moving', avg: 'average', gpx: 'Send to Strava, Garmin…', close: 'Done',
       gpsWait: 'Looking for GPS…', gpsNo: 'GPS not available: turn on location', keep: 'Keep the screen on: browser GPS stops when the screen is off.', confirmStop: 'Finish the activity?' },
     de: { follow: 'Strecke folgen', done: 'gefahren', left: 'übrig', speed: 'km/h', pace: 'min/km', time: 'Zeit', eta: 'Ankunft', stop: 'Beenden', voiceOn: 'Stimme an', voiceOff: 'Stimme aus',
       toStart: 'Zum Start: {d}', onRoute: 'Auf der Strecke', off: '{d} neben der Strecke: zurück zur Linie', offV: 'Du bist von der Strecke abgekommen. Zurück zur Linie.', backV: 'Wieder auf der Strecke.',
       startV: 'Strecke gestartet: {n}. {km} Kilometer.', windV: 'Wind {v} Kilometer pro Stunde aus {d}.', inD: 'in {d}', noteV: 'In {d}: {t}', hazV: 'In {d}: {t} auf der Strecke gemeldet.',
       climbV: 'In {d} beginnt der Hauptanstieg: {km} Kilometer mit {avg} Prozent.', headV: 'In {d} Gegenwind auf {km} Kilometern.', head: 'Gegenwind auf {km} km',
       waterV: 'Letztes Wasser für {km} Kilometer.', water: 'Letztes Wasser für {km} km', turnV: 'Wendepunkt. Jetzt zurück.', turn: 'Wendepunkt', finishV: 'Ziel. Gut gemacht!',
-      climb: 'Hauptanstieg · {km} km mit {avg}%', sumT: 'Aktivität beendet', dist: 'Distanz', moving: 'in Bewegung', avg: 'Schnitt', gpx: 'GPX herunterladen (Strava, Garmin)', close: 'Schließen',
+      climb: 'Hauptanstieg · {km} km mit {avg}%', sumT: 'Aktivität beendet', dist: 'Distanz', moving: 'in Bewegung', avg: 'Schnitt', gpx: 'An Strava, Garmin… senden', close: 'Fertig',
       gpsWait: 'Suche GPS…', gpsNo: 'GPS nicht verfügbar: Standort aktivieren', keep: 'Bildschirm anlassen: das Browser-GPS stoppt bei ausgeschaltetem Bildschirm.', confirmStop: 'Aktivität beenden?' }
   };
   const LOC = { it: 'it-IT', es: 'es-ES', en: 'en-GB', de: 'de-DE' };
@@ -384,8 +384,8 @@
           stat(hms(S.moving), tr('moving'), true),
           r.sport === 'bike' ? stat(num(avg * 3.6, 1), tr('speed') + ' ' + tr('avg')) : stat(avg > 0.5 ? hms(1000 / avg).replace(/^0:/, '') : '–', tr('pace') + ' ' + tr('avg'))
         ]),
-        el('button', { class: 'p-go', onclick: () => gpx(S), text: '⬇ ' + tr('gpx') }),
-        el('button', { class: 'p-sec', onclick: () => box.remove(), text: tr('close') })
+        el('button', { class: 'p-go', onclick: () => box.remove(), text: tr('close') }),
+        el('button', { class: 'p-sec', onclick: () => gpx(S), text: '↗ ' + tr('gpx') })
       ])
     ]);
     document.body.appendChild(box);
@@ -394,9 +394,14 @@
     const name = (S.r.name[lang()] || S.r.name.es).replace(/[<&>]/g, '');
     const pts = S.track.map((p) => '<trkpt lat="' + p.lat.toFixed(6) + '" lon="' + p.lng.toFixed(6) + '">' + (p.ele != null ? '<ele>' + Math.round(p.ele) + '</ele>' : '') + '<time>' + new Date(p.t).toISOString() + '</time></trkpt>');
     const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Maxora" xmlns="http://www.topografix.com/GPX/1/1"><trk><name>' + name + '</name><type>' + (S.r.sport === 'bike' ? 'cycling' : 'running') + '</type><trkseg>' + pts.join('') + '</trkseg></trk></gpx>';
+    const fname = 'maxora-' + S.r.id + '-' + new Date(S.t0).toISOString().slice(0, 10) + '.gpx';
+    try {
+      const f = new File([xml], fname, { type: 'application/gpx+xml' });
+      if (navigator.canShare && navigator.canShare({ files: [f] })) { navigator.share({ files: [f], title: name }).catch(() => {}); return; }
+    } catch (e) {}
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([xml], { type: 'application/gpx+xml' }));
-    a.download = 'maxora-' + S.r.id + '-' + new Date(S.t0).toISOString().slice(0, 10) + '.gpx';
+    a.download = fname;
     document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
   }
 
