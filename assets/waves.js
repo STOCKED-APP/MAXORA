@@ -157,13 +157,13 @@
   }
   async function set(v) {
     on = v;
-    cv.style.display = v ? 'block' : 'none';
+    cv.style.display = 'none';   // animazione tolta (troppo confusa): resta solo "tocca il mare" per i dettagli
     if (!v) { ctx.clearRect(0, 0, cv.width, cv.height); return; }
     await loadLand();
-    resize(); buildField(); restart();
+    buildField();
   }
   map.on('movestart', () => { moving = true; ctx.clearRect(0, 0, cv.width, cv.height); });
-  map.on('moveend', () => { moving = false; if (on) restart(); });
+  map.on('moveend', () => { moving = false; });
   map.on('resize', () => { if (on) { resize(); restart(); } });
   document.addEventListener('visibilitychange', () => { if (on && !document.hidden) restart(); });
 
@@ -205,5 +205,5 @@
   document.body.appendChild(legend);
   M.onTexts(drawLegend);
 
-  window.MAXORA_WAVES = { set, update: () => { if (on) { buildField(); restart(); } }, legend };
+  window.MAXORA_WAVES = { set, update: () => { if (on) buildField(); }, legend };
 })();

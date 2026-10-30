@@ -737,7 +737,7 @@
   if (window.MAXORA_UI) window.MAXORA_UI.register('surf', {
     refresh: () => drawAll(),
     sheet: 'sfSheet',
-    top: () => [$('sfAdvice'), $('sfTide'), $('wvLegend')],
+    top: () => [$('sfAdvice'), $('sfTide')],
     time: () => $('sfTimes'),
     rail: () => [{ icon: '🏄', short: tr('lvl' + SF.level).slice(0, 5) + '.', label: tr('levelQ'), on: true, choices: [1, 2, 3].map((l) => ({ label: tr('lvl' + l), on: SF.level === l, onclick: () => { SF.level = l; store.set('surfLevel', l); drawAll(); } })) }]
   });
