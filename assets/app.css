@@ -1012,3 +1012,11 @@ body.ui-list:has(#sfCard:not(.hidden)) .ui-back, body.ui-list:has(#spCard:not(.h
 .ui-cards { gap: 8px; padding-bottom: 10px; }
 .ui-rb { width: 48px; min-height: 48px; border-radius: 14px; }
 .ui-rail { gap: 6px; }
+
+/* v0.18.1 — fluidità: niente sfocatura dietro ai pulsanti sopra la mappa (su iPhone la ricalcola a ogni fotogramma) */
+:root { --chip-solid: #ffffff; }
+:root[data-theme="dark"] { --chip-solid: #171b20; }
+.searchbar, .layers-btn, .ui-rb, .pill, .chip, .mode-chip, .ui-top .wv-legend, .icon-btn, [class*="chip"] { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+.searchbar, .layers-btn, .ui-rb:not(.on) { background: var(--chip-solid); }
+.sf-pin, .cp-pin, .sp-start, .sp-poi, .mk { will-change: transform; }
+.locate, .chip-zone, .zone-chip { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; background: var(--chip-solid); }
