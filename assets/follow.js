@@ -74,13 +74,15 @@
   // ------------------------------------------------------------------
   // Geometria locale (metri) sulla linea da seguire
   // ------------------------------------------------------------------
-  function prep(r) {
-    const pts = r.back ? r.line.concat(r.line.slice(0, -1).reverse()) : r.line.slice();
+  function prep(r, pre) {
+    const base = r.back ? r.line.concat(r.line.slice(0, -1).reverse()) : r.line.slice();
+    const pts = (pre && pre.length > 1 ? pre.slice(0, -1) : []).concat(base);
     const lat0 = pts[0][1], kx = 111320 * Math.cos(rad(lat0)), ky = 110540;
     const xy = pts.map((p) => [p[0] * kx, p[1] * ky]);
     const cum = [0];
     for (let i = 1; i < xy.length; i++) cum.push(cum[i - 1] + Math.hypot(xy[i][0] - xy[i - 1][0], xy[i][1] - xy[i - 1][1]));
-    return { pts, xy, cum, kx, ky, len: cum[cum.length - 1], turnAt: r.back ? cum[r.line.length - 1] : null };
+    const off = pre && pre.length > 1 ? cum[pre.length - 2 + 1] || 0 : 0;   // metri dell'avvicinamento (da te alla partenza)
+    return { pts, xy, cum, kx, ky, len: cum[cum.length - 1], pre: off, turnAt: r.back ? cum[(pre && pre.length > 1 ? pre.length - 1 : 0) + r.line.length - 1] : null };
   }
   // punto più vicino sulla linea; con "near" sceglie, tra i tratti quasi alla stessa distanza,
   // quello più vicino al punto già raggiunto (andata e ritorno sulla stessa strada)
@@ -126,7 +128,7 @@
     notesFor(r).forEach((n) => { const s = onLine(n, 80); if (s != null) ev.push({ s, kind: 'note', icon: KIND_ICON[n.kind] || '⚠️', text: noteText(n), voice: (d) => tr('noteV', { d, t: noteText(n) }) }); });
     // salita principale
     if (r.climb && r.climb.km >= 1) {
-      const s = r.climb.from_km * 1000;
+      const s = G.pre + r.climb.from_km * 1000;
       ev.push({ s, kind: 'climb', icon: '⛰', text: tr('climb', { km: num(r.climb.km, 1), avg: num(r.climb.avg, 1) }), voice: (d) => tr('climbV', { d, km: num(r.climb.km, 1), avg: num(r.climb.avg, 1) }) });
     }
     // ritorno (andata e ritorno)
@@ -185,7 +187,21 @@
     if (F) stop(true);
     if (!navigator.geolocation) { toast(tr('gpsNo')); return; }
     await loadNotes();
-    const G = prep(r);
+    // si parte da dove sei: strada vera fino alla partenza, poi il percorso
+    let pre = null;
+    const me = M.pos();
+    if (me) {
+      const st0 = { lat: r.line[0][1], lng: r.line[0][0] };
+      if (M.distKm(me, st0) > 0.08) {
+        try {
+          const ctl = new AbortController(); setTimeout(() => ctl.abort(), 6000);
+          const j = await (await fetch('https://routing.openstreetmap.de/routed-' + (r.sport === 'bike' ? 'bike' : 'foot') + '/route/v1/driving/' + me.lng + ',' + me.lat + ';' + st0.lng + ',' + st0.lat + '?overview=full&geometries=geojson', { signal: ctl.signal })).json();
+          if (j.routes && j.routes[0]) pre = j.routes[0].geometry.coordinates.concat([r.line[0]]);
+        } catch (e) { /* senza avvicinamento: si va alla partenza da soli */ }
+        if (!pre) pre = [[me.lng, me.lat], r.line[0]];
+      }
+    }
+    const G = prep(r, pre);
     F = { r, G, ctx, ev: buildEvents(r, G, ctx), haz: [], hazAt: 0, said: new Set(), track: [], t0: Date.now(), moving: 0, dist: 0, last: null, s: null, idx: 0,
       off: false, offN: 0, offSaid: 0, started: false, finished: false, speeds: [] };
     document.body.classList.add('following');
@@ -196,7 +212,7 @@
     wake();
     F.timer = setInterval(draw, 1000);
     const w = ctx.wind;
-    say(tr('startV', { n: r.name[lang()] || r.name.es, km: num(G.len / 1000, 1) }) + (w && w.ws >= 12 ? ' ' + tr('windV', { v: w.ws, d: COMPASS[lang()][Math.round(w.wd / 45) % 8] }) : ''));
+    say(tr('startV', { n: r.name[lang()] || r.name.es, km: num((G.len - G.pre) / 1000, 1) }) + (G.pre > 80 ? ' ' + tr('toStart', { d: fmtDv(G.pre) }) + '.' : '') + (w && w.ws >= 12 ? ' ' + tr('windV', { v: w.ws, d: COMPASS[lang()][Math.round(w.wd / 45) % 8] }) : ''));
     toast(tr('keep'));
     const b = new maplibregl.LngLatBounds(r.line[0], r.line[0]); r.line.forEach((p) => b.extend(p));
     map.setPadding({ top: 0, bottom: 0, left: 0, right: 0 });
@@ -302,7 +318,8 @@
     else if (F.off) { txt = '↩️ ' + tr('off', { d: fmtD(F.offD || 0) }); cls = 'bad'; }
     else {
       const up = F.ev.concat(F.haz).filter((e) => e.s - s > -20).sort((a, b) => a.s - b.s)[0];
-      if (up && up.s - s < 5000) { txt = up.icon + ' ' + (up.s - s < 30 ? '' : tr('inD', { d: fmtD(up.s - s) }) + ' · ') + up.text; cls = up.kind === 'note' || up.kind === 'haz' ? 'warn' : ''; }
+      if (G.pre && s < G.pre - 20) { txt = '📍 ' + tr('toStart', { d: fmtD(G.pre - s) }); cls = ''; }
+      else if (up && up.s - s < 5000) { txt = up.icon + ' ' + (up.s - s < 30 ? '' : tr('inD', { d: fmtD(up.s - s) }) + ' · ') + up.text; cls = up.kind === 'note' || up.kind === 'haz' ? 'warn' : ''; }
       else { txt = '✓ ' + tr('onRoute'); cls = 'ok'; }
     }
     nx.textContent = txt; nx.className = 'fw-next ' + cls;
