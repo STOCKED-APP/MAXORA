@@ -31,7 +31,8 @@
   const LOC = { it: 'it-IT', es: 'es-ES', en: 'en-GB', de: 'de-DE' };
   const lang = () => (TX[M.lang()] ? M.lang() : 'es');
   const tr = (k, v) => { let s = TX[lang()][k] || TX.es[k] || k; if (v) Object.keys(v).forEach((x) => { s = s.replace('{' + x + '}', v[x]); }); return s; };
-  const num = (v, d) => new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }).format(v);
+  const NF = new Map();
+  const num = (v, d) => { const k = lang() + d; let f = NF.get(k); if (!f) { f = new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }); NF.set(k, f); } return f.format(v); };
   const S = () => window.MAXORA_SURF && window.MAXORA_SURF.state;
   const MIN_LEARN = 5;
   const WLABEL = { glassy: 'glassy', offshore: 'offshore', crossoff: 'cross-off', cross: 'cross-shore', crosson: 'cross-on', onshore: 'onshore' };

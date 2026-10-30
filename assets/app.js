@@ -28,7 +28,7 @@
       voiceAt: '{type} a {dist}', inZone: 'Zona con presencia policial', maint: 'Maxora está en mantenimiento. Los avisos vuelven pronto.'
       ,searchPh: '¿A dónde vas?', sRecent: 'Recientes', sOurs: 'En Maxora', sStreets: 'Calles y lugares', sNone: 'Sin resultados. Prueba con otro nombre.', sOffline: 'Sin conexión: solo resultados de Maxora.',
       sNear: 'Cerca de ti', cBeach: 'Playas', cFood: 'Comer', cFuel: 'Gasolineras', cSurf: 'Surf', cView: 'Miradores',
-      go: 'IR', openWith: 'Abrir navegación con', fromYou: 'Desde ti', alertsNear: 'Avisos cerca', alertsRoute: 'Avisos en el camino', none0: 'Ninguno',
+      go: 'Ir', openWith: 'Abrir navegación con', fromYou: 'Distancia', openNow: 'Abierto', closedNow: 'Cerrado', closesAt: 'cierra a las {t}', opensAt: 'abre a las {t}', opensTom: 'abre mañana a las {t}', opensDay: 'abre el {d} a las {t}', open24: 'Abierto 24 h', weekHours: 'Horario de la semana', alertsNear: 'Avisos cerca', alertsRoute: 'Avisos en el camino', none0: 'Ninguno',
       routeNote: 'Maxora sigue avisándote en segundo plano mientras navegas.', approxRoute: 'aprox., en línea recta', share: 'Compartir', street: 'Calle', place: 'Lugar', town: 'Localidad', beachT: 'Playa', biz: 'Negocio', clearHist: 'Borrar historial', loadingMap: 'buscando…', nResults: '{n} en el mapa', noResultsArea: 'nada en esta zona', seeAll: 'Ver todos en el mapa', searchArea: 'Buscar en esta zona', hours: 'Horario', list: 'Lista', ahead: 'Delante de ti', nextKm: 'próximos {km} km', then: 'Después', you: 'Tú', reportBig: 'Avisar de algo', inDist: 'a {d}', roadClear: 'Vía despejada', roadClearSub: 'Nada avisado en los próximos {km} km', zoneTitle: 'En esta zona', zoneCount: '{n} avisos aquí', zoneNone: 'Nada en esta zona', zoneNoneSub: 'Mueve el mapa para ver otras zonas', fromYouD: 'a {d} de ti', alsoHere: 'También aquí', satOn: 'Vista satélite', mapOn: 'Vista mapa', layers: 'Mapa / satélite'
     },
     en: {
@@ -48,7 +48,7 @@
       voiceAt: '{type} in {dist}', inZone: 'Police nearby', maint: 'Maxora is under maintenance. Alerts will be back soon.'
       ,searchPh: 'Where to?', sRecent: 'Recent', sOurs: 'On Maxora', sStreets: 'Streets & places', sNone: 'No results. Try another name.', sOffline: 'Offline: Maxora results only.',
       sNear: 'Near you', cBeach: 'Beaches', cFood: 'Food', cFuel: 'Fuel', cSurf: 'Surf', cView: 'Viewpoints',
-      go: 'GO', openWith: 'Navigate with', fromYou: 'From you', alertsNear: 'Alerts nearby', alertsRoute: 'Alerts on the way', none0: 'None',
+      go: 'Go', openWith: 'Navigate with', fromYou: 'Distance', openNow: 'Open', closedNow: 'Closed', closesAt: 'closes at {t}', opensAt: 'opens at {t}', opensTom: 'opens tomorrow at {t}', opensDay: 'opens {d} at {t}', open24: 'Open 24 h', weekHours: 'Opening hours', alertsNear: 'Alerts nearby', alertsRoute: 'Alerts on the way', none0: 'None',
       routeNote: 'Maxora keeps alerting you in the background while you drive.', approxRoute: 'approx., straight line', share: 'Share', street: 'Street', place: 'Place', town: 'Town', beachT: 'Beach', biz: 'Business', clearHist: 'Clear history', loadingMap: 'searching…', nResults: '{n} on the map', noResultsArea: 'nothing in this area', seeAll: 'Show all on the map', searchArea: 'Search this area', hours: 'Hours', list: 'List', ahead: 'Ahead of you', nextKm: 'next {km} km', then: 'Then', you: 'You', reportBig: 'Report something', inDist: 'in {d}', roadClear: 'Road clear', roadClearSub: 'Nothing reported in the next {km} km', zoneTitle: 'In this area', zoneCount: '{n} alerts here', zoneNone: 'Nothing in this area', zoneNoneSub: 'Move the map to see other areas', fromYouD: '{d} from you', alsoHere: 'Also here', satOn: 'Satellite view', mapOn: 'Map view', layers: 'Map / satellite'
     },
     it: {
@@ -68,7 +68,7 @@
       voiceAt: '{type} a {dist}', inZone: 'Zona con presenza polizia', maint: 'Maxora è in manutenzione. Gli avvisi tornano presto.'
       ,searchPh: 'Dove vai?', sRecent: 'Recenti', sOurs: 'Su Maxora', sStreets: 'Vie e luoghi', sNone: 'Nessun risultato. Prova un altro nome.', sOffline: 'Offline: solo risultati Maxora.',
       sNear: 'Vicino a te', cBeach: 'Spiagge', cFood: 'Mangiare', cFuel: 'Benzinai', cSurf: 'Surf', cView: 'Panorami',
-      go: 'VAI', openWith: 'Apri navigazione con', fromYou: 'Da te', alertsNear: 'Avvisi vicini', alertsRoute: 'Avvisi sul percorso', none0: 'Nessuno',
+      go: 'Vai', openWith: 'Apri navigazione con', fromYou: 'Distanza', openNow: 'Aperto', closedNow: 'Chiuso', closesAt: 'chiude alle {t}', opensAt: 'apre alle {t}', opensTom: 'apre domani alle {t}', opensDay: 'apre {d} alle {t}', open24: 'Aperto 24 ore', weekHours: 'Orari della settimana', alertsNear: 'Avvisi vicini', alertsRoute: 'Avvisi sul percorso', none0: 'Nessuno',
       routeNote: 'Maxora continua ad avvisarti in sottofondo mentre guidi.', approxRoute: 'approssimato, in linea d’aria', share: 'Condividi', street: 'Via', place: 'Luogo', town: 'Località', beachT: 'Spiaggia', biz: 'Attività', clearHist: 'Cancella cronologia', loadingMap: 'cerco…', nResults: '{n} sulla mappa', noResultsArea: 'niente in questa zona', seeAll: 'Vedi tutti sulla mappa', searchArea: 'Cerca in questa zona', hours: 'Orari', list: 'Lista', ahead: 'Davanti a te', nextKm: 'prossimi {km} km', then: 'Poi', you: 'Tu', reportBig: 'Segnala qualcosa', inDist: 'tra {d}', roadClear: 'Strada libera', roadClearSub: 'Niente segnalato nei prossimi {km} km', zoneTitle: 'In questa zona', zoneCount: '{n} avvisi qui', zoneNone: 'Niente in questa zona', zoneNoneSub: 'Sposta la mappa per vedere altre zone', fromYouD: 'a {d} da te', alsoHere: 'Anche qui', satOn: 'Vista satellite', mapOn: 'Vista mappa', layers: 'Mappa / satellite'
     },
     de: {
@@ -88,7 +88,7 @@
       voiceAt: '{type} in {dist}', inZone: 'Polizei in der Nähe', maint: 'Maxora wird gewartet. Meldungen sind bald zurück.'
       ,searchPh: 'Wohin?', sRecent: 'Zuletzt', sOurs: 'Auf Maxora', sStreets: 'Straßen & Orte', sNone: 'Keine Ergebnisse. Anderen Namen versuchen.', sOffline: 'Offline: nur Maxora-Ergebnisse.',
       sNear: 'In deiner Nähe', cBeach: 'Strände', cFood: 'Essen', cFuel: 'Tankstellen', cSurf: 'Surfen', cView: 'Aussichtspunkte',
-      go: 'LOS', openWith: 'Navigieren mit', fromYou: 'Von dir', alertsNear: 'Meldungen in der Nähe', alertsRoute: 'Meldungen unterwegs', none0: 'Keine',
+      go: 'Los', openWith: 'Navigieren mit', fromYou: 'Entfernung', openNow: 'Geöffnet', closedNow: 'Geschlossen', closesAt: 'schließt um {t}', opensAt: 'öffnet um {t}', opensTom: 'öffnet morgen um {t}', opensDay: 'öffnet {d} um {t}', open24: '24 h geöffnet', weekHours: 'Öffnungszeiten', alertsNear: 'Meldungen in der Nähe', alertsRoute: 'Meldungen unterwegs', none0: 'Keine',
       routeNote: 'Maxora warnt dich während der Fahrt im Hintergrund weiter.', approxRoute: 'ca., Luftlinie', share: 'Teilen', street: 'Straße', place: 'Ort', town: 'Ortschaft', beachT: 'Strand', biz: 'Betrieb', clearHist: 'Verlauf löschen', loadingMap: 'suche…', nResults: '{n} auf der Karte', noResultsArea: 'nichts in diesem Bereich', seeAll: 'Alle auf der Karte zeigen', searchArea: 'In diesem Bereich suchen', hours: 'Öffnungszeiten', list: 'Liste', ahead: 'Vor dir', nextKm: 'nächste {km} km', then: 'Danach', you: 'Du', reportBig: 'Etwas melden', inDist: 'in {d}', roadClear: 'Freie Fahrt', roadClearSub: 'Nichts gemeldet auf den nächsten {km} km', zoneTitle: 'In diesem Bereich', zoneCount: '{n} Meldungen hier', zoneNone: 'Nichts in diesem Bereich', zoneNoneSub: 'Karte verschieben, um andere Bereiche zu sehen', fromYouD: '{d} von dir', alsoHere: 'Auch hier', satOn: 'Satellitenansicht', mapOn: 'Kartenansicht', layers: 'Karte / Satellit'
     }
   };
@@ -135,7 +135,8 @@
     if (vars) Object.keys(vars).forEach((v) => { s = s.replace('{' + v + '}', vars[v]); });
     return s;
   };
-  const num = (v, d) => new Intl.NumberFormat(LOCALES[lang], { maximumFractionDigits: d, minimumFractionDigits: d }).format(v);
+  const NF = new Map();
+  const num = (v, d) => { const k = lang + d; let f = NF.get(k); if (!f) { f = new Intl.NumberFormat(LOCALES[lang], { maximumFractionDigits: d, minimumFractionDigits: d }); NF.set(k, f); } return f.format(v); };
   const setting = (k, d) => (S.settings[k] === undefined ? d : S.settings[k]);
   const typeOf = (r) => S.types.get(r.type) || { key: r.type, icon: '•', labels: { es: r.type }, color: '#888', is_police: false };
   const labelOf = (ty) => (ty.labels && (ty.labels[lang] || ty.labels.es)) || ty.key;
@@ -277,6 +278,7 @@
     else if (role === 'minorcase') { c.l = 0.22; c.s *= 0.3; }
     else if (role === 'path') { c.l = 0.58; c.s = Math.min(0.35, c.s); }
     else if (role === 'bg') { c.l = 0.1 + c.l * 0.03; c.s = Math.min(0.15, c.s); }
+    else if (role === 'park') { c.l = 0.115 + c.l * 0.02; c.s = Math.min(0.16, c.s); }   // parchi e verde: appena accennati, non una macchia
     else { c.l = 0.09 + c.l * 0.13; c.s *= 0.75; }
     return hsla(c);
   }
@@ -290,7 +292,8 @@
     st.layers = st.layers.map((l) => {
       const id = l.id + ' ' + (l['source-layer'] || '');
       const role = (l.metadata && l.metadata['mx-role']) || (l.type === 'background' ? 'bg' : /water|ocean|river|lake/.test(id) && l.type !== 'symbol' ? 'water'
-        : /road|highway|bridge|tunnel|street|path|track|rail|aeroway/.test(id) && l.type === 'line' ? 'road' : 'land');
+        : /road|highway|bridge|tunnel|street|path|track|rail|aeroway/.test(id) && l.type === 'line' ? 'road'
+        : /park|landcover|wood|grass|forest|scrub|wetland|nature|protected/.test(id) && l.type === 'fill' ? 'park' : 'land');
       const p = Object.assign({}, l.paint);
       Object.keys(p).forEach((k) => {
         if (k === 'text-color') p[k] = mapPaint(p[k], 'text');
@@ -1108,12 +1111,17 @@
     finally { clearTimeout(tmo); }
     if (!res.ok) throw new Error('photon ' + res.status);
     const json = await res.json();
-    const seen = new Set();
+    const seen = new Set(), kept = [];
+    // NOMI TUTTI MAIUSCOLI -> normali
+    const tidy = (n) => (n.length > 3 && n === n.toUpperCase() && /[A-ZÁÉÍÓÚÑ]{3}/.test(n) ? n.toLowerCase().replace(/(^|[\s\-'(])(\p{L})/gu, (m, a, b) => a + b.toUpperCase()) : n);
     const items = (json.features || []).map(fromPhoton).filter((x) => {
       if (!x.name) return false;
+      x.name = tidy(x.name);
       const k = norm(x.name) + '|' + norm(x.sub);
       if (seen.has(k)) return false;
-      seen.add(k); return true;
+      // stesso nome a meno di 200 m = stesso posto
+      if (kept.some((y) => norm(y.name) === norm(x.name) && distKm(y, x) < 0.2)) return false;
+      seen.add(k); kept.push(x); return true;
     }).slice(0, 8);
     photonCache.set(key, items);
     return items;
@@ -1341,7 +1349,7 @@
           item.sponsor ? el('span', { class: 'rc-tag', text: t('sponsor') }) : null,
           el('span', { class: 'rc-t', text: item.name }),
           el('span', { class: 'rc-s', text: item.sub || '' }),
-          el('span', { class: 'rc-m' }, [d ? el('b', { text: d.v + ' ' + d.u }) : null, tags.opening_hours ? el('span', { text: (d ? ' · ' : '') + tags.opening_hours }) : null])
+          el('span', { class: 'rc-m' }, [d ? el('b', { text: d.v + ' ' + d.u }) : null, tags.opening_hours ? hoursChip(tags.opening_hours, !!d) : null])
         ])
       ]);
       track.appendChild(card);
@@ -1547,6 +1555,83 @@
       return { icon: d[0], label: d[1], href: a.href, onclick: onGo };
     }));
   }
+  // Orari OSM ("Mo-Fr 09:00-21:00; Sa,Su 10:00-14:00", "24/7", "… off") -> settimana + aperto/chiuso adesso
+  const OSM_DAYS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+  function parseHours(str) {
+    if (!str) return null;
+    const s = String(str).trim();
+    if (/^24\/7$/.test(s)) return { always: true };
+    const week = [[], [], [], [], [], [], []];   // 0 = lunedì
+    const toMin = (h) => { const [a, b] = h.split(':').map(Number); return a * 60 + b; };
+    for (let rule of s.split(';')) {
+      rule = rule.trim().replace(/\s+/g, ' ');
+      if (!rule) continue;
+      const m = rule.match(/^((?:(?:Mo|Tu|We|Th|Fr|Sa|Su|PH)(?:-(?:Mo|Tu|We|Th|Fr|Sa|Su))?,?)+)?\s*(.*)$/);
+      if (!m) return null;
+      let days = [0, 1, 2, 3, 4, 5, 6];
+      if (m[1]) {
+        days = [];
+        for (const part of m[1].split(',').filter(Boolean)) {
+          if (part === 'PH') continue;
+          const [a, b] = part.split('-');
+          const i = OSM_DAYS.indexOf(a), j = b ? OSM_DAYS.indexOf(b) : i;
+          if (i < 0 || j < 0) return null;
+          for (let d = i; ; d = (d + 1) % 7) { days.push(d); if (d === j) break; }
+        }
+        if (!days.length) continue;   // solo festivi: ignorati
+      }
+      const times = m[2].trim();
+      let ranges = [];
+      if (/^(off|closed)$/i.test(times)) ranges = [];
+      else {
+        for (const r of times.split(',')) {
+          const t2 = r.trim().match(/^(\d{1,2}:\d{2})-(\d{1,2}:\d{2})\+?$/);
+          if (!t2) return null;
+          ranges.push([toMin(t2[1]), toMin(t2[2])]);
+        }
+      }
+      days.forEach((d) => { week[d] = ranges; });   // le regole dopo vincono, come in OSM
+    }
+    return { week };
+  }
+  const hhmm = (m) => String(Math.floor(m / 60) % 24).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+  function hoursNow(h) {
+    if (!h) return null;
+    if (h.always) return { open: true, text: t('open24') };
+    const now = new Date(), today = (now.getDay() + 6) % 7, mins = now.getHours() * 60 + now.getMinutes();
+    // aperto adesso? (anche fasce che passano la mezzanotte da ieri)
+    for (const [a, b] of h.week[today]) { const end = b <= a ? b + 1440 : b; if (mins >= a && mins < end) return { open: true, text: t('closesAt', { t: hhmm(end) }) }; }
+    const y = (today + 6) % 7;
+    for (const [a, b] of h.week[y]) if (b <= a && mins < b) return { open: true, text: t('closesAt', { t: hhmm(b) }) };
+    for (let k = 0; k < 7; k++) {
+      const d = (today + k) % 7;
+      const next = h.week[d].map((r) => r[0]).filter((a) => k > 0 || a > mins).sort((a, b) => a - b)[0];
+      if (next == null) continue;
+      if (k === 0) return { open: false, text: t('opensAt', { t: hhmm(next) }) };
+      if (k === 1) return { open: false, text: t('opensTom', { t: hhmm(next) }) };
+      return { open: false, text: t('opensDay', { d: dayName(d), t: hhmm(next) }) };
+    }
+    return { open: false, text: '' };
+  }
+  function dayName(d, short) { const ref = new Date(2024, 0, 1 + d); return new Intl.DateTimeFormat(LOCALES[lang], { weekday: short ? 'short' : 'long' }).format(ref); }
+  // settimana raggruppata: "lun–ven 09:00–21:00"
+  function hoursWeek(h) {
+    if (!h || h.always) return [];
+    const key = (r) => r.map((x) => hhmm(x[0]) + '–' + hhmm(x[1])).join(', ') || t('closedNow').toLowerCase();
+    const out = [];
+    for (let d = 0; d < 7; d++) {
+      const k = key(h.week[d]);
+      const last = out[out.length - 1];
+      if (last && last.k === k) last.to = d; else out.push({ from: d, to: d, k });
+    }
+    return out.map((g) => [dayName(g.from, true) + (g.to !== g.from ? '–' + dayName(g.to, true) : ''), g.k]);
+  }
+
+  function hoursChip(str, sep) {
+    const now = hoursNow(parseHours(str));
+    if (!now) return el('span', { text: (sep ? ' · ' : '') + str });
+    return el('span', {}, [sep ? ' · ' : '', el('span', { class: 'p-open ' + (now.open ? 'on' : 'off'), text: now.open ? t('openNow') : t('closedNow') }), now.text && !/24/.test(now.text) ? ' · ' + now.text : '']);
+  }
   function openPlace(item) {
     S.follow = false;
     S.dest = item;
@@ -1577,7 +1662,17 @@
     // descrizione e orari subito sotto le foto
     const desc = item.ours ? descOf(x) : '';
     if (desc) box.appendChild(el('p', { class: 'p-desc', text: desc }));
-    if (x.tags && x.tags.opening_hours) box.appendChild(el('p', { class: 'p-desc' }, [el('b', { text: t('hours') + ': ' }), x.tags.opening_hours]));
+    if (x.tags && x.tags.opening_hours) {
+      const h = parseHours(x.tags.opening_hours), now = hoursNow(h);
+      if (now) {
+        const wk = hoursWeek(h);
+        const det = el('details', { class: 'p-hours' }, [
+          el('summary', {}, [el('span', { class: 'p-open ' + (now.open ? 'on' : 'off'), text: now.open ? (h.always ? now.text : t('openNow')) : t('closedNow') }), h.always ? '' : ' · ' + now.text]),
+          wk.length ? el('div', { class: 'p-week' }, wk.map(([d, v]) => el('div', {}, [el('span', { text: d }), el('b', { text: v })]))) : null
+        ]);
+        box.querySelector('.p-sub').after(det);
+      } else box.appendChild(el('p', { class: 'p-desc' }, [el('b', { text: t('hours') + ': ' }), x.tags.opening_hours]));
+    }
     // Numeri: distanza + avvisi
     const near = [], onWay = [];
     for (const r of S.reports.values()) {
@@ -1626,10 +1721,17 @@
     const tg = x.tags || {};
     const phone = x.phone || tg.phone || tg['contact:phone'];
     const web = x.website || tg.website || tg['contact:website'];
-    if (phone) acts.appendChild(el('a', { href: 'tel:' + String(phone).split(';')[0].replace(/\s/g, ''), text: t('call'), onclick: () => { if (item.kind === 'biz') bizEvent(item.id, 'call'); } }));
-    if (web && /^https?:\/\//.test(web)) acts.appendChild(el('a', { href: web, target: '_blank', rel: 'noopener', text: t('web'), onclick: () => { if (item.kind === 'biz') bizEvent(item.id, 'web'); } }));
-    if (navigator.share) acts.appendChild(el('button', { class: 'p-sec', text: t('share'), onclick: () => navigator.share({ title: item.name, text: item.name, url: 'https://www.google.com/maps/search/?api=1&query=' + ll }).catch(() => {}) }));
-    box.append(acts, appsBox, el('div', { class: 'p-note', text: t('routeNote') }));
+    // azioni secondarie: icona + parola corta, nella stessa barra del VAI
+    const ICO = {
+      call: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
+      web: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+      share: '<path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/>'
+    };
+    const ico = (k) => { const sp = document.createElement('span'); sp.className = 'p-ico'; sp.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + ICO[k] + '</svg>'; return sp; };
+    if (phone) acts.appendChild(el('a', { class: 'p-mini', href: 'tel:' + String(phone).split(';')[0].replace(/\s/g, ''), onclick: () => { if (item.kind === 'biz') bizEvent(item.id, 'call'); } }, [ico('call'), el('small', { text: t('call') })]));
+    if (web && /^https?:\/\//.test(web)) acts.appendChild(el('a', { class: 'p-mini', href: web, target: '_blank', rel: 'noopener', onclick: () => { if (item.kind === 'biz') bizEvent(item.id, 'web'); } }, [ico('web'), el('small', { text: t('web') })]));
+    if (navigator.share) acts.appendChild(el('button', { class: 'p-mini', onclick: () => navigator.share({ title: item.name, text: item.name, url: 'https://www.google.com/maps/search/?api=1&query=' + ll }).catch(() => {}) }, [ico('share'), el('small', { text: t('share') })]));
+    box.append(el('div', { class: 'p-note', text: t('routeNote') }), appsBox, acts);
 
     if (item.kind === 'biz') bizEvent(item.id, 'click');
     $('results').classList.add('hidden');
@@ -1783,7 +1885,7 @@
     unfollow: () => { S.follow = false; S.selectedId = null; updateChip(); },
     reports: () => [...S.reports.values()], report: (type) => send(type),
     typeLabel: (r) => labelOf(typeOf(r)), typeColor: (r) => typeOf(r).color, distKm,
-    speed: () => S.speed || 0, heading: () => S.heading, setting,
+    speed: () => S.speed || 0, heading: () => S.heading, setting, hoursChip,
     // voce + suono secondo le preferenze dell'utente
     say: (phrase) => {
       if (S.sound) beep();

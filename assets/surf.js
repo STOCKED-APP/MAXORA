@@ -25,7 +25,7 @@
       beach: 'Spiaggia', reef: 'Reef', point: 'Punta', L: 'sinistra', R: 'destra', LR: 'destra e sinistra', approx: 'Posizione indicativa',
       tides: 'Maree del giorno', flat: 'piatto', poor: 'scarso', fair: 'discreto', good: 'buono', great: 'ottimo', offsh: 'largo {h} m',
       night: 'notte', src: 'Onde e vento: ECMWF Open Data (CC BY 4.0). Maree: calcolate da Maxora sul mareografo di Puerto del Rosario (IOC · REDMAR).',
-      ago: '{t} fa', from: 'da {d}', levelQ: 'Il tuo livello', go: 'VAI', openWith: 'Apri navigazione con', boat: 'Si raggiunge in barca dal porto di Corralejo', nowQ: 'Com\'è adesso', repBtn: 'Sei qui? Dì com\'è', size: 'Onde', quality: 'Com\'è il mare', crowd: 'Gente', sz0: 'Piatto', sz1: 'Ginocchio', sz2: 'Vita–petto', sz3: 'Testa', sz4: 'Sopra la testa', q1: 'Rovinato dal vento', q2: 'Mosso', q3: 'Pulito', c0: 'Vuoto', c1: 'Qualcuno', c2: 'Affollato', send: 'Invia', cancel: 'Annulla', sent: 'Grazie! Lo vedono tutti per 3 ore', repN: '{n} segnalazioni nelle ultime 3 ore', repN1: '1 segnalazione nelle ultime 3 ore', noRep: 'Nessuno ha ancora detto com\'è. Sei in spiaggia? Dillo tu.', corrected: 'voto corretto da chi è in acqua', fav: 'Preferito', favAdd: 'Aggiunto ai preferiti', favDel: 'Tolto dai preferiti', windLive: 'Vento misurato', gust: 'raffiche', sunrise: 'Alba', sunset: 'Tramonto', errRep: 'Invio non riuscito', repAlready: 'Hai già segnalato questo spot', repMany: 'Troppe segnalazioni, riprova più tardi', repOff: 'Segnalazioni non ancora attive', pickAll: 'Scegli onde e com\'è il mare', airport: 'aeroporto'
+      ago: '{t} fa', from: 'da {d}', levelQ: 'Il tuo livello', go: 'Vai', openWith: 'Apri navigazione con', boat: 'Si raggiunge in barca dal porto di Corralejo', nowQ: 'Com\'è adesso', repBtn: 'Sei qui? Dì com\'è', size: 'Onde', quality: 'Com\'è il mare', crowd: 'Gente', sz0: 'Piatto', sz1: 'Ginocchio', sz2: 'Vita–petto', sz3: 'Testa', sz4: 'Sopra la testa', q1: 'Rovinato dal vento', q2: 'Mosso', q3: 'Pulito', c0: 'Vuoto', c1: 'Qualcuno', c2: 'Affollato', send: 'Invia', cancel: 'Annulla', sent: 'Grazie! Lo vedono tutti per 3 ore', repN: '{n} segnalazioni nelle ultime 3 ore', repN1: '1 segnalazione nelle ultime 3 ore', noRep: 'Nessuno ha ancora detto com\'è. Sei in spiaggia? Dillo tu.', corrected: 'voto corretto da chi è in acqua', fav: 'Preferito', favAdd: 'Aggiunto ai preferiti', favDel: 'Tolto dai preferiti', windLive: 'Vento misurato', gust: 'raffiche', sunrise: 'Alba', sunset: 'Tramonto', errRep: 'Invio non riuscito', repAlready: 'Hai già segnalato questo spot', repMany: 'Troppe segnalazioni, riprova più tardi', repOff: 'Segnalazioni non ancora attive', pickAll: 'Scegli onde e com\'è il mare', airport: 'aeroporto'
     },
     es: {
       vDark: 'Oscuridad: espera a la luz', advLabel: 'Consejo', v4: 'Condiciones muy buenas: merece la sesión', v3: 'Buenas condiciones para tu nivel', v2: 'Aceptable: sesión posible', v1: 'Flojo: pocas olas útiles', v0: 'Ningún spot adecuado a tu nivel', vFlat: 'Mar plano',
@@ -42,7 +42,7 @@
       beach: 'Playa', reef: 'Arrecife', point: 'Punta', L: 'izquierda', R: 'derecha', LR: 'derecha e izquierda', approx: 'Posición aproximada',
       tides: 'Mareas del día', flat: 'plano', poor: 'flojo', fair: 'regular', good: 'bueno', great: 'excelente', offsh: 'fuera {h} m',
       night: 'noche', src: 'Olas y viento: ECMWF Open Data (CC BY 4.0). Mareas: calculadas por Maxora con el mareógrafo de Puerto del Rosario (IOC · REDMAR).',
-      ago: 'hace {t}', from: 'del {d}', levelQ: 'Tu nivel', go: 'IR', openWith: 'Abrir navegación con', boat: 'Se llega en barco desde el puerto de Corralejo', nowQ: 'Cómo está ahora', repBtn: '¿Estás aquí? Cuenta cómo está', size: 'Olas', quality: 'Estado del mar', crowd: 'Gente', sz0: 'Plano', sz1: 'Rodilla', sz2: 'Cintura–pecho', sz3: 'Cabeza', sz4: 'Más de cabeza', q1: 'Roto por el viento', q2: 'Picado', q3: 'Limpio', c0: 'Vacío', c1: 'Algo de gente', c2: 'Lleno', send: 'Enviar', cancel: 'Cancelar', sent: '¡Gracias! Todos lo ven durante 3 horas', repN: '{n} avisos en las últimas 3 horas', repN1: '1 aviso en las últimas 3 horas', noRep: 'Nadie ha contado aún cómo está. ¿Estás en la playa? Cuéntalo tú.', corrected: 'nota corregida por quien está en el agua', fav: 'Favorito', favAdd: 'Añadido a favoritos', favDel: 'Quitado de favoritos', windLive: 'Viento medido', gust: 'rachas', sunrise: 'Amanecer', sunset: 'Atardecer', errRep: 'No se pudo enviar', repAlready: 'Ya has avisado de este spot', repMany: 'Demasiados avisos, prueba más tarde', repOff: 'Avisos todavía no activos', pickAll: 'Elige olas y estado del mar', airport: 'aeropuerto'
+      ago: 'hace {t}', from: 'del {d}', levelQ: 'Tu nivel', go: 'Ir', openWith: 'Abrir navegación con', boat: 'Se llega en barco desde el puerto de Corralejo', nowQ: 'Cómo está ahora', repBtn: '¿Estás aquí? Cuenta cómo está', size: 'Olas', quality: 'Estado del mar', crowd: 'Gente', sz0: 'Plano', sz1: 'Rodilla', sz2: 'Cintura–pecho', sz3: 'Cabeza', sz4: 'Más de cabeza', q1: 'Roto por el viento', q2: 'Picado', q3: 'Limpio', c0: 'Vacío', c1: 'Algo de gente', c2: 'Lleno', send: 'Enviar', cancel: 'Cancelar', sent: '¡Gracias! Todos lo ven durante 3 horas', repN: '{n} avisos en las últimas 3 horas', repN1: '1 aviso en las últimas 3 horas', noRep: 'Nadie ha contado aún cómo está. ¿Estás en la playa? Cuéntalo tú.', corrected: 'nota corregida por quien está en el agua', fav: 'Favorito', favAdd: 'Añadido a favoritos', favDel: 'Quitado de favoritos', windLive: 'Viento medido', gust: 'rachas', sunrise: 'Amanecer', sunset: 'Atardecer', errRep: 'No se pudo enviar', repAlready: 'Ya has avisado de este spot', repMany: 'Demasiados avisos, prueba más tarde', repOff: 'Avisos todavía no activos', pickAll: 'Elige olas y estado del mar', airport: 'aeropuerto'
     },
     en: {
       vDark: 'Dark: wait for daylight', advLabel: 'Advice', v4: 'Excellent: worth the session', v3: 'Good conditions for your level', v2: 'Fair: session possible', v1: 'Poor: few usable waves', v0: 'No spot suits your level', vFlat: 'Flat sea',
@@ -59,7 +59,7 @@
       beach: 'Beach', reef: 'Reef', point: 'Point', L: 'left', R: 'right', LR: 'left and right', approx: 'Approximate position',
       tides: 'Tides of the day', flat: 'flat', poor: 'poor', fair: 'fair', good: 'good', great: 'great', offsh: 'out {h} m',
       night: 'night', src: 'Waves and wind: ECMWF Open Data (CC BY 4.0). Tides: computed by Maxora from the Puerto del Rosario tide gauge (IOC · REDMAR).',
-      ago: '{t} ago', from: 'from {d}', levelQ: 'Your level', go: 'GO', openWith: 'Navigate with', boat: 'Reached by boat from Corralejo harbour', nowQ: 'How it is now', repBtn: 'Here now? Tell how it is', size: 'Waves', quality: 'Surface', crowd: 'Crowd', sz0: 'Flat', sz1: 'Knee', sz2: 'Waist–chest', sz3: 'Head', sz4: 'Overhead', q1: 'Blown out', q2: 'Choppy', q3: 'Clean', c0: 'Empty', c1: 'A few', c2: 'Crowded', send: 'Send', cancel: 'Cancel', sent: 'Thanks! Everyone sees it for 3 hours', repN: '{n} reports in the last 3 hours', repN1: '1 report in the last 3 hours', noRep: 'Nobody has reported yet. At the beach? Tell everyone.', corrected: 'rating adjusted by surfers in the water', fav: 'Favourite', favAdd: 'Added to favourites', favDel: 'Removed from favourites', windLive: 'Measured wind', gust: 'gusts', sunrise: 'Sunrise', sunset: 'Sunset', errRep: 'Could not send', repAlready: 'You already reported this spot', repMany: 'Too many reports, try later', repOff: 'Reports not active yet', pickAll: 'Choose waves and surface', airport: 'airport'
+      ago: '{t} ago', from: 'from {d}', levelQ: 'Your level', go: 'Go', openWith: 'Navigate with', boat: 'Reached by boat from Corralejo harbour', nowQ: 'How it is now', repBtn: 'Here now? Tell how it is', size: 'Waves', quality: 'Surface', crowd: 'Crowd', sz0: 'Flat', sz1: 'Knee', sz2: 'Waist–chest', sz3: 'Head', sz4: 'Overhead', q1: 'Blown out', q2: 'Choppy', q3: 'Clean', c0: 'Empty', c1: 'A few', c2: 'Crowded', send: 'Send', cancel: 'Cancel', sent: 'Thanks! Everyone sees it for 3 hours', repN: '{n} reports in the last 3 hours', repN1: '1 report in the last 3 hours', noRep: 'Nobody has reported yet. At the beach? Tell everyone.', corrected: 'rating adjusted by surfers in the water', fav: 'Favourite', favAdd: 'Added to favourites', favDel: 'Removed from favourites', windLive: 'Measured wind', gust: 'gusts', sunrise: 'Sunrise', sunset: 'Sunset', errRep: 'Could not send', repAlready: 'You already reported this spot', repMany: 'Too many reports, try later', repOff: 'Reports not active yet', pickAll: 'Choose waves and surface', airport: 'airport'
     },
     de: {
       vDark: 'Dunkel: auf Tageslicht warten', advLabel: 'Empfehlung', v4: 'Sehr gut: die Session lohnt sich', v3: 'Gute Bedingungen für dein Level', v2: 'Mittel: Session möglich', v1: 'Schwach: wenige brauchbare Wellen', v0: 'Kein Spot passt zu deinem Level', vFlat: 'Flaches Meer',
@@ -76,7 +76,7 @@
       beach: 'Strand', reef: 'Riff', point: 'Pointbreak', L: 'links', R: 'rechts', LR: 'links und rechts', approx: 'Ungefähre Position',
       tides: 'Gezeiten des Tages', flat: 'flach', poor: 'schwach', fair: 'ok', good: 'gut', great: 'super', offsh: 'drau. {h} m',
       night: 'Nacht', src: 'Wellen und Wind: ECMWF Open Data (CC BY 4.0). Gezeiten: von Maxora aus dem Pegel Puerto del Rosario berechnet (IOC · REDMAR).',
-      ago: 'vor {t}', from: 'aus {d}', levelQ: 'Dein Level', go: 'LOS', openWith: 'Navigieren mit', boat: 'Per Boot ab dem Hafen von Corralejo', nowQ: 'Wie es jetzt ist', repBtn: 'Bist du hier? Sag, wie es ist', size: 'Wellen', quality: 'Oberfläche', crowd: 'Leute', sz0: 'Flach', sz1: 'Knie', sz2: 'Hüfte–Brust', sz3: 'Kopf', sz4: 'Über Kopf', q1: 'Verblasen', q2: 'Kabbelig', q3: 'Sauber', c0: 'Leer', c1: 'Ein paar', c2: 'Voll', send: 'Senden', cancel: 'Abbrechen', sent: 'Danke! Alle sehen es 3 Stunden lang', repN: '{n} Meldungen in den letzten 3 Stunden', repN1: '1 Meldung in den letzten 3 Stunden', noRep: 'Noch keine Meldung. Bist du am Strand? Sag es allen.', corrected: 'Bewertung von Surfern im Wasser korrigiert', fav: 'Favorit', favAdd: 'Zu Favoriten hinzugefügt', favDel: 'Aus Favoriten entfernt', windLive: 'Gemessener Wind', gust: 'Böen', sunrise: 'Sonnenaufgang', sunset: 'Sonnenuntergang', errRep: 'Senden fehlgeschlagen', repAlready: 'Du hast diesen Spot schon gemeldet', repMany: 'Zu viele Meldungen, später versuchen', repOff: 'Meldungen noch nicht aktiv', pickAll: 'Wellen und Oberfläche wählen', airport: 'Flughafen'
+      ago: 'vor {t}', from: 'aus {d}', levelQ: 'Dein Level', go: 'Los', openWith: 'Navigieren mit', boat: 'Per Boot ab dem Hafen von Corralejo', nowQ: 'Wie es jetzt ist', repBtn: 'Bist du hier? Sag, wie es ist', size: 'Wellen', quality: 'Oberfläche', crowd: 'Leute', sz0: 'Flach', sz1: 'Knie', sz2: 'Hüfte–Brust', sz3: 'Kopf', sz4: 'Über Kopf', q1: 'Verblasen', q2: 'Kabbelig', q3: 'Sauber', c0: 'Leer', c1: 'Ein paar', c2: 'Voll', send: 'Senden', cancel: 'Abbrechen', sent: 'Danke! Alle sehen es 3 Stunden lang', repN: '{n} Meldungen in den letzten 3 Stunden', repN1: '1 Meldung in den letzten 3 Stunden', noRep: 'Noch keine Meldung. Bist du am Strand? Sag es allen.', corrected: 'Bewertung von Surfern im Wasser korrigiert', fav: 'Favorit', favAdd: 'Zu Favoriten hinzugefügt', favDel: 'Aus Favoriten entfernt', windLive: 'Gemessener Wind', gust: 'Böen', sunrise: 'Sonnenaufgang', sunset: 'Sonnenuntergang', errRep: 'Senden fehlgeschlagen', repAlready: 'Du hast diesen Spot schon gemeldet', repMany: 'Zu viele Meldungen, später versuchen', repOff: 'Meldungen noch nicht aktiv', pickAll: 'Wellen und Oberfläche wählen', airport: 'Flughafen'
     }
   };
   const LOC = { es: 'es-ES', en: 'en-GB', it: 'it-IT', de: 'de-DE' };
@@ -91,11 +91,15 @@
     return s;
   };
   const TZ = 'Atlantic/Canary';
-  const fmt = (o) => new Intl.DateTimeFormat(LOC[lang()], Object.assign({ timeZone: TZ }, o));
+  // i formattatori Intl costano: si creano una volta sola e si riusano
+  const FMT = new Map();
+  const fmt = (o) => { const k = lang() + JSON.stringify(o); let f = FMT.get(k); if (!f) { f = new Intl.DateTimeFormat(LOC[lang()], Object.assign({ timeZone: TZ }, o)); FMT.set(k, f); } return f; };
   const hhmm = (ms) => fmt({ hour: '2-digit', minute: '2-digit', hour12: false }).format(ms);
   const hh = (ms) => fmt({ hour: '2-digit', hour12: false }).format(ms);
-  const dayKey = (ms) => new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(ms);
-  const num = (v, d) => new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }).format(v);
+  const DK = new Intl.DateTimeFormat('en-CA', { timeZone: TZ }), DKC = new Map();
+  const dayKey = (ms) => { const h = Math.floor(ms / 3600000); let k = DKC.get(h); if (!k) { k = DK.format(ms); if (DKC.size > 5000) DKC.clear(); DKC.set(h, k); } return k; };
+  const NF = new Map();
+  const num = (v, d) => { const k = lang() + d; let f = NF.get(k); if (!f) { f = new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }); NF.set(k, f); } return f.format(v); };
   const compass = (deg) => COMPASS[lang()][Math.round(((deg % 360) + 360) % 360 / 45) % 8];
   const angleDiff = (a, b) => { const d = Math.abs(a - b) % 360; return d > 180 ? 360 - d : d; };
   const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
@@ -354,7 +358,7 @@
     const k = dayKey(ms), today = dayKey(Date.now()), tom = dayKey(Date.now() + 86400000);
     if (k === today) return tr('today');
     if (k === tom) return tr('tomorrow');
-    const s = fmt({ weekday: 'short', day: 'numeric' }).format(ms);
+    const s = fmt({ weekday: 'short', day: 'numeric', month: 'short' }).format(ms).replace(/\.(?=\s|$)/g, '').replace(',', '');
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
   function bestAt(k) {
@@ -633,7 +637,7 @@
       tb.appendChild(el('button', { class: 'sf-dayrow' + (d.i === SF.idx ? ' on' : ''), onclick: () => pick(d.i) }, [
         el('span', { class: 'dn', text: dayLabel(d.t) }),
         el('span', { class: 'sf-badge sm', style: '--c:' + color(d.best.r) }, [el('i', { text: '★' }), fmtR(d.best.r)]),
-        el('span', { class: 'dh', text: num(Math.max(0.1, d.hmin), 1) + '–' + num(Math.max(0.1, d.hmax), 1) + ' m' }),
+        el('span', { class: 'dh', text: (num(Math.max(0.1, d.hmin), 1) === num(Math.max(0.1, d.hmax), 1) ? num(Math.max(0.1, d.hmax), 1) : num(Math.max(0.1, d.hmin), 1) + '–' + num(Math.max(0.1, d.hmax), 1)) + ' m' }),
         el('span', { class: 'dw', text: tr('bestAt', { h: hh(SF.times[d.i]) + ':00' }) })
       ]));
     });

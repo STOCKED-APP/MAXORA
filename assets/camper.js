@@ -20,7 +20,7 @@
       rulesSrc: 'Fonti: DGT, Governo delle Canarie (decreto in approvazione), Cabildo. Ottobre 2026.',
       k_dist: 'Distanza', k_price: 'Prezzo', k_serv: 'Servizi', k_hours: 'Orari', k_near: 'Vicino', k_src: 'Fonte', approx: 'posizione indicativa', upd: 'aggiornato {d}',
       s_dump: 'scarico', s_water: 'acqua', s_power: 'corrente', s_shower: 'doccia', s_wc: 'bagno', s_wifi: 'wifi', s_laundry: 'lavatrice', s_overnight: 'si dorme', s_trash: 'rifiuti',
-      free: 'gratis', paid: 'a pagamento', hot: 'acqua calda', cold: 'acqua fredda', customers: 'solo clienti', go: 'VAI', openWith: 'Apri navigazione con',
+      free: 'gratis', paid: 'a pagamento', hot: 'acqua calda', cold: 'acqua fredda', customers: 'solo clienti', go: 'Vai', openWith: 'Apri navigazione con',
       nearWater: 'Acqua/scarico più vicino', nearFuel: 'Benzina più vicina', osm: 'Dati: Maxora, OpenStreetMap (ODbL), Ministerio (prezzi). Le regole cambiano: guarda sempre i cartelli.'
     },
     es: {
@@ -35,7 +35,7 @@
       rulesSrc: 'Fuentes: DGT, Gobierno de Canarias (decreto en tramitación), Cabildo. Octubre 2026.',
       k_dist: 'Distancia', k_price: 'Precio', k_serv: 'Servicios', k_hours: 'Horario', k_near: 'Cerca', k_src: 'Fuente', approx: 'posición aproximada', upd: 'actualizado {d}',
       s_dump: 'vaciado', s_water: 'agua', s_power: 'luz', s_shower: 'ducha', s_wc: 'baño', s_wifi: 'wifi', s_laundry: 'lavadora', s_overnight: 'se pernocta', s_trash: 'basura',
-      free: 'gratis', paid: 'de pago', hot: 'agua caliente', cold: 'agua fría', customers: 'solo clientes', go: 'IR', openWith: 'Abrir navegación con',
+      free: 'gratis', paid: 'de pago', hot: 'agua caliente', cold: 'agua fría', customers: 'solo clientes', go: 'Ir', openWith: 'Abrir navegación con',
       nearWater: 'Agua/vaciado más cerca', nearFuel: 'Gasolinera más cerca', osm: 'Datos: Maxora, OpenStreetMap (ODbL), Ministerio (precios). Las normas cambian: mira siempre las señales.'
     },
     en: {
@@ -50,7 +50,7 @@
       rulesSrc: 'Sources: DGT, Canary Islands Government (decree pending), Cabildo. October 2026.',
       k_dist: 'Distance', k_price: 'Price', k_serv: 'Services', k_hours: 'Hours', k_near: 'Nearby', k_src: 'Source', approx: 'approximate position', upd: 'updated {d}',
       s_dump: 'dump', s_water: 'water', s_power: 'power', s_shower: 'shower', s_wc: 'toilet', s_wifi: 'wifi', s_laundry: 'washing machine', s_overnight: 'overnight ok', s_trash: 'bins',
-      free: 'free', paid: 'paid', hot: 'hot water', cold: 'cold water', customers: 'customers only', go: 'GO', openWith: 'Navigate with',
+      free: 'free', paid: 'paid', hot: 'hot water', cold: 'cold water', customers: 'customers only', go: 'Go', openWith: 'Navigate with',
       nearWater: 'Nearest water/dump', nearFuel: 'Nearest fuel', osm: 'Data: Maxora, OpenStreetMap (ODbL), Spanish Ministry (prices). Rules change: always check the signs.'
     },
     de: {
@@ -65,14 +65,15 @@
       rulesSrc: 'Quellen: DGT, Regierung der Kanaren (Dekret in Arbeit), Cabildo. Oktober 2026.',
       k_dist: 'Entfernung', k_price: 'Preis', k_serv: 'Service', k_hours: 'Zeiten', k_near: 'In der Nähe', k_src: 'Quelle', approx: 'ungefähre Position', upd: 'Stand {d}',
       s_dump: 'Entsorgung', s_water: 'Wasser', s_power: 'Strom', s_shower: 'Dusche', s_wc: 'WC', s_wifi: 'WLAN', s_laundry: 'Waschmaschine', s_overnight: 'Übernachten ok', s_trash: 'Müll',
-      free: 'kostenlos', paid: 'kostenpflichtig', hot: 'Warmwasser', cold: 'Kaltwasser', customers: 'nur Kunden', go: 'LOS', openWith: 'Navigieren mit',
+      free: 'kostenlos', paid: 'kostenpflichtig', hot: 'Warmwasser', cold: 'Kaltwasser', customers: 'nur Kunden', go: 'Los', openWith: 'Navigieren mit',
       nearWater: 'Nächstes Wasser/Entsorgung', nearFuel: 'Nächste Tankstelle', osm: 'Daten: Maxora, OpenStreetMap (ODbL), span. Ministerium (Preise). Regeln ändern sich: Schilder beachten.'
     }
   };
   const LOC = { it: 'it-IT', es: 'es-ES', en: 'en-GB', de: 'de-DE' };
   const lang = () => (TX[M.lang()] ? M.lang() : 'es');
   const tr = (k, v) => { let s = TX[lang()][k] || TX.es[k] || k; if (v) Object.keys(v).forEach((x) => { s = s.replace('{' + x + '}', v[x]); }); return s; };
-  const num = (v, d) => new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }).format(v);
+  const NF = new Map();
+  const num = (v, d) => { const k = lang() + d; let f = NF.get(k); if (!f) { f = new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }); NF.set(k, f); } return f.format(v); };
   const fmtD = (km) => (km < 1 ? Math.max(10, Math.round(km * 100) * 10) + ' m' : num(km, km < 10 ? 1 : 0) + ' km');
 
   const TABS = [['sleep', '🛏'], ['water', '🚰'], ['fuel', '⛽'], ['wash', '🚿']];
@@ -158,7 +159,7 @@
       el('button', { class: 'sheet-handle', id: 'cpToggle', 'aria-expanded': 'true', onclick: toggle }, [el('span', { class: 'grip' }), el('span', { class: 'sh-title', id: 'cpTitle' }), el('span', { class: 'sh-sub', id: 'cpSub' })]),
       el('div', { class: 'sheet-body', id: 'cpBody' }, [el('div', { class: 'cp-tabs', id: 'cpTabs', role: 'tablist' }), el('div', { class: 'adv', id: 'cpRules' }), el('div', { class: 'sf-list', id: 'cpList' }), el('p', { class: 'sf-note', id: 'cpNote' })])
     ]);
-    card = el('section', { id: 'cpCard', class: 'place sf-card sp-card hidden', 'aria-live': 'polite' }, [el('button', { class: 'icon-btn place-close', 'aria-label': '✕', onclick: closeCard, text: '✕' }), el('div', { id: 'cpCardBody' })]);
+    card = el('section', { id: 'cpCard', class: 'place sf-card sp-card hidden', 'aria-live': 'polite' }, [(() => { const b = el('button', { class: 'icon-btn place-close', 'aria-label': 'Cerrar', onclick: closeCard }); b.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>'; return b; })(), el('div', { id: 'cpCardBody' })]);
     document.body.append(sheet, card);
   }
   function toggle() {
@@ -273,7 +274,7 @@
       factRow('📍 ' + tr('k_dist'), fmtD(M.distKm(r, x))),
       factRow('💶 ' + tr('k_price'), x.fuel ? [['g95', 'Gasolina 95'], ['diesel', 'Gasóleo'], ['g98', 'Gasolina 98']].filter(([f]) => x.fuel[f]).map(([f, n]) => (f === k ? '▸ ' : '') + n + ' ' + num(x.fuel[f], 3) + ' €').join(' · ') : (s && s.price) || (t.fee === 'no' ? tr('free') : t.fee === 'yes' ? tr('paid') : null)),
       factRow('🧰 ' + tr('k_serv'), sv.length ? sv.map((v) => tr('s_' + v)).join(' · ') : [t.hot_water === 'yes' ? tr('hot') : t.hot_water === 'no' ? tr('cold') : null, t.access === 'customers' ? tr('customers') : null].filter(Boolean).join(' · ') || null),
-      factRow('🕒 ' + tr('k_hours'), t.opening_hours || null)
+      factRow('🕒 ' + tr('k_hours'), t.opening_hours ? (M.hoursChip ? M.hoursChip(t.opening_hours, false) : t.opening_hours) : null)
     ].filter(Boolean).forEach((n) => facts.appendChild(n));
     // per chi dorme: dove scaricare e fare benzina
     if (x.tab === 'sleep') {

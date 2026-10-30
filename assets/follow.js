@@ -8,28 +8,28 @@
   const { map, sb, el, store, toast } = M;
 
   const TX = {
-    it: { follow: 'SEGUI PERCORSO', done: 'fatti', left: 'mancano', speed: 'km/h', pace: 'min/km', time: 'tempo', eta: 'arrivo', stop: 'Termina', voiceOn: 'Voce attiva', voiceOff: 'Voce spenta',
+    it: { follow: 'Segui percorso', done: 'fatti', left: 'mancano', speed: 'km/h', pace: 'min/km', time: 'tempo', eta: 'arrivo', stop: 'Termina', voiceOn: 'Voce attiva', voiceOff: 'Voce spenta',
       toStart: 'Vai alla partenza: {d}', onRoute: 'Sul percorso', off: 'Fuori percorso di {d}: torna sulla linea', offV: 'Sei fuori percorso. Torna sulla linea.', backV: 'Di nuovo sul percorso.',
       startV: 'Percorso avviato: {n}. {km} chilometri.', windV: 'Vento {v} chilometri orari da {d}.', inD: 'tra {d}', noteV: 'Tra {d}: {t}', hazV: 'Tra {d}: {t} segnalato sul percorso.',
       climbV: 'Tra {d} inizia la salita principale: {km} chilometri al {avg} per cento.', headV: 'Tra {d} tratto controvento per {km} chilometri.', head: 'Tratto controvento per {km} km',
       waterV: 'Ultima acqua per {km} chilometri.', water: 'Ultima acqua per {km} km', turnV: 'Punto di ritorno. Ora si torna indietro.', turn: 'Punto di ritorno', finishV: 'Arrivo. Bravo!',
       climb: 'Salita principale · {km} km al {avg}%', sumT: 'Uscita terminata', dist: 'distanza', moving: 'in movimento', avg: 'media', gpx: 'Scarica GPX (Strava, Garmin)', close: 'Chiudi',
       gpsWait: 'Cerco il GPS…', gpsNo: 'GPS non disponibile: attiva la posizione', keep: 'Tieni lo schermo acceso: il GPS del browser si ferma a schermo spento.', confirmStop: 'Terminare l\'uscita?' },
-    es: { follow: 'SEGUIR RECORRIDO', done: 'hechos', left: 'faltan', speed: 'km/h', pace: 'min/km', time: 'tiempo', eta: 'llegada', stop: 'Terminar', voiceOn: 'Voz activada', voiceOff: 'Voz desactivada',
+    es: { follow: 'Seguir ruta', done: 'hechos', left: 'faltan', speed: 'km/h', pace: 'min/km', time: 'tiempo', eta: 'llegada', stop: 'Terminar', voiceOn: 'Voz activada', voiceOff: 'Voz desactivada',
       toStart: 'Ve a la salida: {d}', onRoute: 'En el recorrido', off: 'Fuera del recorrido {d}: vuelve a la línea', offV: 'Estás fuera del recorrido. Vuelve a la línea.', backV: 'De nuevo en el recorrido.',
       startV: 'Recorrido iniciado: {n}. {km} kilómetros.', windV: 'Viento de {v} kilómetros por hora del {d}.', inD: 'en {d}', noteV: 'En {d}: {t}', hazV: 'En {d}: {t} avisado en el recorrido.',
       climbV: 'En {d} empieza la subida principal: {km} kilómetros al {avg} por ciento.', headV: 'En {d} tramo con viento en contra durante {km} kilómetros.', head: 'Viento en contra durante {km} km',
       waterV: 'Último punto de agua en {km} kilómetros.', water: 'Último agua en {km} km', turnV: 'Punto de vuelta. Ahora se regresa.', turn: 'Punto de vuelta', finishV: 'Llegada. ¡Bien hecho!',
       climb: 'Subida principal · {km} km al {avg}%', sumT: 'Salida terminada', dist: 'distancia', moving: 'en movimiento', avg: 'media', gpx: 'Descargar GPX (Strava, Garmin)', close: 'Cerrar',
       gpsWait: 'Buscando GPS…', gpsNo: 'GPS no disponible: activa la ubicación', keep: 'Mantén la pantalla encendida: el GPS del navegador se para con la pantalla apagada.', confirmStop: '¿Terminar la salida?' },
-    en: { follow: 'FOLLOW ROUTE', done: 'done', left: 'to go', speed: 'km/h', pace: 'min/km', time: 'time', eta: 'arrival', stop: 'Finish', voiceOn: 'Voice on', voiceOff: 'Voice off',
+    en: { follow: 'Follow route', done: 'done', left: 'to go', speed: 'km/h', pace: 'min/km', time: 'time', eta: 'arrival', stop: 'Finish', voiceOn: 'Voice on', voiceOff: 'Voice off',
       toStart: 'Go to the start: {d}', onRoute: 'On route', off: 'Off route by {d}: get back on the line', offV: 'You are off route. Get back on the line.', backV: 'Back on route.',
       startV: 'Route started: {n}. {km} kilometres.', windV: 'Wind {v} kilometres per hour from {d}.', inD: 'in {d}', noteV: 'In {d}: {t}', hazV: 'In {d}: {t} reported on the route.',
       climbV: 'In {d} the main climb starts: {km} kilometres at {avg} percent.', headV: 'In {d} headwind section for {km} kilometres.', head: 'Headwind for {km} km',
       waterV: 'Last water for {km} kilometres.', water: 'Last water for {km} km', turnV: 'Turnaround point. Head back now.', turn: 'Turnaround point', finishV: 'Finish. Well done!',
       climb: 'Main climb · {km} km at {avg}%', sumT: 'Activity finished', dist: 'distance', moving: 'moving', avg: 'average', gpx: 'Download GPX (Strava, Garmin)', close: 'Close',
       gpsWait: 'Looking for GPS…', gpsNo: 'GPS not available: turn on location', keep: 'Keep the screen on: browser GPS stops when the screen is off.', confirmStop: 'Finish the activity?' },
-    de: { follow: 'STRECKE FOLGEN', done: 'gefahren', left: 'übrig', speed: 'km/h', pace: 'min/km', time: 'Zeit', eta: 'Ankunft', stop: 'Beenden', voiceOn: 'Stimme an', voiceOff: 'Stimme aus',
+    de: { follow: 'Strecke folgen', done: 'gefahren', left: 'übrig', speed: 'km/h', pace: 'min/km', time: 'Zeit', eta: 'Ankunft', stop: 'Beenden', voiceOn: 'Stimme an', voiceOff: 'Stimme aus',
       toStart: 'Zum Start: {d}', onRoute: 'Auf der Strecke', off: '{d} neben der Strecke: zurück zur Linie', offV: 'Du bist von der Strecke abgekommen. Zurück zur Linie.', backV: 'Wieder auf der Strecke.',
       startV: 'Strecke gestartet: {n}. {km} Kilometer.', windV: 'Wind {v} Kilometer pro Stunde aus {d}.', inD: 'in {d}', noteV: 'In {d}: {t}', hazV: 'In {d}: {t} auf der Strecke gemeldet.',
       climbV: 'In {d} beginnt der Hauptanstieg: {km} Kilometer mit {avg} Prozent.', headV: 'In {d} Gegenwind auf {km} Kilometern.', head: 'Gegenwind auf {km} km',
@@ -43,7 +43,8 @@
   const KIND_ICON = { info: 'ℹ️', warn: '⚠️', danger: '⛔', closed: '🚧', water: '💧' };
   const lang = () => (TX[M.lang()] ? M.lang() : 'es');
   const tr = (k, v) => { let s = TX[lang()][k] || TX.es[k] || k; if (v) Object.keys(v).forEach((x) => { s = s.replace('{' + x + '}', v[x]); }); return s; };
-  const num = (v, d) => new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }).format(v);
+  const NF = new Map();
+  const num = (v, d) => { const k = lang() + d; let f = NF.get(k); if (!f) { f = new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }); NF.set(k, f); } return f.format(v); };
   const fmtD = (m) => (m < 1000 ? Math.round(m / 10) * 10 + ' m' : num(m / 1000, m < 10000 ? 1 : 0) + ' km');
   const MW = { it: 'metri', es: 'metros', en: 'metres', de: 'Meter' }, KMW = { it: 'chilometri', es: 'kilómetros', en: 'kilometres', de: 'Kilometer' };
   const fmtDv = (m) => (m < 1000 ? (Math.round(m / 50) * 50 || 50) + ' ' + MW[lang()] : num(m / 1000, 1) + ' ' + KMW[lang()]);

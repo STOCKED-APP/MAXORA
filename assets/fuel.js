@@ -22,7 +22,8 @@
   const LOC = { it: 'it-IT', es: 'es-ES', en: 'en-GB', de: 'de-DE' };
   const lang = () => (TX[M.lang()] ? M.lang() : 'es');
   const tr = (k, v) => { let s = TX[lang()][k] || TX.es[k] || k; if (v) Object.keys(v).forEach((x) => { s = s.replace('{' + x + '}', v[x]); }); return s; };
-  const num = (v, d) => new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }).format(v);
+  const NF = new Map();
+  const num = (v, d) => { const k = lang() + d; let f = NF.get(k); if (!f) { f = new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }); NF.set(k, f); } return f.format(v); };
   const DEF = { g95: 6.5, g98: 6.8, diesel: 5.5, glp: 8.5 };
   const car = () => Object.assign({ f: 'g95', c: null }, store.get('car', {}));
   const cons = (c) => c.c || DEF[c.f] || 6.5;
@@ -62,6 +63,16 @@
     const price = st ? st.avg : null;
     const liters = d.km * cons(c) / 100;
     const cost = price ? liters * price : null;
+    // viaggio corto: basta una riga (si apre toccandola)
+    if (!editing && d.km < 5 && !wrap.__full) {
+      wrap.className = 'fuel fuel-mini';
+      const v = (x) => (cost != null ? '≈ ' + num(x, 2) + ' €' : num(x / (price || 1), 1) + ' L');
+      wrap.appendChild(el('button', { class: 'fuel-line', onclick: () => { wrap.__full = true; draw(wrap, F, d, pos, false); } }, [
+        el('span', { text: '⛽ ' + tr('title') }), el('b', { text: v(cost != null ? cost : liters) }), el('span', { class: 'm', text: tr('ret') + ' ' + v(cost != null ? cost * 2 : liters * 2) }), el('i', { text: '›' })
+      ]));
+      return;
+    }
+    wrap.className = 'fuel';
     wrap.append(
       el('div', { class: 'fuel-h' }, [el('span', { text: '⛽ ' + tr('title') }), el('button', { class: 'fuel-e', onclick: () => draw(wrap, F, d, pos, !editing), text: editing ? tr('done') : tr('edit') })]),
       el('div', { class: 'fuel-row' }, [

@@ -25,7 +25,7 @@
       windRoute: 'Il vento sul percorso', headFirst: 'Parti controvento ({d}) e torni con il vento a favore.', tailFirst: 'All\'andata hai il vento a favore: il ritorno sarà controvento ({d}). Tieni energie.',
       reverse: 'Conviene fare il giro al contrario: così il tratto controvento è all\'inizio.', loopOk: 'Il verso del giro va bene: il tratto controvento è all\'inizio.', windCalm: 'Vento debole: nessun problema.',
       crossStrong: 'Attenzione al vento laterale forte nei tratti esposti.',
-      bestFor: 'Le ore migliori per questo percorso', go: 'VAI ALLA PARTENZA', openWith: 'Apri navigazione con', sendApp: 'Apri in un\'altra app', shareGpx: 'Invia il percorso a un\'app', shareGpxSub: 'Strava, Komoot, Garmin Connect… scegli tu dall\'elenco del telefono', dlGpx: 'Scarica il file del percorso', dlGpxSub: 'GPX, per caricarlo a mano', toStartBike: 'Google Maps fino alla partenza', toStartSub: 'indicazioni in bici', toStartWalk: 'indicazioni a piedi', fromYou: 'Da te alla partenza', road: 'su strada', airline: 'in linea d\'aria', bk_station: 'Punto riparazione self-service', bk_shop: 'Negozio bici', bk_rent: 'Noleggio bici', bkRepair: 'ripara', bkRent: 'noleggia', goShort: 'Vai', gpx: 'Scarica GPX (Garmin, Strava, Komoot)',
+      bestFor: 'Le ore migliori per questo percorso', go: 'Vai alla partenza', openWith: 'Apri navigazione con', sendApp: 'Apri in un\'altra app', shareGpx: 'Invia il percorso a un\'app', shareGpxSub: 'Strava, Komoot, Garmin Connect… scegli tu dall\'elenco del telefono', dlGpx: 'Scarica il file del percorso', dlGpxSub: 'GPX, per caricarlo a mano', toStartBike: 'Google Maps fino alla partenza', toStartSub: 'indicazioni in bici', toStartWalk: 'indicazioni a piedi', fromYou: 'Da te alla partenza', byRoad: 'su strada', airline: 'in linea d\'aria', bk_station: 'Punto riparazione self-service', bk_shop: 'Negozio bici', bk_rent: 'Noleggio bici', bkRepair: 'ripara', bkRent: 'noleggia', goShort: 'Vai', gpx: 'Scarica GPX (Garmin, Strava, Komoot)',
       reportShort: 'Segnala', reportBikes: 'Segnala ciclisti qui', reportBikesSub: 'Gli automobilisti ricevono l\'avviso per 30 minuti',
       adviceHot: 'Fa caldo: esci presto o dopo le 18 e porta acqua.', adviceWind: 'Vento forte da {d}: scegli percorsi riparati o parti controvento.',
       adviceGood: 'Condizioni buone per uscire.', adviceNight: 'È buio: luci e giubbino riflettente.', adviceRain: 'Possibile pioggia.',
@@ -48,7 +48,7 @@
       windRoute: 'El viento en la ruta', headFirst: 'Sales con viento en contra ({d}) y vuelves a favor.', tailFirst: 'A la ida el viento va a favor: la vuelta será en contra ({d}). Guarda fuerzas.',
       reverse: 'Mejor hacer la vuelta al revés: así el tramo en contra queda al principio.', loopOk: 'El sentido de la vuelta es bueno: el tramo en contra queda al principio.', windCalm: 'Viento flojo: sin problema.',
       crossStrong: 'Cuidado con el viento lateral fuerte en los tramos expuestos.',
-      bestFor: 'Las mejores horas para esta ruta', go: 'IR A LA SALIDA', openWith: 'Abrir navegación con', sendApp: 'Abrir en otra app', shareGpx: 'Enviar la ruta a una app', shareGpxSub: 'Strava, Komoot, Garmin Connect… elige de la lista del teléfono', dlGpx: 'Descargar el archivo de la ruta', dlGpxSub: 'GPX, para subirlo a mano', toStartBike: 'Google Maps hasta la salida', toStartSub: 'indicaciones en bici', toStartWalk: 'indicaciones a pie', fromYou: 'De ti a la salida', road: 'por carretera', airline: 'en línea recta', bk_station: 'Punto de reparación autoservicio', bk_shop: 'Tienda de bicis', bk_rent: 'Alquiler de bicis', bkRepair: 'repara', bkRent: 'alquila', goShort: 'Ir', gpx: 'Descargar GPX (Garmin, Strava, Komoot)',
+      bestFor: 'Las mejores horas para esta ruta', go: 'Ir a la salida', openWith: 'Abrir navegación con', sendApp: 'Abrir en otra app', shareGpx: 'Enviar la ruta a una app', shareGpxSub: 'Strava, Komoot, Garmin Connect… elige de la lista del teléfono', dlGpx: 'Descargar el archivo de la ruta', dlGpxSub: 'GPX, para subirlo a mano', toStartBike: 'Google Maps hasta la salida', toStartSub: 'indicaciones en bici', toStartWalk: 'indicaciones a pie', fromYou: 'De ti a la salida', byRoad: 'por carretera', airline: 'en línea recta', bk_station: 'Punto de reparación autoservicio', bk_shop: 'Tienda de bicis', bk_rent: 'Alquiler de bicis', bkRepair: 'repara', bkRent: 'alquila', goShort: 'Ir', gpx: 'Descargar GPX (Garmin, Strava, Komoot)',
       reportShort: 'Avisar', reportBikes: 'Avisar ciclistas aquí', reportBikesSub: 'Los conductores reciben el aviso durante 30 minutos',
       adviceHot: 'Hace calor: sal temprano o después de las 18 y lleva agua.', adviceWind: 'Viento fuerte del {d}: elige rutas resguardadas o sal en contra.',
       adviceGood: 'Buenas condiciones para salir.', adviceNight: 'Es de noche: luces y chaleco reflectante.', adviceRain: 'Posible lluvia.',
@@ -71,7 +71,7 @@
       windRoute: 'Wind on the route', headFirst: 'Headwind on the way out ({d}), tailwind home.', tailFirst: 'Tailwind on the way out: the return will be into the wind ({d}). Save energy.',
       reverse: 'Ride the loop the other way: the headwind section comes first.', loopOk: 'Loop direction is good: the headwind section comes first.', windCalm: 'Light wind: no problem.',
       crossStrong: 'Watch out for strong crosswinds on exposed sections.',
-      bestFor: 'Best hours for this route', go: 'GO TO THE START', openWith: 'Navigate with', sendApp: 'Open in another app', shareGpx: 'Send the route to an app', shareGpxSub: 'Strava, Komoot, Garmin Connect… pick from your phone\'s list', dlGpx: 'Download the route file', dlGpxSub: 'GPX, to upload manually', toStartBike: 'Google Maps to the start', toStartSub: 'cycling directions', toStartWalk: 'walking directions', fromYou: 'From you to the start', road: 'by road', airline: 'straight line', bk_station: 'Self-service repair point', bk_shop: 'Bike shop', bk_rent: 'Bike rental', bkRepair: 'repairs', bkRent: 'rentals', goShort: 'Go', gpx: 'Download GPX (Garmin, Strava, Komoot)',
+      bestFor: 'Best hours for this route', go: 'Go to the start', openWith: 'Navigate with', sendApp: 'Open in another app', shareGpx: 'Send the route to an app', shareGpxSub: 'Strava, Komoot, Garmin Connect… pick from your phone\'s list', dlGpx: 'Download the route file', dlGpxSub: 'GPX, to upload manually', toStartBike: 'Google Maps to the start', toStartSub: 'cycling directions', toStartWalk: 'walking directions', fromYou: 'From you to the start', byRoad: 'by road', airline: 'straight line', bk_station: 'Self-service repair point', bk_shop: 'Bike shop', bk_rent: 'Bike rental', bkRepair: 'repairs', bkRent: 'rentals', goShort: 'Go', gpx: 'Download GPX (Garmin, Strava, Komoot)',
       reportShort: 'Report', reportBikes: 'Report cyclists here', reportBikesSub: 'Drivers get the alert for 30 minutes',
       adviceHot: 'It\'s hot: go early or after 6 pm and carry water.', adviceWind: 'Strong wind from {d}: pick sheltered routes or start into the wind.',
       adviceGood: 'Good conditions to go out.', adviceNight: 'It\'s dark: lights and a reflective vest.', adviceRain: 'Rain possible.',
@@ -94,7 +94,7 @@
       windRoute: 'Wind auf der Strecke', headFirst: 'Hinweg mit Gegenwind ({d}), zurück mit Rückenwind.', tailFirst: 'Hinweg mit Rückenwind: zurück geht es gegen den Wind ({d}). Kräfte sparen.',
       reverse: 'Fahr die Runde andersherum: dann kommt der Gegenwind zuerst.', loopOk: 'Die Richtung passt: der Gegenwind kommt zuerst.', windCalm: 'Schwacher Wind: kein Problem.',
       crossStrong: 'Vorsicht vor starkem Seitenwind auf offenen Abschnitten.',
-      bestFor: 'Beste Stunden für diese Strecke', go: 'ZUM START', openWith: 'Navigieren mit', sendApp: 'In anderer App öffnen', shareGpx: 'Strecke an eine App senden', shareGpxSub: 'Strava, Komoot, Garmin Connect… aus der Liste des Telefons wählen', dlGpx: 'Streckendatei herunterladen', dlGpxSub: 'GPX, zum manuellen Hochladen', toStartBike: 'Google Maps zum Start', toStartSub: 'Radroute', toStartWalk: 'Fußweg', fromYou: 'Von dir zum Start', road: 'auf der Straße', airline: 'Luftlinie', bk_station: 'Self-Service-Reparaturstation', bk_shop: 'Fahrradladen', bk_rent: 'Fahrradverleih', bkRepair: 'Reparatur', bkRent: 'Verleih', goShort: 'Los', gpx: 'GPX herunterladen (Garmin, Strava, Komoot)',
+      bestFor: 'Beste Stunden für diese Strecke', go: 'Zum Start', openWith: 'Navigieren mit', sendApp: 'In anderer App öffnen', shareGpx: 'Strecke an eine App senden', shareGpxSub: 'Strava, Komoot, Garmin Connect… aus der Liste des Telefons wählen', dlGpx: 'Streckendatei herunterladen', dlGpxSub: 'GPX, zum manuellen Hochladen', toStartBike: 'Google Maps zum Start', toStartSub: 'Radroute', toStartWalk: 'Fußweg', fromYou: 'Von dir zum Start', byRoad: 'auf der Straße', airline: 'Luftlinie', bk_station: 'Self-Service-Reparaturstation', bk_shop: 'Fahrradladen', bk_rent: 'Fahrradverleih', bkRepair: 'Reparatur', bkRent: 'Verleih', goShort: 'Los', gpx: 'GPX herunterladen (Garmin, Strava, Komoot)',
       reportShort: 'Melden', reportBikes: 'Radfahrer hier melden', reportBikesSub: 'Autofahrer sehen die Meldung 30 Minuten lang',
       adviceHot: 'Es ist heiß: früh oder nach 18 Uhr los und Wasser mitnehmen.', adviceWind: 'Starker Wind aus {d}: geschützte Strecken wählen oder gegen den Wind starten.',
       adviceGood: 'Gute Bedingungen zum Rausgehen.', adviceNight: 'Es ist dunkel: Licht und Warnweste.', adviceRain: 'Regen möglich.',
@@ -115,11 +115,15 @@
     return s;
   };
   const TZ = 'Atlantic/Canary';
-  const fmt = (o) => new Intl.DateTimeFormat(LOC[lang()], Object.assign({ timeZone: TZ }, o));
+  // i formattatori Intl costano: si creano una volta sola e si riusano
+  const FMT = new Map();
+  const fmt = (o) => { const k = lang() + JSON.stringify(o); let f = FMT.get(k); if (!f) { f = new Intl.DateTimeFormat(LOC[lang()], Object.assign({ timeZone: TZ }, o)); FMT.set(k, f); } return f; };
   const hhmm = (ms) => fmt({ hour: '2-digit', minute: '2-digit', hour12: false }).format(ms);
   const hh = (ms) => fmt({ hour: '2-digit', hour12: false }).format(ms);
-  const dayKey = (ms) => new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(ms);
-  const num = (v, d) => new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }).format(v);
+  const DK = new Intl.DateTimeFormat('en-CA', { timeZone: TZ }), DKC = new Map();
+  const dayKey = (ms) => { const h = Math.floor(ms / 3600000); let k = DKC.get(h); if (!k) { k = DK.format(ms); if (DKC.size > 5000) DKC.clear(); DKC.set(h, k); } return k; };
+  const NF = new Map();
+  const num = (v, d) => { const k = lang() + d; let f = NF.get(k); if (!f) { f = new Intl.NumberFormat(LOC[lang()], { maximumFractionDigits: d, minimumFractionDigits: d }); NF.set(k, f); } return f.format(v); };
   const compass = (deg) => COMPASS[lang()][Math.round(((deg % 360) + 360) % 360 / 45) % 8];
   const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
   const rad = (d) => d * Math.PI / 180;
@@ -165,6 +169,10 @@
   async function load(force) {
     if (!force && SP.wx && Date.now() - SP.loadedAt < 20 * 60000) return;
     const [rt, wx, pois] = await Promise.all([getJSON('data/routes.json'), getJSON('data/weather.json'), getJSON('data/pois.json').catch(() => null)]);
+    // nomi più puliti: niente codici tra [ ], "*" e doppioni di codice in fondo; trattini lunghi tra i luoghi
+    const clean = (n) => String(n || '').replace(/\[[^\]]*\]\s*/g, '').replace(/\s*\*\s*/g, ' – ').replace(/\s*·\s*CIMA[\w\s.-]*$/i, '')
+      .replace(/(\S)\s?-\s?(?=\S)(?![A-Z]{2}\b)/g, (m, a) => (/[A-Z]$/.test(a) ? m : a + ' – ')).replace(/\s{2,}/g, ' ').trim();
+    rt.routes.forEach((r) => { Object.keys(r.name || {}).forEach((k) => { r.name[k] = clean(r.name[k]); }); });
     SP.routes = rt.routes; SP.src = rt.source;
     SP.wx = wx; SP.times = wx.times.map((s) => Date.parse(s.replace('Z', ':00Z')));
     SP.pois = pois;
@@ -270,7 +278,8 @@
     const box = el('div', { class: 'bk-pop' }, [
       el('div', { class: 'k', text: BK_ICON[k] + ' ' + tr('bk_' + k) }),
       el('b', { text: b.name && b.name !== 'Bike' ? b.name : tr('bk_' + k) }),
-      el('div', { class: 's', text: [t['service:bicycle:repair'] === 'yes' ? tr('bkRepair') : null, t['service:bicycle:rental'] === 'yes' || k === 'rent' ? tr('bkRent') : null, t.opening_hours || null].filter(Boolean).join(' · ') }),
+      el('div', { class: 's', text: [t['service:bicycle:repair'] === 'yes' ? tr('bkRepair') : null, t['service:bicycle:rental'] === 'yes' || k === 'rent' ? tr('bkRent') : null].filter(Boolean).join(' · ') }),
+      t.opening_hours ? el('div', { class: 's' }, [M.hoursChip ? M.hoursChip(t.opening_hours, false) : t.opening_hours]) : null,
       el('div', { class: 'acts' }, [
         t.phone ? el('a', { href: 'tel:' + String(t.phone).replace(/\s/g, ''), text: '📞' }) : null,
         t.website ? el('a', { href: t.website, target: '_blank', rel: 'noopener', text: '🌐' }) : null,
@@ -527,7 +536,7 @@
     const p = distCache.get(key) || fetch('https://routing.openstreetmap.de/routed-' + (r.sport === 'bike' ? 'bike' : 'foot') + '/route/v1/driving/' + me.lng + ',' + me.lat + ';' + start.lng + ',' + start.lat + '?overview=false')
       .then((x) => x.json()).then((j) => (j.routes && j.routes[0] ? j.routes[0] : null)).catch(() => null);
     distCache.set(key, p);
-    p.then((rt) => { if (rt && line.isConnected) line.textContent = '📍 ' + tr('fromYou') + ': ' + fmtKm(rt.distance / 1000) + ' ' + tr('road') + ' · ' + Math.max(1, Math.round(rt.duration / 60)) + ' min'; });
+    p.then((rt) => { if (rt && line.isConnected) line.textContent = '📍 ' + tr('fromYou') + ': ' + fmtKm(rt.distance / 1000) + ' ' + tr('byRoad') + ' · ' + Math.max(1, Math.round(rt.duration / 60)) + ' min'; });
   }
 
   function openCard(id, fly) {
