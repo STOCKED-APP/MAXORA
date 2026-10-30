@@ -977,7 +977,7 @@ body.ui-list:has(#sfCard:not(.hidden)) .ui-back, body.ui-list:has(#spCard:not(.h
 .tg .sw.police { background: transparent; border: 2.5px dashed #1f6f8b; border-radius: 50%; }
 
 /* v0.17 — mare animato (surf) e barra orari più pulita */
-.wv-canvas { position: absolute; inset: 0; pointer-events: none; display: none; z-index: 1; }
+.wv-canvas { position: absolute; inset: 0; pointer-events: none; display: none; }
 .wv-legend { display: none; }
 .ui-top .wv-legend { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 14px; background: color-mix(in srgb, var(--sheet) 88%, transparent); backdrop-filter: blur(8px); box-shadow: var(--shadow); align-self: flex-start; max-width: 100%; }
 .wv-legend .t { font-size: 11px; font-weight: 800; color: var(--muted); white-space: nowrap; }

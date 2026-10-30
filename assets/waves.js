@@ -92,52 +92,58 @@
   // Animazione
   // ------------------------------------------------------------------
   const cv = el('canvas', { class: 'wv-canvas' });
-  map.getCanvasContainer().appendChild(cv);
+  { const mc = map.getCanvas(); mc.parentNode.insertBefore(cv, mc.nextSibling); }   // subito sopra la mappa, sotto pin e fumetti
   const ctx = cv.getContext('2d');
-  let parts = [], raf = 0, on = false, moving = false, dpr = 1;
+  let raf = 0, on = false, moving = false, dpr = 1;
   function resize() {
     const c = map.getCanvas();
     dpr = Math.min(2, window.devicePixelRatio || 1);
     cv.width = c.clientWidth * dpr; cv.height = c.clientHeight * dpr;
     cv.style.width = c.clientWidth + 'px'; cv.style.height = c.clientHeight + 'px';
   }
-  function spawn(p) {
+  // Linee di fronte d'onda: una griglia di celle; in ogni cella si disegna il fronte che la attraversa.
+  // Celle vicine con la stessa direzione formano linee continue e ordinate che avanzano verso costa.
+  const CELL = 58;
+  let cells = [], phase = 0, last = 0;
+  function buildCells() {
+    cells = [];
     const W = cv.width / dpr, H = cv.height / dpr;
-    for (let t = 0; t < 12; t++) {
-      const x = Math.random() * W, y = Math.random() * H;
+    for (let y = CELL / 2; y < H; y += CELL) for (let x = CELL / 2; x < W; x += CELL) {
       const ll = map.unproject([x, y]);
       if (!isSea(ll.lng, ll.lat)) continue;
-      const s = sample(ll.lng, ll.lat);
-      if (!s) continue;
-      const a = (s.dir + 180) * Math.PI / 180;           // le onde vanno verso dir + 180
-      const sp = 0.12 + s.tp * 0.022;
-      Object.assign(p, { x, y, dx: Math.sin(a) * sp, dy: -Math.cos(a) * sp, age: 0, max: 90 + Math.random() * 90, col: colorOf(s.hs), w: 1.4 + Math.min(1.8, s.hs * 0.6), len: 7 + Math.min(16, s.hs * 6) + Math.random() * 4 });
-      return true;
+      const sm = sample(ll.lng, ll.lat);
+      if (!sm) continue;
+      const a = (sm.dir + 180) * Math.PI / 180;            // verso dove vanno le onde
+      cells.push({ x, y, dx: Math.sin(a), dy: -Math.cos(a), hs: sm.hs, tp: sm.tp, col: colorOf(sm.hs), k: 0.28 + Math.random() * 0.16 });   // lunghezze diverse: creste spezzate, naturali
     }
-    p.age = p.max = 0;
-    return false;
   }
-  // ogni particella è una cresta d'onda: un arco perpendicolare alla direzione, che avanza e svanisce
-  function frame() {
+  function segSea(x1, y1, x2, y2) {
+    const a = map.unproject([x1, y1]), b = map.unproject([x2, y2]);
+    return isSea(a.lng, a.lat) && isSea(b.lng, b.lat);
+  }
+  function frame(t) {
     raf = 0;
     if (!on || moving || document.hidden) return;
+    const dt = last ? Math.min(50, t - last) : 16; last = t;
+    phase += dt * 0.012;                                    // avanzamento (px)
     ctx.clearRect(0, 0, cv.width, cv.height);
     ctx.lineCap = 'round';
-    const light = document.documentElement.dataset.theme !== 'dark' && document.body.dataset.mapMode !== 'sat';
-    for (const p of parts) {
-      if (p.age >= p.max) { spawn(p); continue; }
-      p.x += p.dx; p.y += p.dy; p.age++;
-      if (p.age % 10 === 0) { const ll = map.unproject([p.x, p.y]); if (!isSea(ll.lng, ll.lat)) { p.age = p.max; continue; } }
-      const life = p.age / p.max;
-      const fade = Math.sin(Math.PI * life);
-      const sp = Math.hypot(p.dx, p.dy) || 1, nx = p.dx / sp, ny = p.dy / sp;   // avanti
-      const half = p.len / 2, px = -ny * half, py = nx * half;                     // lungo la cresta
-      const bow = p.len * 0.22;
-      const path = () => { ctx.beginPath(); ctx.moveTo((p.x - px - nx * bow * 0.3) * dpr, (p.y - py - ny * bow * 0.3) * dpr); ctx.quadraticCurveTo((p.x + nx * bow) * dpr, (p.y + ny * bow) * dpr, (p.x + px - nx * bow * 0.3) * dpr, (p.y + py - ny * bow * 0.3) * dpr); };
-      ctx.globalAlpha = fade;
-      if (light) { ctx.strokeStyle = 'rgba(10,40,80,0.45)'; ctx.lineWidth = (p.w + 1.6) * dpr; path(); ctx.stroke(); }   // bordo scuro: si vede anche sul mare chiaro
-      ctx.strokeStyle = p.col; ctx.lineWidth = p.w * dpr;
-      path(); ctx.stroke();
+    const light = document.documentElement.dataset.theme !== 'dark';
+    for (const c of cells) {
+      const sp = CELL;                                      // distanza tra due fronti
+      const speed = 0.6 + c.tp * 0.08;
+      const proj = c.x * c.dx + c.y * c.dy;
+      let o = ((phase * speed - proj) % sp + sp) % sp; if (o > sp / 2) o -= sp;
+      const qx = c.x + c.dx * o, qy = c.y + c.dy * o;
+      const L = CELL * c.k, tx = -c.dy * L, ty = c.dx * L;
+      if (!c.ok) { c.ok = segSea(c.x - tx, c.y - ty, c.x + tx, c.y + ty) ? 1 : -1; }
+      if (c.ok < 0) continue;
+      const fade = 1 - Math.abs(o) / (sp / 2) * 0.55;      // più nitida al centro della cella
+      ctx.globalAlpha = 0.85 * fade;
+      const w = Math.min(5, 1.6 + c.hs * 1.1) * dpr;
+      if (light) { ctx.strokeStyle = 'rgba(8,35,70,0.5)'; ctx.lineWidth = w + 2 * dpr; ctx.beginPath(); ctx.moveTo((qx - tx) * dpr, (qy - ty) * dpr); ctx.lineTo((qx + tx) * dpr, (qy + ty) * dpr); ctx.stroke(); }
+      ctx.strokeStyle = c.col; ctx.lineWidth = w;
+      ctx.beginPath(); ctx.moveTo((qx - tx) * dpr, (qy - ty) * dpr); ctx.lineTo((qx + tx) * dpr, (qy + ty) * dpr); ctx.stroke();
     }
     ctx.globalAlpha = 1;
     raf = requestAnimationFrame(frame);
@@ -145,8 +151,8 @@
   function restart() {
     ctx.clearRect(0, 0, cv.width, cv.height);
     if (!on || !field.length) return;
-    const n = Math.round(Math.min(500, (cv.width / dpr) * (cv.height / dpr) / 900));
-    parts = Array.from({ length: n }, () => { const p = {}; spawn(p); p.age = Math.random() * (p.max || 1); return p; });
+    buildCells();
+    last = 0;
     if (!raf) raf = requestAnimationFrame(frame);
   }
   async function set(v) {
