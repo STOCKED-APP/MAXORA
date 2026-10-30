@@ -495,7 +495,7 @@
     if (SF.open) drawCard();
     pad();
   }
-  function pick(i) { SF.idx = i; SF.picked = true; drawAll(); }
+  function pick(i) { SF.idx = i; SF.picked = true; drawAll(); if (window.MAXORA_WAVES) window.MAXORA_WAVES.update(); }
 
   // ------------------------------------------------------------------
   // Scheda spot
@@ -699,7 +699,7 @@
     document.body.classList.toggle('surf-on', on);
     if (window.MAXORA_MODES) window.MAXORA_MODES.sync();
     $('sfSheet').classList.toggle('hidden', !on);
-    if (!on) { closeCard(); drawPins(); M.padMap(); if (!quiet && !noToast) M.toast(tr('off')); return; }
+    if (!on) { closeCard(); drawPins(); M.padMap(); if (window.MAXORA_WAVES) window.MAXORA_WAVES.set(false); if (!quiet && !noToast) M.toast(tr('off')); return; }
     M.closePlace(); M.exitResults(); if (!quiet) M.unfollow();
     if (!quiet && !noToast) M.toast(tr('on'));
     drawHead(); pad();
@@ -707,6 +707,7 @@
       await load();
       await Promise.race([loadReports(), new Promise((r) => setTimeout(r, 2500))]);
       drawAll();
+      if (window.MAXORA_WAVES) window.MAXORA_WAVES.set(true);
       if (!quiet) map.fitBounds([[-14.52, 28.04], [-13.80, 28.78]], { padding: { top: 16, bottom: 16, left: 24, right: 64 }, duration: 800 });
       loadLive(); setTimeout(loadLive, 5000);
     } catch (e) {
@@ -736,9 +737,9 @@
   if (window.MAXORA_UI) window.MAXORA_UI.register('surf', {
     refresh: () => drawAll(),
     sheet: 'sfSheet',
-    top: () => [$('sfAdvice'), $('sfTide')],
+    top: () => [$('sfAdvice'), $('sfTide'), $('wvLegend')],
     time: () => $('sfTimes'),
     rail: () => [{ icon: '🏄', short: tr('lvl' + SF.level).slice(0, 5) + '.', label: tr('levelQ'), on: true, choices: [1, 2, 3].map((l) => ({ label: tr('lvl' + l), on: SF.level === l, onclick: () => { SF.level = l; store.set('surfLevel', l); drawAll(); } })) }]
   });
-  window.MAXORA_SURF = { rate: (id, k, l) => rate(SF.byId.get(id), k, l || SF.level), state: SF, tideAt, setOn, isOn: () => SF.on };
+  window.MAXORA_SURF = { rate: (id, k, l) => rate(SF.byId.get(id), k, l || SF.level), state: SF, tideAt, setOn, isOn: () => SF.on, openCard: (id) => openCard(id, true) };
 })();

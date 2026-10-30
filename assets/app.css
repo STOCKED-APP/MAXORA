@@ -975,3 +975,23 @@ body.ui-list:has(#sfCard:not(.hidden)) .ui-back, body.ui-list:has(#spCard:not(.h
 .bottom-row .report-pill { font-size: 15px; white-space: nowrap; padding: 0 14px; gap: 8px; }
 .disc-btn { padding: 0 14px; }
 .tg .sw.police { background: transparent; border: 2.5px dashed #1f6f8b; border-radius: 50%; }
+
+/* v0.17 — mare animato (surf) e barra orari più pulita */
+.wv-canvas { position: absolute; inset: 0; pointer-events: none; display: none; z-index: 1; }
+.wv-legend { display: none; }
+.ui-top .wv-legend { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 14px; background: color-mix(in srgb, var(--sheet) 88%, transparent); backdrop-filter: blur(8px); box-shadow: var(--shadow); align-self: flex-start; max-width: 100%; }
+.wv-legend .t { font-size: 11px; font-weight: 800; color: var(--muted); white-space: nowrap; }
+.wv-legend .bar { display: flex; border-radius: 6px; overflow: hidden; }
+.wv-legend .bar i { font-style: normal; font-size: 10px; font-weight: 800; color: #0d1013; padding: 2px 5px; min-width: 18px; text-align: center; }
+.wv-popup .maplibregl-popup-content { padding: 10px 12px; border-radius: 16px; background: var(--sheet); color: var(--text); box-shadow: var(--shadow); }
+.wv-popup .maplibregl-popup-tip { border-top-color: var(--sheet) !important; border-bottom-color: var(--sheet) !important; }
+.wv-pop .k { font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.wv-pop .big { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 800; margin: 2px 0; }
+.wv-pop .dot { width: 14px; height: 14px; border-radius: 50%; }
+.wv-pop .s { font-size: 13px; color: var(--muted); font-weight: 600; }
+.wv-pop .go { display: block; width: 100%; margin-top: 8px; padding: 8px 10px; border-radius: 12px; border: 0; background: var(--card); color: var(--text); font: inherit; font-size: 13px; text-align: left; cursor: pointer; }
+.wv-pop .n { font-size: 10px; color: var(--muted); margin-top: 6px; }
+.ui-time { border-top: 0; border-radius: 16px; }
+.ui-time .sf-times { padding: 4px 10px 2px; }
+.ui-time .sf-slot { min-height: 40px; }
+.uc { border-width: 1.5px; }
