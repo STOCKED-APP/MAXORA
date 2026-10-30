@@ -1,35 +1,21 @@
-const { chromium } = require('playwright');
+const { webkit, chromium, devices } = require('playwright');
 const fs = require('fs');
 const out = [];
 const log = (s) => { out.push(s); fs.writeFileSync('shots/out.txt', out.join('\n')); };
-const URL = 'https://stocked-app.github.io/MAXORA/';
-const tips = () => { ['tourDone', 'tips2_surf', 'tips2_bike', 'tips2_run', 'tips2_camper', 'tips2_card_surf', 'tips2_card_sport'].forEach((k) => localStorage.setItem('maxora_' + k, 'true')); };
 (async () => {
-  const b = await chromium.launch();
-  async function run(tag, opts, steps) {
-    const ctx = await b.newContext(Object.assign({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, locale: 'it-IT', hasTouch: true, isMobile: true }, opts.ctx || {}));
-    await ctx.addInitScript(opts.init || tips, opts.arg);
+  for (const [name, bt] of [['wk', webkit], ['cr', chromium]]) {
+    const b = await bt.launch();
+    const ctx = await b.newContext(Object.assign({}, devices['iPhone 13'], { locale: 'it-IT' }));
     const p = await ctx.newPage();
-    const errs = [];
-    p.on('pageerror', (e) => errs.push(e.message));
-    p.on('console', (m) => { if (m.type() === 'error' && !/INTERNET_DISCONNECTED|WebSocket/.test(m.text())) errs.push(m.text().slice(0, 140)); });
-    await p.goto(URL + '?v=' + Date.now(), { waitUntil: 'load' });
-    await p.waitForTimeout(6000);
-    let i = 0;
-    for (const [name, fn, wait] of steps) {
-      try { if (fn) await fn(p, ctx); await p.waitForTimeout(wait || 2500); await p.screenshot({ path: `shots/${tag}${++i}-${name}.png` }); } catch (e) { log(tag + ' ' + name + ' ERR ' + e.message.slice(0, 120)); }
+    p.on('pageerror', (e) => log(name + ' PAGE ' + e.message));
+    p.on('console', (m) => { if (m.type() === 'error') log(name + ' ' + m.text().slice(0, 160)); });
+    const t0 = Date.now();
+    p.goto('https://stocked-app.github.io/MAXORA/?v=' + Date.now()).catch(() => {});
+    for (const ms of [800, 1600, 2400, 3000]) {
+      await p.waitForTimeout(Math.max(0, ms - (Date.now() - t0)));
+      await p.screenshot({ path: 'shots/' + name + '-' + ms + '.png' }).catch((e) => log('shot ' + e.message));
     }
-    log(tag + ' errori: ' + (errs.join(' | ') || 'nessuno'));
-    await ctx.close();
+    log(name + ' info ' + JSON.stringify(await p.evaluate(() => { const a = document.querySelector('.sp-art'); const l = document.querySelector('.sp-v1'); const sv = l && l.querySelector('svg'); return { art: a && a.getBoundingClientRect().toJSON(), v1: l && l.getBoundingClientRect().toJSON(), svg: sv && sv.getBoundingClientRect().toJSON(), css: !!document.styleSheets.length, ver: window.MAXORA_CONFIG && window.MAXORA_CONFIG.version }; }).catch((e) => e.message)));
+    await b.close();
   }
-  const ev = (f, a) => (p) => p.evaluate(f, a);
-  await run('o', { ctx: { geolocation: { latitude: 28.7205, longitude: -13.8695 }, permissions: ['geolocation'] } }, [
-    ['online', async (p) => { await p.reload({ waitUntil: 'load' }); }, 8000],
-    ['offline-reload', async (p, ctx) => { await ctx.setOffline(true); await p.reload({ waitUntil: 'load' }).catch(() => {}); }, 8000],
-    ['offline-surf', ev(() => window.MAXORA_MODES.choose('surf')), 5000],
-    ['offline-place', ev(() => { window.MAXORA_MODES.choose('road'); document.getElementById('discoverBtn').click(); }), 3000]
-  ]);
-  await run('g', { ctx: { locale: 'de-DE', geolocation: { latitude: 28.7205, longitude: -13.8695 }, permissions: ['geolocation'] } }, [['run', ev(() => window.MAXORA_MODES.choose('run')), 6000]]);
-  await run('n', { ctx: {} }, [['home']]);
-  await b.close();
-})().catch((e) => { log('ERRORE: ' + e.message); process.exit(0); });
+})().catch((e) => { log('ERRORE ' + e.message); });
