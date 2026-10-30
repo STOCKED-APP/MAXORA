@@ -123,6 +123,7 @@
     if (!on || moving || document.hidden) return;
     ctx.clearRect(0, 0, cv.width, cv.height);
     ctx.lineCap = 'round';
+    const light = document.documentElement.dataset.theme !== 'dark' && document.body.dataset.mapMode !== 'sat';
     for (const p of parts) {
       if (p.age >= p.max) { spawn(p); continue; }
       p.x += p.dx; p.y += p.dy; p.age++;
@@ -132,12 +133,11 @@
       const sp = Math.hypot(p.dx, p.dy) || 1, nx = p.dx / sp, ny = p.dy / sp;   // avanti
       const half = p.len / 2, px = -ny * half, py = nx * half;                     // lungo la cresta
       const bow = p.len * 0.22;
-      ctx.globalAlpha = 0.9 * fade;
+      const path = () => { ctx.beginPath(); ctx.moveTo((p.x - px - nx * bow * 0.3) * dpr, (p.y - py - ny * bow * 0.3) * dpr); ctx.quadraticCurveTo((p.x + nx * bow) * dpr, (p.y + ny * bow) * dpr, (p.x + px - nx * bow * 0.3) * dpr, (p.y + py - ny * bow * 0.3) * dpr); };
+      ctx.globalAlpha = fade;
+      if (light) { ctx.strokeStyle = 'rgba(10,40,80,0.45)'; ctx.lineWidth = (p.w + 1.6) * dpr; path(); ctx.stroke(); }   // bordo scuro: si vede anche sul mare chiaro
       ctx.strokeStyle = p.col; ctx.lineWidth = p.w * dpr;
-      ctx.beginPath();
-      ctx.moveTo((p.x - px - nx * bow * 0.3) * dpr, (p.y - py - ny * bow * 0.3) * dpr);
-      ctx.quadraticCurveTo((p.x + nx * bow) * dpr, (p.y + ny * bow) * dpr, (p.x + px - nx * bow * 0.3) * dpr, (p.y + py - ny * bow * 0.3) * dpr);
-      ctx.stroke();
+      path(); ctx.stroke();
     }
     ctx.globalAlpha = 1;
     raf = requestAnimationFrame(frame);
