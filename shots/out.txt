@@ -2,4 +2,6 @@ corr-light-15 surf: object
 corr-light-15 versione: 0.18.0
 corr-dark-15 surf: object
 corr-dark-15 versione: 0.18.0
+corr-light-14 surf: object
+corr-light-14 versione: 0.18.0
 errori: nessuno
