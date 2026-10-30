@@ -1263,6 +1263,93 @@
     }
   };
 
+  // ------------------------------------------------------------------
+  // RADARES: los de OpenStreetMap llegan solos cada noche; aquí se corrigen, ocultan o añaden
+  // ------------------------------------------------------------------
+  const RD_KINDS = [['fixed', '📷 Radar fijo'], ['section_start', '🔵 Inicio tramo'], ['section_end', '🔵 Fin tramo'], ['traffic_light', '🚦 Cámara semáforo']];
+  function radarEditor(item, onDone) {
+    const d = item || { kind: 'fixed', active: true };
+    const f = {
+      kind: el('select', {}, RD_KINDS.map(([a, b]) => el('option', { value: a, text: b }))),
+      maxspeed: el('input', { type: 'number', min: '10', max: '130', step: '10', value: d.maxspeed ?? '' }),
+      road: el('input', { value: d.road || '', placeholder: 'ej. FV-2 km 12, sentido Corralejo' }),
+      note: el('input', { value: d.note || '', maxlength: '200', placeholder: 'Nota opcional' }),
+      lat: el('input', { type: 'number', step: 'any', value: d.lat ?? '' }), lng: el('input', { type: 'number', step: 'any', value: d.lng ?? '' }),
+      active: el('input', { type: 'checkbox' })
+    };
+    f.kind.value = d.kind; f.active.checked = d.active !== false;
+    const mapBox = el('div', { class: 'amap small' });
+    const save = el('button', { class: 'btn primary', text: item && item.id ? 'Guardar cambios' : 'Crear radar' });
+    const panel = el('div', { class: 'panel' }, [
+      el('div', { class: 'row' }, [el('h2', { text: item && item.id ? 'Editar radar' : d.osm_id ? 'Corregir radar de OpenStreetMap' : 'Nuevo radar' }), el('span', { class: 'spacer' }), el('button', { class: 'btn small ghost', text: 'Cerrar', onclick: () => onDone(false) })]),
+      el('div', { class: 'grid cols-2', style: 'margin-top:12px;align-items:start' }, [
+        el('div', { class: 'grid' }, [
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Tipo', f.kind]), el('label', {}, ['Límite km/h', f.maxspeed])]),
+          el('label', {}, ['Carretera / sentido', f.road]),
+          el('label', {}, ['Nota', f.note]),
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Latitud', f.lat]), el('label', {}, ['Longitud', f.lng])]),
+          el('label', { class: 'check' }, [f.active, 'Visible en la app (desmarca para ocultar uno de OpenStreetMap que está mal)'])
+        ]),
+        el('div', {}, [el('p', { class: 'sub', text: 'Toca el mapa en el punto exacto del radar.' }), mapBox])
+      ]),
+      el('div', { class: 'row', style: 'margin-top:16px' }, [save])
+    ]);
+    setTimeout(() => { const pk = pickerMap(mapBox, d.lat, d.lng, (la, ln) => { f.lat.value = la; f.lng.value = ln; }); [f.lat, f.lng].forEach((i) => i.addEventListener('change', () => pk.setPos(f.lat.value, f.lng.value))); }, 0);
+    save.addEventListener('click', async () => {
+      if (f.lat.value === '' || f.lng.value === '') return toast('La posición es obligatoria');
+      const row = { kind: f.kind.value, lat: Number(f.lat.value), lng: Number(f.lng.value), maxspeed: f.maxspeed.value ? Number(f.maxspeed.value) : null,
+        road: f.road.value.trim() || null, note: f.note.value.trim() || null, active: f.active.checked, osm_id: d.osm_id || null };
+      save.disabled = true;
+      const res = item && item.id ? await sb.from('radars').update(row).eq('id', item.id) : await sb.from('radars').insert(row);
+      save.disabled = false;
+      if (res.error) return fail(res.error, 'Guardar');
+      toast('Guardado: la app lo ve al abrirse.');
+      onDone(true);
+    });
+    return panel;
+  }
+  VIEWS.radars = {
+    eyebrow: 'Isla', title: 'Radares',
+    async render(view, head) {
+      head.append(el('button', { class: 'btn primary', text: 'Nuevo radar', onclick: () => openEditor(null) }));
+      const [{ data, error }, osmRes] = await Promise.all([
+        sb.from('radars').select('*').order('created_at', { ascending: false }),
+        fetch('../data/radars.json', { cache: 'no-cache' }).then((r) => r.ok ? r.json() : { radars: [] }).catch(() => ({ radars: [] }))
+      ]);
+      if (error) return fail(error, 'Radares');
+      const osm = osmRes.radars || [];
+      const byOsm = new Map(data.filter((x) => x.osm_id).map((x) => [x.osm_id, x]));
+      view.appendChild(el('div', { class: 'kpis' }, [kpi('De OpenStreetMap', osm.length), kpi('Añadidos aquí', data.filter((x) => !x.osm_id).length, 'hot'), kpi('Corregidos / ocultos', data.filter((x) => x.osm_id).length)]));
+      view.appendChild(el('p', { class: 'sub', style: 'margin:0 0 14px', text: 'Solo radares FIJOS y de tramo (datos públicos). Los de OpenStreetMap se actualizan solos cada noche: si uno está mal, pulsa "Corregir" para moverlo o ocultarlo. Los controles móviles no van aquí.' }));
+      const editorBox = el('div', { style: 'margin-bottom:16px' });
+      view.appendChild(editorBox);
+      function openEditor(item) {
+        maps.forEach((m) => { try { m.remove(); } catch (e) {} }); maps = [];
+        editorBox.innerHTML = '';
+        editorBox.appendChild(radarEditor(item, (changed) => { editorBox.innerHTML = ''; if (changed) route(); }));
+        editorBox.scrollIntoView({ behavior: 'smooth' });
+      }
+      const kindName = (k) => (RD_KINDS.find((x) => x[0] === k) || [0, k])[1];
+      const rows = [];
+      data.forEach((x) => rows.push({ x, src: x.osm_id ? 'OSM corregido' : 'Admin', edit: x }));
+      osm.filter((r) => !byOsm.has(r.id)).forEach((r) => rows.push({ x: r, src: 'OpenStreetMap', edit: { kind: r.kind, lat: r.lat, lng: r.lng, maxspeed: r.maxspeed, osm_id: r.id, active: true } }));
+      view.appendChild(el('div', { class: 'panel' }, [el('div', { class: 'table-wrap' }, [el('table', {}, [
+        el('thead', {}, [el('tr', {}, ['Tipo', 'Límite', 'Carretera', 'Fuente', 'Estado', ''].map((h) => el('th', { text: h })))]),
+        el('tbody', {}, rows.length ? rows.map(({ x, src, edit }) => el('tr', {}, [
+          el('td', {}, [el('b', { text: kindName(x.kind) }), el('div', { class: 'sub', text: x.lat.toFixed(5) + ', ' + x.lng.toFixed(5) })]),
+          el('td', { text: x.maxspeed ? x.maxspeed + ' km/h' : '—' }),
+          el('td', { text: x.road || '—' }),
+          el('td', { text: src }),
+          el('td', { text: x.active === false ? 'Oculto' : 'Visible' }),
+          el('td', {}, [el('div', { class: 'row' }, [
+            el('button', { class: 'btn small', text: edit.id ? 'Editar' : 'Corregir', onclick: () => openEditor(edit) }),
+            edit.id ? el('button', { class: 'btn small ghost', text: 'Borrar', onclick: async () => { if (!confirm('¿Borrar este radar?')) return; const r = await sb.from('radars').delete().eq('id', x.id); if (r.error) return fail(r.error); route(); } }) : null
+          ])])
+        ])) : [el('tr', {}, [el('td', { colspan: '6', text: 'Todavía no hay radares. Añade los que conozcas con "Nuevo radar".' })])])
+      ])])]));
+    }
+  };
+
   VIEWS.surf = {
     eyebrow: 'Isla', title: 'Surf',
     async render(view, head) {

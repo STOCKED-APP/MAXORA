@@ -16,7 +16,7 @@
       reportTitle: '¿Qué pasa aquí?', reportSub: 'Se marca en tu posición. Avisa solo si vas de pasajero o estás parado.',
       still: 'Sigue', gone: 'Ya no', dAll: 'Todo', dBeach: 'Playas', dNature: 'Naturaleza', dView: 'Miradores', dTown: 'Pueblos', dBiz: 'Negocios', dMore: 'Más sitios cerca de ti', dFeat: 'Imprescindibles', discShort: 'Descubrir', dOsm: 'Datos OpenStreetMap', gRoad: 'En la carretera', gHaz: 'Peligros', gOther: 'Otros', nearAlready: 'Ya avisado cerca de ti: ¿sigue ahí?', lasts: 'visible {t}', discover: 'Descubre la isla', settings: 'Ajustes',
       theme: 'Tema', auto: 'Auto', light: 'Claro', dark: 'Oscuro', lang: 'Idioma',
-      voice: 'Aviso por voz', sound: 'Sonido de aviso', ago: 'hace {t}', confirms: '{n} confirman',
+      voice: 'Aviso por voz', sound: 'Sonido de aviso', ago: 'hace {t}', confirms: '{n} confirman', seenBy: '{n} lo han visto', merged: 'Ya avisado: has confirmado la zona',
       approx: 'zona aproximada', expires: 'caduca en {t}', official: 'Oficial', now: 'AHORA',
       sent: 'Aviso enviado', thanks: 'Gracias', already: 'Ya has votado este aviso', own: 'Es tu aviso',
       expired: 'Este aviso ya no está', errBlocked: 'Tu dispositivo está bloqueado',
@@ -36,7 +36,7 @@
       reportTitle: 'What is happening?', reportSub: 'Marked at your position. Only report as a passenger or when stopped.',
       still: 'Still there', gone: 'Gone', dAll: 'All', dBeach: 'Beaches', dNature: 'Nature', dView: 'Viewpoints', dTown: 'Villages', dBiz: 'Businesses', dMore: 'More places near you', dFeat: 'Must-see', discShort: 'Discover', dOsm: 'OpenStreetMap data', gRoad: 'On the road', gHaz: 'Hazards', gOther: 'Other', nearAlready: 'Already reported near you: still there?', lasts: 'shown {t}', discover: 'Discover the island', settings: 'Settings',
       theme: 'Theme', auto: 'Auto', light: 'Light', dark: 'Dark', lang: 'Language',
-      voice: 'Voice alerts', sound: 'Alert sound', ago: '{t} ago', confirms: '{n} confirmed',
+      voice: 'Voice alerts', sound: 'Alert sound', ago: '{t} ago', confirms: '{n} confirmed', seenBy: 'seen by {n}', merged: 'Already reported: you confirmed the area',
       approx: 'approximate area', expires: 'expires in {t}', official: 'Official', now: 'NOW',
       sent: 'Alert sent', thanks: 'Thanks', already: 'You already voted', own: 'This is your alert',
       expired: 'This alert is gone', errBlocked: 'Your device is blocked',
@@ -56,7 +56,7 @@
       reportTitle: 'Cosa succede qui?', reportSub: 'Viene segnato sulla tua posizione. Segnala solo da passeggero o da fermo.',
       still: 'Ancora lì', gone: 'Non c’è più', dAll: 'Tutto', dBeach: 'Spiagge', dNature: 'Natura', dView: 'Belvederi', dTown: 'Paesi', dBiz: 'Attività', dMore: 'Altri posti vicino a te', dFeat: 'Da non perdere', discShort: 'Scopri', dOsm: 'Dati OpenStreetMap', gRoad: 'Sulla strada', gHaz: 'Pericoli', gOther: 'Altro', nearAlready: 'Già segnalato vicino a te: c\'è ancora?', lasts: 'resta {t}', discover: "Scopri l'isola", settings: 'Impostazioni',
       theme: 'Tema', auto: 'Auto', light: 'Chiaro', dark: 'Scuro', lang: 'Lingua',
-      voice: 'Avvisi vocali', sound: 'Suono di avviso', ago: '{t} fa', confirms: '{n} confermano',
+      voice: 'Avvisi vocali', sound: 'Suono di avviso', ago: '{t} fa', confirms: '{n} confermano', seenBy: 'visto da {n}', merged: 'Già segnalato: hai confermato la zona',
       approx: 'zona approssimativa', expires: 'scade tra {t}', official: 'Ufficiale', now: 'ORA',
       sent: 'Avviso inviato', thanks: 'Grazie', already: 'Hai già votato', own: 'È il tuo avviso',
       expired: 'Questo avviso non c’è più', errBlocked: 'Il tuo dispositivo è bloccato',
@@ -76,7 +76,7 @@
       reportTitle: 'Was ist los?', reportSub: 'Wird an deiner Position markiert. Nur als Beifahrer oder im Stand melden.',
       still: 'Noch da', gone: 'Weg', dAll: 'Alles', dBeach: 'Strände', dNature: 'Natur', dView: 'Aussichtspunkte', dTown: 'Dörfer', dBiz: 'Betriebe', dMore: 'Weitere Orte in deiner Nähe', dFeat: 'Nicht verpassen', discShort: 'Entdecken', dOsm: 'OpenStreetMap-Daten', gRoad: 'Auf der Straße', gHaz: 'Gefahren', gOther: 'Sonstiges', nearAlready: 'Schon gemeldet in deiner Nähe: noch da?', lasts: 'sichtbar {t}', discover: 'Insel entdecken', settings: 'Einstellungen',
       theme: 'Design', auto: 'Auto', light: 'Hell', dark: 'Dunkel', lang: 'Sprache',
-      voice: 'Sprachansagen', sound: 'Warnton', ago: 'vor {t}', confirms: '{n} bestätigt',
+      voice: 'Sprachansagen', sound: 'Warnton', ago: 'vor {t}', confirms: '{n} bestätigt', seenBy: 'von {n} gesehen', merged: 'Schon gemeldet: du hast den Bereich bestätigt',
       approx: 'ungefährer Bereich', expires: 'läuft in {t} ab', official: 'Offiziell', now: 'JETZT',
       sent: 'Meldung gesendet', thanks: 'Danke', already: 'Du hast schon abgestimmt', own: 'Das ist deine Meldung',
       expired: 'Diese Meldung ist weg', errBlocked: 'Dein Gerät ist gesperrt',
@@ -365,8 +365,8 @@
   map.on('styleimagemissing', (e) => { if (!map.hasImage(e.id)) map.addImage(e.id, { width: 1, height: 1, data: new Uint8Array(4) }); });
   map.on('style.load', () => {
     if (!map.getSource('police')) map.addSource('police', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
-    if (!map.getLayer('police-fill')) map.addLayer({ id: 'police-fill', type: 'fill', source: 'police', paint: { 'fill-color': '#2b8fb0', 'fill-opacity': 0.12 } });
-    if (!map.getLayer('police-line')) map.addLayer({ id: 'police-line', type: 'line', source: 'police', paint: { 'line-color': '#2b8fb0', 'line-width': 1.5, 'line-dasharray': [2, 2] } });
+    if (!map.getLayer('police-fill')) map.addLayer({ id: 'police-fill', type: 'fill', source: 'police', paint: { 'fill-color': '#2b8fb0', 'fill-opacity': ['interpolate', ['linear'], ['coalesce', ['get', 'n'], 1], 1, 0.09, 3, 0.2] } });
+    if (!map.getLayer('police-line')) map.addLayer({ id: 'police-line', type: 'line', source: 'police', paint: { 'line-color': '#2b8fb0', 'line-width': ['interpolate', ['linear'], ['coalesce', ['get', 'n'], 1], 1, 1.2, 3, 2.5], 'line-dasharray': [2, 2] } });
     drawPoliceZones();
   });
   map.on('dragstart', () => { S.follow = false; S.selectedId = null; updateChip(); });
@@ -405,7 +405,12 @@
     if (!src) return;
     const km = Number(setting('police_radius_km', 2.5));
     const feats = [];
-    for (const r of S.reports.values()) if (typeOf(r).is_police) feats.push(circlePoly(r.lng, r.lat, km));
+    for (const r of S.reports.values()) if (typeOf(r).is_police) {
+      const f = circlePoly(r.lng, r.lat, km);
+      // forza: quante persone l'hanno visto, meno chi dice che non c'è più
+      f.properties = Object.assign({}, f.properties, { n: Math.max(1, 1 + (r.confirms || 0) - (r.denies || 0)) });
+      feats.push(f);
+    }
     src.setData({ type: 'FeatureCollection', features: feats });
   }
 
@@ -567,7 +572,7 @@
     mark.textContent = ''; if (!ty.is_police) mark.appendChild(typeIcon(ty, '#ffffff'));
     const fd = fmtDist(d);
     $('alertDist').textContent = ty.is_police ? t('approx') : fd.v + ' ' + fd.u;
-    $('alertTitle').textContent = (r.title || labelOf(ty));
+    $('alertTitle').textContent = (r.title || labelOf(ty)) + (ty.is_police ? ' · ' + t('seenBy', { n: 1 + (r.confirms || 0) }) + ' · ' + t('ago', { t: fmtMin((Date.now() - new Date(r.created_at)) / 60000) }) : '');
     $('alertYes').textContent = t('still');
     $('alertNo').textContent = t('gone');
     $('alert').classList.remove('hidden');
@@ -730,10 +735,10 @@
     const bits = [];
     if (r.source === 'dgt') { bits.push('DGT' + (r.title ? ' ' + r.title.replace(/ · [^(]*/, ' ').trim() : '')); }
     else if (r.official) bits.push(t('official'));
+    if (ty.is_police) bits.push(t('seenBy', { n: 1 + (r.confirms || 0) }));
     if (zoneMode() && h.d != null) bits.push(t('fromYouD', { d: distText(h.d, ty.is_police) }));
     bits.push(t('ago', { t: fmtMin(mins) }));
-    if (ty.is_police) bits.push(t('approx'));
-    else if (r.confirms) bits.push(t('confirms', { n: r.confirms }));
+    if (!ty.is_police && r.confirms) bits.push(t('confirms', { n: r.confirms }));
     meta.textContent = bits.join(' · ');
     hero.dataset.id = r.id;
     $('cardActions').classList.toggle('hidden', r.source === 'dgt');
@@ -844,7 +849,12 @@
     if (error) { toast(errMsg(error)); return; }
     if (data) { upsertReport(data); S.alerted.add(data.id); S.voted.add(data.id); }
     if (navigator.vibrate) navigator.vibrate(60);
-    toast(t('sent'));
+    if (!data) {
+      // zona già segnalata: la tua segnalazione l'ha confermata
+      const { data: live } = await sb.from('reports').select('*').gt('expires_at', new Date().toISOString());
+      (live || []).forEach((r) => { upsertReport(r); if (typeOf(r).is_police) { S.alerted.add(r.id); S.voted.add(r.id); } });
+      toast(t('merged'));
+    } else toast(t('sent'));
     refresh();
   }
 
@@ -1772,7 +1782,16 @@
     setLang: (l) => { if (T[l]) { lang = l; store.set('lang', l); applyTexts(); } },
     unfollow: () => { S.follow = false; S.selectedId = null; updateChip(); },
     reports: () => [...S.reports.values()], report: (type) => send(type),
-    typeLabel: (r) => labelOf(typeOf(r)), typeColor: (r) => typeOf(r).color, distKm
+    typeLabel: (r) => labelOf(typeOf(r)), typeColor: (r) => typeOf(r).color, distKm,
+    speed: () => S.speed || 0, heading: () => S.heading, setting,
+    // voce + suono secondo le preferenze dell'utente
+    say: (phrase) => {
+      if (S.sound) beep();
+      if (navigator.vibrate) navigator.vibrate([120, 60, 120]);
+      if (!S.voice || !('speechSynthesis' in window)) return;
+      const u = new SpeechSynthesisUtterance(phrase); u.lang = LOCALES[lang];
+      try { speechSynthesis.cancel(); speechSynthesis.speak(u); } catch (e) {}
+    }
   };
 
   async function boot() {

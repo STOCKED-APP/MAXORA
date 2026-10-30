@@ -1070,3 +1070,25 @@ body.ui-list:has(#sfCard:not(.hidden)) .ui-back, body.ui-list:has(#spCard:not(.h
 .dy-t span { font-size: 12px; color: var(--muted); }
 .dy-t .c { color: var(--text); }
 .dy-del { border: 0; background: transparent; font-size: 16px; flex: none; }
+
+/* v0.20 — radar fissi e tutor */
+.rd-mk { display: flex; align-items: center; gap: 2px; padding: 2px 3px 2px 4px; border-radius: 999px; background: var(--chip-solid); box-shadow: 0 1px 4px rgba(0,0,0,.3); cursor: pointer; }
+.rd-cam { font-size: 12px; line-height: 1; }
+.rd-sign { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 2px; border-radius: 999px; background: #fff; border: 3px solid #d7262b; color: #111; font: 800 10.5px/1 system-ui, sans-serif; box-sizing: border-box; }
+.rd-sign.sec { border-color: #1d4ed8; }
+.rd-sign.big { min-width: 44px; height: 44px; border-width: 5px; font-size: 18px; }
+body.rd-far .rd-mk, body.ui-compact .rd-mk, body.surf-on .rd-mk { display: none; }
+.rd-pop { font-size: 13px; color: #111; }
+.rd-pop-h { display: flex; gap: 10px; align-items: center; }
+.rd-pop-h b { font-size: 15px; }
+.rd-pop-l { color: #555; font-size: 12.5px; }
+.rd-pop-n { margin-top: 6px; }
+.rd-pop-s { margin-top: 8px; font-size: 10.5px; color: #777; }
+.rd-alert { position: fixed; left: 50%; transform: translateX(-50%); top: 70px; z-index: 60; display: flex; align-items: center; gap: 12px; padding: 10px 18px 10px 10px; border-radius: 18px; background: var(--chip-solid); color: var(--text); box-shadow: 0 6px 24px rgba(0,0,0,.28); max-width: calc(100vw - 32px); }
+.rd-alert.over { background: #d7262b; color: #fff; }
+.rd-a-t { display: flex; flex-direction: column; }
+.rd-a-t b { font-size: 16px; }
+.rd-a-d { font-size: 14px; font-weight: 700; opacity: .8; }
+.rd-sec { position: fixed; right: 12px; top: calc(env(safe-area-inset-top, 0px) + 140px); z-index: 55; display: flex; align-items: center; gap: 6px; padding: 5px 10px 5px 8px; border-radius: 999px; background: var(--chip-solid); color: var(--text); font-weight: 800; font-size: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.2); }
+.rd-sec.over { background: #d7262b; color: #fff; }
+.rd-kmh { font-variant-numeric: tabular-nums; }
