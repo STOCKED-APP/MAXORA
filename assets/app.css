@@ -1126,3 +1126,8 @@ body.rd-far .rd-mk, body.ui-compact .rd-mk, body.surf-on .rd-mk { display: none;
 .fw-sum-card .p-go { background: var(--mode, var(--accent)); color: #fff; border-radius: 999px; }
 .fw-sum-card .p-sec { border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--text); font: inherit; font-weight: 700; font-size: 14px; }
 .dy-save { background: var(--mode, #2f7cf6) !important; color: #fff !important; border: 0 !important; border-radius: 999px !important; min-height: 50px; font-weight: 800; }
+/* niente pagina più larga dello schermo (es. senza rete, con il carattere di riserva più largo) */
+html, body { max-width: 100%; overflow-x: hidden; }
+.bottom-row .report-pill { min-width: 0; flex: 1 1 auto; overflow: hidden; }
+.bottom-row .report-pill span { overflow: hidden; text-overflow: ellipsis; }
+.bottom-row .disc-btn { min-width: 0; }

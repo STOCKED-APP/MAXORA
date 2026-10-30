@@ -95,7 +95,8 @@
   const FMT = new Map();
   const fmt = (o) => { const k = lang() + JSON.stringify(o); let f = FMT.get(k); if (!f) { f = new Intl.DateTimeFormat(LOC[lang()], Object.assign({ timeZone: TZ }, o)); FMT.set(k, f); } return f; };
   const hhmm = (ms) => fmt({ hour: '2-digit', minute: '2-digit', hour12: false }).format(ms);
-  const hh = (ms) => fmt({ hour: '2-digit', hour12: false }).format(ms);
+  // solo le cifre dell'ora (in tedesco Intl aggiunge "Uhr")
+  const hh = (ms) => { const p = fmt({ hour: '2-digit', hourCycle: 'h23' }).formatToParts(ms).find((x) => x.type === 'hour'); return p ? p.value : ''; };
   const DK = new Intl.DateTimeFormat('en-CA', { timeZone: TZ }), DKC = new Map();
   const dayKey = (ms) => { const h = Math.floor(ms / 3600000); let k = DKC.get(h); if (!k) { k = DK.format(ms); if (DKC.size > 5000) DKC.clear(); DKC.set(h, k); } return k; };
   const NF = new Map();
