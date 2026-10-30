@@ -273,6 +273,9 @@
     else if (role === 'halo') { c.l = 0.08; c.s = 0.2; }
     else if (role === 'water') { c.l = 0.17 + c.l * 0.06; c.s = Math.min(0.55, c.s); }
     else if (role === 'road') { c.l = 0.2 + c.l * 0.2; c.s *= 0.5; }
+    else if (role === 'minor') { c.l = 0.5; c.s *= 0.25; }
+    else if (role === 'minorcase') { c.l = 0.22; c.s *= 0.3; }
+    else if (role === 'path') { c.l = 0.58; c.s = Math.min(0.35, c.s); }
     else if (role === 'bg') { c.l = 0.1 + c.l * 0.03; c.s = Math.min(0.15, c.s); }
     else { c.l = 0.09 + c.l * 0.13; c.s *= 0.75; }
     return hsla(c);
@@ -286,8 +289,8 @@
   function nightStyle(st) {
     st.layers = st.layers.map((l) => {
       const id = l.id + ' ' + (l['source-layer'] || '');
-      const role = l.type === 'background' ? 'bg' : /water|ocean|river|lake/.test(id) && l.type !== 'symbol' ? 'water'
-        : /road|highway|bridge|tunnel|street|path|track|rail|aeroway/.test(id) && l.type === 'line' ? 'road' : 'land';
+      const role = (l.metadata && l.metadata['mx-role']) || (l.type === 'background' ? 'bg' : /water|ocean|river|lake/.test(id) && l.type !== 'symbol' ? 'water'
+        : /road|highway|bridge|tunnel|street|path|track|rail|aeroway/.test(id) && l.type === 'line' ? 'road' : 'land');
       const p = Object.assign({}, l.paint);
       Object.keys(p).forEach((k) => {
         if (k === 'text-color') p[k] = mapPaint(p[k], 'text');
@@ -313,14 +316,15 @@
     if (l.type !== 'line' || l['source-layer'] !== 'transportation') return l;
     const p = Object.assign({}, l.paint), id = l.id;
     let minzoom = l.minzoom;
-    if (/service_track_casing/.test(id)) { p['line-width'] = W([12, 1.2, 14, 3, 16, 5, 20, 11]); minzoom = 12; }
-    else if (/service_track/.test(id)) { p['line-width'] = W([12, 0.5, 14, 1.6, 16, 3, 20, 7.5]); minzoom = 12; }
-    else if (/path_pedestrian_casing/.test(id)) { minzoom = 13; }
-    else if (/path_pedestrian/.test(id)) { p['line-color'] = '#a3906f'; p['line-width'] = W([13, 0.8, 16, 1.8, 20, 6]); minzoom = 13; }
-    else if (/(road|bridge|tunnel)_(minor|street)_casing/.test(id)) { p['line-width'] = W([12, 1.2, 13, 2.6, 14, 4, 20, 21]); p['line-opacity'] = 1; minzoom = 11.5; }
-    else if (/(road|bridge|tunnel)_(minor|street)$/.test(id)) { p['line-width'] = W([12, 0.6, 13, 1.4, 14, 2.6, 20, 18]); minzoom = 11.5; }
+    let role = null;
+    if (/service_track_casing/.test(id)) { p['line-width'] = W([12, 1.2, 14, 3, 16, 5, 20, 11]); p['line-color'] = '#b8a98d'; minzoom = 12; role = 'minorcase'; }
+    else if (/service_track/.test(id)) { p['line-width'] = W([12, 0.5, 14, 1.6, 16, 3, 20, 7.5]); p['line-color'] = '#fffdf7'; minzoom = 12; role = 'minor'; }
+    else if (/path_pedestrian_casing/.test(id)) { minzoom = 13; role = 'minorcase'; }
+    else if (/path_pedestrian/.test(id)) { p['line-color'] = '#8c7552'; p['line-width'] = W([13, 1, 16, 2, 20, 6]); minzoom = 13; role = 'path'; }
+    else if (/(road|bridge|tunnel)_(minor|street)_casing/.test(id)) { p['line-width'] = W([12, 1.2, 13, 2.6, 14, 4, 20, 21]); p['line-opacity'] = 1; minzoom = 11.5; role = 'minorcase'; }
+    else if (/(road|bridge|tunnel)_(minor|street)$/.test(id)) { p['line-width'] = W([12, 0.6, 13, 1.4, 14, 2.6, 20, 18]); minzoom = 11.5; role = 'minor'; }
     else return l;
-    const out = Object.assign({}, l, { paint: p });
+    const out = Object.assign({}, l, { paint: p, metadata: Object.assign({}, l.metadata, { 'mx-role': role }) });
     if (minzoom != null) out.minzoom = minzoom; else delete out.minzoom;
     return out;
   }
