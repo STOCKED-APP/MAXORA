@@ -143,8 +143,8 @@ def main():
             data = sd
             runs['short'] = short_run.strftime('%Y-%m-%dT%HZ')
     now = datetime.now(UTC)
-    # niente passi già passati da più di 3 ore
-    first = next((k for k, tt in enumerate(times) if tt >= now - timedelta(hours=3)), 0)
+    # si tengono le ultime ~27 ore (per le condizioni delle sessioni del diario)
+    first = next((k for k, tt in enumerate(times) if tt >= now - timedelta(hours=27)), 0)   # anche ieri: serve al diario surf
     times = times[first:]
     for sid in data:
         for var in ('hs', 'tp', 'dir', 'ws', 'wd'):

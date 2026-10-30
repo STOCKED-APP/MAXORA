@@ -347,7 +347,7 @@
   function slots() {
     // solo le ore di luce, raggruppate per giorno
     const out = [];
-    SF.times.forEach((t, i) => { if (isDay(t) || i === SF.idx) out.push(i); });
+    SF.times.forEach((t, i) => { if ((isDay(t) && t > Date.now() - 3 * 3600000) || i === SF.idx) out.push(i); });
     return out;
   }
   function dayLabel(ms) {
@@ -579,6 +579,8 @@
           x.fixed ? el('div', { class: 'sf-fixed', text: '👁 ' + tr('corrected') }) : null
         ])
       ]));
+      // voto personale (accanto a quello vero, mai al suo posto)
+      if (window.MAXORA_DIARY) { const pn = window.MAXORA_DIARY.personalNode(x); if (pn) box.appendChild(pn); }
       const st = el('div', { class: 'p-stats sf-stats' });
       st.append(
         stat(tr('waves'), num(Math.max(0.1, x.h), 1) + ' m', tr('offsh', { h: num(x.hs, 1) })),
@@ -673,7 +675,7 @@
     ]);
     const appsBox = el('div', { class: 'hidden' }, [el('div', { class: 'p-note', text: tr('openWith') }), apps]);
     box.append(
-      el('div', { class: 'p-actions' }, [el('button', { class: 'p-go', onclick: () => (M.navSheet ? M.navSheet(apps, sp.name) : appsBox.classList.toggle('hidden')) }, [tr('go')])]),
+      el('div', { class: 'p-actions' }, [el('button', { class: 'p-go', onclick: () => (M.navSheet ? M.navSheet(apps, sp.name) : appsBox.classList.toggle('hidden')) }, [tr('go')]), window.MAXORA_DIARY ? el('button', { class: 'p-sec', onclick: () => window.MAXORA_DIARY.log(sp.id), text: '📝 ' + window.MAXORA_DIARY.label() }) : null]),
       appsBox,
       el('div', { class: 'p-note', text: tr('disc') }),
       el('div', { class: 'p-note sf-src', text: tr('src') })
@@ -739,7 +741,7 @@
     sheet: 'sfSheet',
     top: () => [$('sfAdvice'), $('sfTide')],
     time: () => $('sfTimes'),
-    rail: () => [{ icon: '🏄', short: tr('lvl' + SF.level).slice(0, 5) + '.', label: tr('levelQ'), on: true, choices: [1, 2, 3].map((l) => ({ label: tr('lvl' + l), on: SF.level === l, onclick: () => { SF.level = l; store.set('surfLevel', l); drawAll(); } })) }]
+    rail: () => [window.MAXORA_DIARY ? { icon: '📓', short: window.MAXORA_DIARY.short(), label: window.MAXORA_DIARY.short(), onclick: () => window.MAXORA_DIARY.open() } : null, { icon: '🏄', short: tr('lvl' + SF.level).slice(0, 5) + '.', label: tr('levelQ'), on: true, choices: [1, 2, 3].map((l) => ({ label: tr('lvl' + l), on: SF.level === l, onclick: () => { SF.level = l; store.set('surfLevel', l); drawAll(); } })) }]
   });
-  window.MAXORA_SURF = { rate: (id, k, l) => rate(SF.byId.get(id), k, l || SF.level), state: SF, tideAt, setOn, isOn: () => SF.on, openCard: (id) => openCard(id, true) };
+  window.MAXORA_SURF = { rate: (id, k, l) => rate(SF.byId.get(id), k, l || SF.level), state: SF, tideAt, setOn, isOn: () => SF.on, openCard: (id) => openCard(id, true), redraw: () => drawAll() };
 })();

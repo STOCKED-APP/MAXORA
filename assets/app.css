@@ -1044,3 +1044,29 @@ body.ui-list:has(#sfCard:not(.hidden)) .ui-back, body.ui-list:has(#spCard:not(.h
 .bk-pop .acts { display: flex; gap: 6px; margin-top: 8px; }
 .bk-pop .acts a { flex: 1; text-align: center; padding: 7px 0; border-radius: 10px; background: var(--card); border: 1px solid var(--border); color: var(--text); text-decoration: none; font-weight: 700; font-size: 13px; }
 .bk-pop .n { font-size: 10px; color: var(--muted); margin-top: 6px; }
+
+/* v0.19 — diario surf */
+.dy-sh { max-height: 88vh; overflow-y: auto; }
+.dy-l { font-size: 12px; font-weight: 800; color: var(--muted); margin: 12px 0 6px; }
+.dy-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.dy-chips button { min-height: 38px; padding: 0 12px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--card); color: var(--text); font: inherit; font-weight: 700; font-size: 13.5px; }
+.dy-chips button.on { background: var(--mode, #2f7cf6); border-color: transparent; color: #fff; }
+.dy-stars { display: flex; gap: 6px; margin-bottom: 10px; }
+.dy-stars button { width: 48px; height: 48px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--card); font-size: 26px; color: var(--muted); }
+.dy-stars button.on { color: #f5a524; border-color: #f5a524; }
+.dy-save { margin-top: 10px; }
+.dy-you { display: inline-flex; align-items: baseline; gap: 2px; margin: 6px 0 2px; padding: 6px 12px; border-radius: 999px; background: color-mix(in srgb, #8b5cf6 14%, var(--card)); border: 1px solid color-mix(in srgb, #8b5cf6 40%, var(--border)); font-size: 13px; }
+.dy-you span { color: var(--muted); }
+.dy-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 8px 0; }
+.dy-stats > div { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 10px; display: flex; flex-direction: column; }
+.dy-stats b { font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dy-stats span { font-size: 11px; color: var(--muted); font-weight: 600; }
+.dy-h { font-weight: 800; margin: 14px 0 6px; }
+.dy-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.dy-row { display: flex; gap: 10px; align-items: flex-start; padding: 10px; border-radius: 14px; background: var(--card); border: 1px solid var(--border); }
+.dy-r { color: #f5a524; font-size: 13px; letter-spacing: 1px; flex: none; padding-top: 2px; }
+.dy-t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.dy-t b { font-size: 14px; }
+.dy-t span { font-size: 12px; color: var(--muted); }
+.dy-t .c { color: var(--text); }
+.dy-del { border: 0; background: transparent; font-size: 16px; flex: none; }

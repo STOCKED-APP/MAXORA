@@ -32,3 +32,17 @@ grant select on public.route_notes to anon, authenticated;
 grant insert, update, delete on public.route_notes to authenticated;
 create trigger route_notes_audit after insert or update or delete on public.route_notes for each row execute function public.audit_admin();
 alter publication supabase_realtime add table public.route_notes;
+
+-- diario surf (già applicato)
+create table if not exists public.surf_sessions (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null default auth.uid() references auth.users(id) on delete cascade,
+  spot_id text not null references public.surf_spots(id),
+  started_at timestamptz not null,
+  minutes int not null check (minutes between 10 and 600),
+  rating int not null check (rating between 1 and 5),
+  note text check (char_length(note) <= 300),
+  conditions jsonb,
+  created_at timestamptz not null default now()
+);
+-- RLS: ognuno vede e modifica solo le proprie sessioni; l'admin può leggere.

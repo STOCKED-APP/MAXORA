@@ -59,7 +59,7 @@
     rail.innerHTML = '';
     const R = REG[cur];
     if (!R || !R.rail) return;
-    R.rail().forEach((it) => {
+    R.rail().filter(Boolean).forEach((it) => {
       const b = el('button', { class: 'ui-rb' + (it.on ? ' on' : ''), 'aria-label': it.label, title: it.label }, [el('span', { class: 'i', text: it.icon }), el('span', { class: 'l', text: it.short || it.label })]);
       b.addEventListener('click', (e) => {
         e.stopPropagation();
