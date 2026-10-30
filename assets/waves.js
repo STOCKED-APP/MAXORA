@@ -27,36 +27,30 @@
   // Terraferma: griglia "mare / terra" calcolata una volta dalla sagoma OSM
   // ------------------------------------------------------------------
   const BOX = { w: -14.75, e: -13.55, s: 27.85, n: 28.95 }, RES = 0.004;
-  const NX = Math.ceil((BOX.e - BOX.w) / RES), NY = Math.ceil((BOX.n - BOX.s) / RES);
-  let mask = null;   // 1 = terra
+    // terraferma esatta: punto-nel-poligono sulla sagoma OSM (con riquadro per andare veloci)
+  let polys = null;
   async function loadLand() {
-    if (mask) return;
+    if (polys) return;
     try {
       const f = await (await fetch('data/land.json', { cache: 'no-cache' })).json();
-      const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
-      const m = new Uint8Array(NX * NY);
-      for (let j = 0; j < NY; j++) {
-        const lat = BOX.s + (j + 0.5) * RES;
-        for (const poly of polys) for (const ring of poly) {
-          const xs = [];
-          for (let i = 0, k = ring.length - 1; i < ring.length; k = i++) {
-            const [x1, y1] = ring[i], [x2, y2] = ring[k];
-            if ((y1 > lat) !== (y2 > lat)) xs.push(x1 + (lat - y1) * (x2 - x1) / (y2 - y1));
-          }
-          xs.sort((a, b) => a - b);
-          for (let q = 0; q + 1 < xs.length; q += 2) {
-            const a = Math.max(0, Math.floor((xs[q] - BOX.w) / RES)), b = Math.min(NX - 1, Math.floor((xs[q + 1] - BOX.w) / RES));
-            for (let x = a; x <= b; x++) m[j * NX + x] ^= 1;   // anelli interni = buchi
-          }
-        }
-      }
-      mask = m;
-    } catch (e) { mask = new Uint8Array(NX * NY); }
+      const raw = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
+      polys = raw.map((rings) => {
+        let w = 180, e = -180, s = 90, n = -90;
+        rings[0].forEach(([x, y]) => { w = Math.min(w, x); e = Math.max(e, x); s = Math.min(s, y); n = Math.max(n, y); });
+        return { rings, w, e, s, n };
+      });
+    } catch (e) { polys = null; }
   }
-  const isSea = (lng, lat) => {
-    if (lng < BOX.w || lng > BOX.e || lat < BOX.s || lat > BOX.n) return false;
-    return !mask || !mask[Math.floor((lat - BOX.s) / RES) * NX + Math.floor((lng - BOX.w) / RES)];
-  };
+  function inRing(lng, lat, ring) {
+    let c = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i], [xj, yj] = ring[j];
+      if ((yi > lat) !== (yj > lat) && lng < (xj - xi) * (lat - yi) / (yj - yi) + xi) c = !c;
+    }
+    return c;
+  }
+  const isLand = (lng, lat) => !!polys && polys.some((p) => lng >= p.w && lng <= p.e && lat >= p.s && lat <= p.n && inRing(lng, lat, p.rings[0]) && !p.rings.slice(1).some((h) => inRing(lng, lat, h)));
+  const isSea = (lng, lat) => !!polys && lng > BOX.w && lng < BOX.e && lat > BOX.s && lat < BOX.n && !isLand(lng, lat);
 
   // ------------------------------------------------------------------
   // Campo d'onda: dai punti del modello davanti agli spot (media pesata con la distanza)
