@@ -1,5 +1,3 @@
-light versione: 0.16.0
-dark versione: 0.16.0
-light-z14 versione: 0.16.0
-dark-z14 versione: 0.16.0
+surf-light versione: 0.17.0
+surf-dark versione: 0.17.0
 errori: nessuno
