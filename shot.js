@@ -11,7 +11,7 @@ const out = [];
     p.on('console', (m) => { if (m.type() === 'error') errs.push(name + ' ' + m.text().slice(0, 160)); });
     await p.goto('https://stocked-app.github.io/MAXORA/?v=' + Date.now(), { waitUntil: 'load' });
     await p.waitForTimeout(4000);
-    await p.evaluate(() => window.MAXORA_MODES.choose('surf')); await p.waitForTimeout(6000);
+    out.push(name + ' surf: ' + await p.evaluate(() => typeof window.MAXORA_SURF)); if (errs.length) out.push(errs.join(' / ')); await p.evaluate(() => window.MAXORA_MODES.choose('surf')).catch((e) => out.push('choose: ' + e.message)); await p.waitForTimeout(6000);
     await p.evaluate(([z, c]) => { const m = window.MAXORA.map; m.jumpTo({ center: c, zoom: z }); }, [zoom, center]);
     await p.waitForTimeout(5000);
     await p.screenshot({ path: 'shots/' + name + '.png' });
