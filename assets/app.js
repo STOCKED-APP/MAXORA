@@ -22,7 +22,7 @@
       expired: 'Este aviso ya no está', errBlocked: 'Tu dispositivo está bloqueado',
       errRate: 'Demasiados avisos, prueba más tarde', errZone: 'Solo disponible en Canarias',
       errOff: 'Función no disponible', errMaint: 'Maxora está en mantenimiento', errGeneric: 'No se pudo enviar',
-      errNoSession: 'Sin conexión con Maxora', noGps: 'Sin GPS: aviso en el centro del mapa',
+      errNoSession: 'Sin conexión con Maxora', noGps: 'Sin GPS: aviso en el centro del mapa', gpsDenied: 'Ubicación bloqueada: sin ella no puedo avisarte de lo que tienes delante.', gpsLost: 'No encuentro el GPS. ¿Estás bajo techo?', gpsAsk: 'Activa la ubicación para los avisos en tu camino.', gpsHow: 'Cómo activarla', gpsRetry: 'Reintentar', gpsOn: 'Activar', gpsHowT: 'Permite la ubicación a Maxora', gpsStepsIos: 'Abre Ajustes del iPhone|Privacidad y seguridad › Localización|Safari (o la app Maxora) › «Mientras se usa»|Vuelve aquí y recarga la página', gpsStepsAndroid: 'Toca el candado junto a la dirección, arriba|Permisos › Ubicación › Permitir|Comprueba que la ubicación del móvil esté activa|Vuelve aquí y recarga la página',
       places: 'Lugares', businesses: 'Negocios', soon: 'Muy pronto', call: 'Llamar', web: 'Web',
       sponsor: 'DESTACADO', active: '{n} avisos activos', following: 'Siguiéndote',
       voiceAt: '{type} a {dist}', inZone: 'Zona con presencia policial', maint: 'Maxora está en mantenimiento. Los avisos vuelven pronto.'
@@ -42,7 +42,7 @@
       expired: 'This alert is gone', errBlocked: 'Your device is blocked',
       errRate: 'Too many alerts, try later', errZone: 'Only available in the Canary Islands',
       errOff: 'Feature not available', errMaint: 'Maxora is under maintenance', errGeneric: 'Could not send',
-      errNoSession: 'No connection to Maxora', noGps: 'No GPS: alert placed at map centre',
+      errNoSession: 'No connection to Maxora', noGps: 'No GPS: alert placed at map centre', gpsDenied: 'Location blocked: without it I can\'t warn you about what\'s ahead.', gpsLost: 'Can\'t find GPS. Are you indoors?', gpsAsk: 'Turn on location for alerts on your way.', gpsHow: 'How to turn it on', gpsRetry: 'Try again', gpsOn: 'Turn on', gpsHowT: 'Allow Maxora to use your location', gpsStepsIos: 'Open iPhone Settings|Privacy & Security › Location Services|Safari (or the Maxora app) › “While Using”|Come back and reload the page', gpsStepsAndroid: 'Tap the lock next to the address, at the top|Permissions › Location › Allow|Check that phone location is on|Come back and reload the page',
       places: 'Places', businesses: 'Businesses', soon: 'Coming soon', call: 'Call', web: 'Website',
       sponsor: 'FEATURED', active: '{n} active alerts', following: 'Following you',
       voiceAt: '{type} in {dist}', inZone: 'Police nearby', maint: 'Maxora is under maintenance. Alerts will be back soon.'
@@ -62,7 +62,7 @@
       expired: 'Questo avviso non c’è più', errBlocked: 'Il tuo dispositivo è bloccato',
       errRate: 'Troppi avvisi, riprova più tardi', errZone: 'Disponibile solo alle Canarie',
       errOff: 'Funzione non disponibile', errMaint: 'Maxora è in manutenzione', errGeneric: 'Invio non riuscito',
-      errNoSession: 'Nessuna connessione a Maxora', noGps: 'Senza GPS: avviso al centro della mappa',
+      errNoSession: 'Nessuna connessione a Maxora', noGps: 'Senza GPS: avviso al centro della mappa', gpsDenied: 'Posizione bloccata: senza non posso avvisarti di cosa hai davanti.', gpsLost: 'Non trovo il GPS. Sei al chiuso?', gpsAsk: 'Attiva la posizione per gli avvisi sulla tua strada.', gpsHow: 'Come attivarla', gpsRetry: 'Riprova', gpsOn: 'Attiva', gpsHowT: 'Permetti a Maxora di usare la posizione', gpsStepsIos: 'Apri Impostazioni dell\'iPhone|Privacy e sicurezza › Localizzazione|Safari (o l\'app Maxora) › «Mentre usi l\'app»|Torna qui e ricarica la pagina', gpsStepsAndroid: 'Tocca il lucchetto accanto all\'indirizzo, in alto|Autorizzazioni › Posizione › Consenti|Controlla che la posizione del telefono sia accesa|Torna qui e ricarica la pagina',
       places: 'Luoghi', businesses: 'Attività', soon: 'In arrivo', call: 'Chiama', web: 'Sito',
       sponsor: 'IN EVIDENZA', active: '{n} avvisi attivi', following: 'Ti seguo',
       voiceAt: '{type} a {dist}', inZone: 'Zona con presenza polizia', maint: 'Maxora è in manutenzione. Gli avvisi tornano presto.'
@@ -82,7 +82,7 @@
       expired: 'Diese Meldung ist weg', errBlocked: 'Dein Gerät ist gesperrt',
       errRate: 'Zu viele Meldungen, versuche es später', errZone: 'Nur auf den Kanaren verfügbar',
       errOff: 'Funktion nicht verfügbar', errMaint: 'Maxora wird gewartet', errGeneric: 'Senden fehlgeschlagen',
-      errNoSession: 'Keine Verbindung zu Maxora', noGps: 'Kein GPS: Meldung in der Kartenmitte',
+      errNoSession: 'Keine Verbindung zu Maxora', noGps: 'Kein GPS: Meldung in der Kartenmitte', gpsDenied: 'Standort blockiert: ohne ihn kann ich dich nicht vor dem warnen, was vor dir liegt.', gpsLost: 'Kein GPS gefunden. Bist du drinnen?', gpsAsk: 'Standort einschalten für Meldungen auf deinem Weg.', gpsHow: 'So schaltest du ihn ein', gpsRetry: 'Nochmal', gpsOn: 'Einschalten', gpsHowT: 'Maxora den Standort erlauben', gpsStepsIos: 'iPhone-Einstellungen öffnen|Datenschutz & Sicherheit › Ortungsdienste|Safari (oder die Maxora-App) › „Beim Verwenden“|Zurückkommen und Seite neu laden', gpsStepsAndroid: 'Auf das Schloss neben der Adresse oben tippen|Berechtigungen › Standort › Zulassen|Prüfen, ob der Standort am Handy an ist|Zurückkommen und Seite neu laden',
       places: 'Orte', businesses: 'Betriebe', soon: 'Bald verfügbar', call: 'Anrufen', web: 'Webseite',
       sponsor: 'EMPFOHLEN', active: '{n} aktive Meldungen', following: 'Folgt dir',
       voiceAt: '{type} in {dist}', inZone: 'Polizei in der Nähe', maint: 'Maxora wird gewartet. Meldungen sind bald zurück.'
@@ -502,13 +502,36 @@
     meEl.style.setProperty('--heading-op', S.heading != null && S.speed > 1.5 ? 1 : 0);
     meMarker.setRotation(S.heading || 0);
     $('gpsDot').classList.add('on');
+    if ($('gpsHint')) gpsHint(null);
 
     if (S.follow) map.easeTo({ center: [now.lng, now.lat], zoom: Math.max(map.getZoom(), S.speed > 15 ? 12.5 : 13.5), duration: 800 });
     refresh();
     checkProximity();
   }
 
-  function onPositionError() { $('gpsDot').classList.remove('on'); updateChip(); }
+  function onPositionError(err) {
+    $('gpsDot').classList.remove('on'); updateChip();
+    if (!S.pos) gpsHint(err && err.code === 1 ? 'denied' : 'lost');
+  }
+  // Avviso nel pannello quando manca la posizione: perché serve e come attivarla
+  let gpsHintOff = false;
+  const IS_IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  function gpsHint(kind) {
+    const old = $('gpsHint');
+    if (!kind || gpsHintOff || S.pos) { if (old) old.remove(); return; }
+    const txt = { denied: t('gpsDenied'), lost: t('gpsLost'), ask: t('gpsAsk') }[kind];
+    const btn = { denied: t('gpsHow'), lost: t('gpsRetry'), ask: t('gpsOn') }[kind];
+    const act = () => {
+      if (kind !== 'denied') { gpsHint(null); startGps(); return; }
+      actionSheet(t('gpsHow'), t('gpsHowT'), (IS_IOS ? t('gpsStepsIos') : t('gpsStepsAndroid')).split('|').map((x, i, all) => (i === all.length - 1 ? { icon: '↻', label: x, onclick: () => location.reload() } : { icon: String(i + 1), label: x, plain: true })));
+    };
+    const n = el('div', { id: 'gpsHint', class: 'gps-hint ' + kind }, [
+      el('span', { class: 'gi', text: '📍' }), el('span', { class: 'gt', text: txt }),
+      el('button', { class: 'gb', onclick: act, text: btn }),
+      el('button', { class: 'gx', 'aria-label': '✕', text: '✕', onclick: () => { gpsHintOff = true; gpsHint(null); } })
+    ]);
+    if (old) old.replaceWith(n); else $('sheetBody').prepend(n);
+  }
 
   function startGps() {
     if (!('geolocation' in navigator)) return;
@@ -1536,7 +1559,7 @@
     const old = document.querySelector('.nav-ov'); if (old) old.remove();
     const close = () => ov.remove();
     const rows = items.filter(Boolean).map((it) => {
-      const kids = [el('span', { class: 'i', text: it.icon || '➜' }), el('span', { class: 'tx' }, [el('b', { text: it.label }), it.sub ? el('small', { text: it.sub }) : null]), el('span', { class: 'go', text: '›' })];
+      const kids = [el('span', { class: 'i', text: it.icon || '➜' }), el('span', { class: 'tx' }, [el('b', { text: it.label }), it.sub ? el('small', { text: it.sub }) : null]), it.plain ? null : el('span', { class: 'go', text: '›' })];
       const n = it.href ? el('a', { class: 'nav-a', href: it.href, target: '_blank', rel: 'noopener' }, kids) : el('button', { class: 'nav-a' }, kids);
       n.addEventListener('click', (e) => { if (it.onclick) it.onclick(e); setTimeout(close, 250); });
       return n;
@@ -1911,6 +1934,10 @@
     subscribe();
     // al primo avvio la posizione si chiede dentro il tutorial, dopo averne spiegato il motivo
     if (store.get('tourDone', false)) startGps();
+    setTimeout(() => {
+      if (S.pos || !navigator.permissions) return;
+      navigator.permissions.query({ name: 'geolocation' }).then((st) => { if (!S.pos) gpsHint(st.state === 'denied' ? 'denied' : st.state === 'prompt' ? 'ask' : null); }).catch(() => {});
+    }, 4000);
     setInterval(loadAll, 60000);
     setInterval(() => { for (const r of S.reports.values()) if (!isLive(r)) S.reports.delete(r.id); refresh(); }, 20000);
     if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});

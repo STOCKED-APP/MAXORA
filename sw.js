@@ -2,7 +2,7 @@
 // File dell'app: prima la rete (max 4 s), poi la copia salvata.
 // Librerie e font esterni: copia salvata subito, aggiornata in sottofondo.
 // Mappa: le ultime ~600 tessere viste restano sul telefono. I dati live (Supabase) non vengono mai salvati.
-const CACHE = 'maxora-v51';
+const CACHE = 'maxora-v52';
 const LIBS = 'maxora-libs-v1';
 const TILES = 'maxora-tiles-v1';
 const SHELL = ['./', 'index.html', 'assets/theme.css', 'assets/app.css', 'assets/app.js', 'assets/ui.js', 'assets/surf.js', 'assets/camper.js', 'assets/sport.js', 'assets/waves.js', 'assets/diary.js', 'assets/tour.js', 'assets/account.js', 'assets/fuel.js', 'assets/follow.js', 'assets/radar.js', 'assets/config.js', 'assets/icon.svg'];

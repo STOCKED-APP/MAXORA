@@ -1138,3 +1138,11 @@ html, body { max-width: 100%; overflow-x: hidden; }
 @media (max-width: 379px) { .bottom-row .report-pill, .bottom-row .disc-btn { font-size: 14px; } .bottom-row .report-pill svg { width: 18px; height: 18px; } }
 @media (max-width: 349px) { .bottom-row .disc-btn span { display: none; } }
 @media (max-width: 369px) { .bottom-row { gap: 6px; } .bottom-row .report-pill { padding: 0 10px; } .bottom-row .disc-btn { padding: 0 11px; } }
+
+/* v0.23 — posizione spenta: avviso nel pannello */
+.gps-hint { display: flex; align-items: center; gap: 8px; margin: 2px 16px 12px; padding: 10px 6px 10px 12px; border-radius: 16px; background: color-mix(in srgb, var(--amber) 14%, var(--card)); border: 1px solid color-mix(in srgb, var(--amber) 40%, var(--border)); font-size: 13.5px; line-height: 1.35; }
+.gps-hint.ask { background: color-mix(in srgb, var(--accent) 12%, var(--card)); border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+.gps-hint .gi { font-size: 18px; flex: none; }
+.gps-hint .gt { flex: 1; min-width: 0; }
+.gps-hint .gb { flex: none; min-height: 36px; padding: 0 12px; border-radius: 999px; border: 0; background: var(--text); color: var(--sheet); font: inherit; font-weight: 800; font-size: 13px; }
+.gps-hint .gx { flex: none; width: 30px; height: 36px; border: 0; background: transparent; color: var(--muted); font-size: 14px; }
