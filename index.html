@@ -14,8 +14,38 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
-<link href="assets/theme.css" rel="stylesheet">
-<link href="assets/app.css" rel="stylesheet">
+<style>
+/* v0.26 — apertura animata: livelli HTML separati, animati solo con transform/opacity
+   (girano sul compositore del telefono: fluidi anche mentre la mappa si carica) */
+#splash { position: fixed; inset: 0; z-index: 1000; background: #f3e6cc; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; font-family: 'Manrope', system-ui, -apple-system, sans-serif; transition: opacity .6s ease, transform .6s ease; }
+#splash.out { opacity: 0; transform: scale(1.03); pointer-events: none; }
+.sp-art { position: relative; width: 230px; height: 230px; border-radius: 52px; overflow: hidden; margin-bottom: 18px; transform: translateZ(0); }
+.sp-l, .sp-wave { position: absolute; left: 0; top: 0; width: 230px; height: 230px; will-change: transform, opacity; }
+.sp-l svg, .sp-wave svg { display: block; width: 100%; height: 100%; }
+.sp-bg { background: #f6d8a6; }
+.sp-land { position: absolute; left: 0; top: 0; width: 230px; height: 169px; overflow: hidden; }
+.sp-wave { width: 307px; }
+.sp-word { font-size: 46px; font-weight: 800; letter-spacing: -0.03em; color: #2b1a10; opacity: 0; will-change: transform, opacity; animation: sp-word .9s 1.9s cubic-bezier(.2,.8,.3,1) forwards; }
+.sp-tag { font-size: 15px; font-weight: 700; color: #7a5a3a; opacity: 0; animation: sp-fade .8s 2.4s ease-out forwards; }
+.sp-sun { animation: sp-sun 1.6s .1s cubic-bezier(.22,.7,.3,1) both; }
+.sp-far { animation: sp-far 1.1s .45s cubic-bezier(.22,.7,.3,1) both; }
+.sp-v2 { animation: sp-up2 1.2s .75s cubic-bezier(.22,.7,.3,1) both; }
+.sp-v1 { animation: sp-up1 1.25s .95s cubic-bezier(.22,.7,.3,1) both; }
+.sp-sea { animation: sp-sea 1s .2s cubic-bezier(.22,.7,.3,1) both; }
+.sp-roll { animation: sp-roll 3.6s linear infinite; }
+.sp-roll2 { animation: sp-roll 5.4s linear infinite reverse; }
+@keyframes sp-sun { from { transform: translate3d(0, 70px, 0); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes sp-far { from { transform: translate3d(0, 28px, 0); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes sp-up2 { from { transform: translate3d(0, 80px, 0); } to { transform: none; } }
+@keyframes sp-up1 { from { transform: translate3d(0, 100px, 0); } to { transform: none; } }
+@keyframes sp-sea { from { transform: translate3d(0, 36px, 0); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes sp-roll { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-76.67px, 0, 0); } }
+@keyframes sp-word { from { opacity: 0; transform: translate3d(0, 14px, 0); } to { opacity: 1; transform: none; } }
+@keyframes sp-fade { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { #splash *, #splash { animation: none !important; opacity: 1 !important; transform: none !important; } }
+</style>
+<link href="assets/theme.css?v=0.26.2" rel="stylesheet">
+<link href="assets/app.css?v=0.26.2" rel="stylesheet">
 <script>
   // Tema prima del primo disegno (evita il lampo bianco)
   (function () {
@@ -325,18 +355,18 @@
 
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="assets/config.js"></script>
-<script src="assets/app.js"></script>
-<script src="assets/ui.js"></script>
-<script src="assets/surf.js"></script>
-<script src="assets/camper.js"></script>
-<script src="assets/sport.js"></script>
-<script src="assets/waves.js"></script>
-<script src="assets/diary.js"></script>
-<script src="assets/tour.js"></script>
-<script src="assets/account.js"></script>
-<script src="assets/fuel.js"></script>
-<script src="assets/follow.js"></script>
-<script src="assets/radar.js"></script>
+<script src="assets/config.js?v=0.26.2"></script>
+<script src="assets/app.js?v=0.26.2"></script>
+<script src="assets/ui.js?v=0.26.2"></script>
+<script src="assets/surf.js?v=0.26.2"></script>
+<script src="assets/camper.js?v=0.26.2"></script>
+<script src="assets/sport.js?v=0.26.2"></script>
+<script src="assets/waves.js?v=0.26.2"></script>
+<script src="assets/diary.js?v=0.26.2"></script>
+<script src="assets/tour.js?v=0.26.2"></script>
+<script src="assets/account.js?v=0.26.2"></script>
+<script src="assets/fuel.js?v=0.26.2"></script>
+<script src="assets/follow.js?v=0.26.2"></script>
+<script src="assets/radar.js?v=0.26.2"></script>
 </body>
 </html>

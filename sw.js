@@ -2,7 +2,7 @@
 // File dell'app: prima la rete (max 4 s), poi la copia salvata.
 // Librerie e font esterni: copia salvata subito, aggiornata in sottofondo.
 // Mappa: le ultime ~600 tessere viste restano sul telefono. I dati live (Supabase) non vengono mai salvati.
-const CACHE = 'maxora-v57';
+const CACHE = 'maxora-v58';
 const LIBS = 'maxora-libs-v1';
 const TILES = 'maxora-tiles-v1';
 const SHELL = ['./', 'index.html', 'assets/theme.css', 'assets/app.css', 'assets/app.js', 'assets/ui.js', 'assets/surf.js', 'assets/camper.js', 'assets/sport.js', 'assets/waves.js', 'assets/diary.js', 'assets/tour.js', 'assets/account.js', 'assets/fuel.js', 'assets/follow.js', 'assets/radar.js', 'assets/config.js', 'assets/icon.svg', 'assets/icon-180.png', 'assets/icon-192.png', 'manifest.webmanifest'];
@@ -60,7 +60,9 @@ self.addEventListener('fetch', (e) => {
   if (url.origin !== self.location.origin || url.pathname.includes('/admin')) return;
 
   // file dell'app e dati pubblicati: rete (max 4 s) poi copia
-  const net = fetch(req).then((res) => { if (res.ok) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)); } return res; });
+  // sempre controllata col server (no-cache): mai un file vecchio insieme a una pagina nuova
+  const fresh = req.mode === 'navigate' ? fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' }) : fetch(req, { cache: 'no-cache' });
+  const net = fresh.then((res) => { if (res.ok) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)); } return res; });
   e.respondWith(
     withTimeout(net, 4000).catch(async () => (await caches.match(req)) || (await caches.match(req, { ignoreSearch: true })) || net)
   );
