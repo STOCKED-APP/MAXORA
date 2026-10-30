@@ -9,6 +9,7 @@ on:
     paths:
       - 'tools/build_pois.py'
       - 'tools/build_protected.py'
+      - 'tools/build_land.py'
       - '.github/workflows/pois.yml'
 
 permissions:
@@ -58,6 +59,12 @@ jobs:
           osmium export prot.osm.pbf -f geojsonseq --geometry-types=polygon -o prot.geojsonseq --overwrite
           python3 tools/build_protected.py prot.geojsonseq data/protected.json
 
+      - name: Sagoma dell'isola (per l'animazione del mare)
+        run: |
+          osmium tags-filter fv.osm.pbf w/natural=coastline -o coast.osm.pbf --overwrite
+          osmium export coast.osm.pbf -f geojsonseq -o coast.geojsonseq --overwrite
+          python3 tools/build_land.py coast.geojsonseq data/land.json
+
       - name: Crea data/pois.json
         run: |
           echo "::notice::righe=$(wc -l < filtered.geojsonseq) dimensione=$(stat -c %s filtered.geojsonseq) prima=$(head -c 300 filtered.geojsonseq | tr -d '\036\n' | cut -c1-250)"
@@ -67,7 +74,7 @@ jobs:
         run: |
           git config user.name "maxora-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/pois.json data/protected.json
+          git add data/pois.json data/protected.json data/land.json
           if git diff --cached --quiet; then echo "Nessun cambiamento"; exit 0; fi
           git commit -m "Luoghi aggiornati da OpenStreetMap"
           git push
