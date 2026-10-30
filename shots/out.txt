@@ -1,5 +1,9 @@
-ERRORE: page.evaluate: TypeError: Cannot read properties of undefined (reading 'setOn')
-    at Object.choose (https://stocked-app.github.io/MAXORA/assets/sport.js:612:53)
-    at eval (eval at evaluate (:234:30), <anonymous>:1:27)
-    at UtilityScript.evaluate (<anonymous>:236:17)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
+sat-far surf: object
+sat-far versione: 0.18.0
+sat-mid surf: object
+sat-mid versione: 0.18.0
+sat-near surf: object
+sat-near versione: 0.18.0
+light-z12 surf: object
+light-z12 versione: 0.18.0
+errori: nessuno
