@@ -368,14 +368,14 @@
   map.__style = styleKey();
   setMapStyle(map.__style);
   map.touchZoomRotate.disableRotation();
-  // apertura animata: resta almeno ~1,6 s (il tempo dell'animazione) e sparisce appena la mappa è pronta
+  // apertura animata: resta il tempo dell'animazione (~3 s) e sparisce appena la mappa è pronta
   (function () {
     const sp = document.getElementById('splash'); if (!sp) return;
     const t0 = performance.now();
     let done = false;
-    const hide = () => { if (done) return; done = true; setTimeout(() => { sp.classList.add('out'); setTimeout(() => sp.remove(), 500); }, Math.max(0, 1650 - (performance.now() - t0))); };
+    const hide = () => { if (done) return; done = true; setTimeout(() => { sp.classList.add('out'); setTimeout(() => sp.remove(), 500); }, Math.max(0, 3100 - (performance.now() - t0))); };
     map.once('load', hide);
-    setTimeout(hide, 4000);
+    setTimeout(hide, 5500);
   })();
 
   // icone mancanti negli stili esterni: immagine vuota invece di un errore

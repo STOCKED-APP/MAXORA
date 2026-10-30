@@ -8,5 +8,5 @@ window.MAXORA_CONFIG = {
     dark: 'https://tiles.openfreemap.org/styles/liberty',     // stessa mappa, ricolorata per la notte (vedi nightStyle in app.js)
     labels: 'https://tiles.openfreemap.org/styles/dark'       // solo per le scritte sopra il satellite
   },
-  version: '0.26.0'
+  version: '0.26.1'
 };
