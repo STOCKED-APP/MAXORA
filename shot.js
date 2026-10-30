@@ -4,7 +4,7 @@ const out = [];
   try { const st = await (await fetch('https://tiles.openfreemap.org/styles/liberty')).json(); require('fs').writeFileSync('shots/liberty.json', JSON.stringify(st, null, 1)); } catch (e) { out.push('liberty: ' + e.message); }
   const b = await chromium.launch();
   const errs = [];
-  for (const [name, scheme, zoom, center] of [['corr-light-15', 'light', 15, [-13.874, 28.737]], ['corr-dark-15', 'dark', 15, [-13.874, 28.737]]]) {
+  for (const [name, scheme, zoom, center] of [['corr-light-15', 'light', 15, [-13.874, 28.737]], ['corr-dark-15', 'dark', 15, [-13.874, 28.737]], ['corr-light-14', 'light', 14, [-13.88, 28.735]]]) {
     const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, locale: 'it-IT', colorScheme: scheme });
     await ctx.addInitScript((n) => { if (n.startsWith('sat')) localStorage.setItem('maxora_mapMode', JSON.stringify('sat')); ['tourDone', 'tips2_surf', 'tips2_bike', 'tips2_run', 'tips2_camper'].forEach((k) => localStorage.setItem('maxora_' + k, 'true')); }, name);
     const p = await ctx.newPage();
