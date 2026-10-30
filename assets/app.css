@@ -1033,3 +1033,14 @@ body.ui-list:has(#sfCard:not(.hidden)) .ui-back, body.ui-list:has(#spCard:not(.h
 .nav-a b { flex: 1; font-size: 16px; }
 .nav-a .go { font-size: 22px; color: var(--muted); }
 .nav-x { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--card); color: var(--text); font-size: 16px; }
+.nav-a { font: inherit; text-align: left; width: 100%; cursor: pointer; }
+.nav-a .tx { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.nav-a .tx small { font-size: 12.5px; color: var(--muted); font-weight: 600; margin-top: 1px; }
+.nav-a b { flex: none; }
+.sp-poi.bike.rent { opacity: .85; }
+.bk-pop .k { font-size: 11px; font-weight: 800; color: var(--muted); }
+.bk-pop b { display: block; font-size: 15px; margin: 2px 0; }
+.bk-pop .s { font-size: 12.5px; color: var(--muted); }
+.bk-pop .acts { display: flex; gap: 6px; margin-top: 8px; }
+.bk-pop .acts a { flex: 1; text-align: center; padding: 7px 0; border-radius: 10px; background: var(--card); border: 1px solid var(--border); color: var(--text); text-decoration: none; font-weight: 700; font-size: 13px; }
+.bk-pop .n { font-size: 10px; color: var(--muted); margin-top: 6px; }

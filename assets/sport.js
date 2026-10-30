@@ -25,13 +25,13 @@
       windRoute: 'Il vento sul percorso', headFirst: 'Parti controvento ({d}) e torni con il vento a favore.', tailFirst: 'All\'andata hai il vento a favore: il ritorno sarà controvento ({d}). Tieni energie.',
       reverse: 'Conviene fare il giro al contrario: così il tratto controvento è all\'inizio.', loopOk: 'Il verso del giro va bene: il tratto controvento è all\'inizio.', windCalm: 'Vento debole: nessun problema.',
       crossStrong: 'Attenzione al vento laterale forte nei tratti esposti.',
-      bestFor: 'Le ore migliori per questo percorso', go: 'VAI ALLA PARTENZA', openWith: 'Apri navigazione con', gpx: 'Scarica GPX (Garmin, Strava, Komoot)',
+      bestFor: 'Le ore migliori per questo percorso', go: 'VAI ALLA PARTENZA', openWith: 'Apri navigazione con', sendApp: 'Apri in un\'altra app', shareGpx: 'Invia il percorso a un\'app', shareGpxSub: 'Strava, Komoot, Garmin Connect… scegli tu dall\'elenco del telefono', dlGpx: 'Scarica il file del percorso', dlGpxSub: 'GPX, per caricarlo a mano', toStartBike: 'Google Maps fino alla partenza', toStartSub: 'indicazioni in bici', toStartWalk: 'indicazioni a piedi', fromYou: 'Da te alla partenza', road: 'su strada', airline: 'in linea d\'aria', bk_station: 'Punto riparazione self-service', bk_shop: 'Negozio bici', bk_rent: 'Noleggio bici', bkRepair: 'ripara', bkRent: 'noleggia', goShort: 'Vai', gpx: 'Scarica GPX (Garmin, Strava, Komoot)',
       reportShort: 'Segnala', reportBikes: 'Segnala ciclisti qui', reportBikesSub: 'Gli automobilisti ricevono l\'avviso per 30 minuti',
       adviceHot: 'Fa caldo: esci presto o dopo le 18 e porta acqua.', adviceWind: 'Vento forte da {d}: scegli percorsi riparati o parti controvento.',
       adviceGood: 'Condizioni buone per uscire.', adviceNight: 'È buio: luci e giubbino riflettente.', adviceRain: 'Possibile pioggia.',
       src: 'Meteo: ECMWF Open Data (CC BY 4.0). Percorsi: OpenStreetMap (ODbL). Quote: Copernicus DEM. ', updated: 'aggiornato {t}', ago: '{t} fa',
       loading: 'Carico…', noData: 'Dati non disponibili adesso', stars: 'condizioni', score: 'Condizioni per {s}',
-      future: 'Registrare le uscite arriverà più avanti: per ora scarica il GPX e registra con l\'app che usi.'
+      future: 'Con «Segui percorso» ti guidiamo noi; per registrare con un\'altra app usa «Apri in un\'altra app».'
     },
     es: {
       advLabel: 'Consejo', v4: 'Momento ideal para salir', v3: 'Buen momento, con alguna precaución', v2: 'Se puede salir, pero no es lo ideal', v1: 'Mejor otro momento',
@@ -48,13 +48,13 @@
       windRoute: 'El viento en la ruta', headFirst: 'Sales con viento en contra ({d}) y vuelves a favor.', tailFirst: 'A la ida el viento va a favor: la vuelta será en contra ({d}). Guarda fuerzas.',
       reverse: 'Mejor hacer la vuelta al revés: así el tramo en contra queda al principio.', loopOk: 'El sentido de la vuelta es bueno: el tramo en contra queda al principio.', windCalm: 'Viento flojo: sin problema.',
       crossStrong: 'Cuidado con el viento lateral fuerte en los tramos expuestos.',
-      bestFor: 'Las mejores horas para esta ruta', go: 'IR A LA SALIDA', openWith: 'Abrir navegación con', gpx: 'Descargar GPX (Garmin, Strava, Komoot)',
+      bestFor: 'Las mejores horas para esta ruta', go: 'IR A LA SALIDA', openWith: 'Abrir navegación con', sendApp: 'Abrir en otra app', shareGpx: 'Enviar la ruta a una app', shareGpxSub: 'Strava, Komoot, Garmin Connect… elige de la lista del teléfono', dlGpx: 'Descargar el archivo de la ruta', dlGpxSub: 'GPX, para subirlo a mano', toStartBike: 'Google Maps hasta la salida', toStartSub: 'indicaciones en bici', toStartWalk: 'indicaciones a pie', fromYou: 'De ti a la salida', road: 'por carretera', airline: 'en línea recta', bk_station: 'Punto de reparación autoservicio', bk_shop: 'Tienda de bicis', bk_rent: 'Alquiler de bicis', bkRepair: 'repara', bkRent: 'alquila', goShort: 'Ir', gpx: 'Descargar GPX (Garmin, Strava, Komoot)',
       reportShort: 'Avisar', reportBikes: 'Avisar ciclistas aquí', reportBikesSub: 'Los conductores reciben el aviso durante 30 minutos',
       adviceHot: 'Hace calor: sal temprano o después de las 18 y lleva agua.', adviceWind: 'Viento fuerte del {d}: elige rutas resguardadas o sal en contra.',
       adviceGood: 'Buenas condiciones para salir.', adviceNight: 'Es de noche: luces y chaleco reflectante.', adviceRain: 'Posible lluvia.',
       src: 'Tiempo: ECMWF Open Data (CC BY 4.0). Rutas: OpenStreetMap (ODbL). Altitud: Copernicus DEM. ', updated: 'actualizado {t}', ago: 'hace {t}',
       loading: 'Cargando…', noData: 'Datos no disponibles ahora', stars: 'condiciones', score: 'Condiciones para {s}',
-      future: 'Registrar las salidas llegará más adelante: por ahora descarga el GPX y registra con tu app.'
+      future: 'Con «Seguir recorrido» te guiamos nosotros; para registrar con otra app usa «Abrir en otra app».'
     },
     en: {
       advLabel: 'Advice', v4: 'Great time to go out', v3: 'Good time, with some caution', v2: 'Possible, but not ideal', v1: 'Better another time',
@@ -71,13 +71,13 @@
       windRoute: 'Wind on the route', headFirst: 'Headwind on the way out ({d}), tailwind home.', tailFirst: 'Tailwind on the way out: the return will be into the wind ({d}). Save energy.',
       reverse: 'Ride the loop the other way: the headwind section comes first.', loopOk: 'Loop direction is good: the headwind section comes first.', windCalm: 'Light wind: no problem.',
       crossStrong: 'Watch out for strong crosswinds on exposed sections.',
-      bestFor: 'Best hours for this route', go: 'GO TO THE START', openWith: 'Navigate with', gpx: 'Download GPX (Garmin, Strava, Komoot)',
+      bestFor: 'Best hours for this route', go: 'GO TO THE START', openWith: 'Navigate with', sendApp: 'Open in another app', shareGpx: 'Send the route to an app', shareGpxSub: 'Strava, Komoot, Garmin Connect… pick from your phone\'s list', dlGpx: 'Download the route file', dlGpxSub: 'GPX, to upload manually', toStartBike: 'Google Maps to the start', toStartSub: 'cycling directions', toStartWalk: 'walking directions', fromYou: 'From you to the start', road: 'by road', airline: 'straight line', bk_station: 'Self-service repair point', bk_shop: 'Bike shop', bk_rent: 'Bike rental', bkRepair: 'repairs', bkRent: 'rentals', goShort: 'Go', gpx: 'Download GPX (Garmin, Strava, Komoot)',
       reportShort: 'Report', reportBikes: 'Report cyclists here', reportBikesSub: 'Drivers get the alert for 30 minutes',
       adviceHot: 'It\'s hot: go early or after 6 pm and carry water.', adviceWind: 'Strong wind from {d}: pick sheltered routes or start into the wind.',
       adviceGood: 'Good conditions to go out.', adviceNight: 'It\'s dark: lights and a reflective vest.', adviceRain: 'Rain possible.',
       src: 'Weather: ECMWF Open Data (CC BY 4.0). Routes: OpenStreetMap (ODbL). Elevation: Copernicus DEM. ', updated: 'updated {t}', ago: '{t} ago',
       loading: 'Loading…', noData: 'Data not available right now', stars: 'conditions', score: 'Conditions for {s}',
-      future: 'Recording your rides is coming later: for now download the GPX and record with your usual app.'
+      future: 'With “Follow route” we guide you; to record with another app use “Open in another app”.'
     },
     de: {
       advLabel: 'Empfehlung', v4: 'Sehr gute Zeit zum Rausgehen', v3: 'Gute Zeit, mit etwas Vorsicht', v2: 'Möglich, aber nicht ideal', v1: 'Besser ein andermal',
@@ -94,13 +94,13 @@
       windRoute: 'Wind auf der Strecke', headFirst: 'Hinweg mit Gegenwind ({d}), zurück mit Rückenwind.', tailFirst: 'Hinweg mit Rückenwind: zurück geht es gegen den Wind ({d}). Kräfte sparen.',
       reverse: 'Fahr die Runde andersherum: dann kommt der Gegenwind zuerst.', loopOk: 'Die Richtung passt: der Gegenwind kommt zuerst.', windCalm: 'Schwacher Wind: kein Problem.',
       crossStrong: 'Vorsicht vor starkem Seitenwind auf offenen Abschnitten.',
-      bestFor: 'Beste Stunden für diese Strecke', go: 'ZUM START', openWith: 'Navigieren mit', gpx: 'GPX herunterladen (Garmin, Strava, Komoot)',
+      bestFor: 'Beste Stunden für diese Strecke', go: 'ZUM START', openWith: 'Navigieren mit', sendApp: 'In anderer App öffnen', shareGpx: 'Strecke an eine App senden', shareGpxSub: 'Strava, Komoot, Garmin Connect… aus der Liste des Telefons wählen', dlGpx: 'Streckendatei herunterladen', dlGpxSub: 'GPX, zum manuellen Hochladen', toStartBike: 'Google Maps zum Start', toStartSub: 'Radroute', toStartWalk: 'Fußweg', fromYou: 'Von dir zum Start', road: 'auf der Straße', airline: 'Luftlinie', bk_station: 'Self-Service-Reparaturstation', bk_shop: 'Fahrradladen', bk_rent: 'Fahrradverleih', bkRepair: 'Reparatur', bkRent: 'Verleih', goShort: 'Los', gpx: 'GPX herunterladen (Garmin, Strava, Komoot)',
       reportShort: 'Melden', reportBikes: 'Radfahrer hier melden', reportBikesSub: 'Autofahrer sehen die Meldung 30 Minuten lang',
       adviceHot: 'Es ist heiß: früh oder nach 18 Uhr los und Wasser mitnehmen.', adviceWind: 'Starker Wind aus {d}: geschützte Strecken wählen oder gegen den Wind starten.',
       adviceGood: 'Gute Bedingungen zum Rausgehen.', adviceNight: 'Es ist dunkel: Licht und Warnweste.', adviceRain: 'Regen möglich.',
       src: 'Wetter: ECMWF Open Data (CC BY 4.0). Strecken: OpenStreetMap (ODbL). Höhen: Copernicus DEM. ', updated: 'aktualisiert {t}', ago: 'vor {t}',
       loading: 'Lade…', noData: 'Daten gerade nicht verfügbar', stars: 'Bedingungen', score: 'Bedingungen für {s}',
-      future: 'Aufzeichnen kommt später: lade jetzt das GPX und zeichne mit deiner App auf.'
+      future: 'Mit «Strecke folgen» führen wir dich; zum Aufzeichnen mit einer anderen App «In anderer App öffnen» nutzen.'
     }
   };
   const LOC = { es: 'es-ES', en: 'en-GB', it: 'it-IT', de: 'de-DE' };
@@ -255,6 +255,33 @@
     return out.sort((a, b) => b.s - a.s || a.t - b.t).slice(0, n);
   }
 
+  // officine, negozi e noleggi: ognuno con la sua icona (prima erano tutti chiavi inglesi)
+  const BK_ICON = { station: '🔧', shop: '🛠', rent: '🚲' };
+  function bikeKind(b) {
+    const t = b.tags || {};
+    if (t.amenity === 'bicycle_repair_station') return 'station';
+    if (t.shop === 'bicycle' || t['service:bicycle:repair'] === 'yes') return 'shop';
+    return 'rent';
+  }
+  let bkPop = null;
+  function bikePopup(b, k) {
+    const t = b.tags || {};
+    const ll = b.lat + ',' + b.lng;
+    const box = el('div', { class: 'bk-pop' }, [
+      el('div', { class: 'k', text: BK_ICON[k] + ' ' + tr('bk_' + k) }),
+      el('b', { text: b.name && b.name !== 'Bike' ? b.name : tr('bk_' + k) }),
+      el('div', { class: 's', text: [t['service:bicycle:repair'] === 'yes' ? tr('bkRepair') : null, t['service:bicycle:rental'] === 'yes' || k === 'rent' ? tr('bkRent') : null, t.opening_hours || null].filter(Boolean).join(' · ') }),
+      el('div', { class: 'acts' }, [
+        t.phone ? el('a', { href: 'tel:' + String(t.phone).replace(/\s/g, ''), text: '📞' }) : null,
+        t.website ? el('a', { href: t.website, target: '_blank', rel: 'noopener', text: '🌐' }) : null,
+        el('a', { href: 'https://www.google.com/maps/dir/?api=1&destination=' + ll + '&travelmode=bicycling', target: '_blank', rel: 'noopener', text: tr('goShort') })
+      ]),
+      el('div', { class: 'n', text: 'OpenStreetMap' })
+    ]);
+    if (bkPop) bkPop.remove();
+    bkPop = new maplibregl.Popup({ closeButton: false, closeOnMove: true, offset: 14, maxWidth: '240px', className: 'wv-popup' }).setLngLat([b.lng, b.lat]).setDOMContent(box).addTo(map);
+  }
+
   // ------------------------------------------------------------------
   // Mappa: linee dei percorsi, fontanelle, officine
   // ------------------------------------------------------------------
@@ -289,7 +316,16 @@
         markers.push(new maplibregl.Marker({ element: el('div', { class: 'sp-poi note', title: window.MAXORA_FOLLOW.noteText(n), text: window.MAXORA_FOLLOW.KIND_ICON[n.kind] || '⚠️' }) }).setLngLat([n.lng, n.lat]).addTo(map));
       }));
     }
-    if (SP.mode === 'bike') (SP.bikeShops || []).forEach((b) => markers.push(new maplibregl.Marker({ element: el('div', { class: 'sp-poi bike', title: b.name, text: '🔧' }) }).setLngLat([b.lng, b.lat]).addTo(map)));
+    if (SP.mode === 'bike') {
+      const seen = new Set();
+      (SP.bikeShops || []).forEach((b) => {
+        const key = b.name + b.lat.toFixed(4) + b.lng.toFixed(4); if (seen.has(key)) return; seen.add(key);
+        const k = bikeKind(b);
+        const n = el('div', { class: 'sp-poi bike ' + k, title: b.name || tr('bk_' + k), text: BK_ICON[k] });
+        n.addEventListener('click', (e) => { e.stopPropagation(); bikePopup(b, k); });
+        markers.push(new maplibregl.Marker({ element: n }).setLngLat([b.lng, b.lat]).addTo(map));
+      });
+    }
   }
   map.on('style.load', () => { if (SP.mode) { ensureLayers(); drawMap(); } });
   map.on('click', 'sp-line', (e) => { const f = e.features && e.features[0]; if (f) openCard(f.properties.id); });
@@ -412,7 +448,7 @@
       return {
         id: r.id, badge: [el('i', { text: '★' }), fmtR(sc)], color: color(sc), title: r.name[lang()] || r.name.es,
         sub: num(r.km, 1) + ' km · +' + r.gain + ' m · ' + tr('surface_' + r.surface) + (hz ? ' · ⚠ ' + hz : ''),
-        right: me ? (M.distKm(me, { lat: r.start[0], lng: r.start[1] }) < 1 ? '<1 km' : Math.round(M.distKm(me, { lat: r.start[0], lng: r.start[1] })) + ' km') : '',
+        right: me ? '~' + (M.distKm(me, { lat: r.start[0], lng: r.start[1] }) < 1 ? '<1 km' : Math.round(M.distKm(me, { lat: r.start[0], lng: r.start[1] })) + ' km') : '',
         onFocus: () => { const b = new maplibregl.LngLatBounds(r.line[0], r.line[0]); r.line.forEach((p) => b.extend(p)); map.fitBounds(b, { padding: 30, maxZoom: 14, duration: 600 }); },
         onOpen: () => openCard(r.id, true)
       };
@@ -448,16 +484,52 @@
       '<text x="' + pad + '" y="' + (H - 8) + '" class="lb lo">' + lo + ' m</text>';
     return svg;
   }
-  function gpx(r) {
+  function gpxXml(r) {
     const name = (r.name[lang()] || r.name.es).replace(/[<&>]/g, '');
     let pts = r.line.map((p) => '<trkpt lat="' + p[1] + '" lon="' + p[0] + '"></trkpt>');
     if (r.back) pts = pts.concat(pts.slice(0, -1).reverse());
-    const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Maxora" xmlns="http://www.topografix.com/GPX/1/1"><metadata><name>' + name + '</name><copyright author="OpenStreetMap contributors"><license>https://opendatacommons.org/licenses/odbl/</license></copyright></metadata><trk><name>' + name + '</name><trkseg>' + pts.join('') + '</trkseg></trk></gpx>';
+    return '<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Maxora" xmlns="http://www.topografix.com/GPX/1/1"><metadata><name>' + name + '</name><copyright author="OpenStreetMap contributors"><license>https://opendatacommons.org/licenses/odbl/</license></copyright></metadata><trk><name>' + name + '</name><type>' + (r.sport === 'bike' ? 'cycling' : 'running') + '</type><trkseg>' + pts.join('') + '</trkseg></trk></gpx>';
+  }
+  function gpx(r) {
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([xml], { type: 'application/gpx+xml' }));
+    a.href = URL.createObjectURL(new Blob([gpxXml(r)], { type: 'application/gpx+xml' }));
     a.download = 'maxora-' + r.id + '.gpx';
     document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
   }
+  // invia il percorso a un'altra app con il pannello "Condividi" del telefono (Strava, Komoot, Garmin…)
+  function shareGpx(r) {
+    try {
+      const f = new File([gpxXml(r)], 'maxora-' + r.id + '.gpx', { type: 'application/gpx+xml' });
+      if (navigator.canShare && navigator.canShare({ files: [f] })) { navigator.share({ files: [f], title: r.name[lang()] || r.name.es }).catch(() => {}); return; }
+    } catch (e) { /* niente condivisione file: scarico */ }
+    gpx(r);
+  }
+  function openWith(r) {
+    const ll = r.start[0] + ',' + r.start[1], bike = r.sport === 'bike';
+    M.actionSheet(tr('sendApp'), r.name[lang()] || r.name.es, [
+      { icon: '📲', label: tr('shareGpx'), sub: tr('shareGpxSub'), onclick: () => shareGpx(r) },
+      { icon: '🗺', label: tr('toStartBike'), sub: bike ? tr('toStartSub') : tr('toStartWalk'), href: 'https://www.google.com/maps/dir/?api=1&destination=' + ll + '&travelmode=' + (bike ? 'bicycling' : 'walking') },
+      { icon: '⬇', label: tr('dlGpx'), sub: tr('dlGpxSub'), onclick: () => gpx(r) }
+    ]);
+  }
+  // distanza vera (su strada) da te alla partenza
+  const distCache = new Map();
+  function fromYou(r, box) {
+    const me = M.pos();
+    if (!me) return;
+    const start = { lat: r.start[0], lng: r.start[1] };
+    const air = M.distKm(me, start);
+    const fmtKm = (k) => (k < 1 ? Math.round(k * 1000) + ' m' : num(k, k < 10 ? 1 : 0) + ' km');
+    const line = el('p', { class: 'p-note sp-from', text: '📍 ' + tr('fromYou') + ': ~' + fmtKm(air) + ' ' + tr('airline') });
+    box.appendChild(line);
+    if (air < 0.05) return;
+    const key = r.id + ':' + me.lat.toFixed(3) + ',' + me.lng.toFixed(3);
+    const p = distCache.get(key) || fetch('https://routing.openstreetmap.de/routed-' + (r.sport === 'bike' ? 'bike' : 'foot') + '/route/v1/driving/' + me.lng + ',' + me.lat + ';' + start.lng + ',' + start.lat + '?overview=false')
+      .then((x) => x.json()).then((j) => (j.routes && j.routes[0] ? j.routes[0] : null)).catch(() => null);
+    distCache.set(key, p);
+    p.then((rt) => { if (rt && line.isConnected) line.textContent = '📍 ' + tr('fromYou') + ': ' + fmtKm(rt.distance / 1000) + ' ' + tr('road') + ' · ' + Math.max(1, Math.round(rt.duration / 60)) + ' min'; });
+  }
+
   function openCard(id, fly) {
     SP.open = id;
     const r = SP.routes.find((x) => x.id === id);
@@ -499,6 +571,7 @@
       el('div', { class: 'p-stat' }, [el('div', { class: 'k', text: tr('stars') }), el('div', { class: 'v', style: 'color:' + color(s) }, ['★ ' + fmtR(s)]), el('div', { class: 'sf-sub', text: dayLabel(t) + ' ' + hh(t) + ':00' })])
     );
     box.appendChild(st);
+    fromYou(r, box);
     // altimetria
     box.appendChild(el('div', { class: 'sf-h', text: tr('profile') + ' · ' + tr('maxGrade', { g: num(r.max_grade, 0) }) }));
     box.appendChild(profileSvg(r));
@@ -539,7 +612,7 @@
       el('div', { class: 'p-actions' }, [
         window.MAXORA_FOLLOW ? el('button', { class: 'p-go fw-go', onclick: () => followRoute(r) }, ['▶ ' + window.MAXORA_FOLLOW.label()]) : null,
         el('button', { class: window.MAXORA_FOLLOW ? 'p-sec' : 'p-go', onclick: () => (M.navSheet ? M.navSheet(apps, (r.name[lang()] || r.name.es)) : appsBox.classList.toggle('hidden')) }, [tr('go')]),
-        el('button', { class: 'p-sec', onclick: () => gpx(r), text: '⬇ ' + tr('gpx') })
+        el('button', { class: 'p-sec', onclick: () => openWith(r), text: '📲 ' + tr('sendApp') })
       ]),
       appsBox,
       el('div', { class: 'p-note sf-src', text: SP.src || '' })

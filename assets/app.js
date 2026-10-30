@@ -1511,29 +1511,31 @@
     return Math.hypot(px - (ax + u * bx), py - (ay + u * by));
   }
 
-  // VAI: le app di navigazione in un pannello ben visibile sopra tutto (non più nascoste in fondo alla scheda)
-  const NAV_ICON = { Google: '🗺', Waze: '🚙', Apple: '🍎' };
-  function navSheet(apps, name) {
+  // Pannello azioni dal basso, ben visibile sopra tutto (VAI, invia percorso…)
+  function actionSheet(kicker, title, items) {
     const old = document.querySelector('.nav-ov'); if (old) old.remove();
     const close = () => ov.remove();
-    const links = [...apps.querySelectorAll('a')].map((a) => {
-      const n = a.cloneNode(true);
-      n.className = 'nav-a';
-      n.textContent = '';
-      const k = a.textContent.trim();
-      n.append(el('span', { class: 'i', text: NAV_ICON[k] || '➜' }), el('b', { text: { Google: 'Google Maps', Waze: 'Waze', Apple: 'Apple Maps' }[k] || k }), el('span', { class: 'go', text: '›' }));
-      n.addEventListener('click', (e) => { if (a.onclick) a.onclick(e); setTimeout(close, 300); });
+    const rows = items.filter(Boolean).map((it) => {
+      const kids = [el('span', { class: 'i', text: it.icon || '➜' }), el('span', { class: 'tx' }, [el('b', { text: it.label }), it.sub ? el('small', { text: it.sub }) : null]), el('span', { class: 'go', text: '›' })];
+      const n = it.href ? el('a', { class: 'nav-a', href: it.href, target: '_blank', rel: 'noopener' }, kids) : el('button', { class: 'nav-a' }, kids);
+      n.addEventListener('click', (e) => { if (it.onclick) it.onclick(e); setTimeout(close, 250); });
       return n;
     });
     const ov = el('div', { class: 'nav-ov', onclick: (e) => { if (e.target === ov) close(); } }, [
       el('div', { class: 'nav-sh', role: 'dialog', 'aria-modal': 'true' }, [
-        el('div', { class: 'nav-k', text: t('openWith') }),
-        name ? el('div', { class: 'nav-n', text: name }) : null,
-        el('div', { class: 'nav-list' }, links),
-        el('button', { class: 'nav-x', onclick: close, text: '✕' })
+        el('div', { class: 'nav-k', text: kicker }), title ? el('div', { class: 'nav-n', text: title }) : null,
+        el('div', { class: 'nav-list' }, rows), el('button', { class: 'nav-x', onclick: close, text: '✕' })
       ])
     ]);
     document.body.appendChild(ov);
+  }
+  // VAI: le app di navigazione
+  const NAV = { Google: ['🗺', 'Google Maps'], Waze: ['🚙', 'Waze'], Apple: ['🍎', 'Apple Maps'] };
+  function navSheet(apps, name, onGo) {
+    actionSheet(t('openWith'), name, [...apps.querySelectorAll('a')].map((a) => {
+      const k = a.textContent.trim(), d = NAV[k] || ['➜', k];
+      return { icon: d[0], label: d[1], href: a.href, onclick: onGo };
+    }));
   }
   function openPlace(item) {
     S.follow = false;
@@ -1608,7 +1610,7 @@
       el('a', { href: 'https://waze.com/ul?ll=' + ll + '&navigate=yes', target: '_blank', rel: 'noopener', text: 'Waze', onclick: () => goEvent(item) }),
       el('a', { href: 'https://maps.apple.com/?daddr=' + ll + '&dirflg=d', target: '_blank', rel: 'noopener', text: 'Apple', onclick: () => goEvent(item) })
     );
-    const goBtn = el('button', { class: 'p-go', onclick: () => navSheet(apps, item.name) }, [t('go')]);
+    const goBtn = el('button', { class: 'p-go', onclick: () => navSheet(apps, item.name, () => goEvent(item)) }, [t('go')]);
     goBtn.setAttribute('aria-expanded', 'false');
     acts.appendChild(goBtn);
     const tg = x.tags || {};
@@ -1765,7 +1767,7 @@
   // ------------------------------------------------------------------
   // Per i moduli aggiuntivi (modalità surf)
   window.MAXORA = {
-    map, sb, el, store, toast, padMap, closePlace, exitResults, openPlace, navSheet,
+    map, sb, el, store, toast, padMap, closePlace, exitResults, openPlace, navSheet, actionSheet,
     lang: () => lang, onTexts: (f) => textHooks.push(f), pos: () => S.pos, startGps, closeOverlays,
     setLang: (l) => { if (T[l]) { lang = l; store.set('lang', l); applyTexts(); } },
     unfollow: () => { S.follow = false; S.selectedId = null; updateChip(); },
