@@ -44,46 +44,43 @@
   </form>
 </main>
 
-<!-- Pannello -->
-<div id="shell" class="shell hidden">
-  <nav class="rail" aria-label="Secciones">
-    <div class="wordmark">maxora<span>control</span></div>
-    <div class="rail-group">En directo</div>
-    <button data-view="dashboard">Panorama</button>
-    <button data-view="reports">Avisos</button>
-    <button data-view="official">Aviso oficial</button>
-    <button data-view="users">Dispositivos</button>
-    <div class="rail-group">Configuración</div>
-    <button data-view="rules">Interruptores y reglas</button>
-    <button data-view="broadcasts">Mensajes</button>
-    <button data-view="log">Registro</button>
-    <div class="rail-group">Isla</div>
-    <button data-view="places">Lugares</button>
-    <button data-view="businesses">Negocios</button>
-    <button data-view="surf">Surf</button>
-    <button data-view="routes">Rutas bici y correr</button>
-    <button data-view="camper">Camper</button>
-    <button data-view="radars">Radares</button>
-    <div class="rail-group">Datos y app</div>
-    <button data-view="dgt">Datos DGT</button>
-    <button data-view="push">Notificaciones</button>
-    <div class="rail-foot">
-      <button id="themeBtn" class="btn small ghost">Tema</button>
-      <a class="btn small ghost" href="../" target="_blank" rel="noopener">Abrir app</a>
-      <button id="passBtn" class="btn small ghost">Contraseña</button>
-      <button id="logoutBtn" class="btn small ghost">Salir</button>
+<!-- Pannello: la mappa dell'isola è il tabellone -->
+<div id="shell" class="shell cc hidden">
+  <div id="board" class="board" aria-label="Mapa de la isla"></div>
+
+  <header class="cc-top">
+    <button class="cc-brand" id="homeBtn" aria-label="Volver al mapa"><span class="wordmark">maxora<span>control</span></span></button>
+    <div class="cc-status" id="ccStatus"></div>
+    <div class="cc-menu-wrap">
+      <button class="cc-icon" id="menuBtn" aria-label="Cuenta y ajustes" aria-expanded="false">⋯</button>
+      <div class="cc-menu hidden" id="ccMenu">
+        <button id="themeBtn">Tema</button>
+        <a href="../" target="_blank" rel="noopener">Abrir app ↗</a>
+        <button id="passBtn">Cambiar contraseña</button>
+        <button id="logoutBtn">Salir</button>
+      </div>
     </div>
-  </nav>
-  <main class="main">
-    <header class="main-head">
-      <div>
+  </header>
+
+  <aside class="cc-feed" id="ccFeed" aria-label="Para mirar"></aside>
+  <div class="cc-layers" id="ccLayers"></div>
+  <div class="cc-hint" id="ccHint">Mantén pulsado el mapa para añadir algo ahí</div>
+
+  <section class="cc-drawer" id="drawer" aria-hidden="true">
+    <div class="dr-handle" id="drHandle"></div>
+    <header class="dr-head">
+      <div class="dr-titles">
         <div class="eyebrow" id="viewEyebrow"></div>
         <h1 id="viewTitle"></h1>
       </div>
-      <div class="head-actions" id="headActions"></div>
+      <button class="cc-icon" id="drClose" aria-label="Cerrar">✕</button>
     </header>
+    <nav class="dr-tabs" id="drTabs"></nav>
+    <div class="head-actions" id="headActions"></div>
     <section id="view" class="view"></section>
-  </main>
+  </section>
+
+  <nav class="cc-dock" id="dock" aria-label="Áreas"></nav>
 </div>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>

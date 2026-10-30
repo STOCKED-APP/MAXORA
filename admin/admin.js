@@ -83,6 +83,7 @@
   function applyTheme() {
     document.documentElement.dataset.theme = isDark() ? 'dark' : 'light';
     $('themeBtn').textContent = 'Tema: ' + ({ auto: 'auto', light: 'claro', dark: 'oscuro' })[theme];
+  if (typeof restyleBoard === 'function') try { restyleBoard(); } catch (e) {}
   }
   $('themeBtn').addEventListener('click', () => {
     theme = ({ auto: 'light', light: 'dark', dark: 'auto' })[theme];
@@ -96,6 +97,7 @@
   // Mappe
   // ------------------------------------------------------------------
   let maps = [];
+  let PRESET = null;   // posición elegida en el tablero para el próximo editor
   function makeMap(container, center, zoom) {
     const m = new maplibregl.Map({
       container, style: mapStyle(),
@@ -112,6 +114,7 @@
     const mk = new maplibregl.Marker({ element: el('div', { class: 'pick' }), draggable: true });
     if (has) mk.setLngLat([Number(lng), Number(lat)]).addTo(m);
     const set = (ll) => { mk.setLngLat(ll).addTo(m); onPick(Number(ll.lat.toFixed(6)), Number(ll.lng.toFixed(6))); };
+    if (!has && PRESET) { const p = PRESET; PRESET = null; set({ lat: p.lat, lng: p.lng }); m.jumpTo({ center: [p.lng, p.lat], zoom: 14 }); }
     m.on('click', (e) => set(e.lngLat));
     mk.on('dragend', () => set(mk.getLngLat()));
     return { map: m, setPos: (la, ln) => { if (la !== '' && ln !== '' && !isNaN(la) && !isNaN(ln)) mk.setLngLat([Number(ln), Number(la)]).addTo(m); } };
@@ -229,16 +232,18 @@
     $('view').innerHTML = ''; $('headActions').innerHTML = '';
   }
   function route() {
-    const key = (location.hash || '#dashboard').slice(1);
-    const v = VIEWS[key] || VIEWS.dashboard;
+    const key = (location.hash || '').slice(1);
     clearView();
-    document.querySelectorAll('.rail > button').forEach((b) => b.classList.toggle('on', b.dataset.view === key || (!VIEWS[key] && b.dataset.view === 'dashboard')));
-    $('viewEyebrow').textContent = v.eyebrow;
+    if (!VIEWS[key]) { closeDrawer(); document.title = 'Maxora · Control'; return; }
+    const v = VIEWS[key];
+    const area = areaOf(key);
+    openDrawer(area, key);
+    $('viewEyebrow').textContent = AREAS[area].name;
     $('viewTitle').textContent = v.title;
     document.title = v.title + ' · Maxora';
     v.render($('view'), $('headActions'));
+    if (BOARD_LAYER[key]) layerOn(BOARD_LAYER[key], true);
   }
-  document.querySelectorAll('.rail > button').forEach((b) => b.addEventListener('click', () => { location.hash = b.dataset.view; }));
   window.addEventListener('hashchange', route);
 
   // ------------------------------------------------------------------
@@ -305,7 +310,7 @@
             el('tbody', {}, zones.map((z) => el('tr', {}, [
               el('td', { class: 'id', text: z.lat + ', ' + z.lng }),
               el('td', {}, [el('b', { text: String(z.n) })]),
-              el('td', {}, [el('button', { class: 'btn small', text: 'Ver en mapa', onclick: () => { pendingCenter = { lat: Number(z.lat), lng: Number(z.lng) }; reportFilter = 'recent'; location.hash = 'reports'; } })])
+              el('td', {}, [el('button', { class: 'btn small', text: 'Ver en mapa', onclick: () => focusBoard(Number(z.lat), Number(z.lng), 13) })])
             ])))
           ])]) : el('div', { class: 'empty', text: 'Sin datos todavía.' })
         ])
@@ -334,7 +339,7 @@
         el('div', { class: 'seg' }, filters.map(([k, l]) => el('button', { class: k === reportFilter ? 'on' : '', text: l, onclick: () => { reportFilter = k; route(); } }))),
         el('button', { class: 'btn small', text: 'Actualizar', onclick: () => load() })
       );
-      const mapBox = el('div', { class: 'amap' });
+      const mapBox = el('div', { class: 'amap amap-list' });   // nel cassetto si usa la mappa-tabellone
       const tableBox = el('div');
       view.append(mapBox, tableBox);
       const m = makeMap(mapBox, pendingCenter, pendingCenter ? 13 : null);
@@ -385,7 +390,7 @@
               acts.append(el('button', { class: 'btn small', text: 'Restaurar', onclick: (e) => { e.stopPropagation(); restore(r); } }));
             }
             if (r.user_id && r.source === 'user') acts.append(el('button', { class: 'btn small danger', text: 'Bloquear', onclick: (e) => { e.stopPropagation(); blockUser(r.user_id).then(load); } }));
-            return el('tr', { class: r.id === selected ? 'sel' : '', style: 'cursor:pointer', onclick: () => { selected = r.id; m.flyTo({ center: [r.lng, r.lat], zoom: 13 }); draw(); } }, [
+            return el('tr', { class: r.id === selected ? 'sel' : '', style: 'cursor:pointer', onclick: () => { selected = r.id; focusBoard(r.lat, r.lng, 13); draw(); } }, [
               el('td', {}, [el('span', { class: 'row', style: 'gap:8px;flex-wrap:nowrap' }, [typeSwatch(r.type), el('span', {}, [typeLabel(r.type), r.title ? el('div', { class: 'muted', text: r.title }) : null])])]),
               el('td', { title: fmtDT(r.created_at), text: ago(r.created_at) }),
               el('td', {}, [status]),
@@ -1475,6 +1480,305 @@
     }
   };
 
+  // ==================================================================
+  // TABLERO: la mapa de la isla a pantalla completa es el centro de control.
+  // Arriba el estado del sistema, a la izquierda lo que pide atención,
+  // abajo las 4 áreas; todo lo demás se abre en el cajón y se toca sobre la mapa.
+  // ==================================================================
+  const AREAS = {
+    live: { icon: '🛰', name: 'En directo', tabs: [['reports', 'Avisos'], ['dashboard', 'Estadísticas'], ['users', 'Dispositivos']] },
+    island: { icon: '🏝', name: 'Isla', tabs: [['radars', 'Radares'], ['surf', 'Surf'], ['camper', 'Camper'], ['routes', 'Rutas'], ['places', 'Lugares'], ['businesses', 'Negocios']] },
+    talk: { icon: '📣', name: 'Comunicar', tabs: [['official', 'Aviso oficial'], ['broadcasts', 'Mensajes'], ['push', 'Notificaciones']] },
+    system: { icon: '⚙️', name: 'Sistema', tabs: [['rules', 'Interruptores'], ['dgt', 'Datos'], ['log', 'Registro']] }
+  };
+  const areaOf = (key) => Object.keys(AREAS).find((a) => AREAS[a].tabs.some((t) => t[0] === key)) || 'live';
+  const BOARD_LAYER = { radars: 'radars', surf: 'surf', camper: 'camper', routes: 'notes', places: 'places', businesses: 'businesses' };
+
+  // capas del tablero
+  const LAYERS = [
+    ['reports', '⚠️', 'Avisos', true], ['radars', '📷', 'Radares', true], ['surf', '🏄', 'Surf', false], ['camper', '🚐', 'Camper', false],
+    ['notes', '📝', 'Notas rutas', false], ['places', '📍', 'Lugares', false], ['businesses', '🏪', 'Negocios', false]
+  ];
+  const layerState = (() => { try { return JSON.parse(localStorage.getItem('maxora_admin_layers')) || {}; } catch (e) { return {}; } })();
+  const isOn = (k) => (k in layerState ? layerState[k] : LAYERS.find((l) => l[0] === k)[3]);
+
+  let board = null;
+  const B = { reports: [], radars: [], osmRadars: [], surf: [], camper: [], notes: [], places: [], businesses: [], settings: {}, stats: null, broadcasts: [] };
+  const bMarkers = [];
+
+  function focusBoard(lat, lng, zoom) {
+    if (!board) return;
+    // en el móvil el cajón tapa la parte de abajo: se cierra para ver el punto
+    if (window.innerWidth < 900) closeDrawer(true);
+    board.flyTo({ center: [lng, lat], zoom: Math.max(board.getZoom(), zoom || 13), duration: 700 });
+  }
+
+  // ---------------- cajón ----------------
+  function openDrawer(area, key) {
+    const d = $('drawer');
+    d.classList.add('open'); d.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('dr-open');
+    const tabs = $('drTabs');
+    tabs.innerHTML = '';
+    if (area && key) AREAS[area].tabs.forEach(([k, label]) => tabs.appendChild(el('button', { class: k === key ? 'on' : '', text: label, onclick: () => { location.hash = k; } })));
+    tabs.classList.toggle('hidden', !(area && key));
+    document.querySelectorAll('#dock button').forEach((b) => b.classList.toggle('on', b.dataset.area === area));
+    $('drawer').scrollTop = 0;
+  }
+  function closeDrawer(keepHash) {
+    PRESET = null;
+    const d = $('drawer');
+    d.classList.remove('open'); d.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('dr-open');
+    document.querySelectorAll('#dock button').forEach((b) => b.classList.remove('on'));
+    if (!keepHash && location.hash) history.replaceState(null, '', location.pathname);
+  }
+  // pannello libero (dettaglio di un oggetto toccato sulla mappa)
+  function openDetail(eyebrow, title, node) {
+    if (location.hash) history.replaceState(null, '', location.pathname);
+    clearView();
+    $('viewEyebrow').textContent = eyebrow;
+    $('viewTitle').textContent = title;
+    $('view').appendChild(node);
+    openDrawer(null, null);
+  }
+  const editorDone = (changed) => { clearView(); closeDrawer(); if (changed) loadBoard(); };
+
+  // ---------------- estado arriba ----------------
+  function drawStatus() {
+    const S = B.settings, st = B.stats || {};
+    const live = B.reports.length;
+    const police = B.reports.filter((r) => typeOf(r.type).is_police).length;
+    const maint = S.maintenance === true;
+    const pol = S.police_enabled !== false;
+    const bc = B.broadcasts.length;
+    const pill = (cls, text, onclick, title) => el('button', { class: 'st ' + cls, onclick, title: title || text }, [text]);
+    const box = $('ccStatus');
+    box.innerHTML = '';
+    box.append(
+      pill(maint ? 'warn' : 'ok', maint ? '● Mantenimiento' : '● App activa', () => { location.hash = 'rules'; }, 'Interruptores'),
+      pill(pol ? '' : 'off', pol ? '◌ Policía ' + police : '◌ Policía apagada', () => { location.hash = 'rules'; }),
+      pill('', '⚠️ ' + live + ' en vivo', () => { location.hash = 'reports'; }),
+      st.devices_24h != null ? pill('', '📱 ' + st.devices_24h + ' hoy', () => { location.hash = 'users'; }, 'Dispositivos últimas 24 h') : null,
+      bc ? pill('info', '📣 Mensaje activo', () => { location.hash = 'broadcasts'; }) : null
+    );
+  }
+
+  // ---------------- para mirar ----------------
+  let feedOpen = window.innerWidth >= 900;
+  function drawFeed() {
+    const items = [];
+    const disputed = B.reports.filter((r) => r.denies > 0 && r.denies >= r.confirms);
+    disputed.slice(0, 3).forEach((r) => items.push({ lvl: 'warn', icon: '⚖️', t: typeLabel(r.type) + ' en disputa', s: '✓ ' + r.confirms + ' · ✗ ' + r.denies + ' · ' + ago(r.created_at), go: () => { focusBoard(r.lat, r.lng, 13); openReport(r); } }));
+    if (B.settings.maintenance === true) items.push({ lvl: 'warn', icon: '🛠', t: 'Mantenimiento activo', s: 'Nadie puede avisar. Tócalo para apagarlo.', go: () => { location.hash = 'rules'; } });
+    const st = B.stats;
+    if (st && st.by_day) {
+      const vals = (st.by_day || []).map((x) => x.n);
+      const avg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : 0;
+      const diff = avg ? Math.round(((st.today || 0) - avg) / avg * 100) : 0;
+      items.push({ lvl: diff > 30 ? 'info' : '', icon: '📈', t: 'Hoy ' + (st.today || 0) + ' avisos', s: avg ? 'Media ' + avg + '/día · ' + (diff >= 0 ? '+' : '') + diff + '%' : 'Primer día con datos', go: () => { location.hash = 'dashboard'; } });
+    }
+    const pol = B.reports.filter((r) => typeOf(r.type).is_police).sort((a, b) => b.confirms - a.confirms);
+    if (pol.length) items.push({ lvl: '', icon: '◌', t: pol.length + (pol.length === 1 ? ' zona policía' : ' zonas policía'), s: 'La más confirmada: ' + (1 + pol[0].confirms) + ' personas', go: () => { focusBoard(pol[0].lat, pol[0].lng, 11.5); openReport(pol[0]); } });
+    const approx = B.camper.filter((x) => x.approx && x.active);
+    if (approx.length) items.push({ lvl: 'warn', icon: '🚐', t: approx.length + ' puntos camper aproximados', s: 'Colócalos en el sitio exacto', go: () => { layerOn('camper', true); focusBoard(approx[0].lat, approx[0].lng, 13); openCamper(approx[0]); } });
+    const hiddenOsm = new Set(B.radars.filter((x) => x.osm_id).map((x) => x.osm_id));
+    const unchecked = B.osmRadars.filter((r) => !hiddenOsm.has(r.id));
+    if (unchecked.length) items.push({ lvl: '', icon: '📷', t: unchecked.length + ' radares sin comprobar', s: 'Vienen de OpenStreetMap', go: () => { location.hash = 'radars'; } });
+    const soon = B.businesses.filter((b) => b.sponsor_until && b.plan !== 'free' && (new Date(b.sponsor_until) - Date.now()) < 7 * 86400000);
+    if (soon.length) items.push({ lvl: 'warn', icon: '💶', t: soon.length + ' sponsor ' + (soon.length === 1 ? 'vence' : 'vencen'), s: soon.map((b) => b.name).slice(0, 2).join(', '), go: () => { location.hash = 'businesses'; } });
+    B.broadcasts.slice(0, 1).forEach((b) => items.push({ lvl: 'info', icon: '📣', t: 'Mensaje a todos activo', s: ((b.message && (b.message.es || b.message.it)) || '').slice(0, 60), go: () => { location.hash = 'broadcasts'; } }));
+
+    const urgent = items.filter((i) => i.lvl === 'warn').length;
+    const box = $('ccFeed');
+    box.innerHTML = '';
+    box.classList.toggle('open', feedOpen);
+    box.appendChild(el('button', { class: 'feed-head', 'aria-expanded': String(feedOpen), onclick: () => { feedOpen = !feedOpen; drawFeed(); } }, [
+      el('span', { text: 'Para mirar' }), urgent ? el('b', { class: 'badge', text: String(urgent) }) : el('b', { class: 'badge ok', text: '✓' }), el('i', { text: feedOpen ? '▴' : '▾' })
+    ]));
+    if (!feedOpen) return;
+    if (!items.length) { box.appendChild(el('div', { class: 'feed-empty', text: 'Todo en orden ✓' })); return; }
+    items.forEach((i) => box.appendChild(el('button', { class: 'feed-it ' + i.lvl, onclick: i.go }, [el('span', { class: 'fi', text: i.icon }), el('span', { class: 'ft' }, [el('b', { text: i.t }), el('small', { text: i.s })])])));
+  }
+
+  // ---------------- capas ----------------
+  function drawLayers() {
+    const box = $('ccLayers');
+    box.innerHTML = '';
+    const btn = el('button', { class: 'cc-icon', 'aria-label': 'Capas', title: 'Capas', onclick: (e) => { e.stopPropagation(); box.classList.toggle('open'); } }, ['◫']);
+    const list = el('div', { class: 'lay-list' }, LAYERS.map(([k, icon, name]) => {
+      const c = el('input', { type: 'checkbox', checked: isOn(k) });
+      c.addEventListener('change', () => layerOn(k, c.checked));
+      return el('label', { class: 'check' }, [c, icon + ' ' + name]);
+    }));
+    box.append(btn, list);
+  }
+  function layerOn(k, on) {
+    layerState[k] = on;
+    try { localStorage.setItem('maxora_admin_layers', JSON.stringify(layerState)); } catch (e) {}
+    $('board').classList.toggle('hide-' + k, !on);
+    const c = [...document.querySelectorAll('#ccLayers input')][LAYERS.findIndex((l) => l[0] === k)];
+    if (c) c.checked = on;
+  }
+  document.addEventListener('click', (e) => { const b = $('ccLayers'); if (b && !b.contains(e.target)) b.classList.remove('open'); const m = $('ccMenu'); if (m && !e.target.closest('.cc-menu-wrap')) { m.classList.add('hidden'); $('menuBtn').setAttribute('aria-expanded', 'false'); } });
+
+  // ---------------- datos ----------------
+  async function loadBoard() {
+    const now = new Date().toISOString();
+    const [rp, st, se, bc, rd, osm, sf, cp, nt, pl, bz] = await Promise.all([
+      sb.from('reports').select('*').gt('expires_at', now).is('removed_at', null).limit(1000),
+      sb.rpc('admin_stats', { p_days: 7 }),
+      sb.from('app_settings').select('key,value'),
+      sb.from('broadcasts').select('*').eq('active', true),
+      sb.from('radars').select('*'),
+      fetch('../data/radars.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
+      sb.from('surf_spots').select('*'),
+      sb.from('camper_spots').select('*'),
+      sb.from('route_notes').select('*').eq('active', true),
+      sb.from('places').select('id,name,category,lat,lng,active,photos'),
+      sb.from('businesses').select('id,name,category,lat,lng,active,plan,sponsor_until,logo_url')
+    ]);
+    B.reports = rp.data || [];
+    B.stats = st.data || null;
+    B.settings = {}; (se.data || []).forEach((x) => { B.settings[x.key] = x.value; });
+    const nowD = new Date();
+    B.broadcasts = (bc.data || []).filter((b) => new Date(b.starts_at) <= nowD && (!b.ends_at || new Date(b.ends_at) > nowD));
+    B.radars = rd.data || [];
+    B.osmRadars = (osm && osm.radars) || [];
+    B.surf = sf.data || [];
+    B.camper = cp.data || [];
+    B.notes = (nt.data || []).filter((n) => !n.expires_at || new Date(n.expires_at) > nowD);
+    B.places = pl.data || [];
+    B.businesses = bz.data || [];
+    drawStatus(); drawFeed(); drawBoardMarkers(); drawPoliceBoard();
+  }
+
+  function pin(cls, html, title, onclick) {
+    const n = el('div', { class: 'bm ' + cls, title, role: 'button' });
+    if (typeof html === 'string') n.textContent = html; else n.appendChild(html);
+    n.addEventListener('click', (e) => { e.stopPropagation(); onclick(); });
+    return n;
+  }
+  function drawBoardMarkers() {
+    bMarkers.splice(0).forEach((m) => m.remove());
+    const add = (n, lng, lat) => { if (lat == null || lng == null) return; bMarkers.push(new maplibregl.Marker({ element: n }).setLngLat([lng, lat]).addTo(board)); };
+    B.reports.forEach((r) => {
+      const t = typeOf(r.type);
+      if (t.is_police) return add(pin('bm-reports police', '', typeLabel(r.type), () => openReport(r)), r.lng, r.lat);
+      const n = pin('bm-reports rep' + (r.denies > 0 && r.denies >= r.confirms ? ' disputed' : '') + (r.source === 'admin' ? ' mine' : ''), t.icon || '•', typeLabel(r.type) + (r.title ? ' · ' + r.title : ''), () => openReport(r));
+      n.style.background = t.color;
+      add(n, r.lng, r.lat);
+    });
+    const fixed = new Map(B.radars.filter((x) => x.osm_id).map((x) => [x.osm_id, x]));
+    B.osmRadars.forEach((r) => { if (!fixed.has(r.id)) add(pin('bm-radars radar unchecked', r.maxspeed ? String(r.maxspeed) : '📷', 'Radar OpenStreetMap', () => openRadar({ kind: r.kind, lat: r.lat, lng: r.lng, maxspeed: r.maxspeed, osm_id: r.id, active: true })), r.lng, r.lat); });
+    B.radars.forEach((r) => add(pin('bm-radars radar' + (r.active ? '' : ' off'), r.maxspeed ? String(r.maxspeed) : '📷', 'Radar', () => openRadar(r)), r.lng, r.lat));
+    B.surf.forEach((x) => { const d = x.data || {}; add(pin('bm-surf' + (x.active ? '' : ' off'), '🏄', d.name || x.id, () => openSurf(x)), d.lng, d.lat); });
+    B.camper.forEach((x) => add(pin('bm-camper' + (x.active ? '' : ' off') + (x.approx ? ' approx' : ''), '🚐', x.name, () => openCamper(x)), x.lng, x.lat));
+    B.notes.forEach((x) => add(pin('bm-notes', '📝', (x.text && (x.text.es || x.text.it)) || 'Nota', () => { location.hash = 'routes'; }), x.lng, x.lat));
+    B.places.forEach((x) => add(pin('bm-places' + (x.active ? '' : ' off'), '📍', x.name, () => openCatalog('places', x.id)), x.lng, x.lat));
+    B.businesses.forEach((x) => add(pin('bm-businesses' + (x.active ? '' : ' off'), '🏪', x.name, () => openCatalog('businesses', x.id)), x.lng, x.lat));
+  }
+  function circle(lng, lat, km) {
+    const c = [];
+    for (let i = 0; i <= 48; i++) { const a = (i / 48) * 2 * Math.PI; c.push([lng + (km / (111.32 * Math.cos(lat * Math.PI / 180))) * Math.cos(a), lat + (km / 111.32) * Math.sin(a)]); }
+    return c;
+  }
+  function drawPoliceBoard() {
+    if (!board || !board.getSource('police')) return;
+    const km = Number(B.settings.police_radius_km || 2.5);
+    board.getSource('police').setData({ type: 'FeatureCollection', features: B.reports.filter((r) => typeOf(r.type).is_police).map((r) => ({ type: 'Feature', properties: { n: 1 + r.confirms - r.denies }, geometry: { type: 'Polygon', coordinates: [circle(r.lng, r.lat, km)] } })) });
+  }
+  function addBoardLayers() {
+    if (!board.getSource('police')) board.addSource('police', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+    if (!board.getLayer('police-fill')) board.addLayer({ id: 'police-fill', type: 'fill', source: 'police', paint: { 'fill-color': '#2b8fb0', 'fill-opacity': ['interpolate', ['linear'], ['get', 'n'], 1, 0.1, 3, 0.22] } });
+    if (!board.getLayer('police-line')) board.addLayer({ id: 'police-line', type: 'line', source: 'police', paint: { 'line-color': '#2b8fb0', 'line-width': 1.5, 'line-dasharray': [2, 2] } });
+    drawPoliceBoard();
+  }
+
+  // ---------------- dettagli dagli oggetti sulla mappa ----------------
+  function openReport(r) {
+    const t = typeOf(r.type), live = isLive(r);
+    const upd = async (patch, msg) => { const { error } = await sb.from('reports').update(patch).eq('id', r.id); if (error) return fail(error, 'Aviso'); toast(msg); closeDrawer(); loadBoard(); };
+    const node = el('div', { class: 'detail' }, [
+      r.title ? el('div', { class: 'det-row' }, [typeSwatch(r.type), el('b', { text: r.title })]) : null,
+      el('div', { class: 'det-grid' }, [
+        el('div', {}, [el('small', { text: 'Creado' }), el('span', { text: ago(r.created_at) })]),
+        el('div', {}, [el('small', { text: 'Caduca' }), el('span', { text: live ? 'en ' + until(r.expires_at) : 'caducado' })]),
+        el('div', {}, [el('small', { text: 'Confirman' }), el('span', { class: 'ok', text: '✓ ' + r.confirms })]),
+        el('div', {}, [el('small', { text: 'Dicen que no' }), el('span', { class: r.denies ? 'bad' : '', text: '✗ ' + r.denies })]),
+        el('div', {}, [el('small', { text: 'Origen' }), el('span', { text: r.source === 'admin' ? (r.official ? 'Oficial (tú)' : 'Admin') : r.source === 'dgt' ? 'DGT' : 'Usuario' })]),
+        el('div', {}, [el('small', { text: 'Dispositivo' }), el('span', { class: 'id', text: shortId(r.user_id) })])
+      ]),
+      t.is_police ? el('p', { class: 'sub', text: 'Zona aproximada: la app la muestra como un círculo, nunca el punto exacto.' }) : null,
+      el('div', { class: 'det-acts' }, [
+        el('button', { class: 'btn', text: '+30 min', onclick: () => upd({ expires_at: new Date(Math.max(Date.now(), new Date(r.expires_at)) + 30 * 60000).toISOString() }, 'Ampliado 30 min') }),
+        el('button', { class: 'btn', text: 'Terminar ya', onclick: () => upd({ expires_at: new Date().toISOString() }, 'Aviso terminado') }),
+        el('button', { class: 'btn danger', text: 'Eliminar', onclick: () => { if (confirm('¿Eliminar este aviso? Desaparece de la app al momento.')) upd({ removed_at: new Date().toISOString(), removed_by: me.id }, 'Aviso eliminado'); } }),
+        r.user_id && r.source === 'user' ? el('button', { class: 'btn danger', text: 'Bloquear dispositivo', onclick: () => blockUser(r.user_id).then(loadBoard) }) : null
+      ])
+    ]);
+    openDetail(t.is_police ? 'Zona policía' : 'Aviso', typeLabel(r.type), node);
+  }
+  const openRadar = (r) => openDetail('Isla · Radar', r.id ? 'Radar' : r.osm_id ? 'Radar de OpenStreetMap' : 'Nuevo radar', radarEditor(r.id || r.osm_id ? r : null, editorDone));
+  const openCamper = (x) => openDetail('Isla · Camper', x ? x.name : 'Nuevo punto camper', camperEditor(x, editorDone));
+  const openSurf = (x) => openDetail('Isla · Surf', x ? ((x.data && x.data.name) || x.id) : 'Nuevo spot', surfSpotEditor(x, editorDone));
+  async function openCatalog(kind, id) {
+    let item = null;
+    if (id) { const { data, error } = await sb.from(kind).select('*').eq('id', id).maybeSingle(); if (error) return fail(error); item = data; }
+    openDetail(kind === 'places' ? 'Isla · Lugar' : 'Isla · Negocio', item ? item.name : kind === 'places' ? 'Nuevo lugar' : 'Nuevo negocio', editorPanel(kind, item, editorDone));
+  }
+
+  // ---------------- mantener pulsado: añadir aquí ----------------
+  let addPop = null;
+  function addHere(lngLat) {
+    if (addPop) addPop.remove();
+    const pos = { lat: Number(lngLat.lat.toFixed(6)), lng: Number(lngLat.lng.toFixed(6)) };
+    const go = (fn) => () => { addPop.remove(); PRESET = pos; fn(); };
+    const opts = [
+      ['📣', 'Aviso oficial', go(() => { location.hash = 'official'; })],
+      ['📷', 'Radar', go(() => openDetail('Isla · Radar', 'Nuevo radar', radarEditor(null, editorDone)))],
+      ['🚐', 'Punto camper', go(() => openCamper(null))],
+      ['🏄', 'Spot de surf', go(() => openSurf(null))],
+      ['📝', 'Nota en ruta', go(() => { location.hash = 'routes'; })],
+      ['📍', 'Lugar', go(() => openCatalog('places', null))],
+      ['🏪', 'Negocio', go(() => openCatalog('businesses', null))]
+    ];
+    const box = el('div', { class: 'add-pop' }, [el('div', { class: 'add-h', text: 'Añadir aquí' }), ...opts.map(([i, t, f]) => el('button', { onclick: f }, [el('span', { text: i }), t]))]);
+    addPop = new maplibregl.Popup({ closeButton: true, maxWidth: '240px', className: 'cc-pop' }).setLngLat(lngLat).setDOMContent(box).addTo(board);
+    $('ccHint').classList.add('gone');
+  }
+
+  function boardStyle() { return isDark() ? CFG.mapStyles.dark : CFG.mapStyles.light; }
+  function restyleBoard() { if (board) board.setStyle(boardStyle()); }
+
+  function initBoard() {
+    if (board) return;
+    // bottoni di area
+    const dock = $('dock');
+    Object.keys(AREAS).forEach((k) => dock.appendChild(el('button', { 'data-area': k, onclick: () => {
+      if (document.body.classList.contains('dr-open') && areaOf((location.hash || '').slice(1)) === k && location.hash) { closeDrawer(); clearView(); return; }
+      location.hash = AREAS[k].tabs[0][0];
+    } }, [el('span', { class: 'di', text: AREAS[k].icon }), el('span', { text: AREAS[k].name })])));
+    $('drClose').addEventListener('click', () => { closeDrawer(); clearView(); });
+    $('drHandle').addEventListener('click', () => { closeDrawer(); clearView(); });
+    $('homeBtn').addEventListener('click', () => { closeDrawer(); clearView(); board && board.flyTo({ center: [-14.02, 28.40], zoom: window.innerWidth < 600 ? 7.9 : 8.6, duration: 700 }); });
+    $('menuBtn').addEventListener('click', (e) => { e.stopPropagation(); const m = $('ccMenu'); m.classList.toggle('hidden'); $('menuBtn').setAttribute('aria-expanded', String(!m.classList.contains('hidden'))); });
+
+    board = new maplibregl.Map({ container: 'board', style: boardStyle(), center: [-14.02, 28.40], zoom: window.innerWidth < 600 ? 7.9 : 8.6, attributionControl: { compact: true }, maxPitch: 0 });
+    board.touchZoomRotate.disableRotation();
+    board.on('style.load', addBoardLayers);
+    board.on('contextmenu', (e) => addHere(e.lngLat));
+    // pressione lunga sul telefono
+    let lp = null, lpPt = null;
+    board.on('touchstart', (e) => { if (e.originalEvent.touches.length !== 1) return; lpPt = e.point; const ll = e.lngLat; lp = setTimeout(() => { lp = null; if (navigator.vibrate) navigator.vibrate(30); addHere(ll); }, 550); });
+    board.on('touchmove', (e) => { if (lp && lpPt && (Math.abs(e.point.x - lpPt.x) > 8 || Math.abs(e.point.y - lpPt.y) > 8)) { clearTimeout(lp); lp = null; } });
+    ['touchend', 'touchcancel', 'dragstart', 'zoomstart'].forEach((ev) => board.on(ev, () => { if (lp) { clearTimeout(lp); lp = null; } }));
+    LAYERS.forEach(([k]) => $('board').classList.toggle('hide-' + k, !isOn(k)));
+    drawLayers();
+    loadBoard();
+    setInterval(() => { if (!document.hidden) loadBoard(); }, 30000);
+  }
+
   // ------------------------------------------------------------------
   // Avvio
   // ------------------------------------------------------------------
@@ -1482,6 +1786,7 @@
     $('login').classList.add('hidden');
     $('shell').classList.remove('hidden');
     await loadTypes();
+    initBoard();
     route();
   }
   (async function boot() {
