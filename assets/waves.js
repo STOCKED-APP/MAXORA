@@ -164,8 +164,8 @@
   }
   map.on('movestart', () => { moving = true; ctx.clearRect(0, 0, cv.width, cv.height); });
   map.on('moveend', () => { moving = false; });
-  map.on('resize', () => { if (on) { resize(); restart(); } });
-  document.addEventListener('visibilitychange', () => { if (on && !document.hidden) restart(); });
+
+
 
   // ------------------------------------------------------------------
   // Tocca il mare: dettagli del punto e spot più vicino
