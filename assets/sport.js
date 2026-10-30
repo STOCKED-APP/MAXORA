@@ -371,12 +371,15 @@
   function drawTimes() {
     const box = $('spTimes'); box.innerHTML = '';
     const p = centerPoint();
+    const fr0 = SP.focus && SP.routes.find((x) => x.id === SP.focus && x.sport === SP.mode);
+    if (fr0) box.appendChild(el('span', { class: 'sf-for', text: fr0.name[lang()] || fr0.name.es }));
     let lastDay = '';
     SP.times.forEach((t, i) => {
       if (t < Date.now() - 90 * 60000 || t > Date.now() + 72 * 3600000) return;
       const dk = dayKey(t);
       if (dk !== lastDay) { box.appendChild(el('span', { class: 'sf-day', text: dayLabel(t) })); lastDay = dk; }
-      const s = score(SP.mode, wxAt(p, i), t, 'road');
+      const fr = SP.focus && SP.routes.find((x) => x.id === SP.focus && x.sport === SP.mode);
+      const s = fr ? score(fr.sport, wxAt(fr._wx, i), t, fr.surface) : score(SP.mode, wxAt(p, i), t, 'road');
       const day = sunAlt(t + 5400000, 28.4, -14) > -2;
       box.appendChild(el('button', { class: 'sf-slot' + (i === SP.idx ? ' on' : '') + (day ? '' : ' night'), onclick: () => { SP.idx = i; SP.picked = true; drawAll(); } }, [
         el('span', { class: 'h', text: hh(t) }),
@@ -453,13 +456,14 @@
     const me = M.pos();
     if (me) list = list.sort((a, b) => M.distKm(me, { lat: a.start[0], lng: a.start[1] }) - M.distKm(me, { lat: b.start[0], lng: b.start[1] }));
     list.forEach((r) => box.appendChild(routeRow(r)));
+    if (!SP.focus || !list.slice(0, 12).some((r) => r.id === SP.focus)) { SP.focus = list[0] ? list[0].id : null; drawTimes(); }
     if (window.MAXORA_UI) window.MAXORA_UI.cards(SP.mode, list.slice(0, 12).map((r) => {
       const sc = score(r.sport, wxAt(r._wx, SP.idx), SP.times[SP.idx], r.surface), hz = hazardsOn(r).length;
       return {
         id: r.id, badge: [el('i', { text: '★' }), fmtR(sc)], color: color(sc), title: r.name[lang()] || r.name.es,
         sub: num(r.km, 1) + ' km · +' + r.gain + ' m · ' + tr('surface_' + r.surface) + (hz ? ' · ⚠ ' + hz : ''),
         right: me ? '~' + (M.distKm(me, { lat: r.start[0], lng: r.start[1] }) < 1 ? '<1 km' : Math.round(M.distKm(me, { lat: r.start[0], lng: r.start[1] })) + ' km') : '',
-        onFocus: () => { const b = new maplibregl.LngLatBounds(r.line[0], r.line[0]); r.line.forEach((p) => b.extend(p)); map.fitBounds(b, { padding: 30, maxZoom: 14, duration: 600 }); },
+        onFocus: () => { SP.focus = r.id; drawTimes(); const b = new maplibregl.LngLatBounds(r.line[0], r.line[0]); r.line.forEach((p) => b.extend(p)); map.fitBounds(b, { padding: 30, maxZoom: 14, duration: 600 }); },
         onOpen: () => openCard(r.id, true)
       };
     }), list.length);
@@ -544,6 +548,7 @@
     SP.open = id;
     const r = SP.routes.find((x) => x.id === id);
     if (!r) return;
+    if (SP.focus !== id) { SP.focus = id; drawTimes(); }
     drawCard();
     $('spCard').classList.remove('hidden');
     $('spCard').scrollTop = 0;

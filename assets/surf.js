@@ -420,12 +420,15 @@
   function drawTimes() {
     const box = $('sfTimes');
     box.innerHTML = '';
+    const fsp0 = SF.focus && SF.byId.get(SF.focus);
+    if (fsp0) box.appendChild(el('span', { class: 'sf-for', text: fsp0.name }));
     let lastDay = '';
     for (const i of slots()) {
       const t = SF.times[i];
       const dk = dayKey(t);
       if (dk !== lastDay) { box.appendChild(el('span', { class: 'sf-day', text: dayLabel(t) })); lastDay = dk; }
-      const b = bestAt(i);
+      const fsp = SF.focus && SF.byId.get(SF.focus);
+      const b = fsp ? rate(fsp, i, SF.level) : bestAt(i);
       const btn = el('button', { class: 'sf-slot' + (i === SF.idx ? ' on' : ''), 'aria-pressed': String(i === SF.idx), onclick: () => pick(i) }, [
         el('span', { class: 'h', text: hh(t) }),
         el('span', { class: 'bar', style: 'background:' + color(b && b.r) + ';height:' + (6 + (b ? b.r : 0) * 4) + 'px' })
@@ -466,10 +469,12 @@
     box.innerHTML = '';
     const rows = SF.spots.map((sp) => ({ sp, x: rate(sp, SF.idx, SF.level) })).filter((o) => o.x)
       .sort((a, b) => (a.x.notYou - b.x.notYou) || (b.x.r - a.x.r) || (SF.favs.has(b.sp.id) - SF.favs.has(a.sp.id)) || (b.x.h - a.x.h));
+    // la barra degli orari descrive lo spot evidenziato (all'inizio il primo della fila)
+    if (!SF.focus || !rows.slice(0, 10).some((o) => o.sp.id === SF.focus)) { SF.focus = rows[0] ? rows[0].sp.id : null; drawTimes(); }
     if (window.MAXORA_UI) window.MAXORA_UI.cards('surf', rows.slice(0, 10).map(({ sp, x }) => ({
       id: sp.id, badge: [el('i', { text: '★' }), fmtR(x.r)], color: color(x.r), title: (SF.favs.has(sp.id) ? '★ ' : '') + sp.name,
       sub: x.notYou ? tr('notYou') : [num(Math.max(0.1, x.h), 1) + ' m', x.tp ? num(x.tp, 0) + ' s' : null, x.ws != null ? x.ws + ' km/h ' + WSTATE[x.wind] : null].filter(Boolean).join(' · '),
-      onFocus: () => window.MAXORA_UI.focusOn(sp.lng, sp.lat, 10.5), onOpen: () => openCard(sp.id, true)
+      onFocus: () => { SF.focus = sp.id; drawTimes(); window.MAXORA_UI.focusOn(sp.lng, sp.lat, 10.5); }, onOpen: () => openCard(sp.id, true)
     })), rows.length);
     rows.slice(0, 8).forEach(({ sp, x }) => {
       const nRep = repsFor(sp.id, 3).length;
@@ -507,6 +512,7 @@
   // ------------------------------------------------------------------
   function openCard(id, fly) {
     SF.open = id;
+    if (SF.focus !== id) { SF.focus = id; drawTimes(); }
     const sp = SF.byId.get(id);
     drawCard();
     $('sfCard').classList.remove('hidden');

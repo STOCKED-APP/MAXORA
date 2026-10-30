@@ -13,8 +13,14 @@
 
   const top = el('div', { id: 'uiTop', class: 'ui-top hidden' });
   const rail = el('div', { id: 'uiRail', class: 'ui-rail hidden' });
-  const bottom = el('div', { id: 'uiBottom', class: 'ui-bottom hidden' }, [el('div', { id: 'uiTime', class: 'ui-time' }), el('div', { id: 'uiCards', class: 'ui-cards' })]);
+  // maniglia: tocca o trascina in su per aprire la lista completa
+  const grab = el('button', { class: 'ui-grab', 'aria-label': 'Lista' }, [el('i'), el('span', { id: 'uiGrabL' })]);
+  const bottom = el('div', { id: 'uiBottom', class: 'ui-bottom hidden' }, [grab, el('div', { id: 'uiTime', class: 'ui-time' }), el('div', { id: 'uiCards', class: 'ui-cards' })]);
   document.body.append(top, rail, bottom);
+  grab.addEventListener('click', () => showList());
+  let y0 = null;
+  bottom.addEventListener('touchstart', (e) => { y0 = e.touches[0].clientY; }, { passive: true });
+  bottom.addEventListener('touchend', (e) => { if (y0 != null && e.changedTouches[0].clientY - y0 < -45) showList(); y0 = null; }, { passive: true });
   const back = el('button', { class: 'ui-back', onclick: () => hideList() }, ['🗺 ']);
   document.body.appendChild(back);
 
@@ -97,6 +103,11 @@
       box.appendChild(c);
     });
     if (REG[cur] && REG[cur].sheet) box.appendChild(el('button', { class: 'uc uc-all', onclick: showList }, ['☰ ' + tr('all') + (total ? ' (' + total + ')' : '')]));
+    $('uiGrabL').textContent = tr('all') + (total ? ' (' + total + ')' : '');
+    grab.classList.toggle('hidden', !(REG[cur] && REG[cur].sheet));
+    // la scheda descritta dalla barra orari resta evidenziata
+    const fid = lastFocus && items.some((x) => x.id === lastFocus) ? lastFocus : items[0] && items[0].id;
+    box.querySelectorAll('.uc[data-id]').forEach((c) => c.classList.toggle('f', c.dataset.id === String(fid)));
     box.scrollLeft = keep;
     setTimeout(pad, 30);
   }
