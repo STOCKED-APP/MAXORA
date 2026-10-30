@@ -1131,3 +1131,10 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .bottom-row .report-pill { min-width: 0; flex: 1 1 auto; overflow: hidden; }
 .bottom-row .report-pill span { overflow: hidden; text-overflow: ellipsis; }
 .bottom-row .disc-btn { min-width: 0; }
+/* barra in basso più compatta: "Segnala qualcosa" sempre intero */
+.bottom-row { gap: 8px; margin-left: 12px; margin-right: 12px; }
+.bottom-row .report-pill { padding: 0 12px; gap: 6px; }
+.bottom-row .disc-btn { padding: 0 13px; gap: 6px; }
+@media (max-width: 379px) { .bottom-row .report-pill, .bottom-row .disc-btn { font-size: 14px; } .bottom-row .report-pill svg { width: 18px; height: 18px; } }
+@media (max-width: 349px) { .bottom-row .disc-btn span { display: none; } }
+@media (max-width: 369px) { .bottom-row { gap: 6px; } .bottom-row .report-pill { padding: 0 10px; } .bottom-row .disc-btn { padding: 0 11px; } }
