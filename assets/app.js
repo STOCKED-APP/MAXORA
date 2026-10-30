@@ -227,7 +227,13 @@
   let satStyle = null;
   async function getSatStyle() {
     if (satStyle) return satStyle;
-    const st = { version: 8, sources: { sat: SAT_BASE }, layers: [{ id: 'sat', type: 'raster', source: 'sat', paint: { 'raster-fade-duration': 150 } }] };
+    // vista da lontano: Sentinel-2 senza nuvole (EOX, CC BY 4.0), uniforme anche sul mare; da vicino le ortofoto PNOA
+    const S2 = { type: 'raster', tileSize: 256, maxzoom: 14, tiles: ['https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless_3857/default/g/{z}/{y}/{x}.jpg'], attribution: 'Sentinel-2 cloudless 2016 by EOX IT Services GmbH (CC BY 4.0)' };
+    const st = { version: 8, sources: { s2: S2, sat: Object.assign({}, SAT_BASE, { minzoom: 12 }) }, layers: [
+      { id: 'sea', type: 'background', paint: { 'background-color': '#0b2236' } },
+      { id: 's2', type: 'raster', source: 's2', paint: { 'raster-fade-duration': 0 } },
+      { id: 'sat', type: 'raster', source: 'sat', minzoom: 12.5, paint: { 'raster-fade-duration': 0, 'raster-opacity': ['interpolate', ['linear'], ['zoom'], 12.5, 0, 13.5, 1] } }
+    ] };
     try {
       const d = await (await fetch(CFG.mapStyles.labels || CFG.mapStyles.dark)).json();
       st.glyphs = d.glyphs; st.sprite = d.sprite;
@@ -298,12 +304,21 @@
   // Giorno: fondo color sabbia (Fuerteventura è un'isola desertica), il resto dei colori resta quello della mappa
   function dayStyle(st) {
     st.layers = st.layers.map((l) => (l.type === 'background' ? Object.assign({}, l, { paint: Object.assign({}, l.paint, { 'background-color': '#efe5cf' }) }) : l));
+    return lighten(st);
+  }
+  // più fluida sul telefono: edifici piatti invece che in 3D
+  function lighten(st) {
+    st.layers = st.layers.map((l) => {
+      if (l.type !== 'fill-extrusion') return l;
+      return { id: l.id, type: 'fill', source: l.source, 'source-layer': l['source-layer'], minzoom: Math.max(14, l.minzoom || 0), filter: l.filter,
+        paint: { 'fill-color': (l.paint && typeof l.paint['fill-extrusion-color'] === 'string') ? l.paint['fill-extrusion-color'] : '#d9d0c3', 'fill-opacity': 0.7 } };
+    });
     return st;
   }
   async function setMapStyle(key) {
     const st = key === 'sat' ? await getSatStyle() : styleFor(key);
     if (map.__style !== key) return;
-    if (key === 'dark') map.setStyle(st, { diff: false, transformStyle: (prev, next) => nightStyle(next) });
+    if (key === 'dark') map.setStyle(st, { diff: false, transformStyle: (prev, next) => nightStyle(lighten(next)) });
     else if (key === 'light') map.setStyle(st, { diff: false, transformStyle: (prev, next) => dayStyle(next) });
     else map.setStyle(st, { diff: false });   // diff:false = ridisegna anche le zone polizia
   }
@@ -316,7 +331,10 @@
     center: [center0.lng, center0.lat],
     zoom: center0.zoom,
     attributionControl: { compact: true },
-    pitchWithRotate: false
+    pitchWithRotate: false,
+    maxPitch: 0,
+    renderWorldCopies: false,
+    fadeDuration: 0
   });
   map.__style = styleKey();
   setMapStyle(map.__style);

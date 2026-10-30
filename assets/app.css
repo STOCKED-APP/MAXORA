@@ -995,3 +995,20 @@ body.ui-list:has(#sfCard:not(.hidden)) .ui-back, body.ui-list:has(#spCard:not(.h
 .ui-time .sf-times { padding: 4px 10px 2px; }
 .ui-time .sf-slot { min-height: 40px; }
 .uc { border-width: 1.5px; }
+
+/* v0.18 — banner più leggeri: consiglio chiuso = una pillola su una riga; schede e orari più bassi */
+.ui-top .adv.closed { padding: 7px 12px 7px 10px; border-radius: 20px; border-left-width: 4px; }
+.ui-top .adv.closed .adv-top { display: flex; align-items: center; gap: 8px; padding-right: 22px; }
+.ui-top .adv.closed .adv-h { flex: none; }
+.ui-top .adv.closed .adv-h span:not(.adv-i) { display: none; }
+.ui-top .adv.closed .adv-v { margin: 0; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.uc { min-height: 62px; padding: 8px 10px; border-radius: 16px; gap: 10px; }
+.uc-badge { width: 44px; height: 44px; border-radius: 12px; font-size: 16px; }
+.uc-t { font-size: 14px; -webkit-line-clamp: 1; }
+.uc-s { font-size: 12px; }
+.ui-time .sf-slot { min-height: 36px; width: 32px; gap: 3px; }
+.ui-time .sf-slot .h { font-size: 11px; }
+.ui-time .sf-day { font-size: 9.5px; }
+.ui-cards { gap: 8px; padding-bottom: 10px; }
+.ui-rb { width: 48px; min-height: 48px; border-radius: 14px; }
+.ui-rail { gap: 6px; }

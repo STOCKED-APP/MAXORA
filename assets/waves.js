@@ -170,9 +170,18 @@
   // ------------------------------------------------------------------
   // Tocca il mare: dettagli del punto e spot più vicino
   // ------------------------------------------------------------------
-  let pop = null;
+  let pop = null, lastMove = 0, tapT = 0;
+  map.on('move', () => { lastMove = Date.now(); });
+  map.on('dblclick', () => { clearTimeout(tapT); });
   map.on('click', (e) => {
     if (!on) return;
+    if (pop && pop.isOpen()) { pop.remove(); pop = null; return; }          // il tocco chiude il fumetto aperto
+    if (Date.now() - lastMove < 500) return;                                // appena spostato o zoomato: niente
+    if (e.originalEvent && e.originalEvent.target && e.originalEvent.target.closest && e.originalEvent.target.closest('.maplibregl-marker')) return;
+    clearTimeout(tapT);
+    tapT = setTimeout(() => showSea(e), 320);                               // aspetta: se è un doppio tocco (zoom) non apre
+  });
+  function showSea(e) {
     const { lng, lat } = e.lngLat;
     if (!isSea(lng, lat)) return;
     const s = sample(lng, lat);
@@ -192,8 +201,8 @@
       el('div', { class: 'n', text: tr('fc') })
     ]);
     if (pop) pop.remove();
-    pop = new maplibregl.Popup({ closeButton: false, offset: 10, maxWidth: '260px', className: 'wv-popup' }).setLngLat(e.lngLat).setDOMContent(box).addTo(map);
-  });
+    pop = new maplibregl.Popup({ closeButton: false, closeOnMove: true, offset: 10, maxWidth: '260px', className: 'wv-popup' }).setLngLat(e.lngLat).setDOMContent(box).addTo(map);
+  }
 
   // legenda (va sotto il consiglio, in alto)
   const legend = el('div', { id: 'wvLegend', class: 'wv-legend' });
