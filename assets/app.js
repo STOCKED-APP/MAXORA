@@ -306,9 +306,26 @@
     st.layers = st.layers.map((l) => (l.type === 'background' ? Object.assign({}, l, { paint: Object.assign({}, l.paint, { 'background-color': '#efe5cf' }) }) : l));
     return lighten(st);
   }
-  // più fluida sul telefono: edifici piatti invece che in 3D
+  // più fluida sul telefono: edifici piatti invece che in 3D.
+  // E più dettaglio prima: stradine, sterrati e sentieri visibili già da vicino al paese (come le altre mappe)
+  const W = (stops) => ['interpolate', ['exponential', 1.2], ['zoom']].concat(stops);
+  function detail(l) {
+    if (l.type !== 'line' || l['source-layer'] !== 'transportation') return l;
+    const p = Object.assign({}, l.paint), id = l.id;
+    let minzoom = l.minzoom;
+    if (/service_track_casing/.test(id)) { p['line-width'] = W([12, 1.2, 14, 3, 16, 5, 20, 11]); minzoom = 12; }
+    else if (/service_track/.test(id)) { p['line-width'] = W([12, 0.5, 14, 1.6, 16, 3, 20, 7.5]); minzoom = 12; }
+    else if (/path_pedestrian_casing/.test(id)) { minzoom = 13; }
+    else if (/path_pedestrian/.test(id)) { p['line-color'] = '#a3906f'; p['line-width'] = W([13, 0.8, 16, 1.8, 20, 6]); minzoom = 13; }
+    else if (/(road|bridge|tunnel)_(minor|street)_casing/.test(id)) { p['line-width'] = W([12, 1.2, 13, 2.6, 14, 4, 20, 21]); p['line-opacity'] = 1; minzoom = 11.5; }
+    else if (/(road|bridge|tunnel)_(minor|street)$/.test(id)) { p['line-width'] = W([12, 0.6, 13, 1.4, 14, 2.6, 20, 18]); minzoom = 11.5; }
+    else return l;
+    const out = Object.assign({}, l, { paint: p });
+    if (minzoom != null) out.minzoom = minzoom; else delete out.minzoom;
+    return out;
+  }
   function lighten(st) {
-    st.layers = st.layers.map((l) => {
+    st.layers = st.layers.map(detail).map((l) => {
       if (l.type !== 'fill-extrusion') return l;
       return { id: l.id, type: 'fill', source: l.source, 'source-layer': l['source-layer'], minzoom: Math.max(14, l.minzoom || 0), filter: l.filter,
         paint: { 'fill-color': (l.paint && typeof l.paint['fill-extrusion-color'] === 'string') ? l.paint['fill-extrusion-color'] : '#d9d0c3', 'fill-opacity': 0.7 } };
