@@ -65,7 +65,10 @@
     rail.innerHTML = '';
     const R = REG[cur];
     if (!R || !R.rail) return;
-    R.rail().filter(Boolean).forEach((it) => {
+    // in ogni modalità: eventi (prima quelli dello sport, poi quelli generali)
+    const EV = window.MAXORA_EVENTS;
+    const evBtn = EV ? { icon: '🎉', short: EV.label(), label: EV.label(), onclick: () => EV.open(['surf', 'bike', 'run'].includes(cur) ? cur : null) } : null;
+    [evBtn, ...R.rail()].filter(Boolean).forEach((it) => {
       const b = el('button', { class: 'ui-rb' + (it.on ? ' on' : ''), 'aria-label': it.label, title: it.label }, [el('span', { class: 'i', text: it.icon }), el('span', { class: 'l', text: it.short || it.label })]);
       b.addEventListener('click', (e) => {
         e.stopPropagation();
