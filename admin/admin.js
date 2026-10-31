@@ -1355,6 +1355,122 @@
     }
   };
 
+  // ------------------------------------------------------------------
+  // EVENTOS: fiestas, mercados, música, carreras. Los que proponen los usuarios llegan "pendientes".
+  // ------------------------------------------------------------------
+  const EV_CATS = [['fiesta', '🎉 Fiesta'], ['musica', '🎵 Música'], ['cultura', '🎭 Cultura'], ['mercado', '🧺 Mercado'], ['gastro', '🍽 Gastronomía'], ['familia', '🧸 Familias'], ['deporte', '🏅 Deporte'], ['surf', '🏄 Surf / vela'], ['bike', '🚴 Bici'], ['run', '🏃 Carrera'], ['otro', '📌 Otro']];
+  const EV_TOWNS = ['Corralejo', 'Lajares', 'El Cotillo', 'La Oliva', 'Villaverde', 'Tindaya', 'Puerto del Rosario', 'Tetir', 'Casillas del Ángel', 'Antigua', 'Caleta de Fuste', 'Betancuria', 'Ajuy', 'Pájara', 'Tuineje', 'Gran Tarajal', 'Tarajalejo', 'La Lajita', 'Costa Calma', 'Morro Jable'];
+  const evEmo = (c) => ((EV_CATS.find((x) => x[0] === c) || [0, '📌'])[1]).split(' ')[0];
+  // fechas siempre en hora de Canarias
+  const EV_FMT = new Intl.DateTimeFormat('en-US', { timeZone: 'Atlantic/Canary', hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+  function evParts(iso) { const p = {}; EV_FMT.formatToParts(new Date(iso)).forEach((x) => { p[x.type] = x.value; }); return { date: p.year + '-' + p.month + '-' + p.day, time: (+p.hour % 24 === 0 && +p.minute === 0) ? '' : String(+p.hour % 24).padStart(2, '0') + ':' + p.minute }; }
+  function evISO(date, time) {
+    const [y, m, d] = date.split('-').map(Number); const [h, mi] = (time || '00:00').split(':').map(Number);
+    const guess = Date.UTC(y, m - 1, d, h, mi); const p = {}; EV_FMT.formatToParts(new Date(guess)).forEach((x) => { p[x.type] = x.value; });
+    const shown = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour % 24, +p.minute);
+    return new Date(guess - (shown - guess)).toISOString();
+  }
+  const evWhen = (e) => { const s = evParts(e.starts_at), en = e.ends_at ? evParts(e.ends_at) : null; const f = (k) => new Date(k + 'T12:00:00Z').toLocaleDateString('es-ES', { timeZone: 'UTC', weekday: 'short', day: 'numeric', month: 'short' }); return f(s.date) + (en && en.date !== s.date ? ' → ' + f(en.date) : '') + (s.time ? ' · ' + s.time : ''); };
+  function eventEditor(item, onDone) {
+    const d = item || { category: 'fiesta', status: 'approved' };
+    const s = d.starts_at ? evParts(d.starts_at) : { date: '', time: '' };
+    const en = d.ends_at ? evParts(d.ends_at) : null;
+    const f = {
+      title: el('input', { value: d.title || '', maxlength: '120', placeholder: 'ej. Fiestas de Nuestra Señora del Carmen' }),
+      category: el('select', {}, EV_CATS.map(([a, b]) => el('option', { value: a, text: b }))),
+      status: el('select', {}, [['approved', '✅ Publicado'], ['pending', '⏳ Pendiente'], ['rejected', '🚫 Rechazado']].map(([a, b]) => el('option', { value: a, text: b }))),
+      date: el('input', { type: 'date', value: s.date }), time: el('input', { type: 'time', value: s.time }),
+      end: el('input', { type: 'date', value: en && en.date !== s.date ? en.date : '' }),
+      town: el('select', {}, [el('option', { value: '', text: '—' }), ...[...new Set([...EV_TOWNS, d.town].filter(Boolean))].map((t) => el('option', { value: t, text: t }))]),
+      place: el('input', { value: d.place_name || '', maxlength: '120', placeholder: 'Plaza, playa, pabellón…' }),
+      url: el('input', { type: 'url', value: d.url || '', placeholder: 'https://' }),
+      price: el('input', { value: d.price || '', maxlength: '60', placeholder: 'Gratis, 10 €…' }),
+      desc: el('textarea', { rows: '4', maxlength: '1500' }),
+      lat: el('input', { type: 'number', step: 'any', value: d.lat ?? '' }), lng: el('input', { type: 'number', step: 'any', value: d.lng ?? '' })
+    };
+    f.category.value = d.category; f.status.value = d.status || 'approved'; f.town.value = d.town || ''; f.desc.value = d.description || '';
+    const mapBox = el('div', { class: 'amap small' });
+    const save = el('button', { class: 'btn primary', text: item && item.id ? 'Guardar cambios' : 'Crear evento' });
+    const del = item && item.id ? el('button', { class: 'btn danger', text: 'Borrar', onclick: async () => { if (!confirm('¿Borrar "' + d.title + '"?')) return; const r = await sb.from('events').delete().eq('id', d.id); if (r.error) return fail(r.error); toast('Evento borrado'); onDone(true); } }) : null;
+    const panel = el('div', { class: 'panel' }, [
+      el('div', { class: 'row' }, [el('h2', { text: item && item.id ? 'Editar evento' : 'Nuevo evento' }), el('span', { class: 'spacer' }), el('button', { class: 'btn small ghost', text: 'Cerrar', onclick: () => onDone(false) })]),
+      d.source === 'user' ? el('p', { class: 'sub', text: 'Propuesto por un usuario (' + shortId(d.created_by) + ') ' + ago(d.created_at) + '. Comprueba fecha y lugar antes de publicarlo.' }) : null,
+      el('div', { class: 'grid cols-2', style: 'margin-top:12px;align-items:start' }, [
+        el('div', { class: 'grid' }, [
+          el('label', {}, ['Nombre', f.title]),
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Tipo', f.category]), el('label', {}, ['Estado', f.status])]),
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Día', f.date]), el('label', {}, ['Hora (vacío = todo el día)', f.time])]),
+          el('label', {}, ['Último día (si dura varios días)', f.end]),
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Pueblo', f.town]), el('label', {}, ['Lugar', f.place])]),
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Web', f.url]), el('label', {}, ['Precio', f.price])]),
+          el('label', {}, ['Descripción', f.desc]),
+          el('div', { class: 'grid cols-2' }, [el('label', {}, ['Latitud', f.lat]), el('label', {}, ['Longitud', f.lng])])
+        ]),
+        el('div', {}, [el('p', { class: 'sub', text: 'Toca el mapa donde se celebra.' }), mapBox])
+      ]),
+      el('div', { class: 'row', style: 'margin-top:16px' }, [save, el('span', { class: 'spacer' }), del])
+    ]);
+    setTimeout(() => { const pk = pickerMap(mapBox, d.lat, d.lng, (la, ln) => { f.lat.value = la; f.lng.value = ln; }); [f.lat, f.lng].forEach((i) => i.addEventListener('change', () => pk.setPos(f.lat.value, f.lng.value))); }, 0);
+    save.addEventListener('click', async () => {
+      if (f.title.value.trim().length < 3 || !f.date.value) return toast('Nombre y día son obligatorios');
+      if (f.lat.value === '' || f.lng.value === '') return toast('Toca el mapa para poner el lugar');
+      const u = f.url.value.trim();
+      const row = {
+        title: f.title.value.trim(), category: f.category.value, status: f.status.value, town: f.town.value || null, place_name: f.place.value.trim() || null,
+        starts_at: evISO(f.date.value, f.time.value), ends_at: f.end.value && f.end.value > f.date.value ? evISO(f.end.value, '23:59') : null,
+        url: u ? (/^https?:\/\//.test(u) ? u : 'https://' + u) : null, price: f.price.value.trim() || null, description: f.desc.value.trim() || null,
+        lat: Number(f.lat.value), lng: Number(f.lng.value)
+      };
+      save.disabled = true;
+      const res = item && item.id ? await sb.from('events').update(row).eq('id', item.id) : await sb.from('events').insert(row);
+      save.disabled = false;
+      if (res.error) return fail(res.error, 'Guardar');
+      toast(row.status === 'approved' ? 'Publicado: la app lo muestra en Eventos.' : 'Guardado.');
+      onDone(true);
+    });
+    return panel;
+  }
+  async function setEventStatus(e, status) {
+    const { error } = await sb.from('events').update({ status }).eq('id', e.id);
+    if (error) return fail(error, 'Evento');
+    toast(status === 'approved' ? '✅ Publicado' : '🚫 Rechazado');
+    loadBoard();
+    if (location.hash === '#events') route();
+  }
+  VIEWS.events = {
+    eyebrow: 'Comunicar', title: 'Eventos',
+    async render(view, head) {
+      head.append(el('button', { class: 'btn primary', text: 'Nuevo evento', onclick: () => openEditor(null) }));
+      const since = new Date(Date.now() - 2 * 86400000).toISOString();
+      const { data, error } = await sb.from('events').select('*').or('status.eq.pending,starts_at.gte."' + since + '",ends_at.gte."' + since + '"').order('starts_at');
+      if (error) return fail(error, 'Eventos');
+      const pend = data.filter((x) => x.status === 'pending');
+      const pub = data.filter((x) => x.status === 'approved');
+      view.appendChild(el('div', { class: 'kpis' }, [kpi('Por revisar', pend.length, pend.length ? 'warn' : ''), kpi('Publicados próximos', pub.length, 'hot'), kpi('Rechazados', data.filter((x) => x.status === 'rejected').length)]));
+      view.appendChild(el('p', { class: 'sub', style: 'margin:0 0 14px', text: 'Fiestas de pueblo, mercadillos, conciertos y carreras. La app los enseña por pueblo y, en modo surf/bici/correr, solo los de ese deporte. Lo que proponen los usuarios espera aquí hasta que lo publiques.' }));
+      const editorBox = el('div', { style: 'margin-bottom:16px' });
+      view.appendChild(editorBox);
+      function openEditor(item) {
+        maps.forEach((m) => { try { m.remove(); } catch (e) {} }); maps = [];
+        editorBox.innerHTML = '';
+        editorBox.appendChild(eventEditor(item, (changed) => { editorBox.innerHTML = ''; if (changed) { loadBoard(); route(); } }));
+        editorBox.scrollIntoView({ behavior: 'smooth' });
+      }
+      const card = (x) => el('div', { class: 'ev-adm' + (x.status === 'pending' ? ' pend' : x.status === 'rejected' ? ' rej' : '') }, [
+        el('div', { class: 'ev-adm-d', text: evEmo(x.category) }),
+        el('div', { class: 'ev-adm-t' }, [el('b', { text: x.title }), el('small', { text: [evWhen(x), x.town, x.place_name].filter(Boolean).join(' · ') }), x.description ? el('small', { class: 'ev-adm-x', text: x.description.slice(0, 140) }) : null]),
+        el('div', { class: 'row' }, [
+          x.status !== 'approved' ? el('button', { class: 'btn small primary', text: 'Publicar', onclick: () => setEventStatus(x, 'approved') }) : null,
+          x.status === 'pending' ? el('button', { class: 'btn small ghost', text: 'Rechazar', onclick: () => setEventStatus(x, 'rejected') }) : null,
+          el('button', { class: 'btn small', text: 'Editar', onclick: () => openEditor(x) }),
+          x.lat != null ? el('button', { class: 'btn small ghost', text: 'Ver', onclick: () => { layerOn('events', true); focusBoard(x.lat, x.lng, 14); } }) : null
+        ])
+      ]);
+      if (pend.length) view.append(el('h2', { class: 'ev-adm-h', text: '⏳ Por revisar' }), el('div', { class: 'ev-adm-list' }, pend.map(card)));
+      view.append(el('h2', { class: 'ev-adm-h', text: '🗓 Próximos' }), el('div', { class: 'ev-adm-list' }, pub.length ? pub.map(card) : [el('p', { class: 'sub', text: 'Aún no hay eventos. Añade el primero con "Nuevo evento" o mantén pulsado el mapa.' })]));
+    }
+  };
+
   VIEWS.surf = {
     eyebrow: 'Isla', title: 'Surf',
     async render(view, head) {
@@ -1488,22 +1604,22 @@
   const AREAS = {
     live: { icon: '🛰', name: 'En directo', tabs: [['reports', 'Avisos'], ['dashboard', 'Estadísticas'], ['users', 'Dispositivos']] },
     island: { icon: '🏝', name: 'Isla', tabs: [['radars', 'Radares'], ['surf', 'Surf'], ['camper', 'Camper'], ['routes', 'Rutas'], ['places', 'Lugares'], ['businesses', 'Negocios']] },
-    talk: { icon: '📣', name: 'Comunicar', tabs: [['official', 'Aviso oficial'], ['broadcasts', 'Mensajes'], ['push', 'Notificaciones']] },
+    talk: { icon: '📣', name: 'Comunicar', tabs: [['official', 'Aviso oficial'], ['events', 'Eventos'], ['broadcasts', 'Mensajes'], ['push', 'Notificaciones']] },
     system: { icon: '⚙️', name: 'Sistema', tabs: [['rules', 'Interruptores'], ['dgt', 'Datos'], ['log', 'Registro']] }
   };
   const areaOf = (key) => Object.keys(AREAS).find((a) => AREAS[a].tabs.some((t) => t[0] === key)) || 'live';
-  const BOARD_LAYER = { radars: 'radars', surf: 'surf', camper: 'camper', routes: 'notes', places: 'places', businesses: 'businesses' };
+  const BOARD_LAYER = { radars: 'radars', surf: 'surf', camper: 'camper', routes: 'notes', places: 'places', businesses: 'businesses', events: 'events' };
 
   // capas del tablero
   const LAYERS = [
     ['reports', '⚠️', 'Avisos', true], ['radars', '📷', 'Radares', true], ['surf', '🏄', 'Surf', false], ['camper', '🚐', 'Camper', false],
-    ['notes', '📝', 'Notas rutas', false], ['places', '📍', 'Lugares', false], ['businesses', '🏪', 'Negocios', false]
+    ['notes', '📝', 'Notas rutas', false], ['places', '📍', 'Lugares', false], ['businesses', '🏪', 'Negocios', false], ['events', '🎉', 'Eventos', true]
   ];
   const layerState = (() => { try { return JSON.parse(localStorage.getItem('maxora_admin_layers')) || {}; } catch (e) { return {}; } })();
   const isOn = (k) => (k in layerState ? layerState[k] : LAYERS.find((l) => l[0] === k)[3]);
 
   let board = null;
-  const B = { reports: [], radars: [], osmRadars: [], surf: [], camper: [], notes: [], places: [], businesses: [], settings: {}, stats: null, broadcasts: [] };
+  const B = { reports: [], radars: [], osmRadars: [], surf: [], camper: [], notes: [], places: [], businesses: [], events: [], settings: {}, stats: null, broadcasts: [] };
   const bMarkers = [];
 
   function focusBoard(lat, lng, zoom) {
@@ -1587,6 +1703,10 @@
     if (unchecked.length) items.push({ lvl: '', icon: '📷', t: unchecked.length + ' radares sin comprobar', s: 'Vienen de OpenStreetMap', go: () => { location.hash = 'radars'; } });
     const soon = B.businesses.filter((b) => b.sponsor_until && b.plan !== 'free' && (new Date(b.sponsor_until) - Date.now()) < 7 * 86400000);
     if (soon.length) items.push({ lvl: 'warn', icon: '💶', t: soon.length + ' sponsor ' + (soon.length === 1 ? 'vence' : 'vencen'), s: soon.map((b) => b.name).slice(0, 2).join(', '), go: () => { location.hash = 'businesses'; } });
+    const evPend = B.events.filter((e) => e.status === 'pending');
+    if (evPend.length) items.push({ lvl: 'warn', icon: '🎉', t: evPend.length + (evPend.length === 1 ? ' evento por revisar' : ' eventos por revisar'), s: evPend[0].title + (evPend[0].town ? ' · ' + evPend[0].town : ''), go: () => { location.hash = 'events'; } });
+    const evWeek = B.events.filter((e) => e.status === 'approved' && new Date(e.starts_at) - Date.now() < 7 * 86400000);
+    if (evWeek.length) items.push({ lvl: '', icon: '🗓', t: evWeek.length + (evWeek.length === 1 ? ' evento esta semana' : ' eventos esta semana'), s: evWeek.map((e) => e.title).slice(0, 2).join(', '), go: () => { location.hash = 'events'; } });
     B.broadcasts.slice(0, 1).forEach((b) => items.push({ lvl: 'info', icon: '📣', t: 'Mensaje a todos activo', s: ((b.message && (b.message.es || b.message.it)) || '').slice(0, 60), go: () => { location.hash = 'broadcasts'; } }));
 
     const urgent = items.filter((i) => i.lvl === 'warn').length;
@@ -1625,7 +1745,7 @@
   // ---------------- datos ----------------
   async function loadBoard() {
     const now = new Date().toISOString();
-    const [rp, st, se, bc, rd, osm, sf, cp, nt, pl, bz] = await Promise.all([
+    const [rp, st, se, bc, rd, osm, sf, cp, nt, pl, bz, ev] = await Promise.all([
       sb.from('reports').select('*').gt('expires_at', now).is('removed_at', null).limit(1000),
       sb.rpc('admin_stats', { p_days: 7 }),
       sb.from('app_settings').select('key,value'),
@@ -1636,7 +1756,8 @@
       sb.from('camper_spots').select('*'),
       sb.from('route_notes').select('*').eq('active', true),
       sb.from('places').select('id,name,category,lat,lng,active,photos'),
-      sb.from('businesses').select('id,name,category,lat,lng,active,plan,sponsor_until,logo_url')
+      sb.from('businesses').select('id,name,category,lat,lng,active,plan,sponsor_until,logo_url'),
+      sb.from('events').select('*').neq('status', 'rejected').gte('starts_at', new Date(Date.now() - 30 * 86400000).toISOString()).order('starts_at')
     ]);
     B.reports = rp.data || [];
     B.stats = st.data || null;
@@ -1650,6 +1771,8 @@
     B.notes = (nt.data || []).filter((n) => !n.expires_at || new Date(n.expires_at) > nowD);
     B.places = pl.data || [];
     B.businesses = bz.data || [];
+    const evToday = new Date(Date.now() - 86400000);
+    B.events = (ev.data || []).filter((e) => e.status === 'pending' || new Date(e.ends_at || e.starts_at) >= evToday);
     drawStatus(); drawFeed(); drawBoardMarkers(); drawPoliceBoard();
   }
 
@@ -1676,6 +1799,7 @@
     B.camper.forEach((x) => add(pin('bm-camper' + (x.active ? '' : ' off') + (x.approx ? ' approx' : ''), '🚐', x.name, () => openCamper(x)), x.lng, x.lat));
     B.notes.forEach((x) => add(pin('bm-notes', '📝', (x.text && (x.text.es || x.text.it)) || 'Nota', () => { location.hash = 'routes'; }), x.lng, x.lat));
     B.places.forEach((x) => add(pin('bm-places' + (x.active ? '' : ' off'), '📍', x.name, () => openCatalog('places', x.id)), x.lng, x.lat));
+    B.events.forEach((x) => add(pin('bm-events' + (x.status === 'pending' ? ' pend' : ''), evEmo(x.category), x.title + ' · ' + evWhen(x), () => openEvent(x)), x.lng, x.lat));
     B.businesses.forEach((x) => add(pin('bm-businesses' + (x.active ? '' : ' off'), '🏪', x.name, () => openCatalog('businesses', x.id)), x.lng, x.lat));
   }
   function circle(lng, lat, km) {
@@ -1720,6 +1844,7 @@
     openDetail(t.is_police ? 'Zona policía' : 'Aviso', typeLabel(r.type), node);
   }
   const openRadar = (r) => openDetail('Isla · Radar', r.id ? 'Radar' : r.osm_id ? 'Radar de OpenStreetMap' : 'Nuevo radar', radarEditor(r.id || r.osm_id ? r : null, editorDone));
+  const openEvent = (x) => openDetail('Comunicar · Evento', x ? x.title : 'Nuevo evento', eventEditor(x, editorDone));
   const openCamper = (x) => openDetail('Isla · Camper', x ? x.name : 'Nuevo punto camper', camperEditor(x, editorDone));
   const openSurf = (x) => openDetail('Isla · Surf', x ? ((x.data && x.data.name) || x.id) : 'Nuevo spot', surfSpotEditor(x, editorDone));
   async function openCatalog(kind, id) {
@@ -1736,6 +1861,7 @@
     const go = (fn) => () => { addPop.remove(); PRESET = pos; fn(); };
     const opts = [
       ['📣', 'Aviso oficial', go(() => { location.hash = 'official'; })],
+      ['🎉', 'Evento', go(() => openEvent(null))],
       ['📷', 'Radar', go(() => openDetail('Isla · Radar', 'Nuevo radar', radarEditor(null, editorDone)))],
       ['🚐', 'Punto camper', go(() => openCamper(null))],
       ['🏄', 'Spot de surf', go(() => openSurf(null))],

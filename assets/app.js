@@ -992,10 +992,14 @@
     tabs.innerHTML = '';
     const cats = DCATS.filter(([k, , re]) => !re || (S.places || []).some((x) => re.test(x.category || '')));
     if ((S.businesses || []).length) cats.push(['businesses', 'dBiz', null]);
+    const EV = window.MAXORA_EVENTS;
+    if (EV) cats.splice(1, 0, ['events', null, null]);
     if (!cats.some((c) => c[0] === discTab)) discTab = 'all';
-    cats.forEach(([k, lbl]) => tabs.appendChild(el('button', { class: discTab === k ? 'on' : '', onclick: () => { discTab = k; drawDiscover(); $('discoverList').scrollTop = 0; } }, [t(lbl)])));
+    cats.forEach(([k, lbl]) => tabs.appendChild(el('button', { class: (discTab === k ? 'on' : '') + (k === 'events' ? ' ev-tab' : ''), onclick: () => { discTab = k; drawDiscover(); $('discoverList').scrollTop = 0; } }, [k === 'events' ? EV.emoji() + ' ' + EV.label() : t(lbl)])));
     const list = $('discoverList');
     list.innerHTML = '';
+    list.classList.remove('ev-box');
+    if (discTab === 'events') { EV.draw(list, {}); return; }
     const ref = S.pos || null;
     const dist = (x) => (ref ? distKm(ref, x) : null);
     const fmt = (d) => (d == null ? '' : d < 1 ? Math.round(d * 1000) + ' m' : (d < 10 ? d.toFixed(1).replace('.', lang === 'en' ? '.' : ',') : Math.round(d)) + ' km');
