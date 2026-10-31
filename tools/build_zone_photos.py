@@ -21,6 +21,9 @@ BAD = ['map', 'mapa', 'plano', 'logo', 'sign', 'cartel', 'señal', 'panel', 'int
        'cabra', 'cat ', 'dog', 'perro', 'gato', 'diagram', 'coat of arms', 'escudo', 'stamp', 'poster', 'screenshot', 'satellite', 'aerial photo',
        'license plate', 'matrícula', 'statue', 'estatua', 'museum', 'museo', 'pool', 'piscina', 'bed ', 'cama', 'toilet', 'baño']
 
+# foto scartate a occhio (non mostrano la zona)
+BLOCK = set(['File:January Desert Storm Africa Las Dunas Ocean Beach Corralejo - Fuertaventura Photography 1992 Zahara Winds - panoramio.jpg', 'File:Vintage Reflection (36368057374).jpg', 'File:Antigua - panoramio - brunobarbato.jpg', 'File:Punica granatum (32872961882).jpg', 'File:Colonia Agrícola Penitenciaria de Tefía 06.jpg', 'File:Betancuria, 35637, Las Palmas, Spain - panoramio (122).jpg', 'File:Morro Jable (Fuerteventura, Spain), Strand -- 2025 -- 2483.jpg', 'File:Balaenoptera physalus skeleton - Salinas del Carmen.jpg'])
+
 def get(params):
     q = API + '?' + urllib.parse.urlencode(params)
     last = None
@@ -53,7 +56,7 @@ def candidates(points, radius, used):
         for p in pages:
             ii = (p.get('imageinfo') or [{}])[0]
             t = p['title']
-            if t in used or t in out or not ii.get('thumburl'): continue
+            if t in used or t in out or t in BLOCK or not ii.get('thumburl'): continue
             if ii.get('mime') != 'image/jpeg': continue
             w, h = ii.get('width', 0), ii.get('height', 0)
             if w < 1200 or w < h * 1.25: continue
