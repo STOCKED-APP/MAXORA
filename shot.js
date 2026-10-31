@@ -9,6 +9,7 @@ const log = (s) => { out.push(s); fs.writeFileSync('shots/out.txt', out.join('\n
     const ctx = await b.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 3, locale: lang, geolocation: { latitude: 28.7205, longitude: -13.8695 }, permissions: ['geolocation'], hasTouch: true, isMobile: true });
     await ctx.addInitScript((l) => { localStorage.setItem('maxora_lang', JSON.stringify(l)); ['tourDone', 'tips2_surf', 'tips2_bike', 'tips2_run', 'tips2_camper', 'tips2_card_surf', 'tips2_card_sport'].forEach((k) => localStorage.setItem('maxora_' + k, 'true')); }, lang);
     const p = await ctx.newPage();
+    await p.clock.setSystemTime(new Date('2026-10-31T11:30:00Z'));
     p.on('pageerror', (e) => log(lang + dev + ' ' + e.message));
     await p.goto('https://stocked-app.github.io/MAXORA/?v=' + Date.now(), { waitUntil: 'load' });
     await p.waitForTimeout(7000);
