@@ -1175,3 +1175,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .ui-top:has(.adv:not(.closed)) { left: 16px; top: calc(env(safe-area-inset-top) + 128px); }
 @media (min-width: 560px) { .ui-top:has(.adv:not(.closed)) { left: calc(50% - 240px + 16px); } }
 
+.legal-links { display: flex; gap: 16px; justify-content: center; margin-top: 14px; font-size: 14px; }
+.legal-links a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.del-data { display: block; width: 100%; margin-top: 12px; min-height: 44px; border: 0; background: transparent; color: var(--red-text); font: inherit; font-weight: 700; font-size: 14px; }

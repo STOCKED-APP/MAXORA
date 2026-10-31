@@ -1,0 +1,13 @@
+{
+  "appId": "es.maxora.app",
+  "appName": "Maxora",
+  "webDir": "www",
+  "backgroundColor": "#f3e6cc",
+  "ios": { "contentInset": "never", "backgroundColor": "#f3e6cc", "scheme": "Maxora" },
+  "android": { "backgroundColor": "#f3e6cc" },
+  "plugins": {
+    "SplashScreen": { "launchAutoHide": false, "backgroundColor": "#f3e6cc", "showSpinner": false },
+    "PushNotifications": { "presentationOptions": ["badge", "sound", "alert"] },
+    "LocalNotifications": { "iconColor": "#14c8b0" }
+  }
+}

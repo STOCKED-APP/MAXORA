@@ -1,0 +1,27 @@
+{
+  "name": "maxora-native",
+  "private": true,
+  "version": "0.27.0",
+  "description": "Maxora per App Store e Google Play: impacchetta la web app (cartella principale) con Capacitor",
+  "scripts": {
+    "www": "node scripts/build-www.js",
+    "assets": "capacitor-assets generate --iconBackgroundColor '#f3e6cc' --splashBackgroundColor '#f3e6cc' --splashBackgroundColorDark '#f3e6cc'",
+    "sync": "npm run www && cap sync"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/app": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/haptics": "^7.0.0",
+    "@capacitor/ios": "^7.0.0",
+    "@capacitor/local-notifications": "^7.0.0",
+    "@capacitor/push-notifications": "^7.0.0",
+    "@capacitor/splash-screen": "^7.0.0",
+    "@capacitor/status-bar": "^7.0.0",
+    "@capacitor-community/background-geolocation": "^1.2.22"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^7.0.0"
+  }
+}

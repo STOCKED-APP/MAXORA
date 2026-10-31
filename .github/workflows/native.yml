@@ -1,0 +1,56 @@
+# Maxora — app per Google Play e App Store (Capacitor).
+# Si avvia a mano (Actions › App nativa › Run workflow) e non serve nessun account a pagamento:
+#  - Android: crea un APK di prova da installare sul telefono (scaricalo dagli "Artifacts").
+#  - iPhone: controlla che il progetto si compili (per il simulatore, senza firma).
+# Quando ci saranno gli account sviluppatore si aggiungono qui la firma e l'invio agli Store.
+name: App nativa
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults: { run: { working-directory: native } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 21 }
+      - run: npm install --no-audit --no-fund
+      - run: npm run www
+      - run: npx cap add android
+      - run: node scripts/patch-android.js
+      - run: npm run assets -- --android
+      - run: npx cap sync android
+      - name: APK di prova
+        run: cd android && ./gradlew assembleDebug --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: maxora-android-prova
+          path: native/android/app/build/outputs/apk/debug/*.apk
+
+  ios:
+    runs-on: macos-latest
+    timeout-minutes: 40
+    defaults: { run: { working-directory: native } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm install --no-audit --no-fund
+      - run: npm run www
+      - run: npx cap add ios
+      - run: sh scripts/patch-ios.sh
+      - run: npm run assets -- --ios
+      - run: npx cap sync ios
+      - name: Compila per il simulatore (senza firma)
+        run: |
+          cd ios/App
+          if [ -d App.xcworkspace ]; then TARGET="-workspace App.xcworkspace"; else TARGET="-project App.xcodeproj"; fi
+          xcodebuild $TARGET -scheme App -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build | tail -n 40
