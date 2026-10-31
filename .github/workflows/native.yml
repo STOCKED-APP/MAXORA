@@ -53,4 +53,6 @@ jobs:
         run: |
           cd ios/App
           if [ -d App.xcworkspace ]; then TARGET="-workspace App.xcworkspace"; else TARGET="-project App.xcodeproj"; fi
+          set -o pipefail
           xcodebuild $TARGET -scheme App -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build | tail -n 40
+          echo "::notice::iPhone: compilazione riuscita"
