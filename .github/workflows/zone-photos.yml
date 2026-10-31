@@ -1,0 +1,37 @@
+# Maxora — una foto della zona (Wikimedia Commons, licenza libera) per ogni spot surf e percorso
+name: Foto delle zone
+
+# Solo manuale: GitHub → Actions → "Foto delle zone" → Run workflow
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cerca le foto
+        run: |
+          pip install --quiet pillow
+          SHEET=/tmp/sheet python3 tools/build_zone_photos.py .
+      - name: Fogli di controllo nel ramo sonda-foto
+        run: |
+          cd /tmp/sheet
+          git init -q -b sonda-foto
+          git config user.name "maxora-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp "$GITHUB_WORKSPACE/data/zone_photos.json" .
+          git add -A && git commit -q -m "fogli foto [skip ci]"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" sonda-foto
+      - name: Pubblica se cambiato
+        run: |
+          git config user.name "maxora-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/zone_photos.json
+          if git diff --cached --quiet; then echo "Nessun cambiamento"; exit 0; fi
+          git commit -m "Foto delle zone aggiornate"
+          git pull --rebase -q && git push
