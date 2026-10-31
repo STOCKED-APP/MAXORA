@@ -1,6 +1,6 @@
 /* Maxora — eventi: feste di paese, mercati, musica, gare.
    Lista per paese scelto (ricordato sul telefono) e per sport della modalità attiva.
-   Chiunque può proporre un evento: resta "in revisione" finché l'admin non lo approva. */
+   Gli eventi li pubblica solo l'admin (pannello di controllo). */
 (function () {
   'use strict';
   const M = window.MAXORA;
@@ -11,19 +11,19 @@
   const TX = {
     it: { sportSec: 'Per chi fa {s}', noSport: 'Nessuna gara di {s} in vista per ora.', generalSec: 'Altri eventi · {w}', seeAll: 'Vedi tutti', events: 'Eventi', evMode: 'Eventi {s}', upcoming: '{n} in arrivo', none0: 'Nessun evento in arrivo', all: 'Tutta l\'isola', today: 'Oggi', weekend: 'Questo weekend', next: 'Prossimi', cAll: 'Tutto', cParty: 'Feste', cCult: 'Musica e cultura', cMarket: 'Mercati e cibo', cSport: 'Sport', cFam: 'Famiglie',
       fiesta: 'Festa', musica: 'Musica', mercado: 'Mercato', cultura: 'Cultura', gastro: 'Gastronomia', familia: 'Famiglie', deporte: 'Sport', surf: 'Surf e vela', bike: 'Bici', run: 'Corsa', otro: 'Altro',
-      empty: 'Nessun evento in vista {w}.', emptyHint: 'Conosci una festa, un mercato o una gara? Aggiungila tu.', inTown: 'a {t}', propose: 'Proponi un evento', back: 'Eventi', allDay: 'tutto il giorno', from: 'dal {a} al {b}', go: 'Portami lì', cal: 'Calendario', share: 'Condividi', web: 'Sito web', price: 'Prezzo', pending: 'In revisione: lo vedi solo tu finché non viene approvato.', pendTag: 'in revisione', showAll: 'Tutti gli eventi', onlySport: 'Solo {s}',
+      empty: 'Nessun evento in vista {w}.', emptyHint: 'Nuovi eventi in arrivo: ripassa presto.', inTown: 'a {t}', propose: 'Proponi un evento', back: 'Eventi', allDay: 'tutto il giorno', from: 'dal {a} al {b}', go: 'Portami lì', cal: 'Calendario', share: 'Condividi', web: 'Sito web', price: 'Prezzo', pending: 'In revisione: lo vedi solo tu finché non viene approvato.', pendTag: 'in revisione', showAll: 'Tutti gli eventi', onlySport: 'Solo {s}',
       fTitle: 'Nome dell\'evento', fCat: 'Tipo', fDate: 'Giorno', fTime: 'Ora (se la sai)', fEnd: 'Ultimo giorno (se dura più giorni)', fTown: 'Paese', fPlace: 'Luogo preciso (piazza, spiaggia…)', fUrl: 'Link (facoltativo)', fDesc: 'Descrizione (facoltativa)', fHere: 'Usa la mia posizione come luogo', send: 'Invia', sent: 'Grazie! Lo controlliamo e poi appare a tutti.', need: 'Servono nome, giorno e paese.', past: 'La data è già passata.', err: 'Non inviato: {e}', note: 'Ogni evento viene controllato prima di essere pubblicato.', town: 'Paese' },
     es: { sportSec: 'Para {s}', noSport: 'De momento no hay pruebas de {s} a la vista.', generalSec: 'Otros eventos · {w}', seeAll: 'Ver todos', events: 'Eventos', evMode: 'Eventos de {s}', upcoming: '{n} próximos', none0: 'Sin eventos próximos', all: 'Toda la isla', today: 'Hoy', weekend: 'Este fin de semana', next: 'Próximos', cAll: 'Todo', cParty: 'Fiestas', cCult: 'Música y cultura', cMarket: 'Mercados y comida', cSport: 'Deporte', cFam: 'Familias',
       fiesta: 'Fiesta', musica: 'Música', mercado: 'Mercado', cultura: 'Cultura', gastro: 'Gastronomía', familia: 'Familias', deporte: 'Deporte', surf: 'Surf y vela', bike: 'Bici', run: 'Carrera', otro: 'Otro',
-      empty: 'No hay eventos a la vista {w}.', emptyHint: '¿Conoces una fiesta, un mercadillo o una carrera? Añádela tú.', inTown: 'en {t}', propose: 'Proponer un evento', back: 'Eventos', allDay: 'todo el día', from: 'del {a} al {b}', go: 'Llévame', cal: 'Calendario', share: 'Compartir', web: 'Web', price: 'Precio', pending: 'En revisión: solo lo ves tú hasta que se apruebe.', pendTag: 'en revisión', showAll: 'Todos los eventos', onlySport: 'Solo {s}',
+      empty: 'No hay eventos a la vista {w}.', emptyHint: 'Pronto habrá nuevos eventos: vuelve a mirar.', inTown: 'en {t}', propose: 'Proponer un evento', back: 'Eventos', allDay: 'todo el día', from: 'del {a} al {b}', go: 'Llévame', cal: 'Calendario', share: 'Compartir', web: 'Web', price: 'Precio', pending: 'En revisión: solo lo ves tú hasta que se apruebe.', pendTag: 'en revisión', showAll: 'Todos los eventos', onlySport: 'Solo {s}',
       fTitle: 'Nombre del evento', fCat: 'Tipo', fDate: 'Día', fTime: 'Hora (si la sabes)', fEnd: 'Último día (si dura varios días)', fTown: 'Pueblo', fPlace: 'Lugar exacto (plaza, playa…)', fUrl: 'Enlace (opcional)', fDesc: 'Descripción (opcional)', fHere: 'Usar mi ubicación como lugar', send: 'Enviar', sent: '¡Gracias! Lo revisamos y luego lo verán todos.', need: 'Faltan nombre, día y pueblo.', past: 'Esa fecha ya pasó.', err: 'No enviado: {e}', note: 'Cada evento se revisa antes de publicarse.', town: 'Pueblo' },
     en: { sportSec: 'For {s}', noSport: 'No {s} events coming up yet.', generalSec: 'Other events · {w}', seeAll: 'See all', events: 'Events', evMode: '{s} events', upcoming: '{n} coming up', none0: 'No upcoming events', all: 'Whole island', today: 'Today', weekend: 'This weekend', next: 'Coming up', cAll: 'All', cParty: 'Fiestas', cCult: 'Music & culture', cMarket: 'Markets & food', cSport: 'Sport', cFam: 'Family',
       fiesta: 'Fiesta', musica: 'Music', mercado: 'Market', cultura: 'Culture', gastro: 'Food', familia: 'Family', deporte: 'Sport', surf: 'Surf & sailing', bike: 'Bike', run: 'Running', otro: 'Other',
-      empty: 'No events coming up {w}.', emptyHint: 'Know a fiesta, a market or a race? Add it yourself.', inTown: 'in {t}', propose: 'Suggest an event', back: 'Events', allDay: 'all day', from: '{a} to {b}', go: 'Take me there', cal: 'Calendar', share: 'Share', web: 'Website', price: 'Price', pending: 'Under review: only you can see it until it is approved.', pendTag: 'under review', showAll: 'All events', onlySport: 'Only {s}',
+      empty: 'No events coming up {w}.', emptyHint: 'New events are on the way: check back soon.', inTown: 'in {t}', propose: 'Suggest an event', back: 'Events', allDay: 'all day', from: '{a} to {b}', go: 'Take me there', cal: 'Calendar', share: 'Share', web: 'Website', price: 'Price', pending: 'Under review: only you can see it until it is approved.', pendTag: 'under review', showAll: 'All events', onlySport: 'Only {s}',
       fTitle: 'Event name', fCat: 'Type', fDate: 'Day', fTime: 'Time (if you know it)', fEnd: 'Last day (if it runs several days)', fTown: 'Town', fPlace: 'Exact place (square, beach…)', fUrl: 'Link (optional)', fDesc: 'Description (optional)', fHere: 'Use my location as the place', send: 'Send', sent: 'Thanks! We\'ll check it, then everyone will see it.', need: 'Name, day and town are needed.', past: 'That date has passed.', err: 'Not sent: {e}', note: 'Every event is checked before it goes live.', town: 'Town' },
     de: { sportSec: 'Für {s}', noSport: 'Noch keine {s}-Events in Sicht.', generalSec: 'Weitere Events · {w}', seeAll: 'Alle ansehen', events: 'Events', evMode: '{s}-Events', upcoming: '{n} demnächst', none0: 'Keine Events demnächst', all: 'Ganze Insel', today: 'Heute', weekend: 'Dieses Wochenende', next: 'Demnächst', cAll: 'Alle', cParty: 'Feste', cCult: 'Musik & Kultur', cMarket: 'Märkte & Essen', cSport: 'Sport', cFam: 'Familie',
       fiesta: 'Fest', musica: 'Musik', mercado: 'Markt', cultura: 'Kultur', gastro: 'Essen', familia: 'Familie', deporte: 'Sport', surf: 'Surf & Segeln', bike: 'Rad', run: 'Laufen', otro: 'Sonstiges',
-      empty: 'Keine Events in Sicht {w}.', emptyHint: 'Du kennst ein Fest, einen Markt oder ein Rennen? Trag es ein.', inTown: 'in {t}', propose: 'Event vorschlagen', back: 'Events', allDay: 'ganztägig', from: '{a} bis {b}', go: 'Hinbringen', cal: 'Kalender', share: 'Teilen', web: 'Website', price: 'Preis', pending: 'In Prüfung: nur du siehst es, bis es freigegeben ist.', pendTag: 'in Prüfung', showAll: 'Alle Events', onlySport: 'Nur {s}',
+      empty: 'Keine Events in Sicht {w}.', emptyHint: 'Neue Events kommen bald: schau wieder vorbei.', inTown: 'in {t}', propose: 'Event vorschlagen', back: 'Events', allDay: 'ganztägig', from: '{a} bis {b}', go: 'Hinbringen', cal: 'Kalender', share: 'Teilen', web: 'Website', price: 'Preis', pending: 'In Prüfung: nur du siehst es, bis es freigegeben ist.', pendTag: 'in Prüfung', showAll: 'Alle Events', onlySport: 'Nur {s}',
       fTitle: 'Name des Events', fCat: 'Art', fDate: 'Tag', fTime: 'Uhrzeit (falls bekannt)', fEnd: 'Letzter Tag (falls mehrtägig)', fTown: 'Ort', fPlace: 'Genauer Ort (Platz, Strand…)', fUrl: 'Link (optional)', fDesc: 'Beschreibung (optional)', fHere: 'Meinen Standort als Ort nehmen', send: 'Senden', sent: 'Danke! Wir prüfen es, dann sehen es alle.', need: 'Name, Tag und Ort fehlen.', past: 'Dieses Datum ist vorbei.', err: 'Nicht gesendet: {e}', note: 'Jedes Event wird vor der Veröffentlichung geprüft.', town: 'Ort' }
   };
   const L = () => (TX[M.lang()] ? M.lang() : 'es');
@@ -133,7 +133,6 @@
         listBox.appendChild(el('div', { class: 'disc-h', text: tr(k) }));
         arr.forEach((e) => listBox.appendChild(row(e, () => detail(box, e, opts))));
       });
-      listBox.appendChild(el('button', { class: 'ev-add', onclick: () => form(box, opts, sport) }, [el('span', { text: '+' }), tr('propose')]));
     };
     fill();
     load().then(() => { if (box.isConnected && box.classList.contains('ev-box')) fill(); });
@@ -213,64 +212,6 @@
     const url = e.url || location.origin + location.pathname;
     if (navigator.share) navigator.share({ title: e.title, text, url }).catch(() => {});
     else { try { navigator.clipboard.writeText(text + '\n' + url); M.toast('✓'); } catch (x) {} }
-  }
-
-  // ---- proponi un evento ----
-  function form(box, opts, sport) {
-    box.innerHTML = '';
-    box.classList.remove('ev-box');
-    const town0 = store.get('evTown', '') || '';
-    const f = (lbl, input) => el('label', { class: 'ev-f' }, [el('span', { text: lbl }), input]);
-    const title = el('input', { type: 'text', maxlength: '120', required: 'required' });
-    const cat = el('select', {}, CATS.map((c) => el('option', { value: c, text: EMO[c] + ' ' + tr(c) })));
-    cat.value = sport || 'fiesta';
-    const date = el('input', { type: 'date', min: todayKey(), value: todayKey() });
-    const time = el('input', { type: 'time' });
-    const end = el('input', { type: 'date', min: todayKey() });
-    const town = el('select', {}, [el('option', { value: '', text: '—' }), ...TOWNS.map((x) => el('option', { value: x[0], text: x[0] }))]);
-    town.value = town0;
-    const place = el('input', { type: 'text', maxlength: '120' });
-    const url = el('input', { type: 'url', placeholder: 'https://', inputmode: 'url' });
-    const desc = el('textarea', { rows: '3', maxlength: '1500' });
-    const here = el('input', { type: 'checkbox' });
-    const pos = M.pos();
-    const send = el('button', { class: 'ev-go ev-send', text: tr('send') });
-    send.addEventListener('click', async () => {
-      const tv = title.value.trim();
-      if (tv.length < 3 || !date.value || !town.value) { M.toast(tr('need')); return; }
-      if (date.value < todayKey()) { M.toast(tr('past')); return; }
-      const c = townAt(town.value);
-      const ll = here.checked && pos ? pos : { lat: c[1], lng: c[2] };
-      const u = url.value.trim();
-      const row = {
-        title: tv, category: cat.value, town: town.value, place_name: place.value.trim() || null,
-        lat: +ll.lat.toFixed(5), lng: +ll.lng.toFixed(5), starts_at: toISO(date.value, time.value),
-        ends_at: end.value && end.value > date.value ? toISO(end.value, '23:59') : null,
-        url: u ? (/^https?:\/\//.test(u) ? u : 'https://' + u) : null, description: desc.value.trim() || null
-      };
-      send.disabled = true;
-      const { error } = await sb.from('events').insert(row);
-      send.disabled = false;
-      if (error) { M.toast(tr('err', { e: error.message })); return; }
-      M.toast(tr('sent'));
-      store.set('evTown', town.value);
-      await load(true);
-      draw(box, opts);
-    });
-    box.append(
-      el('button', { class: 'ev-back', onclick: () => draw(box, opts) }, ['‹ ' + tr('back')]),
-      el('h3', { class: 'ev-title', text: tr('propose') }),
-      el('div', { class: 'ev-form' }, [
-        f(tr('fTitle'), title), f(tr('fCat'), cat),
-        el('div', { class: 'ev-2' }, [f(tr('fDate'), date), f(tr('fTime'), time)]),
-        f(tr('fEnd'), end), f(tr('fTown'), town), f(tr('fPlace'), place),
-        pos ? el('label', { class: 'ev-chk' }, [here, el('span', { text: tr('fHere') })]) : null,
-        f(tr('fUrl'), url), f(tr('fDesc'), desc),
-        send, el('p', { class: 'p-note', text: tr('note') })
-      ])
-    );
-    box.scrollTop = 0;
-    setTimeout(() => title.focus(), 50);
   }
 
   // ---- pannello proprio (dal menu delle modalità) ----
