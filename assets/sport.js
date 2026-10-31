@@ -236,6 +236,8 @@
   }
   const color = (r) => (r == null ? '#9aa4ae' : r < 1 ? '#9aa4ae' : r < 2 ? '#e5484d' : r < 3 ? '#f5a524' : r < 4 ? '#2f9e5b' : '#14c8b0');
   const fmtR = (r) => (r == null ? '–' : num(r, r % 1 ? 1 : 0));
+  // voto della fascia oraria scritto in chiaro (★ 4), colorato come le card: niente barre da interpretare
+  const scoreBadge = (r) => el('span', { class: 'sc' + (r == null ? ' none' : r < 2 && r >= 1 ? ' low' : ''), style: 'background:' + color(r) }, [r == null ? '–' : '★' + fmtR(r)]);
   function stars(r) { return el('span', { class: 'sf-stars', style: '--p:' + ((r || 0) / 5 * 100) + '%' }); }
 
   // vento lungo il percorso: quanto è controvento all'andata e al ritorno
@@ -383,7 +385,7 @@
       const day = sunAlt(t + 5400000, 28.4, -14) > -2;
       box.appendChild(el('button', { class: 'sf-slot' + (i === SP.idx ? ' on' : '') + (day ? '' : ' night'), onclick: () => { SP.idx = i; SP.picked = true; drawAll(); } }, [
         el('span', { class: 'h', text: hh(t) }),
-        el('span', { class: 'bar', style: 'background:' + color(s) + ';height:' + (6 + (s || 0) * 4) + 'px' })
+        scoreBadge(s)
       ]));
     });
     const on = box.querySelector('.sf-slot.on');

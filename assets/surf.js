@@ -230,6 +230,8 @@
   const color = (r) => (r == null ? '#9aa4ae' : r < 1 ? '#9aa4ae' : r < 2 ? '#e5484d' : r < 3 ? '#f5a524' : r < 4 ? '#2f9e5b' : '#14c8b0');
   const word = (x) => (x.r < 1 ? (x.h < 0.3 ? tr('flat') : tr('poor')) : x.r < 2 ? tr('poor') : x.r < 3 ? tr('fair') : x.r < 4 ? tr('good') : tr('great'));
   const fmtR = (r) => (r == null ? '–' : num(r, r % 1 ? 1 : 0));
+  // voto della fascia oraria scritto in chiaro (★ 4), colorato come le card: niente barre da interpretare
+  const scoreBadge = (r) => el('span', { class: 'sc' + (r == null ? ' none' : r < 2 && r >= 1 ? ' low' : ''), style: 'background:' + color(r) }, [r == null ? '–' : '★' + fmtR(r)]);
   function line(x) {
     const parts = [num(Math.max(0.1, x.h), 1) + ' m'];
     if (x.tp) parts.push(num(x.tp, 0) + ' s');
@@ -431,7 +433,7 @@
       const b = fsp ? rate(fsp, i, SF.level) : bestAt(i);
       const btn = el('button', { class: 'sf-slot' + (i === SF.idx ? ' on' : ''), 'aria-pressed': String(i === SF.idx), onclick: () => pick(i) }, [
         el('span', { class: 'h', text: hh(t) }),
-        el('span', { class: 'bar', style: 'background:' + color(b && b.r) + ';height:' + (6 + (b ? b.r : 0) * 4) + 'px' })
+        scoreBadge(b && b.r)
       ]);
       box.appendChild(btn);
     }
