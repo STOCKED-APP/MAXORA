@@ -785,7 +785,12 @@
     refresh: () => drawAll(),
     sheet: 'spSheet',
     top: () => [$('spAdvice'), $('spNow')],
-    time: () => $('spTimes'),
+    when: () => {
+      let n = 0; SP.times.forEach((t, i) => { if (Math.abs(t - Date.now()) < Math.abs(SP.times[n] - Date.now())) n = i; });
+      if (!SP.picked || SP.idx === n || !SP.times[SP.idx]) return null;
+      const t = SP.times[SP.idx];
+      return { label: dayLabel(t) + ' ' + hh(t) + ':00', reset: () => { SP.picked = false; SP.idx = n; drawAll(); } };
+    },
     rail: () => (k === 'bike' ? [{ icon: '🚴', short: tr('reportShort'), label: tr('reportBikes'), onclick: () => M.report('ciclistas') }] : [])
   }));
   window.MAXORA_SPORT = { state: SP, score, setSport, redraw: () => { if (SP.mode) { drawMap(); if (SP.open) drawCard(); } } };

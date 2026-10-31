@@ -507,6 +507,7 @@
     if (SF.open) drawCard();
     pad();
   }
+  function nowIdx() { let b = 0; SF.times.forEach((t, i) => { if (Math.abs(t - Date.now()) < Math.abs(SF.times[b] - Date.now())) b = i; }); return b; }
   function pick(i) { SF.idx = i; SF.picked = true; drawAll(); if (window.MAXORA_WAVES) window.MAXORA_WAVES.update(); }
 
   // ------------------------------------------------------------------
@@ -753,7 +754,13 @@
     refresh: () => drawAll(),
     sheet: 'sfSheet',
     top: () => [$('sfAdvice'), $('sfTide')],
-    time: () => $('sfTimes'),
+    // niente barra orari in basso: si guarda "adesso"; se scegli un'altra ora compare la chip per tornare ad adesso
+    when: () => {
+      const n = nowIdx();
+      if (!SF.picked || SF.idx === n || !SF.times[SF.idx]) return null;
+      const t = SF.times[SF.idx];
+      return { label: dayLabel(t) + ' ' + hh(t) + ':00', reset: () => { SF.picked = false; SF.idx = n; drawAll(); if (window.MAXORA_WAVES) window.MAXORA_WAVES.update(); } };
+    },
     rail: () => [window.MAXORA_DIARY ? { icon: '📓', short: window.MAXORA_DIARY.short(), label: window.MAXORA_DIARY.short(), onclick: () => window.MAXORA_DIARY.open() } : null, { icon: '🏄', short: tr('lvl' + SF.level).slice(0, 5) + '.', label: tr('levelQ'), on: true, choices: [1, 2, 3].map((l) => ({ label: tr('lvl' + l), on: SF.level === l, onclick: () => { SF.level = l; store.set('surfLevel', l); drawAll(); } })) }]
   });
   window.MAXORA_SURF = { rate: (id, k, l) => rate(SF.byId.get(id), k, l || SF.level), state: SF, tideAt, setOn, isOn: () => SF.on, openCard: (id) => openCard(id, true), redraw: () => drawAll() };

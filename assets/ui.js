@@ -8,14 +8,16 @@
   const { map, el } = M;
   const $ = (id) => document.getElementById(id);
 
-  const TX = { it: { all: 'Vedi tutti', list: 'Lista', map: 'Mappa' }, es: { all: 'Ver todos', list: 'Lista', map: 'Mapa' }, en: { all: 'See all', list: 'List', map: 'Map' }, de: { all: 'Alle zeigen', list: 'Liste', map: 'Karte' } };
+  const TX = { it: { now: 'Torna ad adesso', all: 'Vedi tutti', list: 'Lista', map: 'Mappa' }, es: { now: 'Volver a ahora', all: 'Ver todos', list: 'Lista', map: 'Mapa' }, en: { now: 'Back to now', all: 'See all', list: 'List', map: 'Map' }, de: { now: 'Zurück zu jetzt', all: 'Alle zeigen', list: 'Liste', map: 'Karte' } };
   const tr = (k) => (TX[M.lang()] || TX.es)[k];
 
   const top = el('div', { id: 'uiTop', class: 'ui-top hidden' });
   const rail = el('div', { id: 'uiRail', class: 'ui-rail hidden' });
   // maniglia: tocca o trascina in su per aprire la lista completa
   const grab = el('button', { class: 'ui-grab', 'aria-label': 'Lista' }, [el('i'), el('span', { id: 'uiGrabL' })]);
-  const bottom = el('div', { id: 'uiBottom', class: 'ui-bottom hidden' }, [grab, el('div', { id: 'uiTime', class: 'ui-time' }), el('div', { id: 'uiCards', class: 'ui-cards' })]);
+  // chip "stai guardando un'altra ora" (✕ = torna ad adesso)
+  const when = el('button', { class: 'ui-when hidden' });
+  const bottom = el('div', { id: 'uiBottom', class: 'ui-bottom hidden' }, [el('div', { class: 'ui-grabrow' }, [when, grab]), el('div', { id: 'uiTime', class: 'ui-time' }), el('div', { id: 'uiCards', class: 'ui-cards' })]);
   document.body.append(top, rail, bottom);
   grab.addEventListener('click', () => showList());
   let y0 = null;
@@ -24,6 +26,12 @@
   const back = el('button', { class: 'ui-back', onclick: () => hideList() }, ['🗺 ']);
   document.body.appendChild(back);
 
+  // foto delle zone (Wikimedia Commons): una per spot e per percorso
+  let ZP = null;
+  fetch('data/zone_photos.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : null)).then((d) => {
+    ZP = d;
+    if (d && cur && REG[cur] && REG[cur].refresh) REG[cur].refresh();
+  }).catch(() => {});
   const REG = {};        // mode -> { top: () => [nodes], rail: () => [items], time: () => node, sheet: id }
   const stash = [];      // nodi spostati: [node, placeholder]
   let cur = null;
@@ -96,9 +104,13 @@
     const keep = key === lastKey ? box.scrollLeft : 0;
     lastKey = key;
     box.innerHTML = '';
+    const kind = k === 'surf' ? 'surf' : (k === 'bike' || k === 'run') ? 'routes' : null;
     items.forEach((x) => {
-      const c = el('button', { class: 'uc', 'data-id': x.id, onclick: () => x.onOpen() }, [
-        el('span', { class: 'uc-badge', style: '--c:' + (x.color || 'var(--mode)') }, [].concat(x.badge || '')),
+      const ph = kind && ZP && ZP[kind] && ZP[kind][x.id];
+      const badge = el('span', { class: 'uc-badge', style: '--c:' + (x.color || 'var(--mode)') }, [].concat(x.badge || ''));
+      const c = el('button', { class: 'uc' + (ph ? ' uc-ph' : ''), 'data-id': x.id, onclick: () => x.onOpen() }, [
+        // con la foto della zona: foto a sinistra e voto sopra la foto (come una scheda di Strava)
+        ph ? el('span', { class: 'uc-img' }, [el('img', { src: ph.url, alt: '', loading: 'lazy', decoding: 'async', onerror: (e) => { e.target.parentNode.classList.add('nope'); } }), badge, el('small', { class: 'uc-cr', text: '© ' + ph.author.replace(/\s+/g, ' ').slice(0, 28) })]) : badge,
         el('span', { class: 'uc-txt' }, [el('span', { class: 'uc-t', text: x.title }), el('span', { class: 'uc-s', style: x.subColor ? 'color:' + x.subColor : '' }, [x.sub || ''])]),
         x.right ? el('span', { class: 'uc-r', text: x.right }) : null
       ]);
@@ -107,6 +119,10 @@
     });
     if (REG[cur] && REG[cur].sheet) box.appendChild(el('button', { class: 'uc uc-all', onclick: showList }, ['☰ ' + tr('all') + (total ? ' (' + total + ')' : '')]));
     $('uiGrabL').textContent = tr('all') + (total ? ' (' + total + ')' : '');
+    const w = REG[cur] && REG[cur].when && REG[cur].when();
+    when.classList.toggle('hidden', !w);
+    when.innerHTML = '';
+    if (w) { when.append(el('span', { text: '🕒 ' + w.label }), el('b', { text: '✕' })); when.onclick = (e) => { e.stopPropagation(); w.reset(); }; when.setAttribute('aria-label', tr('now')); }
     grab.classList.toggle('hidden', !(REG[cur] && REG[cur].sheet));
     // la scheda descritta dalla barra orari resta evidenziata
     const fid = lastFocus && items.some((x) => x.id === lastFocus) ? lastFocus : items[0] && items[0].id;
