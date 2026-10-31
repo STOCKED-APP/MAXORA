@@ -1000,6 +1000,8 @@
     list.innerHTML = '';
     list.classList.remove('ev-box');
     if (discTab === 'events') { EV.draw(list, {}); return; }
+    // in cima a "Tutto": i prossimi eventi del paese scelto
+    if (EV && discTab === 'all') EV.teaser(list, () => { discTab = 'events'; drawDiscover(); list.scrollTop = 0; });
     const ref = S.pos || null;
     const dist = (x) => (ref ? distKm(ref, x) : null);
     const fmt = (d) => (d == null ? '' : d < 1 ? Math.round(d * 1000) + ' m' : (d < 10 ? d.toFixed(1).replace('.', lang === 'en' ? '.' : ',') : Math.round(d)) + ' km');

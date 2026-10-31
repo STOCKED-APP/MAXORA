@@ -692,12 +692,6 @@
     });
     // la legenda ("?") sta qui, così in alto resta solo il nome della modalità
     const k = current();
-    // eventi della modalità (gare di surf, bici, corsa; in strada/camper tutti)
-    const EV = window.MAXORA_EVENTS;
-    if (EV) {
-      const sp = ['surf', 'bike', 'run'].includes(k) ? k : null;
-      menu.appendChild(el('button', { class: 'mode-item mode-ev', onclick: (e) => { e.stopPropagation(); menu.classList.add('hidden'); EV.open(sp); } }, [el('span', { class: 'mi-ico', text: sp ? EV.emoji(sp) : '🎉' }), el('span', { class: 'mi-txt' }, [el('b', { text: EV.label() }), el('small', { text: EV.countLabel(sp) })])]));
-    }
     if (k !== 'road' && window.MAXORA_TOUR) menu.appendChild(el('button', { class: 'mode-item mode-legend', onclick: (e) => { e.stopPropagation(); menu.classList.add('hidden'); window.MAXORA_TOUR.legend(k); } }, [el('span', { class: 'mi-ico', text: '?' }), el('span', { class: 'mi-txt' }, [el('b', { text: tr('legend') })])]));
   }
   async function choose(k) {

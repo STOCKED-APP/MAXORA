@@ -10,5 +10,5 @@ window.MAXORA_CONFIG = {
   },
   // email pubblica per privacy e aiuto (pagine privacy.html e support.html, e Store)
   contactEmail: '',
-  version: '0.28.1'
+  version: '0.28.2'
 };

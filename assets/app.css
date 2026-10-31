@@ -1228,3 +1228,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .sf-slot .sc.none { color: #fff; opacity: .7; }
 .ui-time .sf-slot { width: 42px; }
 .ui-time .sf-slot .sc { min-width: 34px; height: 20px; font-size: 11px; }
+.ev-teaser { margin: 0 0 14px; }
+.ev-th { display: flex; align-items: center; justify-content: space-between; }
+.ev-th .disc-h { margin: 6px 0 2px; }
+.ev-more { border: 0; background: transparent; color: var(--text); font: inherit; font-weight: 800; font-size: 13px; padding: 6px 2px; cursor: pointer; }
