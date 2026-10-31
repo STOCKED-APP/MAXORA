@@ -14,7 +14,7 @@ const log = (s) => { out.push(s); fs.writeFileSync('shots/out.txt', out.join('\n
     await p.goto('https://stocked-app.github.io/MAXORA/?v=' + Date.now(), { waitUntil: 'load' });
     await p.waitForTimeout(7000);
     const ev = (f, a) => p.evaluate(f, a).catch((e) => log('ev ' + e.message));
-    const shot = async (n, wait) => { await p.waitForTimeout(wait || 3000); await p.screenshot({ path: `shots/${dev}-${lang}-${n}.png` }); };
+    const shot = async (n, wait) => { await p.waitForTimeout(wait || 3000); await p.evaluate(() => document.querySelectorAll('.mode-splash').forEach((x) => x.remove())).catch(() => {}); await p.waitForTimeout(400); await p.screenshot({ path: `shots/${dev}-${lang}-${n}.png` }); };
     await ev(() => { window.MAXORA.map.jumpTo({ center: [-13.866, 28.733], zoom: 13.6 }); });
     await shot('1-strada', 4000);
     await ev(() => document.getElementById('reportBtn').click()); await shot('2-segnala', 1500);
